@@ -269,6 +269,33 @@ tr:last-child td { border-bottom: none; }
 }
 .draft-order-owner { color: var(--gold); font-weight: 600; }
 .draft-order-none { color: var(--muted); }
+#draftorder .card, #draft2025 .card {
+  overflow-x: visible;
+  padding: 14px 6px;
+}
+#draftorder table, #draft2025 table {
+  table-layout: fixed;
+  width: 100%;
+}
+#draftorder th, #draftorder td, #draft2025 th, #draft2025 td {
+  white-space: normal;
+  overflow-wrap: break-word;
+  font-size: 0.64rem;
+  padding: 6px 3px;
+  text-align: center;
+  line-height: 1.25;
+}
+@media (max-width: 700px) {
+  #draftorder th, #draftorder td, #draft2025 th, #draft2025 td {
+    font-size: 0.56rem;
+    padding: 5px 2px;
+  }
+}
+#draftorder th:first-child, #draftorder td:first-child,
+#draft2025 th:first-child, #draft2025 td:first-child {
+  width: 26px;
+  text-align: left;
+}
 .trade-card {
   background: var(--panel);
   border: 1px solid var(--border);
