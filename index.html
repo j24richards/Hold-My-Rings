@@ -289,6 +289,64 @@ tr:last-child td { border-bottom: none; }
   color: var(--muted);
   margin: -10px 0 20px;
 }
+input[type="text"], input[type="number"], input[type="password"], input[type="datetime-local"], textarea, select {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+textarea { min-height: 80px; resize: vertical; }
+.admin-field { margin-bottom: 14px; }
+.admin-field label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.admin-row {
+  display: grid;
+  grid-template-columns: 1fr 110px 100px;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.admin-keeper-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.admin-team-label { font-weight: 600; font-size: 0.88rem; }
+.admin-btn {
+  background: var(--gold);
+  border: none;
+  color: #ffffff;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.admin-btn:hover { opacity: 0.88; }
+#admin-status {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+#admin-error {
+  color: var(--gold);
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
 footer {
   text-align: center;
   color: #a9bfe0;
@@ -317,6 +375,7 @@ footer {
   <button data-tab="trades">Trades</button>
   <button data-tab="history">History</button>
   <button data-tab="rules">Rules</button>
+  <button data-tab="admin">Admin</button>
 </nav>
 
 <main>
@@ -412,6 +471,43 @@ footer {
     <div class="settings-grid" id="settings-grid"></div>
   </section>
 
+  <section id="admin">
+    <h2>Commissioner Admin</h2>
+    <div class="card" id="admin-locked">
+      <p style="color: var(--muted); margin-top: 0;">Enter the commissioner password to edit the note, standings, and keeper picks below. Changes save straight to the live site.</p>
+      <div class="admin-field">
+        <label for="admin-password">Password</label>
+        <input type="password" id="admin-password" autocomplete="off">
+      </div>
+      <button class="admin-btn" id="admin-unlock-btn">Unlock</button>
+      <p id="admin-error" style="display:none;">Incorrect password.</p>
+    </div>
+    <div id="admin-panel" style="display:none;">
+      <div class="card">
+        <h3 style="margin-top:0;">Commissioner's Note</h3>
+        <div class="admin-field">
+          <textarea id="admin-note"></textarea>
+        </div>
+        <h3>Draft Date &amp; Time</h3>
+        <div class="admin-field">
+          <input type="datetime-local" id="admin-draftdate">
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0;">2026 Season Standings</h3>
+        <p style="color: var(--muted); margin-top: -8px; font-size: 0.82rem;">Record and points for, per team.</p>
+        <div id="admin-standings"></div>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0;">2026 Keeper Selections</h3>
+        <p style="color: var(--muted); margin-top: -8px; font-size: 0.82rem;">Pick up to two kept players per team.</p>
+        <div id="admin-keepers"></div>
+      </div>
+      <button class="admin-btn" id="admin-save-btn">Save Changes</button>
+      <p id="admin-status"></p>
+    </div>
+  </section>
+
 </main>
 
 <footer><span id="footer-league-name">Hold My Rings</span> &middot; site last updated <span id="updated-date"></span></footer>
@@ -430,7 +526,3272 @@ const firebaseConfig = {
   appId: "1:1027510184194:web:5b71a7eeb90bc0b85afa1b"
 };
 
-const DEFAULT_LEAGUE_DATA = {"leagueName":"Hold My Rings","lastUpdated":"2026-08-25","draftDate":"2026-09-08T19:30:00","commissionerNote":"Welcome to Hold My Rings' home on the web! Replace this note each season \u2014 draft reminders, trade deadlines, playoff news, whatever you want everyone to see first.","currentSeason":{"year":2026,"standings":[{"team":"jen's Legendary Team","manager":"Shawn","record":"0-0","pointsFor":0},{"team":"The real sultan","manager":"Joe","record":"0-0","pointsFor":0},{"team":"Aarons got a Gun","manager":"John","record":"0-0","pointsFor":0},{"team":"Prestige Worldwide","manager":"Ben","record":"0-0","pointsFor":0},{"team":"Colin for the win","manager":"Chris","record":"0-0","pointsFor":0},{"team":"The V&G Express","manager":"Kevin","record":"0-0","pointsFor":0},{"team":"Maye I put it in your Boutte","manager":"Nate","record":"0-0","pointsFor":0},{"team":"Leeroy Judkins","manager":"JR","record":"0-0","pointsFor":0},{"team":"Any given Sunday","manager":"Robert","record":"0-0","pointsFor":0},{"team":"Saquon deez nutz","manager":"AJ","record":"0-0","pointsFor":0}]},"history":[{"year":2025,"champion":"Saquon deez nutz","championManager":"AJ","runnerUp":"Any given Sunday","runnerUpManager":"Robert"}],"teams":[{"team":"jen's Legendary Team","manager":"Shawn","roster":[{"player":"Matthew Stafford","pos":"QB","nfl":"LAR","keeperCost":8,"kept2025":false},{"player":"Jaylen Warren","pos":"RB","nfl":"PIT","keeperCost":7,"kept2025":false},{"player":"Kyle Monangai","pos":"RB","nfl":"CHI","keeperCost":8,"kept2025":false},{"player":"Zach Charbonnet","pos":"RB","nfl":"SEA","keeperCost":8,"kept2025":false},{"player":"Alvin Kamara","pos":"RB","nfl":"NO","keeperCost":3,"kept2025":false},{"player":"Devin Singletary","pos":"RB","nfl":"NYG","keeperCost":8,"kept2025":false},{"player":"Kenneth Walker III","pos":"RB","nfl":"KC","keeperCost":4,"kept2025":false},{"player":"Alec Pierce","pos":"WR","nfl":"IND","keeperCost":8,"kept2025":false},{"player":"Michael Pittman Jr.","pos":"WR","nfl":"PIT","keeperCost":10,"kept2025":false},{"player":"Brian Thomas Jr.","pos":"WR","nfl":"JAX","keeperCost":8,"kept2025":true},{"player":"Jayden Reed","pos":"WR","nfl":"GB","keeperCost":11,"kept2025":false},{"player":"Xavier Worthy","pos":"WR","nfl":"KC","keeperCost":5,"kept2025":false},{"player":"Romeo Doubs","pos":"WR","nfl":"NE","keeperCost":8,"kept2025":false},{"player":"Kyle Pitts Sr.","pos":"TE","nfl":"ATL","keeperCost":8,"kept2025":false},{"player":"T.J. Hockenson","pos":"TE","nfl":"MIN","keeperCost":12,"kept2025":true},{"player":"Cam Little","pos":"K","nfl":"JAX","keeperCost":8,"kept2025":false},{"player":"Falcons","pos":"DEF","nfl":"ATL","keeperCost":8,"kept2025":false}]},{"team":"The real sultan","manager":"Joe","roster":[{"player":"Lamar Jackson","pos":"QB","nfl":"BAL","keeperCost":2,"kept2025":false},{"player":"Jayden Daniels","pos":"QB","nfl":"WAS","keeperCost":8,"kept2025":false},{"player":"Justin Herbert","pos":"QB","nfl":"LAC","keeperCost":13,"kept2025":false},{"player":"Christian McCaffrey","pos":"RB","nfl":"SF","keeperCost":1,"kept2025":false},{"player":"Travis Etienne Jr.","pos":"RB","nfl":"NO","keeperCost":9,"kept2025":false},{"player":"D'Andre Swift","pos":"RB","nfl":"CHI","keeperCost":5,"kept2025":false},{"player":"Isiah Pacheco","pos":"RB","nfl":"DET","keeperCost":8,"kept2025":false},{"player":"Chris Olave","pos":"WR","nfl":"NO","keeperCost":6,"kept2025":false},{"player":"Garrett Wilson","pos":"WR","nfl":"NYJ","keeperCost":4,"kept2025":false},{"player":"Malik Nabers","pos":"WR","nfl":"NYG","keeperCost":2,"kept2025":true},{"player":"Luther Burden III","pos":"WR","nfl":"CHI","keeperCost":8,"kept2025":false},{"player":"Khalil Shakir","pos":"WR","nfl":"BUF","keeperCost":10,"kept2025":false},{"player":"Tre Tucker","pos":"WR","nfl":"LV","keeperCost":8,"kept2025":false},{"player":"Adonai Mitchell","pos":"WR","nfl":"NYJ","keeperCost":8,"kept2025":false},{"player":"Brandon Aiyuk","pos":"WR","nfl":"SF","keeperCost":11,"kept2025":false},{"player":"Brock Bowers","pos":"TE","nfl":"LV","keeperCost":11,"kept2025":true},{"player":"Matt Prater","pos":"K","nfl":"FA","keeperCost":8,"kept2025":false},{"player":"Texans","pos":"DEF","nfl":"HOU","keeperCost":8,"kept2025":false}]},{"team":"Aarons got a Gun","manager":"John","roster":[{"player":"Jared Goff","pos":"QB","nfl":"DET","keeperCost":8,"kept2025":false},{"player":"Bijan Robinson","pos":"RB","nfl":"ATL","keeperCost":1,"kept2025":true},{"player":"Chuba Hubbard","pos":"RB","nfl":"CAR","keeperCost":3,"kept2025":false},{"player":"Kenny Gainwell","pos":"RB","nfl":"TB","keeperCost":8,"kept2025":false},{"player":"Tyjae Spears","pos":"RB","nfl":"TEN","keeperCost":8,"kept2025":false},{"player":"Bam Knight","pos":"RB","nfl":"ARI","keeperCost":8,"kept2025":false},{"player":"Hassan Haskins","pos":"RB","nfl":"NE","keeperCost":8,"kept2025":false},{"player":"Justin Jefferson","pos":"WR","nfl":"MIN","keeperCost":5,"kept2025":true},{"player":"Rome Odunze","pos":"WR","nfl":"CHI","keeperCost":7,"kept2025":false},{"player":"Jakobi Meyers","pos":"WR","nfl":"JAX","keeperCost":8,"kept2025":false},{"player":"Rashid Shaheed","pos":"WR","nfl":"SEA","keeperCost":12,"kept2025":false},{"player":"Chimere Dike","pos":"WR","nfl":"TEN","keeperCost":8,"kept2025":false},{"player":"Brenton Strange","pos":"TE","nfl":"JAX","keeperCost":8,"kept2025":false},{"player":"Zach Ertz","pos":"TE","nfl":"WAS","keeperCost":8,"kept2025":false},{"player":"Chase McLaughlin","pos":"K","nfl":"TB","keeperCost":8,"kept2025":false},{"player":"Jaguars","pos":"DEF","nfl":"JAX","keeperCost":8,"kept2025":false}]},{"team":"Prestige Worldwide","manager":"Ben","roster":[{"player":"Dak Prescott","pos":"QB","nfl":"DAL","keeperCost":8,"kept2025":false},{"player":"Jordan Love","pos":"QB","nfl":"GB","keeperCost":8,"kept2025":false},{"player":"De'Von Achane","pos":"RB","nfl":"MIA","keeperCost":9,"kept2025":true},{"player":"Breece Hall","pos":"RB","nfl":"NYJ","keeperCost":4,"kept2025":false},{"player":"Josh Jacobs","pos":"RB","nfl":"GB","keeperCost":1,"kept2025":false},{"player":"Cam Skattebo","pos":"RB","nfl":"NYG","keeperCost":11,"kept2025":false},{"player":"Aaron Jones Sr.","pos":"RB","nfl":"MIN","keeperCost":6,"kept2025":false},{"player":"Kareem Hunt","pos":"RB","nfl":"KC","keeperCost":8,"kept2025":false},{"player":"Tetairoa McMillan","pos":"WR","nfl":"CAR","keeperCost":5,"kept2025":false},{"player":"Tee Higgins","pos":"WR","nfl":"CIN","keeperCost":2,"kept2025":false},{"player":"DJ Moore","pos":"WR","nfl":"BUF","keeperCost":8,"kept2025":false},{"player":"Mike Evans","pos":"WR","nfl":"SF","keeperCost":2,"kept2025":true},{"player":"Deebo Samuel Sr.","pos":"WR","nfl":"SF","keeperCost":8,"kept2025":false},{"player":"Jerry Jeudy","pos":"WR","nfl":"CLE","keeperCost":8,"kept2025":false},{"player":"Dallas Goedert","pos":"TE","nfl":"PHI","keeperCost":16,"kept2025":false},{"player":"Mark Andrews","pos":"TE","nfl":"BAL","keeperCost":7,"kept2025":false},{"player":"Brandon Aubrey","pos":"K","nfl":"DAL","keeperCost":12,"kept2025":false},{"player":"Bills","pos":"DEF","nfl":"BUF","keeperCost":15,"kept2025":false}]},{"team":"Colin for the win","manager":"Chris","roster":[{"player":"Drake Maye","pos":"QB","nfl":"NE","keeperCost":9,"kept2025":false},{"player":"Bo Nix","pos":"QB","nfl":"DEN","keeperCost":8,"kept2025":false},{"player":"James Cook III","pos":"RB","nfl":"BUF","keeperCost":3,"kept2025":false},{"player":"Derrick Henry","pos":"RB","nfl":"BAL","keeperCost":1,"kept2025":false},{"player":"Tony Pollard","pos":"RB","nfl":"TEN","keeperCost":5,"kept2025":false},{"player":"Jordan Mason","pos":"RB","nfl":"MIN","keeperCost":8,"kept2025":false},{"player":"A.J. Brown","pos":"WR","nfl":"NE","keeperCost":2,"kept2025":false},{"player":"Zay Flowers","pos":"WR","nfl":"BAL","keeperCost":4,"kept2025":false},{"player":"Jameson Williams","pos":"WR","nfl":"DET","keeperCost":9,"kept2025":true},{"player":"Josh Downs","pos":"WR","nfl":"IND","keeperCost":11,"kept2025":false},{"player":"Jordan Addison","pos":"WR","nfl":"MIN","keeperCost":5,"kept2025":true},{"player":"Kayshon Boutte","pos":"WR","nfl":"NE","keeperCost":8,"kept2025":false},{"player":"Tucker Kraft","pos":"TE","nfl":"GB","keeperCost":7,"kept2025":false},{"player":"Cade Otton","pos":"TE","nfl":"TB","keeperCost":8,"kept2025":false},{"player":"Hunter Henry","pos":"TE","nfl":"NE","keeperCost":12,"kept2025":false},{"player":"Cameron Dicker","pos":"K","nfl":"LAC","keeperCost":14,"kept2025":false},{"player":"Buccaneers","pos":"DEF","nfl":"TB","keeperCost":8,"kept2025":false}]},{"team":"The V&G Express","manager":"Kevin","roster":[{"player":"Joe Burrow","pos":"QB","nfl":"CIN","keeperCost":8,"kept2025":false},{"player":"Jacoby Brissett","pos":"QB","nfl":"ARI","keeperCost":8,"kept2025":false},{"player":"Kyren Williams","pos":"RB","nfl":"LAR","keeperCost":6,"kept2025":true},{"player":"TreVeyon Henderson","pos":"RB","nfl":"NE","keeperCost":3,"kept2025":false},{"player":"Rico Dowdle","pos":"RB","nfl":"PIT","keeperCost":8,"kept2025":false},{"player":"Blake Corum","pos":"RB","nfl":"LAR","keeperCost":8,"kept2025":false},{"player":"Devin Neal","pos":"RB","nfl":"NO","keeperCost":8,"kept2025":false},{"player":"Drake London","pos":"WR","nfl":"ATL","keeperCost":1,"kept2025":false},{"player":"George Pickens","pos":"WR","nfl":"DAL","keeperCost":4,"kept2025":false},{"player":"Emeka Egbuka","pos":"WR","nfl":"TB","keeperCost":6,"kept2025":false},{"player":"Courtland Sutton","pos":"WR","nfl":"DEN","keeperCost":5,"kept2025":false},{"player":"Christian Watson","pos":"WR","nfl":"GB","keeperCost":8,"kept2025":false},{"player":"Jayden Higgins","pos":"WR","nfl":"HOU","keeperCost":8,"kept2025":false},{"player":"Tyler Warren","pos":"TE","nfl":"IND","keeperCost":10,"kept2025":false},{"player":"Evan McPherson","pos":"K","nfl":"CIN","keeperCost":8,"kept2025":false},{"player":"Rams","pos":"DEF","nfl":"LAR","keeperCost":8,"kept2025":false}]},{"team":"Maye I put it in your Boutte","manager":"Nate","roster":[{"player":"Brock Purdy","pos":"QB","nfl":"SF","keeperCost":8,"kept2025":false},{"player":"Baker Mayfield","pos":"QB","nfl":"TB","keeperCost":11,"kept2025":false},{"player":"Saquon Barkley","pos":"RB","nfl":"PHI","keeperCost":1,"kept2025":true},{"player":"Javonte Williams","pos":"RB","nfl":"DAL","keeperCost":12,"kept2025":false},{"player":"RJ Harvey","pos":"RB","nfl":"DEN","keeperCost":4,"kept2025":false},{"player":"J.K. Dobbins","pos":"RB","nfl":"DEN","keeperCost":8,"kept2025":false},{"player":"Ja'Marr Chase","pos":"WR","nfl":"CIN","keeperCost":2,"kept2025":true},{"player":"Parker Washington","pos":"WR","nfl":"JAX","keeperCost":8,"kept2025":false},{"player":"Michael Wilson","pos":"WR","nfl":"ARI","keeperCost":8,"kept2025":false},{"player":"Ricky Pearsall","pos":"WR","nfl":"SF","keeperCost":5,"kept2025":false},{"player":"Jauan Jennings","pos":"WR","nfl":"MIN","keeperCost":9,"kept2025":false},{"player":"Devaughn Vele","pos":"WR","nfl":"NO","keeperCost":8,"kept2025":false},{"player":"Travis Hunter","pos":"WR","nfl":"JAX","keeperCost":6,"kept2025":false},{"player":"George Kittle","pos":"TE","nfl":"SF","keeperCost":2,"kept2025":false},{"player":"Jake Ferguson","pos":"TE","nfl":"DAL","keeperCost":14,"kept2025":false},{"player":"Will Reichard","pos":"K","nfl":"MIN","keeperCost":8,"kept2025":false},{"player":"Eagles","pos":"DEF","nfl":"PHI","keeperCost":8,"kept2025":false},{"player":"Patriots","pos":"DEF","nfl":"NE","keeperCost":8,"kept2025":false}]},{"team":"Leeroy Judkins","manager":"JR","roster":[{"player":"Josh Allen","pos":"QB","nfl":"BUF","keeperCost":10,"kept2025":true},{"player":"Ashton Jeanty","pos":"RB","nfl":"LV","keeperCost":1,"kept2025":false},{"player":"Omarion Hampton","pos":"RB","nfl":"LAC","keeperCost":3,"kept2025":false},{"player":"Quinshon Judkins","pos":"RB","nfl":"CLE","keeperCost":10,"kept2025":false},{"player":"Bhayshul Tuten","pos":"RB","nfl":"JAX","keeperCost":8,"kept2025":false},{"player":"Braelon Allen","pos":"RB","nfl":"NYJ","keeperCost":8,"kept2025":false},{"player":"Kaleb Johnson","pos":"RB","nfl":"PIT","keeperCost":8,"kept2025":false},{"player":"Trey Benson","pos":"RB","nfl":"ARI","keeperCost":8,"kept2025":false},{"player":"Tyler Allgeier","pos":"RB","nfl":"ARI","keeperCost":8,"kept2025":false},{"player":"CeeDee Lamb","pos":"WR","nfl":"DAL","keeperCost":1,"kept2025":false},{"player":"Nico Collins","pos":"WR","nfl":"HOU","keeperCost":8,"kept2025":true},{"player":"Jaylen Waddle","pos":"WR","nfl":"DEN","keeperCost":6,"kept2025":false},{"player":"Stefon Diggs","pos":"WR","nfl":"WAS","keeperCost":7,"kept2025":false},{"player":"Isaac TeSlaa","pos":"WR","nfl":"DET","keeperCost":8,"kept2025":false},{"player":"Kyle Williams","pos":"WR","nfl":"NE","keeperCost":8,"kept2025":false},{"player":"Trey McBride","pos":"TE","nfl":"ARI","keeperCost":2,"kept2025":false},{"player":"Harold Fannin Jr.","pos":"TE","nfl":"CLE","keeperCost":8,"kept2025":false},{"player":"Oronde Gadsden","pos":"TE","nfl":"LAC","keeperCost":8,"kept2025":false}]},{"team":"Any given Sunday","manager":"Robert","roster":[{"player":"Jalen Hurts","pos":"QB","nfl":"PHI","keeperCost":2,"kept2025":false},{"player":"Trevor Lawrence","pos":"QB","nfl":"JAX","keeperCost":8,"kept2025":false},{"player":"Jonathan Taylor","pos":"RB","nfl":"IND","keeperCost":2,"kept2025":false},{"player":"Bucky Irving","pos":"RB","nfl":"TB","keeperCost":13,"kept2025":true},{"player":"David Montgomery","pos":"RB","nfl":"HOU","keeperCost":5,"kept2025":false},{"player":"Puka Nacua","pos":"WR","nfl":"LAR","keeperCost":2,"kept2025":false},{"player":"Amon-Ra St. Brown","pos":"WR","nfl":"DET","keeperCost":1,"kept2025":false},{"player":"Rashee Rice","pos":"WR","nfl":"KC","keeperCost":7,"kept2025":false},{"player":"Ladd McConkey","pos":"WR","nfl":"LAC","keeperCost":10,"kept2025":true},{"player":"Terry McLaurin","pos":"WR","nfl":"WAS","keeperCost":3,"kept2025":false},{"player":"Marvin Harrison Jr.","pos":"WR","nfl":"ARI","keeperCost":4,"kept2025":false},{"player":"Wan'Dale Robinson","pos":"WR","nfl":"TEN","keeperCost":8,"kept2025":false},{"player":"Juwan Johnson","pos":"TE","nfl":"NO","keeperCost":8,"kept2025":false},{"player":"Dalton Schultz","pos":"TE","nfl":"HOU","keeperCost":8,"kept2025":false},{"player":"Ka'imi Fairbairn","pos":"K","nfl":"HOU","keeperCost":16,"kept2025":false},{"player":"Broncos","pos":"DEF","nfl":"DEN","keeperCost":12,"kept2025":false}]},{"team":"Saquon deez nutz","manager":"AJ","roster":[{"player":"Caleb Williams","pos":"QB","nfl":"CHI","keeperCost":8,"kept2025":false},{"player":"Jaxson Dart","pos":"QB","nfl":"NYG","keeperCost":8,"kept2025":false},{"player":"Jahmyr Gibbs","pos":"RB","nfl":"DET","keeperCost":1,"kept2025":false},{"player":"Chase Brown","pos":"RB","nfl":"CIN","keeperCost":2,"kept2025":false},{"player":"Woody Marks","pos":"RB","nfl":"HOU","keeperCost":14,"kept2025":false},{"player":"Tyrone Tracy Jr.","pos":"RB","nfl":"NYG","keeperCost":8,"kept2025":false},{"player":"Joe Mixon","pos":"RB","nfl":"FA","keeperCost":11,"kept2025":false},{"player":"Jaxon Smith-Njigba","pos":"WR","nfl":"SEA","keeperCost":8,"kept2025":true},{"player":"DeVonta Smith","pos":"WR","nfl":"PHI","keeperCost":5,"kept2025":false},{"player":"Davante Adams","pos":"WR","nfl":"LAR","keeperCost":4,"kept2025":false},{"player":"Chris Godwin Jr.","pos":"WR","nfl":"TB","keeperCost":12,"kept2025":false},{"player":"Quentin Johnston","pos":"WR","nfl":"LAC","keeperCost":8,"kept2025":false},{"player":"Keenan Allen","pos":"WR","nfl":"LAC","keeperCost":8,"kept2025":false},{"player":"Tyreek Hill","pos":"WR","nfl":"MIA","keeperCost":3,"kept2025":false},{"player":"Travis Kelce","pos":"TE","nfl":"KC","keeperCost":6,"kept2025":false},{"player":"AJ Barner","pos":"TE","nfl":"SEA","keeperCost":8,"kept2025":false},{"player":"Chris Boswell","pos":"K","nfl":"PIT","keeperCost":8,"kept2025":false},{"player":"Seahawks","pos":"DEF","nfl":"SEA","keeperCost":8,"kept2025":false}]}],"draftOrder2026":[{"round":"1","picks":[{"originalTeam":"jen's Legendary Team","newOwner":null},{"originalTeam":"The real sultan","newOwner":null},{"originalTeam":"Aarons got a Gun","newOwner":null},{"originalTeam":"Prestige Worldwide","newOwner":null},{"originalTeam":"Colin for the win","newOwner":null},{"originalTeam":"The V&G Express","newOwner":null},{"originalTeam":"Maye I put it in your Boutte","newOwner":null},{"originalTeam":"Leeroy Judkins","newOwner":null},{"originalTeam":"Any given Sunday","newOwner":null},{"originalTeam":"Saquon deez nutz","newOwner":null}]},{"round":"2","picks":[{"originalTeam":"jen's Legendary Team","newOwner":null},{"originalTeam":"The real sultan","newOwner":null},{"originalTeam":"Aarons got a Gun","newOwner":null},{"originalTeam":"Prestige Worldwide","newOwner":null},{"originalTeam":"Colin for the win","newOwner":null},{"originalTeam":"The V&G Express","newOwner":null},{"originalTeam":"Maye I put it in your Boutte","newOwner":null},{"originalTeam":"Leeroy Judkins","newOwner":"jen's Legendary Team"},{"originalTeam":"Any given Sunday","newOwner":"jen's Legendary Team"},{"originalTeam":"Saquon deez nutz","newOwner":null}]},{"round":"3","picks":[{"originalTeam":"jen's Legendary Team","newOwner":null},{"originalTeam":"The real sultan","newOwner":null},{"originalTeam":"Aarons got a Gun","newOwner":null},{"originalTeam":"Prestige Worldwide","newOwner":null},{"originalTeam":"Colin for the win","newOwner":null},{"originalTeam":"The V&G Express","newOwner":null},{"originalTeam":"Maye I put it in your Boutte","newOwner":null},{"originalTeam":"Leeroy Judkins","newOwner":null},{"originalTeam":"Any given Sunday","newOwner":null},{"originalTeam":"Saquon deez nutz","newOwner":null}]},{"round":"4","picks":[{"originalTeam":"jen's Legendary Team","newOwner":null},{"originalTeam":"The real sultan","newOwner":null},{"originalTeam":"Aarons got a Gun","newOwner":null},{"originalTeam":"Prestige Worldwide","newOwner":null},{"originalTeam":"Colin for the win","newOwner":null},{"originalTeam":"The V&G Express","newOwner":null},{"originalTeam":"Maye I put it in your Boutte","newOwner":null},{"originalTeam":"Leeroy Judkins","newOwner":null},{"originalTeam":"Any given Sunday","newOwner":null},{"originalTeam":"Saquon deez nutz","newOwner":null}]},{"round":"5","picks":[{"originalTeam":"jen's Legendary Team","newOwner":null},{"originalTeam":"The real sultan","newOwner":null},{"originalTeam":"Aarons got a Gun","newOwner":null},{"originalTeam":"Prestige Worldwide","newOwner":null},{"originalTeam":"Colin for the win","newOwner":null},{"originalTeam":"The V&G Express","newOwner":null},{"originalTeam":"Maye I put it in your Boutte","newOwner":null},{"originalTeam":"Leeroy Judkins","newOwner":null},{"originalTeam":"Any given Sunday","newOwner":null},{"originalTeam":"Saquon deez nutz","newOwner":null}]},{"round":"6","picks":[{"originalTeam":"jen's Legendary Team","newOwner":null},{"originalTeam":"The real sultan","newOwner":null},{"originalTeam":"Aarons got a Gun","newOwner":null},{"originalTeam":"Prestige Worldwide","newOwner":null},{"originalTeam":"Colin for the win","newOwner":null},{"originalTeam":"The V&G Express","newOwner":null},{"originalTeam":"Maye I put it in your Boutte","newOwner":null},{"originalTeam":"Leeroy Judkins","newOwner":null},{"originalTeam":"Any given Sunday","newOwner":null},{"originalTeam":"Saquon deez nutz","newOwner":null}]},{"round":"7","picks":[{"originalTeam":"jen's Legendary Team","newOwner":null},{"originalTeam":"The real sultan","newOwner":null},{"originalTeam":"Aarons got a Gun","newOwner":null},{"originalTeam":"Prestige Worldwide","newOwner":null},{"originalTeam":"Colin for the win","newOwner":null},{"originalTeam":"The V&G Express","newOwner":null},{"originalTeam":"Maye I put it in your Boutte","newOwner":null},{"originalTeam":"Leeroy Judkins","newOwner":"jen's Legendary Team"},{"originalTeam":"Any given Sunday","newOwner":null},{"originalTeam":"Saquon deez nutz","newOwner":null}]},{"round":"8","picks":[{"originalTeam":"jen's Legendary Team","newOwner":null},{"originalTeam":"The real sultan","newOwner":null},{"originalTeam":"Aarons got a Gun","newOwner":null},{"originalTeam":"Prestige Worldwide","newOwner":null},{"originalTeam":"Colin for the win","newOwner":null},{"originalTeam":"The V&G Express","newOwner":null},{"originalTeam":"Maye I put it in your Boutte","newOwner":null},{"originalTeam":"Leeroy Judkins","newOwner":null},{"originalTeam":"Any given Sunday","newOwner":null},{"originalTeam":"Saquon deez nutz","newOwner":null}]},{"round":"9","picks":[{"originalTeam":"jen's Legendary Team","newOwner":null},{"originalTeam":"The real sultan","newOwner":null},{"originalTeam":"Aarons got a Gun","newOwner":null},{"originalTeam":"Prestige Worldwide","newOwner":null},{"originalTeam":"Colin for the win","newOwner":null},{"originalTeam":"The V&G Express","newOwner":null},{"originalTeam":"Maye I put it in your Boutte","newOwner":null},{"originalTeam":"Leeroy Judkins","newOwner":null},{"originalTeam":"Any given Sunday","newOwner":null},{"originalTeam":"Saquon deez nutz","newOwner":null}]},{"round":"10","picks":[{"originalTeam":"jen's Legendary Team","newOwner":"Leeroy Judkins"},{"originalTeam":"The real sultan","newOwner":null},{"originalTeam":"Aarons got a Gun","newOwner":null},{"originalTeam":"Prestige Worldwide","newOwner":null},{"originalTeam":"Colin for the win","newOwner":null},{"originalTeam":"The V&G Express","newOwner":null},{"originalTeam":"Maye I put it in your Boutte","newOwner":null},{"originalTeam":"Leeroy Judkins","newOwner":null},{"originalTeam":"Any given Sunday","newOwner":null},{"originalTeam":"Saquon deez nutz","newOwner":null}]},{"round":"11","picks":[{"originalTeam":"jen's Legendary Team","newOwner":"Any given Sunday"},{"originalTeam":"The real sultan","newOwner":null},{"originalTeam":"Aarons got a Gun","newOwner":null},{"originalTeam":"Prestige Worldwide","newOwner":null},{"originalTeam":"Colin for the win","newOwner":null},{"originalTeam":"The V&G Express","newOwner":null},{"originalTeam":"Maye I put it in your Boutte","newOwner":null},{"originalTeam":"Leeroy Judkins","newOwner":null},{"originalTeam":"Any given Sunday","newOwner":null},{"originalTeam":"Saquon deez nutz","newOwner":null}]},{"round":"12","picks":[{"originalTeam":"jen's Legendary Team","newOwner":"Leeroy Judkins"},{"originalTeam":"The real sultan","newOwner":null},{"originalTeam":"Aarons got a Gun","newOwner":null},{"originalTeam":"Prestige Worldwide","newOwner":null},{"originalTeam":"Colin for the win","newOwner":null},{"originalTeam":"The V&G Express","newOwner":null},{"originalTeam":"Maye I put it in your Boutte","newOwner":null},{"originalTeam":"Leeroy Judkins","newOwner":null},{"originalTeam":"Any given Sunday","newOwner":null},{"originalTeam":"Saquon deez nutz","newOwner":null}]},{"round":"13","picks":[{"originalTeam":"jen's Legendary Team","newOwner":null},{"originalTeam":"The real sultan","newOwner":null},{"originalTeam":"Aarons got a Gun","newOwner":null},{"originalTeam":"Prestige Worldwide","newOwner":null},{"originalTeam":"Colin for the win","newOwner":null},{"originalTeam":"The V&G Express","newOwner":null},{"originalTeam":"Maye I put it in your Boutte","newOwner":null},{"originalTeam":"Leeroy Judkins","newOwner":null},{"originalTeam":"Any given Sunday","newOwner":null},{"originalTeam":"Saquon deez nutz","newOwner":null}]},{"round":"14","picks":[{"originalTeam":"jen's Legendary Team","newOwner":null},{"originalTeam":"The real sultan","newOwner":null},{"originalTeam":"Aarons got a Gun","newOwner":null},{"originalTeam":"Prestige Worldwide","newOwner":null},{"originalTeam":"Colin for the win","newOwner":null},{"originalTeam":"The V&G Express","newOwner":null},{"originalTeam":"Maye I put it in your Boutte","newOwner":null},{"originalTeam":"Leeroy Judkins","newOwner":null},{"originalTeam":"Any given Sunday","newOwner":null},{"originalTeam":"Saquon deez nutz","newOwner":null}]},{"round":"15","picks":[{"originalTeam":"jen's Legendary Team","newOwner":null},{"originalTeam":"The real sultan","newOwner":null},{"originalTeam":"Aarons got a Gun","newOwner":null},{"originalTeam":"Prestige Worldwide","newOwner":null},{"originalTeam":"Colin for the win","newOwner":null},{"originalTeam":"The V&G Express","newOwner":null},{"originalTeam":"Maye I put it in your Boutte","newOwner":null},{"originalTeam":"Leeroy Judkins","newOwner":null},{"originalTeam":"Any given Sunday","newOwner":null},{"originalTeam":"Saquon deez nutz","newOwner":null}]},{"round":"16","picks":[{"originalTeam":"jen's Legendary Team","newOwner":null},{"originalTeam":"The real sultan","newOwner":null},{"originalTeam":"Aarons got a Gun","newOwner":null},{"originalTeam":"Prestige Worldwide","newOwner":null},{"originalTeam":"Colin for the win","newOwner":null},{"originalTeam":"The V&G Express","newOwner":null},{"originalTeam":"Maye I put it in your Boutte","newOwner":null},{"originalTeam":"Leeroy Judkins","newOwner":null},{"originalTeam":"Any given Sunday","newOwner":null},{"originalTeam":"Saquon deez nutz","newOwner":null}]}],"trades2025":[{"team":"jen's Legendary Team","received":[{"item":"Kyle Monangai (Chi)","pos":"RB"},{"item":"Round 7 Pick","pos":null}]},{"team":"Leeroy Judkins","received":[{"item":"Omarion Hampton (LAC)","pos":"RB"},{"item":"Round 12 Pick","pos":null}]},{"team":"Any given Sunday","received":[{"item":"Puka Nacua (LAR)","pos":"WR"},{"item":"Round 11 Pick","pos":null}]},{"team":"jen's Legendary Team","received":[{"item":"Xavier Worthy (KC)","pos":"WR"},{"item":"Round 2 Pick","pos":null}]},{"team":"Leeroy Judkins","received":[{"item":"Rhamondre Stevenson (NE)","pos":"RB"},{"item":"CeeDee Lamb (Dal)","pos":"WR"},{"item":"Round 10 Pick","pos":null}]},{"team":"jen's Legendary Team","received":[{"item":"Jaylen Warren (Pit)","pos":"RB"},{"item":"Round 2 Pick","pos":null}]}],"draftResults2025":[{"round":"1","picks":[{"team":"jen's Legendary Team","player":"CeeDee Lamb"},{"team":"The real sultan","player":"Jahmyr Gibbs"},{"team":"Aarons got a Gun","player":"Amon-Ra St. Brown"},{"team":"Prestige Worldwide","player":"Derrick Henry"},{"team":"Colin for the win","player":"Bijan Robinson"},{"team":"The V&G Express","player":"Drake London"},{"team":"Maye I put it in your Boutte","player":"Ashton Jeanty"},{"team":"Leeroy Judkins","player":"Christian McCaffrey"},{"team":"Any given Sunday","player":"Josh Jacobs"},{"team":"Saquon deez nutz","player":"Saquon Barkley"}],"extraPicks":[]},{"round":"2","picks":[{"team":"jen's Legendary Team","player":"Puka Nacua"},{"team":"The real sultan","player":"Chase Brown"},{"team":"Aarons got a Gun","player":"Jonathan Taylor"},{"team":"Prestige Worldwide","player":"A.J. Brown"},{"team":"Colin for the win","player":"Jayden Daniels"},{"team":"The V&G Express","player":null},{"team":"Maye I put it in your Boutte","player":"Trey McBride"},{"team":"Leeroy Judkins","player":"Lamar Jackson"},{"team":"Any given Sunday","player":"Tee Higgins"},{"team":"Saquon deez nutz","player":"George Kittle"}],"extraPicks":[{"picks":[{"team":"Aarons got a Gun","player":"Jalen Hurts"}]}]},{"round":"3","picks":[{"team":"jen's Legendary Team","player":"Omarion Hampton"},{"team":"The real sultan","player":"Tyreek Hill"},{"team":"Aarons got a Gun","player":"Terry McLaurin"},{"team":"Prestige Worldwide","player":"James Cook III"},{"team":"Colin for the win","player":"Chuba Hubbard"},{"team":"The V&G Express","player":"TreVeyon Henderson"},{"team":"Maye I put it in your Boutte","player":null},{"team":"Leeroy Judkins","player":"Malik Nabers"},{"team":"Any given Sunday","player":"Mike Evans"},{"team":"Saquon deez nutz","player":"Ja'Marr Chase"}],"extraPicks":[{"picks":[{"team":"jen's Legendary Team","player":"Alvin Kamara"}]}]},{"round":"4","picks":[{"team":"jen's Legendary Team","player":"Kenneth Walker III"},{"team":"The real sultan","player":"Davante Adams"},{"team":"Aarons got a Gun","player":"Marvin Harrison Jr."},{"team":"Prestige Worldwide","player":"Zay Flowers"},{"team":"Colin for the win","player":"James Conner"},{"team":"The V&G Express","player":"George Pickens"},{"team":"Maye I put it in your Boutte","player":"DK Metcalf"},{"team":"Leeroy Judkins","player":"Garrett Wilson"},{"team":"Any given Sunday","player":"Breece Hall"},{"team":"Saquon deez nutz","player":"RJ Harvey"}],"extraPicks":[]},{"round":"5","picks":[{"team":"jen's Legendary Team","player":"Joe Burrow"},{"team":"The real sultan","player":"DeVonta Smith"},{"team":"Aarons got a Gun","player":"Xavier Worthy"},{"team":"Prestige Worldwide","player":"Tony Pollard"},{"team":"Colin for the win","player":"Isiah Pacheco"},{"team":"The V&G Express","player":"Courtland Sutton"},{"team":"Maye I put it in your Boutte","player":null},{"team":"Leeroy Judkins","player":"D'Andre Swift"},{"team":"Any given Sunday","player":"Tetairoa McMillan"},{"team":"Saquon deez nutz","player":"Ricky Pearsall"}],"extraPicks":[{"picks":[{"team":"Aarons got a Gun","player":"David Montgomery"}]}]},{"round":"6","picks":[{"team":"jen's Legendary Team","player":"Calvin Ridley"},{"team":"The real sultan","player":"Travis Kelce"},{"team":"Aarons got a Gun","player":"Sam LaPorta"},{"team":"Prestige Worldwide","player":"Jordan Addison"},{"team":"Colin for the win","player":"Justin Jefferson"},{"team":"The V&G Express","player":"Emeka Egbuka"},{"team":"Maye I put it in your Boutte","player":"Jaylen Waddle"},{"team":"Leeroy Judkins","player":"Chris Olave"},{"team":"Any given Sunday","player":"Aaron Jones Sr."},{"team":"Saquon deez nutz","player":"Travis Hunter"}],"extraPicks":[]},{"round":"7","picks":[{"team":"jen's Legendary Team","player":null},{"team":"The real sultan","player":"Kaleb Johnson"},{"team":"Aarons got a Gun","player":"Rashee Rice"},{"team":"Prestige Worldwide","player":"Tucker Kraft"},{"team":"Colin for the win","player":"Rome Odunze"},{"team":"The V&G Express","player":"Kyren Williams"},{"team":"Maye I put it in your Boutte","player":"Stefon Diggs"},{"team":"Leeroy Judkins","player":"Tyrone Tracy Jr."},{"team":"Any given Sunday","player":"Mark Andrews"},{"team":"Saquon deez nutz","player":"Patrick Mahomes"}],"extraPicks":[{"picks":[{"team":"Maye I put it in your Boutte","player":"Jaylen Warren"}]}]},{"round":"8","picks":[{"team":"jen's Legendary Team","player":"Zach Charbonnet"},{"team":"The real sultan","player":"Bo Nix"},{"team":"Aarons got a Gun","player":"Matthew Golden"},{"team":"Prestige Worldwide","player":"Jordan Mason"},{"team":"Colin for the win","player":"Jakobi Meyers"},{"team":"The V&G Express","player":"DJ Moore"},{"team":"Maye I put it in your Boutte","player":"Braelon Allen"},{"team":"Leeroy Judkins","player":"Jerry Jeudy"},{"team":"Any given Sunday","player":"Deebo Samuel Sr."},{"team":"Saquon deez nutz","player":"J.K. Dobbins"}],"extraPicks":[]},{"round":"9","picks":[{"team":"jen's Legendary Team","player":"Brian Thomas Jr."},{"team":"The real sultan","player":"Jaxon Smith-Njigba"},{"team":"Aarons got a Gun","player":null},{"team":"Prestige Worldwide","player":"Drake Maye"},{"team":"Colin for the win","player":"Dalton Kincaid"},{"team":"The V&G Express","player":"Evan Engram"},{"team":"Maye I put it in your Boutte","player":"Nico Collins"},{"team":"Leeroy Judkins","player":"Travis Etienne Jr."},{"team":"Any given Sunday","player":"Brock Purdy"},{"team":"Saquon deez nutz","player":"Jauan Jennings"}],"extraPicks":[{"picks":[{"team":"The V&G Express","player":"Jacory Croskey-Merritt"}]}]},{"round":"10","picks":[{"team":"jen's Legendary Team","player":"Michael Pittman Jr."},{"team":"The real sultan","player":null},{"team":"Aarons got a Gun","player":"Bhayshul Tuten"},{"team":"Prestige Worldwide","player":"Jameson Williams"},{"team":"Colin for the win","player":"Christian Kirk"},{"team":"The V&G Express","player":"Dak Prescott"},{"team":"Maye I put it in your Boutte","player":"Quinshon Judkins"},{"team":"Leeroy Judkins","player":"Khalil Shakir"},{"team":"Any given Sunday","player":"De'Von Achane"},{"team":"Saquon deez nutz","player":"Cooper Kupp"}],"extraPicks":[{"picks":[{"team":"The V&G Express","player":"Tyler Warren"}]}]},{"round":"11","picks":[{"team":"jen's Legendary Team","player":"Jayden Reed"},{"team":"The real sultan","player":"Joe Mixon"},{"team":"Aarons got a Gun","player":"Ladd McConkey"},{"team":"Prestige Worldwide","player":"Josh Downs"},{"team":"Colin for the win","player":"DeMario Douglas"},{"team":"The V&G Express","player":"Keon Coleman"},{"team":"Maye I put it in your Boutte","player":"Josh Allen"},{"team":"Leeroy Judkins","player":"Brandon Aiyuk"},{"team":"Any given Sunday","player":"Cam Skattebo"},{"team":"Saquon deez nutz","player":"Baker Mayfield"}],"extraPicks":[]},{"round":"12","picks":[{"team":"jen's Legendary Team","player":"Kyler Murray"},{"team":"The real sultan","player":"Chris Godwin Jr."},{"team":"Aarons got a Gun","player":"Broncos"},{"team":"Prestige Worldwide","player":"Hunter Henry"},{"team":"Colin for the win","player":"Rashid Shaheed"},{"team":"The V&G Express","player":"Austin Ekeler"},{"team":"Maye I put it in your Boutte","player":"Jerome Ford"},{"team":"Leeroy Judkins","player":"Brock Bowers"},{"team":"Any given Sunday","player":"Brandon Aubrey"},{"team":"Saquon deez nutz","player":"Javonte Williams"}],"extraPicks":[]},{"round":"13","picks":[{"team":"jen's Legendary Team","player":"T.J. Hockenson"},{"team":"The real sultan","player":"Nick Chubb"},{"team":"Aarons got a Gun","player":null},{"team":"Prestige Worldwide","player":"Eagles"},{"team":"Colin for the win","player":"Dylan Sampson"},{"team":"The V&G Express","player":"Jaydon Blue"},{"team":"Maye I put it in your Boutte","player":"Ollie Gordon II"},{"team":"Leeroy Judkins","player":"Justin Herbert"},{"team":"Any given Sunday","player":"Darnell Mooney"},{"team":"Saquon deez nutz","player":"Tank Bigsby"}],"extraPicks":[{"picks":[{"team":"The real sultan","player":"David Njoku"}]}]},{"round":"14","picks":[{"team":"jen's Legendary Team","player":"Rhamondre Stevenson"},{"team":"The real sultan","player":"Woody Marks"},{"team":"Aarons got a Gun","player":"Bucky Irving"},{"team":"Prestige Worldwide","player":"Cameron Dicker"},{"team":"Colin for the win","player":"Brian Robinson"},{"team":"The V&G Express","player":"Ravens"},{"team":"Maye I put it in your Boutte","player":"Colston Loveland"},{"team":"Leeroy Judkins","player":"Kyle Pitts Sr."},{"team":"Any given Sunday","player":"Wan'Dale Robinson"},{"team":"Saquon deez nutz","player":"Jake Ferguson"}],"extraPicks":[]},{"round":"15","picks":[{"team":"jen's Legendary Team","player":"Tyjae Spears"},{"team":"The real sultan","player":"Steelers"},{"team":"Aarons got a Gun","player":"Najee Harris"},{"team":"Prestige Worldwide","player":"Rashod Bateman"},{"team":"Colin for the win","player":"Wil Lutz"},{"team":"The V&G Express","player":"Harrison Butker"},{"team":"Maye I put it in your Boutte","player":"Jayden Higgins"},{"team":"Leeroy Judkins","player":"Vikings"},{"team":"Any given Sunday","player":"Bills"},{"team":"Saquon deez nutz","player":"Chiefs"}],"extraPicks":[]},{"round":"16","picks":[{"team":"jen's Legendary Team","player":"Texans"},{"team":"The real sultan","player":"Tyler Bass"},{"team":"Aarons got a Gun","player":"Ka'imi Fairbairn"},{"team":"Prestige Worldwide","player":"Kyle Williams"},{"team":"Colin for the win","player":"Lions"},{"team":"The V&G Express","player":null},{"team":"Maye I put it in your Boutte","player":"Luther Burden III"},{"team":"Leeroy Judkins","player":"Evan McPherson"},{"team":"Any given Sunday","player":"Dallas Goedert"},{"team":"Saquon deez nutz","player":"Chris Boswell"}],"extraPicks":[{"picks":[{"team":"Maye I put it in your Boutte","player":"Jake Bates"}]}]}],"ruleGroups":[{"title":"Keeper Basics","rows":[{"num":1,"rule":"Each team may keep two players.","example":null},{"num":2,"rule":"A keeper costs the round he was drafted in the prior year \u2014 unless he has been kept multiple years.","example":null},{"num":3,"rule":"Each additional year you keep a player, his keeper cost moves up one round.","example":null}]},{"title":"Draft Order","rows":[{"num":4,"rule":"Draft order follows final regular season standings for teams that miss the playoffs.","example":null},{"num":5,"rule":"As teams are eliminated in the playoffs, the team with the better record picks later.","example":"Example: Both eliminated in the quarterfinal \u2014 Team 1 (9-5) gets pick 6, Team 2 (7-7) gets pick 5."},{"num":6,"rule":"If records are tied, the team with more regular season points picks later.","example":null}]},{"title":"Keeper Draft Position","rows":[{"num":7,"rule":"A keeper claimed off waivers last season costs an 8th round pick.","example":"Exception: if you originally drafted him, he keeps his original draft spot \u2014 waiver rules do not apply."},{"num":8,"rule":"Keeping two players from the same round: the higher-ranked player (Yahoo rankings) costs one round earlier; the other keeps that round.","example":"Example: Two 3rd rounders \u2014 the better player costs a 2nd, the other a 3rd."},{"num":9,"rule":"Keeping two 1st rounders: the higher-ranked player (Yahoo) costs a 1st, the other a 2nd.","example":null},{"num":10,"rule":"A keeper acquired by trade costs the round he was drafted in the prior year.","example":"Exception: if he was claimed off waivers before the trade, he costs an 8th round pick."}]},{"title":"Trading","rows":[{"num":11,"rule":"Roster players and draft picks may be traded before the draft.","example":null},{"num":12,"rule":"Pick limits: 16 picks max (one per draft selection), and 14 minimum if you keep two players.","example":null},{"num":13,"rule":"Offseason trading closes one week before keeper selections are due.","example":null},{"num":14,"rule":"Waiver-claimed players may be traded at 8th round keeper value.","example":null}]}],"settingsGroups":[{"title":"League & Draft Settings","rows":[{"label":"Draft Type","value":"Live Standard Draft"},{"label":"Max Teams","value":"10"},{"label":"Live Draft Pick Time","value":"1 minute, 15 seconds"},{"label":"Trade End Date","value":"December 5, 2026"},{"label":"Waiver Time","value":"2 days"},{"label":"Waiver Type","value":"FAB w/ continual rolling list tiebreak"},{"label":"Weekly Waivers","value":"Game time - Tuesday"},{"label":"Injured players from waivers/FA direct to IR slot","value":"Yes"},{"label":"Playoffs","value":"6 teams - Weeks 15, 16 and 17 (ends Monday, Dec 29)"},{"label":"Playoff Tie-Breaker","value":"Best regular season record vs. opponent wins"},{"label":"Playoff Reseeding","value":"Yes"},{"label":"Roster Positions","value":"QB, WR, WR, WR, RB, RB, TE, W/R/T, K, DEF, BN, BN, BN, BN, BN, BN, IR, IR"}]},{"title":"Offense","rows":[{"label":"Passing Yards","value":"25 yards per point; 6 points at 400 yards"},{"label":"Passing Touchdowns","value":6},{"label":"Interceptions","value":-2},{"label":"Rushing Yards","value":"10 yards per point; 6 points at 200 yards"},{"label":"Rushing Touchdowns","value":6},{"label":"Receptions","value":1},{"label":"Receiving Yards","value":"10 yards per point; 6 points at 200 yards"},{"label":"Receiving Touchdowns","value":6},{"label":"Return Touchdowns","value":6},{"label":"2-Point Conversions","value":2},{"label":"Fumbles Lost","value":-2},{"label":"Offensive Fumble Return TD","value":6}]},{"title":"Kickers","rows":[{"label":"Field Goals 0-19 Yards","value":3},{"label":"Field Goals 20-29 Yards","value":3},{"label":"Field Goals 30-39 Yards","value":3},{"label":"Field Goals 40-49 Yards","value":4},{"label":"Field Goals 50+ Yards","value":5},{"label":"Point After Attempt Made","value":1}]},{"title":"Defense / Special Teams","rows":[{"label":"Sack","value":1},{"label":"Interception","value":2},{"label":"Fumble Recovery","value":2},{"label":"Touchdown","value":6},{"label":"Safety","value":2},{"label":"Block Kick","value":2},{"label":"Kickoff and Punt Return Touchdowns","value":6},{"label":"Points Allowed 0 points","value":10},{"label":"Points Allowed 1-6 points","value":7},{"label":"Points Allowed 7-13 points","value":4},{"label":"Points Allowed 14-20 points","value":1},{"label":"Points Allowed 21-27 points","value":0},{"label":"Points Allowed 28-34 points","value":-1},{"label":"Points Allowed 35+ points","value":-4},{"label":"4th Down Stops","value":0.5},{"label":"Defensive Yards Allowed - Negative","value":2},{"label":"Extra Point Returned","value":2}]}],"commissionerKeeperNote":"Keepers shouldn't be a fight \u2014 the system rewards good drafting and smart in-season moves. Raising keeper cost by a round each year makes you weigh a player's real value and frees up players who used to be locked away. Suggestions welcome."};
+const DEFAULT_LEAGUE_DATA = {
+ "leagueName": "Hold My Rings",
+ "lastUpdated": "2026-08-25",
+ "draftDate": "2026-09-08T19:30:00",
+ "commissionerNote": "Welcome to Hold My Rings' home on the web! Replace this note each season \u2014 draft reminders, trade deadlines, playoff news, whatever you want everyone to see first.",
+ "currentSeason": {
+  "year": 2026,
+  "standings": [
+   {
+    "team": "jen's Legendary Team",
+    "manager": "Shawn",
+    "record": "0-0",
+    "pointsFor": 0
+   },
+   {
+    "team": "The real sultan",
+    "manager": "Joe",
+    "record": "0-0",
+    "pointsFor": 0
+   },
+   {
+    "team": "Aarons got a Gun",
+    "manager": "John",
+    "record": "0-0",
+    "pointsFor": 0
+   },
+   {
+    "team": "Prestige Worldwide",
+    "manager": "Ben",
+    "record": "0-0",
+    "pointsFor": 0
+   },
+   {
+    "team": "Colin for the win",
+    "manager": "Chris",
+    "record": "0-0",
+    "pointsFor": 0
+   },
+   {
+    "team": "The V&G Express",
+    "manager": "Kevin",
+    "record": "0-0",
+    "pointsFor": 0
+   },
+   {
+    "team": "Maye I put it in your Boutte",
+    "manager": "Nate",
+    "record": "0-0",
+    "pointsFor": 0
+   },
+   {
+    "team": "Leeroy Judkins",
+    "manager": "JR",
+    "record": "0-0",
+    "pointsFor": 0
+   },
+   {
+    "team": "Any given Sunday",
+    "manager": "Robert",
+    "record": "0-0",
+    "pointsFor": 0
+   },
+   {
+    "team": "Saquon deez nutz",
+    "manager": "AJ",
+    "record": "0-0",
+    "pointsFor": 0
+   }
+  ]
+ },
+ "history": [
+  {
+   "year": 2025,
+   "champion": "Saquon deez nutz",
+   "championManager": "AJ",
+   "runnerUp": "Any given Sunday",
+   "runnerUpManager": "Robert"
+  }
+ ],
+ "teams": [
+  {
+   "team": "jen's Legendary Team",
+   "manager": "Shawn",
+   "roster": [
+    {
+     "player": "Matthew Stafford",
+     "pos": "QB",
+     "nfl": "LAR",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Jaylen Warren",
+     "pos": "RB",
+     "nfl": "PIT",
+     "keeperCost": 7,
+     "kept2025": false
+    },
+    {
+     "player": "Kyle Monangai",
+     "pos": "RB",
+     "nfl": "CHI",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Zach Charbonnet",
+     "pos": "RB",
+     "nfl": "SEA",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Alvin Kamara",
+     "pos": "RB",
+     "nfl": "NO",
+     "keeperCost": 3,
+     "kept2025": false
+    },
+    {
+     "player": "Devin Singletary",
+     "pos": "RB",
+     "nfl": "NYG",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Kenneth Walker III",
+     "pos": "RB",
+     "nfl": "KC",
+     "keeperCost": 4,
+     "kept2025": false
+    },
+    {
+     "player": "Alec Pierce",
+     "pos": "WR",
+     "nfl": "IND",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Michael Pittman Jr.",
+     "pos": "WR",
+     "nfl": "PIT",
+     "keeperCost": 10,
+     "kept2025": false
+    },
+    {
+     "player": "Brian Thomas Jr.",
+     "pos": "WR",
+     "nfl": "JAX",
+     "keeperCost": 8,
+     "kept2025": true
+    },
+    {
+     "player": "Jayden Reed",
+     "pos": "WR",
+     "nfl": "GB",
+     "keeperCost": 11,
+     "kept2025": false
+    },
+    {
+     "player": "Xavier Worthy",
+     "pos": "WR",
+     "nfl": "KC",
+     "keeperCost": 5,
+     "kept2025": false
+    },
+    {
+     "player": "Romeo Doubs",
+     "pos": "WR",
+     "nfl": "NE",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Kyle Pitts Sr.",
+     "pos": "TE",
+     "nfl": "ATL",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "T.J. Hockenson",
+     "pos": "TE",
+     "nfl": "MIN",
+     "keeperCost": 12,
+     "kept2025": true
+    },
+    {
+     "player": "Cam Little",
+     "pos": "K",
+     "nfl": "JAX",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Falcons",
+     "pos": "DEF",
+     "nfl": "ATL",
+     "keeperCost": 8,
+     "kept2025": false
+    }
+   ]
+  },
+  {
+   "team": "The real sultan",
+   "manager": "Joe",
+   "roster": [
+    {
+     "player": "Lamar Jackson",
+     "pos": "QB",
+     "nfl": "BAL",
+     "keeperCost": 2,
+     "kept2025": false
+    },
+    {
+     "player": "Jayden Daniels",
+     "pos": "QB",
+     "nfl": "WAS",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Justin Herbert",
+     "pos": "QB",
+     "nfl": "LAC",
+     "keeperCost": 13,
+     "kept2025": false
+    },
+    {
+     "player": "Christian McCaffrey",
+     "pos": "RB",
+     "nfl": "SF",
+     "keeperCost": 1,
+     "kept2025": false
+    },
+    {
+     "player": "Travis Etienne Jr.",
+     "pos": "RB",
+     "nfl": "NO",
+     "keeperCost": 9,
+     "kept2025": false
+    },
+    {
+     "player": "D'Andre Swift",
+     "pos": "RB",
+     "nfl": "CHI",
+     "keeperCost": 5,
+     "kept2025": false
+    },
+    {
+     "player": "Isiah Pacheco",
+     "pos": "RB",
+     "nfl": "DET",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Chris Olave",
+     "pos": "WR",
+     "nfl": "NO",
+     "keeperCost": 6,
+     "kept2025": false
+    },
+    {
+     "player": "Garrett Wilson",
+     "pos": "WR",
+     "nfl": "NYJ",
+     "keeperCost": 4,
+     "kept2025": false
+    },
+    {
+     "player": "Malik Nabers",
+     "pos": "WR",
+     "nfl": "NYG",
+     "keeperCost": 2,
+     "kept2025": true
+    },
+    {
+     "player": "Luther Burden III",
+     "pos": "WR",
+     "nfl": "CHI",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Khalil Shakir",
+     "pos": "WR",
+     "nfl": "BUF",
+     "keeperCost": 10,
+     "kept2025": false
+    },
+    {
+     "player": "Tre Tucker",
+     "pos": "WR",
+     "nfl": "LV",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Adonai Mitchell",
+     "pos": "WR",
+     "nfl": "NYJ",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Brandon Aiyuk",
+     "pos": "WR",
+     "nfl": "SF",
+     "keeperCost": 11,
+     "kept2025": false
+    },
+    {
+     "player": "Brock Bowers",
+     "pos": "TE",
+     "nfl": "LV",
+     "keeperCost": 11,
+     "kept2025": true
+    },
+    {
+     "player": "Matt Prater",
+     "pos": "K",
+     "nfl": "FA",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Texans",
+     "pos": "DEF",
+     "nfl": "HOU",
+     "keeperCost": 8,
+     "kept2025": false
+    }
+   ]
+  },
+  {
+   "team": "Aarons got a Gun",
+   "manager": "John",
+   "roster": [
+    {
+     "player": "Jared Goff",
+     "pos": "QB",
+     "nfl": "DET",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Bijan Robinson",
+     "pos": "RB",
+     "nfl": "ATL",
+     "keeperCost": 1,
+     "kept2025": true
+    },
+    {
+     "player": "Chuba Hubbard",
+     "pos": "RB",
+     "nfl": "CAR",
+     "keeperCost": 3,
+     "kept2025": false
+    },
+    {
+     "player": "Kenny Gainwell",
+     "pos": "RB",
+     "nfl": "TB",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Tyjae Spears",
+     "pos": "RB",
+     "nfl": "TEN",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Bam Knight",
+     "pos": "RB",
+     "nfl": "ARI",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Hassan Haskins",
+     "pos": "RB",
+     "nfl": "NE",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Justin Jefferson",
+     "pos": "WR",
+     "nfl": "MIN",
+     "keeperCost": 5,
+     "kept2025": true
+    },
+    {
+     "player": "Rome Odunze",
+     "pos": "WR",
+     "nfl": "CHI",
+     "keeperCost": 7,
+     "kept2025": false
+    },
+    {
+     "player": "Jakobi Meyers",
+     "pos": "WR",
+     "nfl": "JAX",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Rashid Shaheed",
+     "pos": "WR",
+     "nfl": "SEA",
+     "keeperCost": 12,
+     "kept2025": false
+    },
+    {
+     "player": "Chimere Dike",
+     "pos": "WR",
+     "nfl": "TEN",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Brenton Strange",
+     "pos": "TE",
+     "nfl": "JAX",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Zach Ertz",
+     "pos": "TE",
+     "nfl": "WAS",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Chase McLaughlin",
+     "pos": "K",
+     "nfl": "TB",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Jaguars",
+     "pos": "DEF",
+     "nfl": "JAX",
+     "keeperCost": 8,
+     "kept2025": false
+    }
+   ]
+  },
+  {
+   "team": "Prestige Worldwide",
+   "manager": "Ben",
+   "roster": [
+    {
+     "player": "Dak Prescott",
+     "pos": "QB",
+     "nfl": "DAL",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Jordan Love",
+     "pos": "QB",
+     "nfl": "GB",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "De'Von Achane",
+     "pos": "RB",
+     "nfl": "MIA",
+     "keeperCost": 9,
+     "kept2025": true
+    },
+    {
+     "player": "Breece Hall",
+     "pos": "RB",
+     "nfl": "NYJ",
+     "keeperCost": 4,
+     "kept2025": false
+    },
+    {
+     "player": "Josh Jacobs",
+     "pos": "RB",
+     "nfl": "GB",
+     "keeperCost": 1,
+     "kept2025": false
+    },
+    {
+     "player": "Cam Skattebo",
+     "pos": "RB",
+     "nfl": "NYG",
+     "keeperCost": 11,
+     "kept2025": false
+    },
+    {
+     "player": "Aaron Jones Sr.",
+     "pos": "RB",
+     "nfl": "MIN",
+     "keeperCost": 6,
+     "kept2025": false
+    },
+    {
+     "player": "Kareem Hunt",
+     "pos": "RB",
+     "nfl": "KC",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Tetairoa McMillan",
+     "pos": "WR",
+     "nfl": "CAR",
+     "keeperCost": 5,
+     "kept2025": false
+    },
+    {
+     "player": "Tee Higgins",
+     "pos": "WR",
+     "nfl": "CIN",
+     "keeperCost": 2,
+     "kept2025": false
+    },
+    {
+     "player": "DJ Moore",
+     "pos": "WR",
+     "nfl": "BUF",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Mike Evans",
+     "pos": "WR",
+     "nfl": "SF",
+     "keeperCost": 2,
+     "kept2025": true
+    },
+    {
+     "player": "Deebo Samuel Sr.",
+     "pos": "WR",
+     "nfl": "SF",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Jerry Jeudy",
+     "pos": "WR",
+     "nfl": "CLE",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Dallas Goedert",
+     "pos": "TE",
+     "nfl": "PHI",
+     "keeperCost": 16,
+     "kept2025": false
+    },
+    {
+     "player": "Mark Andrews",
+     "pos": "TE",
+     "nfl": "BAL",
+     "keeperCost": 7,
+     "kept2025": false
+    },
+    {
+     "player": "Brandon Aubrey",
+     "pos": "K",
+     "nfl": "DAL",
+     "keeperCost": 12,
+     "kept2025": false
+    },
+    {
+     "player": "Bills",
+     "pos": "DEF",
+     "nfl": "BUF",
+     "keeperCost": 15,
+     "kept2025": false
+    }
+   ]
+  },
+  {
+   "team": "Colin for the win",
+   "manager": "Chris",
+   "roster": [
+    {
+     "player": "Drake Maye",
+     "pos": "QB",
+     "nfl": "NE",
+     "keeperCost": 9,
+     "kept2025": false
+    },
+    {
+     "player": "Bo Nix",
+     "pos": "QB",
+     "nfl": "DEN",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "James Cook III",
+     "pos": "RB",
+     "nfl": "BUF",
+     "keeperCost": 3,
+     "kept2025": false
+    },
+    {
+     "player": "Derrick Henry",
+     "pos": "RB",
+     "nfl": "BAL",
+     "keeperCost": 1,
+     "kept2025": false
+    },
+    {
+     "player": "Tony Pollard",
+     "pos": "RB",
+     "nfl": "TEN",
+     "keeperCost": 5,
+     "kept2025": false
+    },
+    {
+     "player": "Jordan Mason",
+     "pos": "RB",
+     "nfl": "MIN",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "A.J. Brown",
+     "pos": "WR",
+     "nfl": "NE",
+     "keeperCost": 2,
+     "kept2025": false
+    },
+    {
+     "player": "Zay Flowers",
+     "pos": "WR",
+     "nfl": "BAL",
+     "keeperCost": 4,
+     "kept2025": false
+    },
+    {
+     "player": "Jameson Williams",
+     "pos": "WR",
+     "nfl": "DET",
+     "keeperCost": 9,
+     "kept2025": true
+    },
+    {
+     "player": "Josh Downs",
+     "pos": "WR",
+     "nfl": "IND",
+     "keeperCost": 11,
+     "kept2025": false
+    },
+    {
+     "player": "Jordan Addison",
+     "pos": "WR",
+     "nfl": "MIN",
+     "keeperCost": 5,
+     "kept2025": true
+    },
+    {
+     "player": "Kayshon Boutte",
+     "pos": "WR",
+     "nfl": "NE",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Tucker Kraft",
+     "pos": "TE",
+     "nfl": "GB",
+     "keeperCost": 7,
+     "kept2025": false
+    },
+    {
+     "player": "Cade Otton",
+     "pos": "TE",
+     "nfl": "TB",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Hunter Henry",
+     "pos": "TE",
+     "nfl": "NE",
+     "keeperCost": 12,
+     "kept2025": false
+    },
+    {
+     "player": "Cameron Dicker",
+     "pos": "K",
+     "nfl": "LAC",
+     "keeperCost": 14,
+     "kept2025": false
+    },
+    {
+     "player": "Buccaneers",
+     "pos": "DEF",
+     "nfl": "TB",
+     "keeperCost": 8,
+     "kept2025": false
+    }
+   ]
+  },
+  {
+   "team": "The V&G Express",
+   "manager": "Kevin",
+   "roster": [
+    {
+     "player": "Joe Burrow",
+     "pos": "QB",
+     "nfl": "CIN",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Jacoby Brissett",
+     "pos": "QB",
+     "nfl": "ARI",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Kyren Williams",
+     "pos": "RB",
+     "nfl": "LAR",
+     "keeperCost": 6,
+     "kept2025": true
+    },
+    {
+     "player": "TreVeyon Henderson",
+     "pos": "RB",
+     "nfl": "NE",
+     "keeperCost": 3,
+     "kept2025": false
+    },
+    {
+     "player": "Rico Dowdle",
+     "pos": "RB",
+     "nfl": "PIT",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Blake Corum",
+     "pos": "RB",
+     "nfl": "LAR",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Devin Neal",
+     "pos": "RB",
+     "nfl": "NO",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Drake London",
+     "pos": "WR",
+     "nfl": "ATL",
+     "keeperCost": 1,
+     "kept2025": false
+    },
+    {
+     "player": "George Pickens",
+     "pos": "WR",
+     "nfl": "DAL",
+     "keeperCost": 4,
+     "kept2025": false
+    },
+    {
+     "player": "Emeka Egbuka",
+     "pos": "WR",
+     "nfl": "TB",
+     "keeperCost": 6,
+     "kept2025": false
+    },
+    {
+     "player": "Courtland Sutton",
+     "pos": "WR",
+     "nfl": "DEN",
+     "keeperCost": 5,
+     "kept2025": false
+    },
+    {
+     "player": "Christian Watson",
+     "pos": "WR",
+     "nfl": "GB",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Jayden Higgins",
+     "pos": "WR",
+     "nfl": "HOU",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Tyler Warren",
+     "pos": "TE",
+     "nfl": "IND",
+     "keeperCost": 10,
+     "kept2025": false
+    },
+    {
+     "player": "Evan McPherson",
+     "pos": "K",
+     "nfl": "CIN",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Rams",
+     "pos": "DEF",
+     "nfl": "LAR",
+     "keeperCost": 8,
+     "kept2025": false
+    }
+   ]
+  },
+  {
+   "team": "Maye I put it in your Boutte",
+   "manager": "Nate",
+   "roster": [
+    {
+     "player": "Brock Purdy",
+     "pos": "QB",
+     "nfl": "SF",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Baker Mayfield",
+     "pos": "QB",
+     "nfl": "TB",
+     "keeperCost": 11,
+     "kept2025": false
+    },
+    {
+     "player": "Saquon Barkley",
+     "pos": "RB",
+     "nfl": "PHI",
+     "keeperCost": 1,
+     "kept2025": true
+    },
+    {
+     "player": "Javonte Williams",
+     "pos": "RB",
+     "nfl": "DAL",
+     "keeperCost": 12,
+     "kept2025": false
+    },
+    {
+     "player": "RJ Harvey",
+     "pos": "RB",
+     "nfl": "DEN",
+     "keeperCost": 4,
+     "kept2025": false
+    },
+    {
+     "player": "J.K. Dobbins",
+     "pos": "RB",
+     "nfl": "DEN",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Ja'Marr Chase",
+     "pos": "WR",
+     "nfl": "CIN",
+     "keeperCost": 2,
+     "kept2025": true
+    },
+    {
+     "player": "Parker Washington",
+     "pos": "WR",
+     "nfl": "JAX",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Michael Wilson",
+     "pos": "WR",
+     "nfl": "ARI",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Ricky Pearsall",
+     "pos": "WR",
+     "nfl": "SF",
+     "keeperCost": 5,
+     "kept2025": false
+    },
+    {
+     "player": "Jauan Jennings",
+     "pos": "WR",
+     "nfl": "MIN",
+     "keeperCost": 9,
+     "kept2025": false
+    },
+    {
+     "player": "Devaughn Vele",
+     "pos": "WR",
+     "nfl": "NO",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Travis Hunter",
+     "pos": "WR",
+     "nfl": "JAX",
+     "keeperCost": 6,
+     "kept2025": false
+    },
+    {
+     "player": "George Kittle",
+     "pos": "TE",
+     "nfl": "SF",
+     "keeperCost": 2,
+     "kept2025": false
+    },
+    {
+     "player": "Jake Ferguson",
+     "pos": "TE",
+     "nfl": "DAL",
+     "keeperCost": 14,
+     "kept2025": false
+    },
+    {
+     "player": "Will Reichard",
+     "pos": "K",
+     "nfl": "MIN",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Eagles",
+     "pos": "DEF",
+     "nfl": "PHI",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Patriots",
+     "pos": "DEF",
+     "nfl": "NE",
+     "keeperCost": 8,
+     "kept2025": false
+    }
+   ]
+  },
+  {
+   "team": "Leeroy Judkins",
+   "manager": "JR",
+   "roster": [
+    {
+     "player": "Josh Allen",
+     "pos": "QB",
+     "nfl": "BUF",
+     "keeperCost": 10,
+     "kept2025": true
+    },
+    {
+     "player": "Ashton Jeanty",
+     "pos": "RB",
+     "nfl": "LV",
+     "keeperCost": 1,
+     "kept2025": false
+    },
+    {
+     "player": "Omarion Hampton",
+     "pos": "RB",
+     "nfl": "LAC",
+     "keeperCost": 3,
+     "kept2025": false
+    },
+    {
+     "player": "Quinshon Judkins",
+     "pos": "RB",
+     "nfl": "CLE",
+     "keeperCost": 10,
+     "kept2025": false
+    },
+    {
+     "player": "Bhayshul Tuten",
+     "pos": "RB",
+     "nfl": "JAX",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Braelon Allen",
+     "pos": "RB",
+     "nfl": "NYJ",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Kaleb Johnson",
+     "pos": "RB",
+     "nfl": "PIT",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Trey Benson",
+     "pos": "RB",
+     "nfl": "ARI",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Tyler Allgeier",
+     "pos": "RB",
+     "nfl": "ARI",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "CeeDee Lamb",
+     "pos": "WR",
+     "nfl": "DAL",
+     "keeperCost": 1,
+     "kept2025": false
+    },
+    {
+     "player": "Nico Collins",
+     "pos": "WR",
+     "nfl": "HOU",
+     "keeperCost": 8,
+     "kept2025": true
+    },
+    {
+     "player": "Jaylen Waddle",
+     "pos": "WR",
+     "nfl": "DEN",
+     "keeperCost": 6,
+     "kept2025": false
+    },
+    {
+     "player": "Stefon Diggs",
+     "pos": "WR",
+     "nfl": "WAS",
+     "keeperCost": 7,
+     "kept2025": false
+    },
+    {
+     "player": "Isaac TeSlaa",
+     "pos": "WR",
+     "nfl": "DET",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Kyle Williams",
+     "pos": "WR",
+     "nfl": "NE",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Trey McBride",
+     "pos": "TE",
+     "nfl": "ARI",
+     "keeperCost": 2,
+     "kept2025": false
+    },
+    {
+     "player": "Harold Fannin Jr.",
+     "pos": "TE",
+     "nfl": "CLE",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Oronde Gadsden",
+     "pos": "TE",
+     "nfl": "LAC",
+     "keeperCost": 8,
+     "kept2025": false
+    }
+   ]
+  },
+  {
+   "team": "Any given Sunday",
+   "manager": "Robert",
+   "roster": [
+    {
+     "player": "Jalen Hurts",
+     "pos": "QB",
+     "nfl": "PHI",
+     "keeperCost": 2,
+     "kept2025": false
+    },
+    {
+     "player": "Trevor Lawrence",
+     "pos": "QB",
+     "nfl": "JAX",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Jonathan Taylor",
+     "pos": "RB",
+     "nfl": "IND",
+     "keeperCost": 2,
+     "kept2025": false
+    },
+    {
+     "player": "Bucky Irving",
+     "pos": "RB",
+     "nfl": "TB",
+     "keeperCost": 13,
+     "kept2025": true
+    },
+    {
+     "player": "David Montgomery",
+     "pos": "RB",
+     "nfl": "HOU",
+     "keeperCost": 5,
+     "kept2025": false
+    },
+    {
+     "player": "Puka Nacua",
+     "pos": "WR",
+     "nfl": "LAR",
+     "keeperCost": 2,
+     "kept2025": false
+    },
+    {
+     "player": "Amon-Ra St. Brown",
+     "pos": "WR",
+     "nfl": "DET",
+     "keeperCost": 1,
+     "kept2025": false
+    },
+    {
+     "player": "Rashee Rice",
+     "pos": "WR",
+     "nfl": "KC",
+     "keeperCost": 7,
+     "kept2025": false
+    },
+    {
+     "player": "Ladd McConkey",
+     "pos": "WR",
+     "nfl": "LAC",
+     "keeperCost": 10,
+     "kept2025": true
+    },
+    {
+     "player": "Terry McLaurin",
+     "pos": "WR",
+     "nfl": "WAS",
+     "keeperCost": 3,
+     "kept2025": false
+    },
+    {
+     "player": "Marvin Harrison Jr.",
+     "pos": "WR",
+     "nfl": "ARI",
+     "keeperCost": 4,
+     "kept2025": false
+    },
+    {
+     "player": "Wan'Dale Robinson",
+     "pos": "WR",
+     "nfl": "TEN",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Juwan Johnson",
+     "pos": "TE",
+     "nfl": "NO",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Dalton Schultz",
+     "pos": "TE",
+     "nfl": "HOU",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Ka'imi Fairbairn",
+     "pos": "K",
+     "nfl": "HOU",
+     "keeperCost": 16,
+     "kept2025": false
+    },
+    {
+     "player": "Broncos",
+     "pos": "DEF",
+     "nfl": "DEN",
+     "keeperCost": 12,
+     "kept2025": false
+    }
+   ]
+  },
+  {
+   "team": "Saquon deez nutz",
+   "manager": "AJ",
+   "roster": [
+    {
+     "player": "Caleb Williams",
+     "pos": "QB",
+     "nfl": "CHI",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Jaxson Dart",
+     "pos": "QB",
+     "nfl": "NYG",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Jahmyr Gibbs",
+     "pos": "RB",
+     "nfl": "DET",
+     "keeperCost": 1,
+     "kept2025": false
+    },
+    {
+     "player": "Chase Brown",
+     "pos": "RB",
+     "nfl": "CIN",
+     "keeperCost": 2,
+     "kept2025": false
+    },
+    {
+     "player": "Woody Marks",
+     "pos": "RB",
+     "nfl": "HOU",
+     "keeperCost": 14,
+     "kept2025": false
+    },
+    {
+     "player": "Tyrone Tracy Jr.",
+     "pos": "RB",
+     "nfl": "NYG",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Joe Mixon",
+     "pos": "RB",
+     "nfl": "FA",
+     "keeperCost": 11,
+     "kept2025": false
+    },
+    {
+     "player": "Jaxon Smith-Njigba",
+     "pos": "WR",
+     "nfl": "SEA",
+     "keeperCost": 8,
+     "kept2025": true
+    },
+    {
+     "player": "DeVonta Smith",
+     "pos": "WR",
+     "nfl": "PHI",
+     "keeperCost": 5,
+     "kept2025": false
+    },
+    {
+     "player": "Davante Adams",
+     "pos": "WR",
+     "nfl": "LAR",
+     "keeperCost": 4,
+     "kept2025": false
+    },
+    {
+     "player": "Chris Godwin Jr.",
+     "pos": "WR",
+     "nfl": "TB",
+     "keeperCost": 12,
+     "kept2025": false
+    },
+    {
+     "player": "Quentin Johnston",
+     "pos": "WR",
+     "nfl": "LAC",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Keenan Allen",
+     "pos": "WR",
+     "nfl": "LAC",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Tyreek Hill",
+     "pos": "WR",
+     "nfl": "MIA",
+     "keeperCost": 3,
+     "kept2025": false
+    },
+    {
+     "player": "Travis Kelce",
+     "pos": "TE",
+     "nfl": "KC",
+     "keeperCost": 6,
+     "kept2025": false
+    },
+    {
+     "player": "AJ Barner",
+     "pos": "TE",
+     "nfl": "SEA",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Chris Boswell",
+     "pos": "K",
+     "nfl": "PIT",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Seahawks",
+     "pos": "DEF",
+     "nfl": "SEA",
+     "keeperCost": 8,
+     "kept2025": false
+    }
+   ]
+  }
+ ],
+ "draftOrder2026": [
+  {
+   "round": "1",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "2",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": "jen's Legendary Team"
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": "jen's Legendary Team"
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "3",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "4",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "5",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "6",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "7",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": "jen's Legendary Team"
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "8",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "9",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "10",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": "Leeroy Judkins"
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "11",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": "Any given Sunday"
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "12",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": "Leeroy Judkins"
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "13",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "14",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "15",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "16",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  }
+ ],
+ "trades2025": [
+  {
+   "team": "jen's Legendary Team",
+   "received": [
+    {
+     "item": "Kyle Monangai (Chi)",
+     "pos": "RB"
+    },
+    {
+     "item": "Round 7 Pick",
+     "pos": null
+    }
+   ]
+  },
+  {
+   "team": "Leeroy Judkins",
+   "received": [
+    {
+     "item": "Omarion Hampton (LAC)",
+     "pos": "RB"
+    },
+    {
+     "item": "Round 12 Pick",
+     "pos": null
+    }
+   ]
+  },
+  {
+   "team": "Any given Sunday",
+   "received": [
+    {
+     "item": "Puka Nacua (LAR)",
+     "pos": "WR"
+    },
+    {
+     "item": "Round 11 Pick",
+     "pos": null
+    }
+   ]
+  },
+  {
+   "team": "jen's Legendary Team",
+   "received": [
+    {
+     "item": "Xavier Worthy (KC)",
+     "pos": "WR"
+    },
+    {
+     "item": "Round 2 Pick",
+     "pos": null
+    }
+   ]
+  },
+  {
+   "team": "Leeroy Judkins",
+   "received": [
+    {
+     "item": "Rhamondre Stevenson (NE)",
+     "pos": "RB"
+    },
+    {
+     "item": "CeeDee Lamb (Dal)",
+     "pos": "WR"
+    },
+    {
+     "item": "Round 10 Pick",
+     "pos": null
+    }
+   ]
+  },
+  {
+   "team": "jen's Legendary Team",
+   "received": [
+    {
+     "item": "Jaylen Warren (Pit)",
+     "pos": "RB"
+    },
+    {
+     "item": "Round 2 Pick",
+     "pos": null
+    }
+   ]
+  }
+ ],
+ "draftResults2025": [
+  {
+   "round": "1",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "CeeDee Lamb"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Jahmyr Gibbs"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Amon-Ra St. Brown"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Derrick Henry"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Bijan Robinson"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Drake London"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Ashton Jeanty"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Christian McCaffrey"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Josh Jacobs"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Saquon Barkley"
+    }
+   ],
+   "extraPicks": []
+  },
+  {
+   "round": "2",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Puka Nacua"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Chase Brown"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Jonathan Taylor"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "A.J. Brown"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Jayden Daniels"
+    },
+    {
+     "team": "The V&G Express",
+     "player": null
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Trey McBride"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Lamar Jackson"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Tee Higgins"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "George Kittle"
+    }
+   ],
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "team": "Aarons got a Gun",
+       "player": "Jalen Hurts"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "round": "3",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Omarion Hampton"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Tyreek Hill"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Terry McLaurin"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "James Cook III"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Chuba Hubbard"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "TreVeyon Henderson"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": null
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Malik Nabers"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Mike Evans"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Ja'Marr Chase"
+    }
+   ],
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "team": "jen's Legendary Team",
+       "player": "Alvin Kamara"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "round": "4",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Kenneth Walker III"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Davante Adams"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Marvin Harrison Jr."
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Zay Flowers"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "James Conner"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "George Pickens"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "DK Metcalf"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Garrett Wilson"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Breece Hall"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "RJ Harvey"
+    }
+   ],
+   "extraPicks": []
+  },
+  {
+   "round": "5",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Joe Burrow"
+    },
+    {
+     "team": "The real sultan",
+     "player": "DeVonta Smith"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Xavier Worthy"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Tony Pollard"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Isiah Pacheco"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Courtland Sutton"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": null
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "D'Andre Swift"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Tetairoa McMillan"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Ricky Pearsall"
+    }
+   ],
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "team": "Aarons got a Gun",
+       "player": "David Montgomery"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "round": "6",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Calvin Ridley"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Travis Kelce"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Sam LaPorta"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Jordan Addison"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Justin Jefferson"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Emeka Egbuka"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Jaylen Waddle"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Chris Olave"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Aaron Jones Sr."
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Travis Hunter"
+    }
+   ],
+   "extraPicks": []
+  },
+  {
+   "round": "7",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": null
+    },
+    {
+     "team": "The real sultan",
+     "player": "Kaleb Johnson"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Rashee Rice"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Tucker Kraft"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Rome Odunze"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Kyren Williams"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Stefon Diggs"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Tyrone Tracy Jr."
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Mark Andrews"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Patrick Mahomes"
+    }
+   ],
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "team": "Maye I put it in your Boutte",
+       "player": "Jaylen Warren"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "round": "8",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Zach Charbonnet"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Bo Nix"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Matthew Golden"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Jordan Mason"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Jakobi Meyers"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "DJ Moore"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Braelon Allen"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Jerry Jeudy"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Deebo Samuel Sr."
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "J.K. Dobbins"
+    }
+   ],
+   "extraPicks": []
+  },
+  {
+   "round": "9",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Brian Thomas Jr."
+    },
+    {
+     "team": "The real sultan",
+     "player": "Jaxon Smith-Njigba"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": null
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Drake Maye"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Dalton Kincaid"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Evan Engram"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Nico Collins"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Travis Etienne Jr."
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Brock Purdy"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Jauan Jennings"
+    }
+   ],
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "team": "The V&G Express",
+       "player": "Jacory Croskey-Merritt"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "round": "10",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Michael Pittman Jr."
+    },
+    {
+     "team": "The real sultan",
+     "player": null
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Bhayshul Tuten"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Jameson Williams"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Christian Kirk"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Dak Prescott"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Quinshon Judkins"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Khalil Shakir"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "De'Von Achane"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Cooper Kupp"
+    }
+   ],
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "team": "The V&G Express",
+       "player": "Tyler Warren"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "round": "11",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Jayden Reed"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Joe Mixon"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Ladd McConkey"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Josh Downs"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "DeMario Douglas"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Keon Coleman"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Josh Allen"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Brandon Aiyuk"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Cam Skattebo"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Baker Mayfield"
+    }
+   ],
+   "extraPicks": []
+  },
+  {
+   "round": "12",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Kyler Murray"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Chris Godwin Jr."
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Broncos"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Hunter Henry"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Rashid Shaheed"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Austin Ekeler"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Jerome Ford"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Brock Bowers"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Brandon Aubrey"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Javonte Williams"
+    }
+   ],
+   "extraPicks": []
+  },
+  {
+   "round": "13",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "T.J. Hockenson"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Nick Chubb"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": null
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Eagles"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Dylan Sampson"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Jaydon Blue"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Ollie Gordon II"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Justin Herbert"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Darnell Mooney"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Tank Bigsby"
+    }
+   ],
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "team": "The real sultan",
+       "player": "David Njoku"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "round": "14",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Rhamondre Stevenson"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Woody Marks"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Bucky Irving"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Cameron Dicker"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Brian Robinson"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Ravens"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Colston Loveland"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Kyle Pitts Sr."
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Wan'Dale Robinson"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Jake Ferguson"
+    }
+   ],
+   "extraPicks": []
+  },
+  {
+   "round": "15",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Tyjae Spears"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Steelers"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Najee Harris"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Rashod Bateman"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Wil Lutz"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Harrison Butker"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Jayden Higgins"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Vikings"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Bills"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Chiefs"
+    }
+   ],
+   "extraPicks": []
+  },
+  {
+   "round": "16",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Texans"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Tyler Bass"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Ka'imi Fairbairn"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Kyle Williams"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Lions"
+    },
+    {
+     "team": "The V&G Express",
+     "player": null
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Luther Burden III"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Evan McPherson"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Dallas Goedert"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Chris Boswell"
+    }
+   ],
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "team": "Maye I put it in your Boutte",
+       "player": "Jake Bates"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "ruleGroups": [
+  {
+   "title": "Keeper Basics",
+   "rows": [
+    {
+     "num": 1,
+     "rule": "Each team may keep two players.",
+     "example": null
+    },
+    {
+     "num": 2,
+     "rule": "A keeper costs the round he was drafted in the prior year \u2014 unless he has been kept multiple years.",
+     "example": null
+    },
+    {
+     "num": 3,
+     "rule": "Each additional year you keep a player, his keeper cost moves up one round.",
+     "example": null
+    }
+   ]
+  },
+  {
+   "title": "Draft Order",
+   "rows": [
+    {
+     "num": 4,
+     "rule": "Draft order follows final regular season standings for teams that miss the playoffs.",
+     "example": null
+    },
+    {
+     "num": 5,
+     "rule": "As teams are eliminated in the playoffs, the team with the better record picks later.",
+     "example": "Example: Both eliminated in the quarterfinal \u2014 Team 1 (9-5) gets pick 6, Team 2 (7-7) gets pick 5."
+    },
+    {
+     "num": 6,
+     "rule": "If records are tied, the team with more regular season points picks later.",
+     "example": null
+    }
+   ]
+  },
+  {
+   "title": "Keeper Draft Position",
+   "rows": [
+    {
+     "num": 7,
+     "rule": "A keeper claimed off waivers last season costs an 8th round pick.",
+     "example": "Exception: if you originally drafted him, he keeps his original draft spot \u2014 waiver rules do not apply."
+    },
+    {
+     "num": 8,
+     "rule": "Keeping two players from the same round: the higher-ranked player (Yahoo rankings) costs one round earlier; the other keeps that round.",
+     "example": "Example: Two 3rd rounders \u2014 the better player costs a 2nd, the other a 3rd."
+    },
+    {
+     "num": 9,
+     "rule": "Keeping two 1st rounders: the higher-ranked player (Yahoo) costs a 1st, the other a 2nd.",
+     "example": null
+    },
+    {
+     "num": 10,
+     "rule": "A keeper acquired by trade costs the round he was drafted in the prior year.",
+     "example": "Exception: if he was claimed off waivers before the trade, he costs an 8th round pick."
+    }
+   ]
+  },
+  {
+   "title": "Trading",
+   "rows": [
+    {
+     "num": 11,
+     "rule": "Roster players and draft picks may be traded before the draft.",
+     "example": null
+    },
+    {
+     "num": 12,
+     "rule": "Pick limits: 16 picks max (one per draft selection), and 14 minimum if you keep two players.",
+     "example": null
+    },
+    {
+     "num": 13,
+     "rule": "Offseason trading closes one week before keeper selections are due.",
+     "example": null
+    },
+    {
+     "num": 14,
+     "rule": "Waiver-claimed players may be traded at 8th round keeper value.",
+     "example": null
+    }
+   ]
+  }
+ ],
+ "settingsGroups": [
+  {
+   "title": "League & Draft Settings",
+   "rows": [
+    {
+     "label": "Draft Type",
+     "value": "Live Standard Draft"
+    },
+    {
+     "label": "Max Teams",
+     "value": "10"
+    },
+    {
+     "label": "Live Draft Pick Time",
+     "value": "1 minute, 15 seconds"
+    },
+    {
+     "label": "Trade End Date",
+     "value": "December 5, 2026"
+    },
+    {
+     "label": "Waiver Time",
+     "value": "2 days"
+    },
+    {
+     "label": "Waiver Type",
+     "value": "FAB w/ continual rolling list tiebreak"
+    },
+    {
+     "label": "Weekly Waivers",
+     "value": "Game time - Tuesday"
+    },
+    {
+     "label": "Injured players from waivers/FA direct to IR slot",
+     "value": "Yes"
+    },
+    {
+     "label": "Playoffs",
+     "value": "6 teams - Weeks 15, 16 and 17 (ends Monday, Dec 29)"
+    },
+    {
+     "label": "Playoff Tie-Breaker",
+     "value": "Best regular season record vs. opponent wins"
+    },
+    {
+     "label": "Playoff Reseeding",
+     "value": "Yes"
+    },
+    {
+     "label": "Roster Positions",
+     "value": "QB, WR, WR, WR, RB, RB, TE, W/R/T, K, DEF, BN, BN, BN, BN, BN, BN, IR, IR"
+    }
+   ]
+  },
+  {
+   "title": "Offense",
+   "rows": [
+    {
+     "label": "Passing Yards",
+     "value": "25 yards per point; 6 points at 400 yards"
+    },
+    {
+     "label": "Passing Touchdowns",
+     "value": 6
+    },
+    {
+     "label": "Interceptions",
+     "value": -2
+    },
+    {
+     "label": "Rushing Yards",
+     "value": "10 yards per point; 6 points at 200 yards"
+    },
+    {
+     "label": "Rushing Touchdowns",
+     "value": 6
+    },
+    {
+     "label": "Receptions",
+     "value": 1
+    },
+    {
+     "label": "Receiving Yards",
+     "value": "10 yards per point; 6 points at 200 yards"
+    },
+    {
+     "label": "Receiving Touchdowns",
+     "value": 6
+    },
+    {
+     "label": "Return Touchdowns",
+     "value": 6
+    },
+    {
+     "label": "2-Point Conversions",
+     "value": 2
+    },
+    {
+     "label": "Fumbles Lost",
+     "value": -2
+    },
+    {
+     "label": "Offensive Fumble Return TD",
+     "value": 6
+    }
+   ]
+  },
+  {
+   "title": "Kickers",
+   "rows": [
+    {
+     "label": "Field Goals 0-19 Yards",
+     "value": 3
+    },
+    {
+     "label": "Field Goals 20-29 Yards",
+     "value": 3
+    },
+    {
+     "label": "Field Goals 30-39 Yards",
+     "value": 3
+    },
+    {
+     "label": "Field Goals 40-49 Yards",
+     "value": 4
+    },
+    {
+     "label": "Field Goals 50+ Yards",
+     "value": 5
+    },
+    {
+     "label": "Point After Attempt Made",
+     "value": 1
+    }
+   ]
+  },
+  {
+   "title": "Defense / Special Teams",
+   "rows": [
+    {
+     "label": "Sack",
+     "value": 1
+    },
+    {
+     "label": "Interception",
+     "value": 2
+    },
+    {
+     "label": "Fumble Recovery",
+     "value": 2
+    },
+    {
+     "label": "Touchdown",
+     "value": 6
+    },
+    {
+     "label": "Safety",
+     "value": 2
+    },
+    {
+     "label": "Block Kick",
+     "value": 2
+    },
+    {
+     "label": "Kickoff and Punt Return Touchdowns",
+     "value": 6
+    },
+    {
+     "label": "Points Allowed 0 points",
+     "value": 10
+    },
+    {
+     "label": "Points Allowed 1-6 points",
+     "value": 7
+    },
+    {
+     "label": "Points Allowed 7-13 points",
+     "value": 4
+    },
+    {
+     "label": "Points Allowed 14-20 points",
+     "value": 1
+    },
+    {
+     "label": "Points Allowed 21-27 points",
+     "value": 0
+    },
+    {
+     "label": "Points Allowed 28-34 points",
+     "value": -1
+    },
+    {
+     "label": "Points Allowed 35+ points",
+     "value": -4
+    },
+    {
+     "label": "4th Down Stops",
+     "value": 0.5
+    },
+    {
+     "label": "Defensive Yards Allowed - Negative",
+     "value": 2
+    },
+    {
+     "label": "Extra Point Returned",
+     "value": 2
+    }
+   ]
+  }
+ ],
+ "commissionerKeeperNote": "Keepers shouldn't be a fight \u2014 the system rewards good drafting and smart in-season moves. Raising keeper cost by a round each year makes you weigh a player's real value and frees up players who used to be locked away. Suggestions welcome.",
+ "keeperSelections": []
+};
 
 function formatCountdown(draftDateStr) {
   if (!draftDateStr) return null;
@@ -493,7 +3854,73 @@ function ordinal(n) {
   return n + (s[(v - 20) % 10] || s[v] || s[0]);
 }
 
+const ADMIN_PASSWORD = "HoldMyRings2026";
+let CURRENT_DATA = null;
+let FIRESTORE_DB = null;
+let FIRESTORE_REF = null;
+
+function renderKeepersGrid(data) {
+  const keepersGrid = document.getElementById("keepers-grid");
+  keepersGrid.innerHTML = "";
+  data.teams.forEach(t => {
+    const card = document.createElement("div");
+    card.className = "team-card";
+    const sel = (data.keeperSelections || []).find(k => k.team === t.team);
+    const body = (sel && sel.players && sel.players.length)
+      ? "<ul style=\"margin:0; padding-left:18px; color: var(--text);\">" + sel.players.map(p => "<li>" + p + "</li>").join("") + "</ul>"
+      : "<div class=\"stat-line\" style=\"color: var(--muted); font-size: 0.85rem;\">Not yet selected</div>";
+    card.innerHTML = "<h3>" + t.team + "</h3><div class=\"manager\">" + t.manager + "</div>" + body;
+    keepersGrid.appendChild(card);
+  });
+}
+
+function renderStandingsBody(data) {
+  const standingsBody = document.getElementById("standings-body");
+  standingsBody.innerHTML = "";
+  data.currentSeason.standings.forEach((row, i) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = "<td>" + (i + 1) + "</td><td>" + row.team + "</td><td>" + row.manager + "</td><td>" + row.record + "</td><td>" + row.pointsFor + "</td>";
+    standingsBody.appendChild(tr);
+  });
+}
+
+function buildAdminForm(data) {
+  document.getElementById("admin-note").value = data.commissionerNote || "";
+  document.getElementById("admin-draftdate").value = data.draftDate || "";
+
+  const standingsEl = document.getElementById("admin-standings");
+  standingsEl.innerHTML = "";
+  data.currentSeason.standings.forEach((row, i) => {
+    const div = document.createElement("div");
+    div.className = "admin-row";
+    div.innerHTML = "<span class=\"admin-team-label\">" + row.team + "</span>" +
+      "<input type=\"text\" data-idx=\"" + i + "\" class=\"admin-record-input\" value=\"" + row.record + "\" placeholder=\"0-0\">" +
+      "<input type=\"number\" data-idx=\"" + i + "\" class=\"admin-points-input\" value=\"" + row.pointsFor + "\">";
+    standingsEl.appendChild(div);
+  });
+
+  const keepersEl = document.getElementById("admin-keepers");
+  keepersEl.innerHTML = "";
+  data.teams.forEach(t => {
+    const existing = (data.keeperSelections || []).find(k => k.team === t.team);
+    const picks = (existing && existing.players) || [];
+    const options = ["<option value=\"\">\u2014 none \u2014</option>"].concat(
+      t.roster.map(p => "<option value=\"" + p.player + "\">" + p.player + "</option>")
+    ).join("");
+    const div = document.createElement("div");
+    div.className = "admin-keeper-row";
+    div.innerHTML = "<span class=\"admin-team-label\">" + t.team + "</span>" +
+      "<select data-team=\"" + t.team + "\" class=\"admin-keeper-select\" data-slot=\"0\">" + options + "</select>" +
+      "<select data-team=\"" + t.team + "\" class=\"admin-keeper-select\" data-slot=\"1\">" + options + "</select>";
+    keepersEl.appendChild(div);
+    const selects = div.querySelectorAll("select");
+    if (picks[0]) selects[0].value = picks[0];
+    if (picks[1]) selects[1].value = picks[1];
+  });
+}
+
 function render(LEAGUE_DATA) {
+  CURRENT_DATA = LEAGUE_DATA;
   const leagueName = LEAGUE_DATA.leagueName || "League";
   document.getElementById("page-title").textContent = leagueName + " — Fantasy Football History";
   document.getElementById("page-heading").textContent = leagueName;
@@ -516,12 +3943,7 @@ function render(LEAGUE_DATA) {
     document.getElementById("countdown-label").textContent = countdown.label;
   }
 
-  const standingsBody = document.getElementById("standings-body");
-  LEAGUE_DATA.currentSeason.standings.forEach((row, i) => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = "<td>" + (i + 1) + "</td><td>" + row.team + "</td><td>" + row.manager + "</td><td>" + row.record + "</td><td>" + row.pointsFor + "</td>";
-    standingsBody.appendChild(tr);
-  });
+  renderStandingsBody(LEAGUE_DATA);
 
   const historyBody = document.getElementById("history-body");
   LEAGUE_DATA.history.forEach(row => {
@@ -542,13 +3964,7 @@ function render(LEAGUE_DATA) {
     teamsGrid.appendChild(card);
   });
 
-  const keepersGrid = document.getElementById("keepers-grid");
-  LEAGUE_DATA.teams.forEach(t => {
-    const card = document.createElement("div");
-    card.className = "team-card";
-    card.innerHTML = "<h3>" + t.team + "</h3><div class=\"manager\">" + t.manager + "</div><div class=\"stat-line\" style=\"color: var(--muted); font-size: 0.85rem;\">Not yet selected</div>";
-    keepersGrid.appendChild(card);
-  });
+  renderKeepersGrid(LEAGUE_DATA);
 
   const doTeamNames = LEAGUE_DATA.draftOrder2026.length ? LEAGUE_DATA.draftOrder2026[0].picks.map(p => p.originalTeam) : [];
   document.getElementById("draftorder-team-headers-placeholder").outerHTML = doTeamNames.map(n => "<th>" + n + "</th>").join("");
@@ -637,6 +4053,8 @@ function render(LEAGUE_DATA) {
     card.innerHTML = html;
     settingsGrid.appendChild(card);
   });
+
+  buildAdminForm(LEAGUE_DATA);
 }
 
 document.querySelectorAll("nav button").forEach(btn => {
@@ -648,19 +4066,66 @@ document.querySelectorAll("nav button").forEach(btn => {
   });
 });
 
+document.getElementById("admin-unlock-btn").addEventListener("click", () => {
+  const val = document.getElementById("admin-password").value;
+  if (val === ADMIN_PASSWORD) {
+    document.getElementById("admin-locked").style.display = "none";
+    document.getElementById("admin-panel").style.display = "block";
+    document.getElementById("admin-error").style.display = "none";
+  } else {
+    document.getElementById("admin-error").style.display = "block";
+  }
+});
+
+document.getElementById("admin-save-btn").addEventListener("click", async () => {
+  const statusEl = document.getElementById("admin-status");
+  if (!CURRENT_DATA || !FIRESTORE_REF) {
+    statusEl.textContent = "Not connected to Firebase yet — try again in a moment.";
+    return;
+  }
+  CURRENT_DATA.commissionerNote = document.getElementById("admin-note").value;
+  CURRENT_DATA.draftDate = document.getElementById("admin-draftdate").value;
+
+  document.querySelectorAll(".admin-record-input").forEach(input => {
+    CURRENT_DATA.currentSeason.standings[Number(input.dataset.idx)].record = input.value;
+  });
+  document.querySelectorAll(".admin-points-input").forEach(input => {
+    CURRENT_DATA.currentSeason.standings[Number(input.dataset.idx)].pointsFor = Number(input.value) || 0;
+  });
+
+  const keeperMap = {};
+  document.querySelectorAll(".admin-keeper-select").forEach(sel => {
+    const team = sel.dataset.team;
+    if (!keeperMap[team]) keeperMap[team] = [];
+    if (sel.value) keeperMap[team].push(sel.value);
+  });
+  CURRENT_DATA.keeperSelections = Object.keys(keeperMap).map(team => ({ team: team, players: keeperMap[team] }));
+
+  statusEl.textContent = "Saving…";
+  try {
+    await setDoc(FIRESTORE_REF, CURRENT_DATA);
+    statusEl.textContent = "Saved! The site is now showing your changes.";
+    document.getElementById("commish-note").textContent = CURRENT_DATA.commissionerNote;
+    renderStandingsBody(CURRENT_DATA);
+    renderKeepersGrid(CURRENT_DATA);
+  } catch (err) {
+    statusEl.textContent = "Save failed: " + err.message;
+  }
+});
+
 async function loadAndRender() {
   const syncNote = document.getElementById("sync-note");
   try {
     const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const ref = doc(db, "site", "leagueData");
-    const snap = await getDoc(ref);
+    FIRESTORE_DB = getFirestore(app);
+    FIRESTORE_REF = doc(FIRESTORE_DB, "site", "leagueData");
+    const snap = await getDoc(FIRESTORE_REF);
 
     if (snap.exists()) {
       render(snap.data());
       syncNote.textContent = "Live data — synced from Firebase.";
     } else {
-      await setDoc(ref, DEFAULT_LEAGUE_DATA);
+      await setDoc(FIRESTORE_REF, DEFAULT_LEAGUE_DATA);
       render(DEFAULT_LEAGUE_DATA);
       syncNote.textContent = "Live data — synced from Firebase (just initialized).";
     }
