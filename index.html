@@ -309,6 +309,14 @@ tr:last-child td { border-bottom: none; }
   font-size: 0.95rem;
   margin-bottom: 6px;
 }
+.trade-card .trade-from {
+  font-family: inherit;
+  text-transform: none;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: normal;
+  letter-spacing: normal;
+}
 .trade-card ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 0.88rem; }
 .sync-note {
   text-align: center;
@@ -2623,6 +2631,7 @@ const DEFAULT_LEAGUE_DATA = {
  "trades2025": [
   {
    "team": "jen's Legendary Team",
+   "from": "Leeroy Judkins",
    "received": [
     {
      "item": "Kyle Monangai (Chi)",
@@ -2636,6 +2645,7 @@ const DEFAULT_LEAGUE_DATA = {
   },
   {
    "team": "Leeroy Judkins",
+   "from": "jen's Legendary Team",
    "received": [
     {
      "item": "Omarion Hampton (LAC)",
@@ -2649,6 +2659,7 @@ const DEFAULT_LEAGUE_DATA = {
   },
   {
    "team": "Any given Sunday",
+   "from": "jen's Legendary Team",
    "received": [
     {
      "item": "Puka Nacua (LAR)",
@@ -2662,6 +2673,7 @@ const DEFAULT_LEAGUE_DATA = {
   },
   {
    "team": "jen's Legendary Team",
+   "from": "Any given Sunday",
    "received": [
     {
      "item": "Xavier Worthy (KC)",
@@ -2675,6 +2687,7 @@ const DEFAULT_LEAGUE_DATA = {
   },
   {
    "team": "Leeroy Judkins",
+   "from": "jen's Legendary Team",
    "received": [
     {
      "item": "Rhamondre Stevenson (NE)",
@@ -2692,6 +2705,7 @@ const DEFAULT_LEAGUE_DATA = {
   },
   {
    "team": "jen's Legendary Team",
+   "from": "Leeroy Judkins",
    "received": [
     {
      "item": "Jaylen Warren (Pit)",
@@ -4040,7 +4054,7 @@ function render(LEAGUE_DATA) {
   LEAGUE_DATA.trades2025.forEach(trade => {
     const card = document.createElement("div");
     card.className = "trade-card";
-    let html = "<div class=\"trade-team\">" + trade.team + " acquired</div><ul>";
+    let html = "<div class=\"trade-team\">" + trade.team + " acquired" + (trade.from ? " <span class=\"trade-from\">(from " + trade.from + ")</span>" : "") + "</div><ul>";
     trade.received.forEach(item => {
       html += "<li>" + item.item + (item.pos ? " (" + item.pos + ")" : "") + "</li>";
     });
