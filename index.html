@@ -10,28 +10,28 @@
 <style>
 
 :root {
-  --bg: #f2f0e9;
+  --bg: #f5f7fb;
   --panel: #ffffff;
-  --panel-2: #ece6d4;
-  --border: #ddd4bb;
-  --text: #211c12;
-  --muted: #6e6350;
-  --accent: #171310;
-  --gold: #a9790a;
-  --red: #8b2323;
+  --panel-2: #e7edf7;
+  --border: #c7d4e8;
+  --text: #0a1a33;
+  --muted: #4b5b78;
+  --accent: #0a2f5c;
+  --gold: #b31942;
+  --red: #1f4e8c;
   --font-display: "Oswald", "Arial Narrow", sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #14120c;
-    --panel: #1e1a12;
-    --panel-2: #282217;
-    --border: #3c3320;
-    --text: #f3ecdc;
-    --muted: #b7a98a;
-    --accent: #0d0b08;
-    --gold: #d9ac2f;
-    --red: #d9584a;
+    --bg: #050b18;
+    --panel: #0d1b30;
+    --panel-2: #13233d;
+    --border: #26456e;
+    --text: #f2f6fc;
+    --muted: #9fb3d1;
+    --accent: #030a16;
+    --gold: #e63946;
+    --red: #4a90e2;
   }
 }
 * { box-sizing: border-box; }
@@ -45,7 +45,7 @@ header {
   padding: 40px 20px 22px;
   text-align: center;
   background: var(--accent);
-  color: #f3ecdc;
+  color: #f5f8ff;
   border-bottom: 4px solid var(--gold);
 }
 header h1 {
@@ -54,11 +54,11 @@ header h1 {
   font-size: 2.4rem;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #f3ecdc;
+  color: #f5f8ff;
 }
 header p {
   margin: 0;
-  color: #cabf9e;
+  color: #a9bfe0;
 }
 header a { color: var(--gold); text-decoration: underline; }
 nav {
@@ -72,8 +72,8 @@ nav {
 }
 nav button {
   background: none;
-  border: 1px solid #f3ecdc55;
-  color: #f3ecdc;
+  border: 1px solid #f5f8ff55;
+  color: #f5f8ff;
   padding: 8px 16px;
   border-radius: 999px;
   cursor: pointer;
@@ -94,7 +94,7 @@ nav button {
 nav button.active {
   background: var(--gold);
   border-color: var(--gold);
-  color: #171310;
+  color: #ffffff;
   font-weight: 600;
 }
 main {
@@ -291,7 +291,7 @@ tr:last-child td { border-bottom: none; }
 }
 footer {
   text-align: center;
-  color: #cabf9e;
+  color: #a9bfe0;
   font-size: 0.8rem;
   padding: 20px;
   background: var(--accent);
@@ -352,7 +352,7 @@ footer {
 
   <section id="teams">
     <h2>Teams &amp; Managers</h2>
-    <p style="color: var(--muted); margin-top: -6px;">Full roster with each player's 2026 keeper cost (the round it would take to keep them). A gold badge marks a player kept in 2025.</p>
+    <p style="color: var(--muted); margin-top: -6px;">Full roster with each player's 2026 keeper cost (the round it would take to keep them). A red badge marks a player kept in 2025.</p>
     <div class="teams-grid" id="teams-grid"></div>
   </section>
 
@@ -364,7 +364,7 @@ footer {
 
   <section id="draftorder">
     <h2>2026 Draft Order &amp; Traded Picks</h2>
-    <p style="color: var(--muted); margin-top: -6px;">Final round-by-round order is set by 2025 standings once the season wraps. Below shows any pick that has already changed hands via trade &mdash; a gold name means that team now owns the pick instead of its original team.</p>
+    <p style="color: var(--muted); margin-top: -6px;">Final round-by-round order is set by 2025 standings once the season wraps. Below shows any pick that has already changed hands via trade &mdash; a red name means that team now owns the pick instead of its original team.</p>
     <div class="card">
       <table>
         <thead>
