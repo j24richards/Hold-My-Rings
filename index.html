@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title id="page-title">Hold My Rings — Fantasy Football History</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%8F%88%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hold My Rings">
+<meta property="og:description" content="Fantasy football league hub — standings, rosters, draft history, and more.">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -19,6 +24,9 @@
   --accent: #0a2f5c;
   --gold: #b31942;
   --red: #1f4e8c;
+  --silver: #7c8aa0;
+  --bronze: #a86a3d;
+  --gold-wash: rgba(179, 25, 66, 0.07);
   --font-display: "Oswald", "Arial Narrow", sans-serif;
 }
 @media (prefers-color-scheme: dark) {
@@ -32,6 +40,9 @@
     --accent: #030a16;
     --gold: #e63946;
     --red: #4a90e2;
+    --silver: #9aa5b8;
+    --bronze: #c98b52;
+    --gold-wash: rgba(230, 57, 70, 0.1);
   }
 }
 * { box-sizing: border-box; }
@@ -341,6 +352,90 @@ tr:last-child td { border-bottom: none; }
   letter-spacing: normal;
 }
 .trade-card ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 0.88rem; }
+.history-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.history-card table { font-size: 0.85rem; }
+.history-card th, .history-card td { padding: 6px 4px; }
+.history-card td:first-child { color: var(--muted); font-variant-numeric: tabular-nums; }
+.history-card tr.rank-gold td { color: var(--gold); font-weight: 600; }
+.history-card tr.rank-silver td { color: var(--silver); font-weight: 600; }
+.history-card tr.rank-bronze td { color: var(--bronze); font-weight: 600; }
+.champ-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.champ-card {
+  background: var(--gold-wash);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--gold);
+  border-radius: 10px;
+  padding: 14px 16px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.champ-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.35);
+}
+.champ-card .champ-year {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.champ-card .champ-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.champ-card .champ-team {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+}
+.champ-card .champ-team span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.champ-card .champ-mgr {
+  color: var(--muted);
+  font-size: 0.85rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.trophy-icon { color: var(--gold); flex: none; }
+.trophy-icon-silver { color: var(--silver); }
+.trophy-icon-bronze { color: var(--bronze); }
+.history-card td .trophy-icon { margin-right: 4px; vertical-align: -1px; }
+.table-scroll { overflow-x: auto; }
+#ledger-table { min-width: 640px; font-variant-numeric: tabular-nums; border-collapse: separate; border-spacing: 0; }
+#ledger-table thead th { background: var(--panel); }
+#ledger-table tbody tr:nth-child(even) { background: var(--panel-2); }
+#ledger-table .lg-mgr {
+  text-align: left;
+  white-space: nowrap;
+  position: sticky;
+  left: 0;
+  background: var(--panel);
+  box-shadow: 2px 0 6px -3px rgba(0, 0, 0, 0.3);
+}
+#ledger-table tbody tr:nth-child(even) .lg-mgr { background: var(--panel-2); }
+#ledger-table .lg-num { text-align: center; }
+#ledger-table .lg-title { color: var(--gold); font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+#ledger-table .lg-year { text-align: center; color: var(--muted); }
+#ledger-table .lg-year.is-title { color: var(--gold); font-weight: 700; }
+#ledger-table .lg-year.is-second { color: var(--silver); font-weight: 600; }
+#ledger-table .lg-year.is-third { color: var(--bronze); font-weight: 600; }
 .sync-note {
   text-align: center;
   font-size: 0.75rem;
@@ -395,6 +490,91 @@ textarea { min-height: 80px; resize: vertical; }
   font-size: 0.9rem;
 }
 .admin-btn:hover { opacity: 0.88; }
+.admin-btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.admin-btn-secondary:hover { opacity: 0.8; }
+.admin-history-year {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+.admin-history-year-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.admin-history-year-head label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.admin-history-year-input { max-width: 100px; }
+.admin-history-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.admin-draftresult-row {
+  display: grid;
+  grid-template-columns: 70px 70px 1fr 1fr auto;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.admin-draftorder-round {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+}
+.admin-draftorder-round-head {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.admin-draftorder-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.admin-trade-block {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+.admin-trade-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.admin-trade-items { margin-bottom: 8px; }
+.admin-trade-item-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr auto;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+@media (max-width: 640px) {
+  .admin-draftresult-row, .admin-draftorder-row, .admin-trade-head, .admin-trade-item-row { grid-template-columns: 1fr; }
+}
 #admin-status {
   margin-top: 12px;
   font-size: 0.85rem;
@@ -544,16 +724,17 @@ footer {
   </section>
 
   <section id="history">
-    <h2>Champions by Year</h2>
+    <h2>Champions Board</h2>
+    <div class="champ-board" id="champ-board"></div>
+    <h2>Full Standings by Year</h2>
+    <div class="history-grid" id="history-grid"></div>
+    <h2>Manager Ledger</h2>
     <div class="card">
-      <table>
-        <thead>
-          <tr><th>Year</th><th>Champion</th><th>Runner-Up</th></tr>
-        </thead>
-        <tbody id="history-body"></tbody>
-      </table>
+      <p style="color: var(--muted); margin-top: -8px; font-size: 0.82rem;">Titles, top-3 finishes, and finish history by year. Teams without a recorded manager aren't counted.</p>
+      <div class="table-scroll">
+        <table id="ledger-table"></table>
+      </div>
     </div>
-    <p style="color: var(--muted); font-size: 0.85rem;">Full playoff history will be added once the 2025 season officially closes out.</p>
   </section>
 
   <section id="rules">
@@ -595,6 +776,36 @@ footer {
         <p style="color: var(--muted); margin-top: -8px; font-size: 0.82rem;">Pick up to two kept players per team.</p>
         <div id="admin-keepers"></div>
       </div>
+      <div class="card">
+        <h3 style="margin-top:0;">Season History</h3>
+        <p style="color: var(--muted); margin-top: -8px; font-size: 0.82rem;">Add each season's full final standings, top team first. Leave a team blank to drop that row.</p>
+        <div id="admin-history"></div>
+        <button type="button" class="admin-btn admin-btn-secondary" id="admin-add-year-btn">+ Add Year</button>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0;">2026 Draft Order &mdash; Trades</h3>
+        <p style="color: var(--muted); margin-top: -8px; font-size: 0.82rem;">Order is set automatically by round. Only set a new owner for a pick that's been traded.</p>
+        <div id="admin-draftorder"></div>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0;">2026 Draft Results</h3>
+        <p style="color: var(--muted); margin-top: -8px; font-size: 0.82rem;">Add each pick once the draft happens.</p>
+        <div id="admin-draftresults"></div>
+        <button type="button" class="admin-btn admin-btn-secondary" id="admin-add-draftresult-btn">+ Add Pick</button>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0;">Trades</h3>
+        <p style="color: var(--muted); margin-top: -8px; font-size: 0.82rem;">Each trade lists which team acquired players/picks, and from whom.</p>
+        <div id="admin-trades"></div>
+        <button type="button" class="admin-btn admin-btn-secondary" id="admin-add-trade-btn">+ Add Trade</button>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0;">2026 Teams</h3>
+        <p style="color: var(--muted); margin-top: -8px; font-size: 0.82rem;">Once draft results above are filled in, generate next year's rosters from them instead of typing them twice.</p>
+        <button type="button" class="admin-btn admin-btn-secondary" id="admin-generate-teams2026-btn">Generate 2026 Teams from Draft Results</button>
+        <p id="admin-generate-status" style="color: var(--muted); font-size: 0.82rem; margin-top: 8px;"></p>
+      </div>
+      <button type="button" class="admin-btn admin-btn-secondary" id="admin-export-btn">Download Backup (JSON)</button>
       <button class="admin-btn" id="admin-save-btn">Save Changes</button>
       <p id="admin-status"></p>
     </div>
@@ -4015,14 +4226,280 @@ function renderKeepersGrid(data) {
   });
 }
 
+function parseRecord(record) {
+  const parts = String(record || "0-0").split("-").map(Number);
+  return { w: parts[0] || 0, l: parts[1] || 0 };
+}
+
 function renderStandingsBody(data) {
   const standingsBody = document.getElementById("standings-body");
   standingsBody.innerHTML = "";
-  data.currentSeason.standings.forEach((row, i) => {
+  const sorted = data.currentSeason.standings.slice().sort((a, b) => {
+    const ra = parseRecord(a.record), rb = parseRecord(b.record);
+    if (rb.w !== ra.w) return rb.w - ra.w;
+    return (b.pointsFor || 0) - (a.pointsFor || 0);
+  });
+  sorted.forEach((row, i) => {
     const tr = document.createElement("tr");
     tr.innerHTML = "<td>" + (i + 1) + "</td><td>" + row.team + "</td><td>" + row.manager + "</td><td>" + row.record + "</td><td>" + row.pointsFor + "</td>";
     standingsBody.appendChild(tr);
   });
+}
+
+function getRowStandings(row) {
+  if (row.standings && row.standings.length) return row.standings;
+  const arr = [];
+  if (row.champion) arr.push({ team: row.champion, manager: row.championManager });
+  if (row.runnerUp) arr.push({ team: row.runnerUp, manager: row.runnerUpManager });
+  return arr;
+}
+
+function trophyIconHtml(extraClass) {
+  return "<svg class=\"trophy-icon" + (extraClass ? " " + extraClass : "") + "\" viewBox=\"0 0 16 16\" width=\"13\" height=\"13\" aria-hidden=\"true\">" +
+    "<path d=\"M4 2h8v3a4 4 0 0 1-8 0V2z\" fill=\"currentColor\"/>" +
+    "<path d=\"M4 3H2a1 1 0 0 0-1 1c0 1.5 1 2.6 2.4 2.9\" stroke=\"currentColor\" stroke-width=\"1\" fill=\"none\"/>" +
+    "<path d=\"M12 3h2a1 1 0 0 1 1 1c0 1.5-1 2.6-2.4 2.9\" stroke=\"currentColor\" stroke-width=\"1\" fill=\"none\"/>" +
+    "<rect x=\"7\" y=\"8.5\" width=\"2\" height=\"2.5\" fill=\"currentColor\"/>" +
+    "<path d=\"M5 13.5h6l-.5-1.5h-5z\" fill=\"currentColor\"/>" +
+    "</svg>";
+}
+
+function renderHistorySection(data) {
+  const historyGrid = document.getElementById("history-grid");
+  historyGrid.innerHTML = "";
+  const champBoard = document.getElementById("champ-board");
+  champBoard.innerHTML = "";
+
+  const sorted = (data.history || []).slice().sort((a, b) => b.year - a.year);
+  const rankClass = i => i === 0 ? "rank-gold" : i === 1 ? "rank-silver" : i === 2 ? "rank-bronze" : "";
+  const rankIcon = i => i === 0 ? trophyIconHtml() : i === 1 ? trophyIconHtml("trophy-icon-silver") : i === 2 ? trophyIconHtml("trophy-icon-bronze") : "";
+
+  sorted.forEach(row => {
+    const standings = getRowStandings(row);
+    const champ = standings[0];
+
+    const card = document.createElement("div");
+    card.className = "team-card history-card";
+    let html = "<h3>" + row.year + "</h3>";
+    if (standings.length) {
+      html += "<table><thead><tr><th>#</th><th>Team</th><th>Manager</th></tr></thead><tbody>";
+      standings.forEach((s, i) => {
+        html += "<tr class=\"" + rankClass(i) + "\"><td>" + rankIcon(i) + (i + 1) + "</td><td>" + s.team + "</td><td>" + (s.manager || "") + "</td></tr>";
+      });
+      html += "</tbody></table>";
+    } else {
+      html += "<div class=\"stat-line\">Records pending.</div>";
+    }
+    card.innerHTML = html;
+    historyGrid.appendChild(card);
+
+    if (champ) {
+      const champCard = document.createElement("div");
+      champCard.className = "champ-card";
+      champCard.innerHTML = "<div class=\"champ-year\">" + row.year + "</div>" +
+        "<div class=\"champ-row\">" +
+        "<div class=\"champ-team\">" + trophyIconHtml() + "<span>" + (champ.manager || "Unknown") + "</span></div>" +
+        "<div class=\"champ-mgr\">" + champ.team + "</div>" +
+        "</div>";
+      champBoard.appendChild(champCard);
+    }
+  });
+
+  renderManagerLedger(sorted);
+}
+
+function renderManagerLedger(sortedHistory) {
+  const yearsAsc = sortedHistory.map(r => r.year).slice().reverse();
+  const managerMap = {};
+  sortedHistory.forEach(row => {
+    const standings = getRowStandings(row);
+    standings.forEach((s, i) => {
+      if (!s.manager) return;
+      if (!managerMap[s.manager]) managerMap[s.manager] = {};
+      managerMap[s.manager][row.year] = i + 1;
+    });
+  });
+
+  const ledgerRows = Object.keys(managerMap).map(mgr => {
+    const byYear = managerMap[mgr];
+    const played = yearsAsc.map(y => byYear[y]).filter(r => r !== undefined);
+    const titles = played.filter(r => r === 1).length;
+    const top3 = played.filter(r => r <= 3).length;
+    const avg = played.length ? played.reduce((a, b) => a + b, 0) / played.length : 0;
+    return { mgr, byYear, titles, top3, avg, appearances: played.length };
+  });
+
+  ledgerRows.sort((a, b) => b.titles - a.titles || b.top3 - a.top3 || a.avg - b.avg);
+
+  const yearHeaderCells = yearsAsc.map(y => "<th>" + String(y).slice(2) + "&#8217;</th>").join("");
+  const bodyRows = ledgerRows.map(row => {
+    const yearCells = yearsAsc.map(y => {
+      const rank = row.byYear[y];
+      if (rank === undefined) return "<td class=\"lg-year is-empty\">&ndash;</td>";
+      const cls = rank === 1 ? "is-title" : rank === 2 ? "is-second" : rank === 3 ? "is-third" : "";
+      return "<td class=\"lg-year " + cls + "\">" + rank + "</td>";
+    }).join("");
+    const titleCell = row.titles ? (trophyIconHtml() + row.titles) : "&ndash;";
+    return "<tr><td class=\"lg-mgr\">" + row.mgr + "</td>" +
+      "<td class=\"lg-num lg-title\">" + titleCell + "</td>" +
+      "<td class=\"lg-num\">" + row.top3 + "</td>" +
+      "<td class=\"lg-num\">" + row.avg.toFixed(1) + "</td>" +
+      yearCells + "</tr>";
+  }).join("");
+
+  document.getElementById("ledger-table").innerHTML =
+    "<thead><tr><th class=\"lg-mgr\">Manager</th><th>Titles</th><th>Top&nbsp;3s</th><th>Avg</th>" + yearHeaderCells + "</tr></thead>" +
+    "<tbody>" + bodyRows + "</tbody>";
+}
+
+function addHistoryRow(rowsWrap, team, manager) {
+  const row = document.createElement("div");
+  row.className = "admin-history-row";
+  row.innerHTML = "<input type=\"text\" class=\"admin-history-team\" placeholder=\"Team name\" value=\"" + (team || "") + "\">" +
+    "<input type=\"text\" class=\"admin-history-manager\" placeholder=\"Manager\" value=\"" + (manager || "") + "\">" +
+    "<button type=\"button\" class=\"admin-remove-row-btn\">Remove</button>";
+  row.querySelector(".admin-remove-row-btn").addEventListener("click", () => row.remove());
+  rowsWrap.appendChild(row);
+}
+
+function addHistoryYearBlock(container, season) {
+  const yearData = season || { year: "", standings: [] };
+  const block = document.createElement("div");
+  block.className = "admin-history-year";
+  block.innerHTML = "<div class=\"admin-history-year-head\">" +
+    "<label>Year</label>" +
+    "<input type=\"number\" class=\"admin-history-year-input\" placeholder=\"Year\" value=\"" + (yearData.year || "") + "\">" +
+    "<button type=\"button\" class=\"admin-remove-year-btn\">Remove Year</button>" +
+    "</div>" +
+    "<div class=\"admin-history-rows\"></div>" +
+    "<button type=\"button\" class=\"admin-add-row-btn\">+ Add Team</button>";
+  block.querySelector(".admin-remove-year-btn").addEventListener("click", () => block.remove());
+  const rowsWrap = block.querySelector(".admin-history-rows");
+  const standings = getRowStandings(yearData);
+  if (standings.length) {
+    standings.forEach(s => addHistoryRow(rowsWrap, s.team, s.manager));
+  } else {
+    addHistoryRow(rowsWrap, "", "");
+  }
+  block.querySelector(".admin-add-row-btn").addEventListener("click", () => addHistoryRow(rowsWrap, "", ""));
+  container.appendChild(block);
+}
+
+function renderTeamsGrid(data) {
+  const teamsGrid = document.getElementById("teams-grid");
+  teamsGrid.innerHTML = "";
+  data.teams.forEach(t => { teamsGrid.appendChild(buildTeamCard(t)); });
+}
+
+function renderTeams2026(data) {
+  const teams2026 = data.teams2026 || [];
+  const teams2026Grid = document.getElementById("teams2026-grid");
+  teams2026Grid.innerHTML = "";
+  const teams2026EmptyNote = document.getElementById("teams2026-empty-note");
+  if (teams2026.length) {
+    teams2026EmptyNote.style.display = "none";
+    teams2026.forEach(t => { teams2026Grid.appendChild(buildTeamCard(t)); });
+  } else {
+    teams2026EmptyNote.style.display = "block";
+  }
+}
+
+function renderDraftResults(data) {
+  document.getElementById("draft-heading").textContent = data.currentSeason.year + " Draft Results";
+  const draftBody = document.getElementById("draft-body");
+  draftBody.innerHTML = "";
+  const draftEmptyNote = document.getElementById("draft-empty-note");
+  const draftResults = data.draftResults || [];
+  if (draftResults.length) {
+    draftEmptyNote.style.display = "none";
+    draftResults.forEach(row => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = "<td>" + row.round + "</td><td>" + row.pick + "</td><td>" + row.team + "</td><td>" + row.player + "</td>";
+      draftBody.appendChild(tr);
+    });
+  } else {
+    draftEmptyNote.style.display = "block";
+  }
+}
+
+function renderDraftOrderSection(data) {
+  const doTeamNames = (data.draftOrder2026 || []).length ? data.draftOrder2026[0].picks.map(p => p.originalTeam) : [];
+  const headerRow = document.querySelector("#draftorder thead tr");
+  headerRow.innerHTML = "<th>Round</th>" + doTeamNames.map(n => "<th>" + n + "</th>").join("");
+  const draftOrderBody = document.getElementById("draftorder-body");
+  draftOrderBody.innerHTML = "";
+  (data.draftOrder2026 || []).forEach(r => {
+    const tr = document.createElement("tr");
+    let html = "<td>" + r.round + "</td>";
+    r.picks.forEach(p => {
+      if (p.newOwner) {
+        html += "<td class=\"draft-order-owner\">" + p.newOwner + "<span class=\"swap-icon\" title=\"Traded pick\" aria-hidden=\"true\">&nbsp;&#8644;</span><span class=\"sr-only\"> (traded)</span></td>";
+      } else {
+        html += "<td class=\"draft-order-none\">—</td>";
+      }
+    });
+    tr.innerHTML = html;
+    draftOrderBody.appendChild(tr);
+  });
+}
+
+function renderTradesSection(data) {
+  const tradesList = document.getElementById("trades-list");
+  tradesList.innerHTML = "";
+  (data.trades2025 || []).forEach(trade => {
+    const card = document.createElement("div");
+    card.className = "trade-card";
+    let html = "<div class=\"trade-team\">" + trade.team + " acquired" + (trade.from ? " <span class=\"trade-from\">(from " + trade.from + ")</span>" : "") + "</div><ul>";
+    (trade.received || []).forEach(item => {
+      html += "<li>" + item.item + (item.pos ? " (" + item.pos + ")" : "") + "</li>";
+    });
+    html += "</ul>";
+    card.innerHTML = html;
+    tradesList.appendChild(card);
+  });
+}
+
+function addDraftResultRow(rowsWrap, round, pick, team, player) {
+  const row = document.createElement("div");
+  row.className = "admin-draftresult-row";
+  row.innerHTML = "<input type=\"text\" class=\"admin-dr-round\" placeholder=\"Rd\" value=\"" + (round || "") + "\">" +
+    "<input type=\"text\" class=\"admin-dr-pick\" placeholder=\"Pick\" value=\"" + (pick || "") + "\">" +
+    "<input type=\"text\" class=\"admin-dr-team\" placeholder=\"Team\" value=\"" + (team || "") + "\">" +
+    "<input type=\"text\" class=\"admin-dr-player\" placeholder=\"Player\" value=\"" + (player || "") + "\">" +
+    "<button type=\"button\" class=\"admin-remove-row-btn\">Remove</button>";
+  row.querySelector(".admin-remove-row-btn").addEventListener("click", () => row.remove());
+  rowsWrap.appendChild(row);
+}
+
+function addTradeItemRow(itemsWrap, item, pos) {
+  const row = document.createElement("div");
+  row.className = "admin-trade-item-row";
+  row.innerHTML = "<input type=\"text\" class=\"admin-ti-item\" placeholder=\"Player / pick received\" value=\"" + (item || "") + "\">" +
+    "<input type=\"text\" class=\"admin-ti-pos\" placeholder=\"Pos (optional)\" value=\"" + (pos || "") + "\">" +
+    "<button type=\"button\" class=\"admin-remove-row-btn\">Remove</button>";
+  row.querySelector(".admin-remove-row-btn").addEventListener("click", () => row.remove());
+  itemsWrap.appendChild(row);
+}
+
+function addTradeBlock(container, trade, teamOptionsHtml) {
+  const t = trade || { team: "", from: "", received: [] };
+  const block = document.createElement("div");
+  block.className = "admin-trade-block";
+  block.innerHTML = "<div class=\"admin-trade-head\">" +
+    "<select class=\"admin-trade-team\">" + teamOptionsHtml + "</select>" +
+    "<select class=\"admin-trade-from\">" + teamOptionsHtml + "</select>" +
+    "<button type=\"button\" class=\"admin-remove-trade-btn\">Remove Trade</button>" +
+    "</div>" +
+    "<div class=\"admin-trade-items\"></div>" +
+    "<button type=\"button\" class=\"admin-add-item-btn\">+ Add Item</button>";
+  block.querySelector(".admin-remove-trade-btn").addEventListener("click", () => block.remove());
+  block.querySelector(".admin-trade-team").value = t.team || "";
+  block.querySelector(".admin-trade-from").value = t.from || "";
+  const itemsWrap = block.querySelector(".admin-trade-items");
+  const received = (t.received && t.received.length) ? t.received : [{ item: "", pos: "" }];
+  received.forEach(r => addTradeItemRow(itemsWrap, r.item, r.pos));
+  block.querySelector(".admin-add-item-btn").addEventListener("click", () => addTradeItemRow(itemsWrap, "", ""));
+  container.appendChild(block);
 }
 
 function buildAdminForm(data) {
@@ -4058,6 +4535,41 @@ function buildAdminForm(data) {
     if (picks[0]) selects[0].value = picks[0];
     if (picks[1]) selects[1].value = picks[1];
   });
+
+  const historyEl = document.getElementById("admin-history");
+  historyEl.innerHTML = "";
+  (data.history || []).slice().sort((a, b) => b.year - a.year).forEach(season => addHistoryYearBlock(historyEl, season));
+
+  const teamOptions = ["<option value=\"\">— none —</option>"].concat(
+    data.teams.map(t => "<option value=\"" + t.team + "\">" + t.team + "</option>")
+  ).join("");
+
+  const draftOrderEl = document.getElementById("admin-draftorder");
+  draftOrderEl.innerHTML = "";
+  (data.draftOrder2026 || []).forEach((roundData, rIdx) => {
+    const roundBlock = document.createElement("div");
+    roundBlock.className = "admin-draftorder-round";
+    roundBlock.dataset.round = rIdx;
+    let headHtml = "<div class=\"admin-draftorder-round-head\">Round " + roundData.round + "</div>";
+    roundBlock.innerHTML = headHtml;
+    roundData.picks.forEach((p, pIdx) => {
+      const div = document.createElement("div");
+      div.className = "admin-draftorder-row";
+      div.innerHTML = "<span class=\"admin-team-label\">" + p.originalTeam + "</span>" +
+        "<select data-round=\"" + rIdx + "\" data-idx=\"" + pIdx + "\" class=\"admin-draftorder-select\">" + teamOptions + "</select>";
+      roundBlock.appendChild(div);
+      if (p.newOwner) div.querySelector("select").value = p.newOwner;
+    });
+    draftOrderEl.appendChild(roundBlock);
+  });
+
+  const draftResultsEl = document.getElementById("admin-draftresults");
+  draftResultsEl.innerHTML = "";
+  (data.draftResults || []).forEach(r => addDraftResultRow(draftResultsEl, r.round, r.pick, r.team, r.player));
+
+  const tradesEl = document.getElementById("admin-trades");
+  tradesEl.innerHTML = "";
+  (data.trades2025 || []).forEach(t => addTradeBlock(tradesEl, t, teamOptions));
 }
 
 function render(LEAGUE_DATA) {
@@ -4075,65 +4587,16 @@ function render(LEAGUE_DATA) {
 
   renderStandingsBody(LEAGUE_DATA);
 
-  const historyBody = document.getElementById("history-body");
-  LEAGUE_DATA.history.forEach(row => {
-    const tr = document.createElement("tr");
-    const champCell = row.champion + (row.championManager ? " (" + row.championManager + ")" : "");
-    const runnerCell = row.runnerUp ? (row.runnerUp + (row.runnerUpManager ? " (" + row.runnerUpManager + ")" : "")) : "TBD";
-    tr.innerHTML = "<td>" + row.year + "</td><td class=\"champion\">" + champCell + "</td><td class=\"runner-up\">" + runnerCell + "</td>";
-    historyBody.appendChild(tr);
-  });
+  renderHistorySection(LEAGUE_DATA);
 
-  const teamsGrid = document.getElementById("teams-grid");
-  LEAGUE_DATA.teams.forEach(t => {
-    teamsGrid.appendChild(buildTeamCard(t));
-  });
-
-  const teams2026 = LEAGUE_DATA.teams2026 || [];
-  const teams2026Grid = document.getElementById("teams2026-grid");
-  const teams2026EmptyNote = document.getElementById("teams2026-empty-note");
-  if (teams2026.length) {
-    teams2026EmptyNote.style.display = "none";
-    teams2026.forEach(t => {
-      teams2026Grid.appendChild(buildTeamCard(t));
-    });
-  } else {
-    teams2026EmptyNote.style.display = "block";
-  }
+  renderTeamsGrid(LEAGUE_DATA);
+  renderTeams2026(LEAGUE_DATA);
 
   renderKeepersGrid(LEAGUE_DATA);
 
-  document.getElementById("draft-heading").textContent = LEAGUE_DATA.currentSeason.year + " Draft Results";
-  const draftBody = document.getElementById("draft-body");
-  const draftEmptyNote = document.getElementById("draft-empty-note");
-  const draftResults = LEAGUE_DATA.draftResults || [];
-  if (draftResults.length) {
-    draftEmptyNote.style.display = "none";
-    draftResults.forEach(row => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = "<td>" + row.round + "</td><td>" + row.pick + "</td><td>" + row.team + "</td><td>" + row.player + "</td>";
-      draftBody.appendChild(tr);
-    });
-  } else {
-    draftEmptyNote.style.display = "block";
-  }
+  renderDraftResults(LEAGUE_DATA);
 
-  const doTeamNames = LEAGUE_DATA.draftOrder2026.length ? LEAGUE_DATA.draftOrder2026[0].picks.map(p => p.originalTeam) : [];
-  document.getElementById("draftorder-team-headers-placeholder").outerHTML = doTeamNames.map(n => "<th>" + n + "</th>").join("");
-  const draftOrderBody = document.getElementById("draftorder-body");
-  LEAGUE_DATA.draftOrder2026.forEach(r => {
-    const tr = document.createElement("tr");
-    let html = "<td>" + r.round + "</td>";
-    r.picks.forEach(p => {
-      if (p.newOwner) {
-        html += "<td class=\"draft-order-owner\">" + p.newOwner + "<span class=\"swap-icon\" title=\"Traded pick\" aria-hidden=\"true\">&nbsp;&#8644;</span><span class=\"sr-only\"> (traded)</span></td>";
-      } else {
-        html += "<td class=\"draft-order-none\">—</td>";
-      }
-    });
-    tr.innerHTML = html;
-    draftOrderBody.appendChild(tr);
-  });
+  renderDraftOrderSection(LEAGUE_DATA);
 
   const d25TeamNames = LEAGUE_DATA.draftResults2025.length ? LEAGUE_DATA.draftResults2025[0].picks.map(p => p.team) : [];
   document.getElementById("draft2025-team-headers-placeholder").outerHTML = d25TeamNames.map(n => "<th>" + n + "</th>").join("");
@@ -4161,18 +4624,7 @@ function render(LEAGUE_DATA) {
     });
   });
 
-  const tradesList = document.getElementById("trades-list");
-  LEAGUE_DATA.trades2025.forEach(trade => {
-    const card = document.createElement("div");
-    card.className = "trade-card";
-    let html = "<div class=\"trade-team\">" + trade.team + " acquired" + (trade.from ? " <span class=\"trade-from\">(from " + trade.from + ")</span>" : "") + "</div><ul>";
-    trade.received.forEach(item => {
-      html += "<li>" + item.item + (item.pos ? " (" + item.pos + ")" : "") + "</li>";
-    });
-    html += "</ul>";
-    card.innerHTML = html;
-    tradesList.appendChild(card);
-  });
+  renderTradesSection(LEAGUE_DATA);
 
   const rulesGrid = document.getElementById("rules-grid");
   LEAGUE_DATA.ruleGroups.forEach(group => {
@@ -4229,6 +4681,57 @@ document.getElementById("admin-unlock-btn").addEventListener("click", () => {
   }
 });
 
+document.getElementById("admin-add-year-btn").addEventListener("click", () => {
+  addHistoryYearBlock(document.getElementById("admin-history"), { year: new Date().getFullYear(), standings: [] });
+});
+
+document.getElementById("admin-add-draftresult-btn").addEventListener("click", () => {
+  addDraftResultRow(document.getElementById("admin-draftresults"), "", "", "", "");
+});
+
+document.getElementById("admin-add-trade-btn").addEventListener("click", () => {
+  const teamOptions = CURRENT_DATA ? ["<option value=\"\">— none —</option>"].concat(
+    CURRENT_DATA.teams.map(t => "<option value=\"" + t.team + "\">" + t.team + "</option>")
+  ).join("") : "<option value=\"\">— none —</option>";
+  addTradeBlock(document.getElementById("admin-trades"), null, teamOptions);
+});
+
+document.getElementById("admin-generate-teams2026-btn").addEventListener("click", () => {
+  const statusEl = document.getElementById("admin-generate-status");
+  if (!CURRENT_DATA) return;
+  const results = CURRENT_DATA.draftResults || [];
+  if (!results.length) {
+    statusEl.textContent = "No draft results yet — fill those in first.";
+    return;
+  }
+  const byTeam = {};
+  results.forEach(r => {
+    if (!r.team) return;
+    if (!byTeam[r.team]) byTeam[r.team] = [];
+    byTeam[r.team].push({ player: r.player || "", pos: "", nfl: "", keeperCost: null, kept2025: false });
+  });
+  CURRENT_DATA.teams2026 = Object.keys(byTeam).map(teamName => {
+    const existing = CURRENT_DATA.teams.find(t => t.team === teamName);
+    return { team: teamName, manager: existing ? existing.manager : "", roster: byTeam[teamName] };
+  });
+  renderTeams2026(CURRENT_DATA);
+  statusEl.textContent = "Generated " + CURRENT_DATA.teams2026.length + " team(s) from draft results — click Save Changes to publish. (Position, NFL team, and keeper cost are left blank; add those later if you want them shown.)";
+});
+
+document.getElementById("admin-export-btn").addEventListener("click", () => {
+  if (!CURRENT_DATA) return;
+  const blob = new Blob([JSON.stringify(CURRENT_DATA, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const slug = (CURRENT_DATA.leagueName || "league").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  a.href = url;
+  a.download = slug + "-backup-" + new Date().toISOString().slice(0, 10) + ".json";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+});
+
 document.getElementById("admin-save-btn").addEventListener("click", async () => {
   const statusEl = document.getElementById("admin-status");
   if (!CURRENT_DATA || !FIRESTORE_REF) {
@@ -4253,6 +4756,51 @@ document.getElementById("admin-save-btn").addEventListener("click", async () => 
   });
   CURRENT_DATA.keeperSelections = Object.keys(keeperMap).map(team => ({ team: team, players: keeperMap[team] }));
 
+  const newHistory = [];
+  document.querySelectorAll("#admin-history .admin-history-year").forEach(block => {
+    const yearVal = Number(block.querySelector(".admin-history-year-input").value);
+    if (!yearVal) return;
+    const standings = [];
+    block.querySelectorAll(".admin-history-row").forEach(row => {
+      const team = row.querySelector(".admin-history-team").value.trim();
+      const manager = row.querySelector(".admin-history-manager").value.trim();
+      if (team) standings.push({ team: team, manager: manager });
+    });
+    newHistory.push({ year: yearVal, standings: standings });
+  });
+  newHistory.sort((a, b) => b.year - a.year);
+  CURRENT_DATA.history = newHistory;
+
+  document.querySelectorAll("#admin-draftorder .admin-draftorder-select").forEach(sel => {
+    const rIdx = Number(sel.dataset.round);
+    const pIdx = Number(sel.dataset.idx);
+    CURRENT_DATA.draftOrder2026[rIdx].picks[pIdx].newOwner = sel.value || null;
+  });
+
+  const newDraftResults = [];
+  document.querySelectorAll("#admin-draftresults .admin-draftresult-row").forEach(row => {
+    const round = row.querySelector(".admin-dr-round").value.trim();
+    const pick = row.querySelector(".admin-dr-pick").value.trim();
+    const team = row.querySelector(".admin-dr-team").value.trim();
+    const player = row.querySelector(".admin-dr-player").value.trim();
+    if (team || player) newDraftResults.push({ round: round, pick: pick, team: team, player: player });
+  });
+  CURRENT_DATA.draftResults = newDraftResults;
+
+  const newTrades = [];
+  document.querySelectorAll("#admin-trades .admin-trade-block").forEach(block => {
+    const team = block.querySelector(".admin-trade-team").value;
+    const from = block.querySelector(".admin-trade-from").value;
+    const received = [];
+    block.querySelectorAll(".admin-trade-item-row").forEach(row => {
+      const item = row.querySelector(".admin-ti-item").value.trim();
+      const pos = row.querySelector(".admin-ti-pos").value.trim();
+      if (item) received.push({ item: item, pos: pos || null });
+    });
+    if (team && received.length) newTrades.push({ team: team, from: from || null, received: received });
+  });
+  CURRENT_DATA.trades2025 = newTrades;
+
   statusEl.textContent = "Saving…";
   try {
     await setDoc(FIRESTORE_REF, CURRENT_DATA);
@@ -4260,6 +4808,12 @@ document.getElementById("admin-save-btn").addEventListener("click", async () => 
     document.getElementById("commish-note").textContent = CURRENT_DATA.commissionerNote;
     renderStandingsBody(CURRENT_DATA);
     renderKeepersGrid(CURRENT_DATA);
+    renderHistorySection(CURRENT_DATA);
+    renderDraftResults(CURRENT_DATA);
+    renderDraftOrderSection(CURRENT_DATA);
+    renderTradesSection(CURRENT_DATA);
+    renderTeamsGrid(CURRENT_DATA);
+    renderTeams2026(CURRENT_DATA);
   } catch (err) {
     statusEl.textContent = "Save failed: " + err.message;
   }
