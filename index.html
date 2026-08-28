@@ -406,31 +406,27 @@ tr:last-child td { border-bottom: none; }
 }
 .draft-order-none { color: var(--muted); }
 #draftorder .card, #draft2025 .card {
-  overflow-x: visible;
+  overflow-x: auto;
   padding: 14px 6px;
 }
 #draftorder table, #draft2025 table {
-  table-layout: fixed;
-  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
 }
 #draftorder th, #draftorder td, #draft2025 th, #draft2025 td {
-  white-space: normal;
-  overflow-wrap: break-word;
-  font-size: 0.64rem;
-  padding: 6px 3px;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  padding: 8px 12px;
   text-align: center;
-  line-height: 1.25;
-}
-@media (max-width: 700px) {
-  #draftorder th, #draftorder td, #draft2025 th, #draft2025 td {
-    font-size: 0.56rem;
-    padding: 5px 2px;
-  }
+  line-height: 1.3;
 }
 #draftorder th:first-child, #draftorder td:first-child,
 #draft2025 th:first-child, #draft2025 td:first-child {
-  width: 26px;
   text-align: left;
+  position: sticky;
+  left: 0;
+  background: var(--panel);
+  z-index: 1;
 }
 .trade-card {
   background: var(--panel);
