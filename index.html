@@ -3,710 +3,716 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title id="page-title">Year 14 — Fantasy Football History</title>
+<title id="page-title">Hold My Rings — Fantasy Football History</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%8F%88%3C/text%3E%3C/svg%3E">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Year 14">
+<meta property="og:title" content="Hold My Rings">
 <meta property="og:description" content="Fantasy football league hub — standings, rosters, draft history, and more.">
 <meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Teko:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+
+:root {
+  --bg: #f5f7fb;
+  --panel: #ffffff;
+  --panel-2: #e7edf7;
+  --border: #c7d4e8;
+  --text: #0a1a33;
+  --muted: #4b5b78;
+  --accent: #0a2f5c;
+  --gold: #b82514;
+  --red: #1f4e8c;
+  --silver: #7c8aa0;
+  --bronze: #a86a3d;
+  --gold-wash: rgba(184, 37, 20, 0.07);
+  --font-display: "Oswald", "Arial Narrow", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
   :root {
-    --bg: #fbf6ec;
-    --panel: #f3ead9;
-    --panel-2: #ecdfc0;
-    --border: #ddccae;
-    --text: #0a2240;
-    --muted: #6b6048;
-    --accent: #0a3161;
-    --red: #b82514;
-    --gold: #b8860b;
-    --silver: #6e6b5f;
-    --bronze: #a9702f;
-    --gold-wash: linear-gradient(135deg, #f7ecd2 0%, #f3ead9 65%);
-    --font-display: "Anton", Impact, "Arial Narrow", sans-serif;    --font-label: "Teko", "Arial Narrow", sans-serif;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14161c;
-      --panel: #1e212a;
-      --panel-2: #262a35;
-      --border: #333846;
-      --text: #eef0f5;
-      --muted: #a3a9b8;
-      --accent: #0a3161;
-      --red: #dc2c18;
-      --gold: #d9a832;
-      --silver: #9aa3b5;
-      --bronze: #c9905c;
-      --gold-wash: linear-gradient(135deg, #2b2414 0%, #1e212a 65%);
-    }
-  }
-  * { box-sizing: border-box; }
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-  }
-  header {
-    padding: 34px 20px 24px;
-    text-align: center;
-    background: var(--accent);
-    color: #fff;
-    border-top: 3px double var(--gold);
-    border-bottom: 3px double var(--gold);
-    position: relative;
-  }
-  header h1 {
-    margin: 0 0 10px;
-    font-family: var(--font-display);
-    font-size: 2.25rem;    font-weight: 400;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #fff;
-  }
-  header h1 .yr-accent {
-    color: var(--red);    font-weight: 400;
-  }
-  header p {
-    margin: 0;
-    color: #cfe0f5;
-    font-style: italic;
-    letter-spacing: 0.2px;
-  }
-  header a { color: #fff; text-decoration: underline; }
-  .header-last-updated {
-    position: absolute;
-    top: 14px;
-    left: 20px;
-    font-size: 0.68rem;
-    color: rgba(255, 255, 255, 0.5);
-    letter-spacing: 0.02em;
-    text-align: left;
-  }
-  @media (max-width: 520px) {
-    .header-last-updated { display: none; }
-  }
-  nav {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 16px 20px;
-    border-bottom: 1px solid var(--border);
-    background: var(--accent);
-  }
-  nav button {
-    background: none;
-    border: 1px solid #ffffff55;
-    color: #fff;
-    padding: 8px 18px;
-    border-radius: 999px;
-    cursor: pointer;
-    font-size: 0.95rem;
-  }
-  .mobile-nav { display: none; }
-  @media (max-width: 640px) {
-    header { padding: 26px 16px 18px; }
-    header h1 { font-size: 1.6rem; letter-spacing: 1.5px; }
-    nav { display: none; }
-    .mobile-nav {
-      display: block;
-      position: relative;
-      padding: 12px 16px;
-      background: var(--accent);
-      border-bottom: 1px solid var(--border);
-    }
-    .mobile-nav::after {
-      content: "\25BE";
-      position: absolute;
-      right: 30px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text);
-      pointer-events: none;
-      font-size: 0.9rem;
-    }
-    .mobile-nav select {
-      width: 100%;
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 12px 36px 12px 14px;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      font-family: inherit;
-      min-height: 44px;
-    }
-  }
-  nav button.active {
-    background: var(--red);
-    border-color: var(--red);
-    color: #fff;
-  }
-  main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 30px 20px 60px;
-  }
-  section { display: none; }
-  section.active { display: block; animation: sectionFadeIn 0.28s ease; }
-  @keyframes sectionFadeIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    section.active { animation: none; }
-  }
-  h2 {    font-family: var(--font-label);    font-weight: 600;    font-size: 1.3rem;    margin-bottom: 14px;
-    border-left: 4px solid var(--red);
-    padding-left: 10px;
-  }
-  h3 {
-    font-size: 1.05rem;
-    color: var(--muted);
-    margin: 0 0 10px;
-  }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 24px;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.95rem;
-  }
-  th, td {
-    text-align: left;
-    padding: 10px 8px;
-    border-bottom: 1px solid var(--border);
-  }
-  th { color: var(--muted); font-weight: 600; }
-  tr:last-child td { border-bottom: none; }
-  .champion { color: var(--gold); font-weight: 600; }
-  .runner-up { color: var(--silver); font-weight: 600; }
-  .commish-note {
-    background: var(--panel-2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px 20px;
-    color: var(--muted);
-    font-style: italic;
-    margin-bottom: 24px;
-  }
-  .player-search-card { margin-bottom: 24px; }
-  .player-search-card #player-search-input { margin-bottom: 0; }
-  #player-search-results:not(:empty) { margin-top: 12px; }
-  .player-search-result {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.88rem;
-  }
-  .player-search-result:last-child { border-bottom: none; }
-  .player-search-result .psr-player { font-weight: 600; }
-  .player-search-result .psr-team {
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    white-space: nowrap;
-  }
-  .player-search-result .psr-team .team-badge { width: 18px; height: 18px; font-size: 0.7rem; }
-  .player-search-result .psr-team .team-badge-initials { font-size: 0.48rem; }
-  .player-search-empty {
-    color: var(--muted);
-    font-size: 0.85rem;
-    padding: 8px 0;
-    font-style: italic;
-  }
-  .countdown-card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--red);
-    border-radius: 10px;
-    padding: 20px 24px;
-    margin-bottom: 24px;
-    text-align: center;
-  }
-  .countdown-card .countdown-eyebrow {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 12px;
-  }
-  .countdown-stats {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: baseline;
-    gap: 5px;
-    margin-bottom: 12px;
-    background: var(--panel-2);
-    border-radius: 8px;
-    padding: 12px 10px;
-    font-family: var(--font-display);
-    font-variant-numeric: tabular-nums;
-  }
-  .countdown-unit {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 2px;
-    white-space: nowrap;
-  }
-  .countdown-num {
-    font-size: clamp(1.15rem, 5.5vw, 1.9rem);
-    font-weight: 400;
-    color: var(--red);
-    line-height: 1;
-  }
-  .countdown-suffix {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--muted);
-  }
-  .countdown-sep {
-    font-size: clamp(1rem, 4.5vw, 1.5rem);
-    color: var(--border);
-    font-weight: 700;
-    line-height: 1;
-  }
-  .countdown-card .countdown-label {
-    color: var(--muted);
-    font-size: 0.85rem;
-    margin-top: 4px;
-  }
-  .teams-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 16px;
-  }
-  .team-card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px;
-  }
-  .team-card h3 {
-    font-family: var(--font-label);    font-weight: 600;    margin: 0 0 4px;
-    font-size: 1.05rem;
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .team-card .manager {
-    color: var(--muted);
-    font-size: 0.85rem;
-    margin-bottom: 10px;
-  }
-  .team-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    flex: none;
-    font-size: 0.95rem;
-    line-height: 1;
-  }
-  .team-badge-initials {
-    color: #fff;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-  }
-  .standings-team-cell {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .standings-team-cell .team-badge { width: 20px; height: 20px; font-size: 0.78rem; }
-  .standings-team-cell .team-badge-initials { font-size: 0.52rem; }
-  .team-card .stat-line {
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-bottom: 10px;
-  }
-  .team-card table {
-    font-size: 0.8rem;
-  }
-  .team-card th, .team-card td {
-    padding: 5px 4px;
-  }
-  .kept-yes { color: var(--gold); font-weight: 600; }
-  .cost-badge {
-    display: inline-block;
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--muted);
-    background: var(--panel-2);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: 1px 8px;
-  }
-  .team-card .pos-group td {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    background: var(--panel-2);
-    padding: 4px 4px;
-    border-bottom: 1px solid var(--border);
-  }
-  .rules-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 16px;
-  }
-  .draft-order-owner {
-    color: var(--gold);
-    font-weight: 600;
-    text-decoration: underline;
-    text-decoration-style: dotted;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
-  }
-  .draft-order-owner .swap-icon {
-    margin-left: 3px;
-    font-weight: 400;
-  }
-  .draft-order-none { color: var(--muted); }
-  .draft-order-list {
-    list-style: none;
-    counter-reset: pick;
-    margin: 0;
-    padding: 0;
-  }
-  .draft-order-list li {
-    counter-increment: pick;
-    display: flex;
-    align-items: baseline;
-    gap: 12px;
-    padding: 10px 4px;
-    border-bottom: 1px solid var(--border);
-    font-size: 1rem;
-  }
-  .draft-order-list li:last-child { border-bottom: none; }
-  .draft-order-list li::before {
-    content: counter(pick) ".";
-    font-family: var(--font-label);
-    font-weight: 600;
-    color: var(--muted);
-    min-width: 22px;
-  }
-  .draft-order-orig {
-    color: var(--muted);
-    font-size: 0.85rem;
-  }
-  #draft2025 .card {
-    overflow-x: visible;
-    padding: 14px 6px;
-  }
-  #draft2025 table {
-    table-layout: fixed;
-    width: 100%;
-  }
-  #draft2025 th, #draft2025 td {
-    white-space: normal;
-    overflow-wrap: break-word;
-    font-size: 0.64rem;
-    padding: 6px 3px;
-    text-align: center;
-    line-height: 1.25;
-  }
-  @media (max-width: 700px) {
-    #draft2025 th, #draft2025 td {
-      font-size: 0.56rem;
-      padding: 5px 2px;
-    }
-  }
-  #draft2025 th:first-child, #draft2025 td:first-child {
-    width: 26px;
-    text-align: left;
-  }
-  .history-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-  .history-card table { font-size: 0.85rem; }
-  .history-card th, .history-card td { padding: 6px 4px; }
-  .history-card td:first-child { color: var(--muted); font-variant-numeric: tabular-nums; }
-  .history-card tr.rank-gold td { color: var(--gold); font-weight: 600; }
-  .history-card tr.rank-silver td { color: var(--silver); font-weight: 600; }
-  .history-card tr.rank-bronze td { color: var(--bronze); font-weight: 600; }
-  .champ-board {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
-    gap: 12px;
-    margin-bottom: 24px;
-  }
-  .champ-card {
-    background: var(--gold-wash);
-    border: 1px solid var(--border);
-    border-top: 3px solid var(--gold);
-    border-radius: 10px;
-    padding: 14px 16px;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-  }
-  .champ-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.35);
-  }
-  .champ-card .champ-year {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 8px;
-  }
-  .champ-card .champ-row {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .champ-card .champ-team {
-    font-family: var(--font-label);    font-size: 1.1rem;    font-weight: 600;    letter-spacing: 0.3px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    min-width: 0;
-  }
-  .champ-card .champ-team span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .champ-card .champ-mgr {
-    color: var(--muted);
-    font-size: 0.85rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .trophy-icon { color: var(--gold); flex: none; }
-  .trophy-icon-silver { color: var(--silver); }
-  .trophy-icon-bronze { color: var(--bronze); }
-  .history-card td .trophy-icon { margin-right: 4px; vertical-align: -1px; }
-  .table-scroll { overflow-x: auto; }
-  #ledger-table { min-width: 640px; font-variant-numeric: tabular-nums; border-collapse: separate; border-spacing: 0; }
-  #ledger-table thead th { background: var(--panel); }
-  #ledger-table tbody tr:nth-child(even) { background: var(--panel-2); }
-  #ledger-table .lg-mgr {
-    text-align: left;
-    white-space: nowrap;
-    position: sticky;
-    left: 0;
-    background: var(--panel);
-    box-shadow: 2px 0 6px -3px rgba(0, 0, 0, 0.3);
-  }
-  #ledger-table tbody tr:nth-child(even) .lg-mgr { background: var(--panel-2); }
-  #ledger-table .lg-num { text-align: center; }
-  #ledger-table .lg-title { color: var(--gold); font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
-  #ledger-table .lg-year { text-align: center; color: var(--muted); }
-  #ledger-table .lg-year.is-title { color: var(--gold); font-weight: 700; }
-  #ledger-table .lg-year.is-second { color: var(--silver); font-weight: 600; }
-  #ledger-table .lg-year.is-third { color: var(--bronze); font-weight: 600; }
-  .sync-note {
-    text-align: center;
-    font-size: 0.75rem;
-    color: var(--muted);
-    margin: -10px 0 20px;
-  }
-  input[type="text"], input[type="number"], input[type="password"], input[type="datetime-local"], textarea, select {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    color: var(--text);
-    padding: 8px 10px;
-    font-size: 0.9rem;
-    font-family: inherit;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  textarea { min-height: 80px; resize: vertical; }
-  .admin-field { margin-bottom: 14px; }
-  .admin-field label {
+    --bg: #050b18;
+    --panel: #0d1b30;
+    --panel-2: #13233d;
+    --border: #26456e;
+    --text: #f2f6fc;
+    --muted: #9fb3d1;
+    --accent: #030a16;
+    --gold: #dc2c18;
+    --red: #4a90e2;
+    --silver: #9aa5b8;
+    --bronze: #c98b52;
+    --gold-wash: rgba(220, 44, 24, 0.1);
+  }
+}
+* { box-sizing: border-box; }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+header {
+  padding: 40px 20px 22px;
+  text-align: center;
+  background: var(--accent);
+  color: #f5f8ff;
+  border-bottom: 4px solid var(--gold);
+  position: relative;
+}
+header h1 {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #f5f8ff;
+}
+header p {
+  margin: 0;
+  color: #a9bfe0;
+}
+header a { color: var(--gold); text-decoration: underline; }
+.header-last-updated {
+  position: absolute;
+  top: 14px;
+  left: 20px;
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.02em;
+  text-align: left;
+}
+@media (max-width: 520px) {
+  .header-last-updated { display: none; }
+}
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--accent);
+}
+nav button {
+  background: none;
+  border: 1px solid #f5f8ff55;
+  color: #f5f8ff;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+.mobile-nav { display: none; }
+@media (max-width: 700px) {
+  nav { display: none; }
+  .mobile-nav {
     display: block;
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--muted);
-    margin-bottom: 5px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-  .admin-row {
-    display: grid;
-    grid-template-columns: 1fr 110px 100px;
-    gap: 10px;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-  .admin-badge-row {
-    display: grid;
-    grid-template-columns: 1fr 70px;
-    gap: 10px;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-  .admin-badge-row input { text-align: center; }
-  .admin-keeper-block {
-    margin-bottom: 14px;
-    padding-bottom: 14px;
+    position: relative;
+    padding: 12px 20px;
+    background: var(--accent);
     border-bottom: 1px solid var(--border);
   }
-  .admin-keeper-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-  .admin-keeper-block .admin-team-label { font-weight: 600; font-size: 0.88rem; margin-bottom: 6px; display: block; }
-  .admin-keeper-selects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 8px;
-  }
-  .admin-btn {
-    background: var(--red);
-    border: none;
-    color: #ffffff;
-    padding: 10px 22px;
-    border-radius: 999px;
-    font-weight: 600;
-    cursor: pointer;
+  .mobile-nav::after {
+    content: "\25BE";
+    position: absolute;
+    right: 34px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text);
+    pointer-events: none;
     font-size: 0.9rem;
   }
-  .admin-btn:hover { opacity: 0.88; }
-  .admin-btn-secondary {
-    background: transparent;
+  .mobile-nav select {
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: var(--panel);
     border: 1px solid var(--border);
     color: var(--text);
-  }
-  .admin-btn-secondary:hover { opacity: 0.8; }
-  .admin-history-year {
-    border: 1px solid var(--border);
+    padding: 12px 36px 12px 14px;
     border-radius: 8px;
-    padding: 14px;
-    margin-bottom: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
   }
-  .admin-history-year-head {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
+}
+nav button.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #ffffff;
+  font-weight: 600;
+}
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 30px 20px 60px;
+}
+section { display: none; }
+section.active { display: block; }
+h2 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  margin-bottom: 14px;
+  border-left: 4px solid var(--gold);
+  padding-left: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+h3 {
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 24px;
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+th, td {
+  text-align: left;
+  padding: 9px 8px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+th { color: var(--muted); font-weight: 600; }
+tr:last-child td { border-bottom: none; }
+.champion { color: var(--gold); font-weight: 600; }
+.runner-up { color: var(--muted); font-weight: 600; }
+.commish-note {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 24px;
+}
+.player-search-card { margin-bottom: 24px; }
+.player-search-card #player-search-input { margin-bottom: 0; }
+#player-search-results:not(:empty) { margin-top: 12px; }
+.player-search-result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.88rem;
+}
+.player-search-result:last-child { border-bottom: none; }
+.player-search-result .psr-player { font-weight: 600; }
+.player-search-result .psr-team {
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.player-search-result .psr-team .team-badge { width: 18px; height: 18px; font-size: 0.7rem; }
+.player-search-result .psr-team .team-badge-initials { font-size: 0.48rem; }
+.player-search-empty {
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding: 8px 0;
+  font-style: italic;
+}
+.countdown-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--gold);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+.countdown-card .countdown-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.countdown-stats {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 5px;
+  margin-bottom: 12px;
+  background: var(--panel-2);
+  border-radius: 8px;
+  padding: 12px 10px;
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+}
+.countdown-unit {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  white-space: nowrap;
+}
+.countdown-num {
+  font-size: clamp(1.15rem, 5.5vw, 1.9rem);
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.countdown-suffix {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.countdown-sep {
+  font-size: clamp(1rem, 4.5vw, 1.5rem);
+  color: var(--border);
+  font-weight: 700;
+  line-height: 1;
+}
+.countdown-card .countdown-label {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 16px;
+}
+.team-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+.team-card h3 {
+  font-family: var(--font-display);
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  color: var(--text);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.team-card .manager {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+.team-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  flex: none;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+.team-badge-initials {
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+.standings-team-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.standings-team-cell .team-badge { width: 20px; height: 20px; font-size: 0.78rem; }
+.standings-team-cell .team-badge-initials { font-size: 0.52rem; }
+.team-card table { font-size: 0.8rem; }
+.team-card th, .team-card td { padding: 5px 4px; }
+.pos-group td {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--panel-2);
+  padding: 4px 4px;
+  border-bottom: 1px solid var(--border);
+}
+.kept-badge { color: var(--gold); font-weight: 700; font-size: 0.72rem; }
+.cost-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 1px 8px;
+}
+.settings-grid, .rules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+.settings-grid td, .rules-grid td {
+  white-space: normal;
+  vertical-align: top;
+}
+.rules-grid table, .settings-grid table { table-layout: fixed; }
+.rule-num {
+  display: inline-block;
+  min-width: 20px;
+  font-weight: 700;
+  color: var(--gold);
+}
+.rule-example {
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin-top: 2px;
+}
+.draft-order-owner {
+  color: var(--gold);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.draft-order-owner .swap-icon {
+  margin-left: 3px;
+  font-weight: 400;
+}
+.draft-order-none { color: var(--muted); }
+#draftorder .card, #draft2025 .card {
+  overflow-x: visible;
+  padding: 14px 6px;
+}
+#draftorder table, #draft2025 table {
+  table-layout: fixed;
+  width: 100%;
+}
+#draftorder th, #draftorder td, #draft2025 th, #draft2025 td {
+  white-space: normal;
+  overflow-wrap: break-word;
+  font-size: 0.64rem;
+  padding: 6px 3px;
+  text-align: center;
+  line-height: 1.25;
+}
+@media (max-width: 700px) {
+  #draftorder th, #draftorder td, #draft2025 th, #draft2025 td {
+    font-size: 0.56rem;
+    padding: 5px 2px;
   }
-  .admin-history-year-head label {
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-  .admin-history-year-input { max-width: 100px; }
-  .admin-history-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr auto;
-    gap: 8px;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-  .admin-draftresult-row {
-    display: grid;
-    grid-template-columns: 70px 70px 1fr 1fr auto;
-    gap: 8px;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-  .admin-trade-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 2fr auto;
-    gap: 8px;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-  .admin-draftorder-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-  @media (max-width: 640px) {
-    .admin-draftresult-row, .admin-trade-row, .admin-draftorder-row { grid-template-columns: 1fr; }
-  }
-  .admin-remove-row-btn, .admin-remove-year-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    border-radius: 6px;
-    padding: 6px 10px;
-    cursor: pointer;
-    font-size: 0.78rem;
-    white-space: nowrap;
-  }
-  .admin-remove-row-btn:hover, .admin-remove-year-btn:hover { color: var(--red); border-color: var(--red); }
-  .admin-add-row-btn {
-    background: transparent;
-    border: 1px dashed var(--border);
-    color: var(--muted);
-    border-radius: 6px;
-    padding: 6px 10px;
-    cursor: pointer;
-    font-size: 0.78rem;
-    margin-top: 2px;
-  }
-  .admin-add-row-btn:hover { color: var(--text); border-color: var(--text); }
-  #admin-status {
-    margin-top: 12px;
-    font-size: 0.85rem;
-    color: var(--muted);
-  }
-  #admin-error {
-    color: var(--red);
-    font-size: 0.85rem;
-    margin-top: 10px;
-  }
-  footer {
-    text-align: center;
-    color: #cfe0f5;
-    font-size: 0.8rem;
-    padding: 20px;
-    background: var(--accent);
-    border-top: 4px solid var(--red);
-  }
+}
+#draftorder th:first-child, #draftorder td:first-child,
+#draft2025 th:first-child, #draft2025 td:first-child {
+  width: 26px;
+  text-align: left;
+}
+.trade-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+}
+.trade-card .trade-team {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+.trade-card .trade-from {
+  font-family: inherit;
+  text-transform: none;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: normal;
+  letter-spacing: normal;
+}
+.trade-card ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 0.88rem; }
+.history-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.history-card table { font-size: 0.85rem; }
+.history-card th, .history-card td { padding: 6px 4px; }
+.history-card td:first-child { color: var(--muted); font-variant-numeric: tabular-nums; }
+.history-card tr.rank-gold td { color: var(--gold); font-weight: 600; }
+.history-card tr.rank-silver td { color: var(--silver); font-weight: 600; }
+.history-card tr.rank-bronze td { color: var(--bronze); font-weight: 600; }
+.champ-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.champ-card {
+  background: var(--gold-wash);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--gold);
+  border-radius: 10px;
+  padding: 14px 16px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.champ-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.35);
+}
+.champ-card .champ-year {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.champ-card .champ-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.champ-card .champ-team {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+}
+.champ-card .champ-team span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.champ-card .champ-mgr {
+  color: var(--muted);
+  font-size: 0.85rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.trophy-icon { color: var(--gold); flex: none; }
+.trophy-icon-silver { color: var(--silver); }
+.trophy-icon-bronze { color: var(--bronze); }
+.history-card td .trophy-icon { margin-right: 4px; vertical-align: -1px; }
+.table-scroll { overflow-x: auto; }
+#ledger-table { min-width: 640px; font-variant-numeric: tabular-nums; border-collapse: separate; border-spacing: 0; }
+#ledger-table thead th { background: var(--panel); }
+#ledger-table tbody tr:nth-child(even) { background: var(--panel-2); }
+#ledger-table .lg-mgr {
+  text-align: left;
+  white-space: nowrap;
+  position: sticky;
+  left: 0;
+  background: var(--panel);
+  box-shadow: 2px 0 6px -3px rgba(0, 0, 0, 0.3);
+}
+#ledger-table tbody tr:nth-child(even) .lg-mgr { background: var(--panel-2); }
+#ledger-table .lg-num { text-align: center; }
+#ledger-table .lg-title { color: var(--gold); font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+#ledger-table .lg-year { text-align: center; color: var(--muted); }
+#ledger-table .lg-year.is-title { color: var(--gold); font-weight: 700; }
+#ledger-table .lg-year.is-second { color: var(--silver); font-weight: 600; }
+#ledger-table .lg-year.is-third { color: var(--bronze); font-weight: 600; }
+.sync-note {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin: -10px 0 20px;
+}
+input[type="text"], input[type="number"], input[type="password"], input[type="datetime-local"], textarea, select {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+textarea { min-height: 80px; resize: vertical; }
+.admin-field { margin-bottom: 14px; }
+.admin-field label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.admin-row {
+  display: grid;
+  grid-template-columns: 1fr 110px 100px;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.admin-badge-row {
+  display: grid;
+  grid-template-columns: 1fr 70px;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.admin-badge-row input { text-align: center; }
+.admin-keeper-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.admin-team-label { font-weight: 600; font-size: 0.88rem; }
+.admin-btn {
+  background: var(--gold);
+  border: none;
+  color: #ffffff;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.admin-btn:hover { opacity: 0.88; }
+.admin-btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.admin-btn-secondary:hover { opacity: 0.8; }
+.admin-history-year {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+.admin-history-year-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.admin-history-year-head label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.admin-history-year-input { max-width: 100px; }
+.admin-history-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.admin-draftresult-row {
+  display: grid;
+  grid-template-columns: 70px 70px 1fr 1fr auto;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.admin-draftorder-round {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+}
+.admin-draftorder-round-head {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.admin-draftorder-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.admin-trade-block {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+.admin-trade-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.admin-trade-items { margin-bottom: 8px; }
+.admin-trade-item-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr auto;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+@media (max-width: 640px) {
+  .admin-draftresult-row, .admin-draftorder-row, .admin-trade-head, .admin-trade-item-row { grid-template-columns: 1fr; }
+}
+#admin-status {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+#admin-error {
+  color: var(--gold);
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
+footer {
+  text-align: center;
+  color: #a9bfe0;
+  font-size: 0.8rem;
+  padding: 20px;
+  background: var(--accent);
+  border-top: 4px solid var(--gold);
+}
+
 </style>
 </head>
 <body>
 
 <header>
   <div class="header-last-updated" id="header-last-updated"></div>
-  <h1 id="page-heading">Year <span class="yr-accent">14</span></h1>
-  <p>Tracking our fantasy football league, year after year.</p>
-  <p><a href="Year 14.xlsx" download style="color: #fff;">Download full roster &amp; keeper tracker (.xlsx)</a></p>
+  <h1 id="page-heading">Hold My Rings</h1>
+  <p>Keeper league, one belt at a time.</p>
+  <p><a href="Hold My Rings 2026.xlsx" download>Download full roster & keeper tracker (.xlsx)</a></p>
 </header>
 
 <nav>
@@ -740,7 +746,7 @@
 
 <main>
 
-  <p class="sync-note" id="sync-note">Loading league data…</p>
+  <p class="sync-note" id="sync-note">Loading league data&hellip;</p>
 
   <section id="home" class="active">
     <div class="commish-note" id="commish-note"></div>
@@ -762,7 +768,7 @@
       </div>
       <div class="countdown-label" id="countdown-label"></div>
     </div>
-    <h2 id="season-heading">Current Season Standings</h2>
+    <h2 id="season-heading">2026 Season Standings</h2>
     <div class="card">
       <table>
         <thead>
@@ -775,6 +781,7 @@
 
   <section id="teams2026">
     <h2>2026 Teams &amp; Managers</h2>
+    <p style="color: var(--muted); margin-top: -6px;">Next season's rosters &mdash; posted here once the 2026 draft wraps up.</p>
     <div class="teams-grid" id="teams2026-grid"></div>
     <p id="teams2026-empty-note" style="color: var(--muted); font-style: italic; margin: 10px 0 0;">
       2026 rosters will appear here once the draft wraps up.
@@ -797,33 +804,32 @@
   </section>
 
   <section id="keepers">
-    <h2 id="keepers-heading">Keeper Selections</h2>
-    <p style="color: var(--muted); margin-top: -6px;">Each manager's keeper picks for the upcoming season, entered by the commissioner once choices are in.</p>
+    <h2>2026 Keeper Selections</h2>
+    <p style="color: var(--muted); margin-top: -6px;">Each team may keep up to two players. Selections will be posted here once picks are finalized.</p>
     <div class="teams-grid" id="keepers-grid"></div>
   </section>
 
   <section id="draftorder">
-    <h2>2026 Draft Order</h2>
-    <p style="color: var(--muted); margin-top: -6px;">Not a snake draft &mdash; same order every round, set by 2025 standings. A name with a &#8644; means that pick has changed hands via trade.</p>
-    <div class="card">
-      <ol class="draft-order-list" id="draftorder-list"></ol>
-    </div>
-  </section>
-
-  <section id="trades">
-    <h2>Trades</h2>
+    <h2>2026 Draft Order &amp; Traded Picks</h2>
+    <p style="color: var(--muted); margin-top: -6px;">Final round-by-round order is set by 2025 standings once the season wraps. Below shows any pick that has already changed hands via trade &mdash; an underlined name with a &#8644; means that team now owns the pick instead of its original team.</p>
     <div class="card">
       <table>
         <thead>
-          <tr><th>Date</th><th>Teams Involved</th><th>Details</th></tr>
+          <tr><th>Round</th><th id="draftorder-team-headers-placeholder"></th></tr>
         </thead>
-        <tbody id="trades-body"></tbody>
+        <tbody id="draftorder-body"></tbody>
       </table>
     </div>
   </section>
 
+  <section id="trades">
+    <h2>2025 Trades</h2>
+    <div id="trades-list"></div>
+  </section>
+
   <section id="teams">
     <h2>2025 Teams &amp; Managers</h2>
+    <p style="color: var(--muted); margin-top: -6px;">Full roster with each player's 2026 keeper cost (the round it would take to keep them). A red badge marks a player kept in 2025.</p>
     <div class="teams-grid" id="teams-grid"></div>
   </section>
 
@@ -856,6 +862,8 @@
   <section id="rules">
     <h2>League Rules</h2>
     <div class="rules-grid" id="rules-grid"></div>
+    <h2 style="margin-top: 30px;">League Settings &amp; Scoring</h2>
+    <div class="settings-grid" id="settings-grid"></div>
   </section>
 
   <section id="admin">
@@ -881,7 +889,7 @@
         </div>
       </div>
       <div class="card">
-        <h3 style="margin-top:0;">Current Season Standings</h3>
+        <h3 style="margin-top:0;">2026 Season Standings</h3>
         <p style="color: var(--muted); margin-top: -8px; font-size: 0.82rem;">Record and points for, per team.</p>
         <div id="admin-standings"></div>
       </div>
@@ -891,8 +899,8 @@
         <div id="admin-badges"></div>
       </div>
       <div class="card">
-        <h3 style="margin-top:0;">Keeper Selections</h3>
-        <p style="color: var(--muted); margin-top: -8px; font-size: 0.82rem;">Pick up to four kept players per team.</p>
+        <h3 style="margin-top:0;">2026 Keeper Selections</h3>
+        <p style="color: var(--muted); margin-top: -8px; font-size: 0.82rem;">Pick up to two kept players per team.</p>
         <div id="admin-keepers"></div>
       </div>
       <div class="card">
@@ -903,7 +911,7 @@
       </div>
       <div class="card">
         <h3 style="margin-top:0;">2026 Draft Order &mdash; Trades</h3>
-        <p style="color: var(--muted); margin-top: -8px; font-size: 0.82rem;">Order is set automatically. Only set a new owner for a pick that's been traded.</p>
+        <p style="color: var(--muted); margin-top: -8px; font-size: 0.82rem;">Order is set automatically by round. Only set a new owner for a pick that's been traded.</p>
         <div id="admin-draftorder"></div>
       </div>
       <div class="card">
@@ -914,6 +922,7 @@
       </div>
       <div class="card">
         <h3 style="margin-top:0;">Trades</h3>
+        <p style="color: var(--muted); margin-top: -8px; font-size: 0.82rem;">Each trade lists which team acquired players/picks, and from whom.</p>
         <div id="admin-trades"></div>
         <button type="button" class="admin-btn admin-btn-secondary" id="admin-add-trade-btn">+ Add Trade</button>
       </div>
@@ -931,2354 +940,3296 @@
 
 </main>
 
-<footer><span id="footer-league-name">Year 14</span> · site last updated <span id="updated-date"></span></footer>
+<footer><span id="footer-league-name">Hold My Rings</span> &middot; site last updated <span id="updated-date"></span></footer>
+
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyALB6LcLLzHTMfokqjWDrqzmfGBP6fyAFQ",
-  authDomain: "year-league.firebaseapp.com",
-  projectId: "year-league",
-  storageBucket: "year-league.firebasestorage.app",
-  messagingSenderId: "187385465507",
-  appId: "1:187385465507:web:ab6b7135acc49077188d16",
-  measurementId: "G-K5FTVHNG9P"
+  apiKey: "AIzaSyCFtbsT87kwHPOsWARXTOS3Hgeq56sniC4",
+  authDomain: "hold-my-rings.firebaseapp.com",
+  projectId: "hold-my-rings",
+  storageBucket: "hold-my-rings.firebasestorage.app",
+  messagingSenderId: "1027510184194",
+  appId: "1:1027510184194:web:5b71a7eeb90bc0b85afa1b"
 };
 
-const ADMIN_PASSWORD = "Year14Keepers2026";
-let CURRENT_DATA = null;
-let FIRESTORE_DB = null;
-let FIRESTORE_REF = null;
-
-/* ============================================================
-   DEFAULT DATA — used the very first time the site loads (it
-   gets copied into Firestore automatically), and as a fallback
-   if Firestore can't be reached. After that first load, the
-   commissioner edits the live data directly in the Firebase
-   Console: console.firebase.google.com -> year-league project
-   -> Firestore Database -> "site" collection -> "leagueData"
-   document. Every visitor sees whatever is saved there.
-
-   Fields the commissioner will most likely want to change each
-   year:
-     - leagueName        e.g. "Year 15"
-     - draftDate         ISO date/time string for the countdown,
-                          e.g. "2027-08-29T19:00:00"
-     - draftOrder2026     pick order for the upcoming draft (not a
-                          snake draft, so one order for every
-                          round); set a pick's "newOwner" once
-                          it's traded
-     - draftResults       fill in after the current year's draft
-     - draftResults2025   last year's completed draft (static
-                          record — replace with each new year's
-                          results once draftResults is filled in)
-     - teams2026          next year's rosters — leave empty until
-                          after the draft, then fill in (same
-                          shape as "teams")
-     - currentSeason      standings for the year in progress
-     - history            add a new entry once a season ends
-   ============================================================ */
 const DEFAULT_LEAGUE_DATA = {
-  "leagueName": "Year 14",
-  "lastUpdated": "2026-08-25",
-  "draftDate": "2026-08-30T19:00:00",
-  "commissionerNote": "Welcome to League 14's home on the web! Replace this note each season \u2014 draft reminders, trade deadlines, playoff news, whatever you want everyone to see first.",
-  "currentSeason": {
-    "year": 2026,
-    "standings": [
-      {
-        "team": "White Pool Covers",
-        "manager": "Tom",
-        "record": "0-0",
-        "pointsFor": 0
-      },
-      {
-        "team": "Jimmy Jones Cutlets",
-        "manager": "Cory/Kevin",
-        "record": "0-0",
-        "pointsFor": 0
-      },
-      {
-        "team": "Terry Glenn",
-        "manager": "Rick",
-        "record": "0-0",
-        "pointsFor": 0
-      },
-      {
-        "team": "Huge Ditka",
-        "manager": "Nick",
-        "record": "0-0",
-        "pointsFor": 0
-      },
-      {
-        "team": "Dumpster Fire",
-        "manager": "Joe",
-        "record": "0-0",
-        "pointsFor": 0
-      },
-      {
-        "team": "My Ball Zach Ertz",
-        "manager": "Eric",
-        "record": "0-0",
-        "pointsFor": 0
-      },
-      {
-        "team": "Allen's Wayside Furniture",
-        "manager": "Steve",
-        "record": "0-0",
-        "pointsFor": 0
-      },
-      {
-        "team": "Leeroy Judkins",
-        "manager": "Jordan",
-        "record": "0-0",
-        "pointsFor": 0
-      },
-      {
-        "team": "Run CMC",
-        "manager": "Mike",
-        "record": "0-0",
-        "pointsFor": 0
-      },
-      {
-        "team": "Prestige Worldwide",
-        "manager": "Ben",
-        "record": "0-0",
-        "pointsFor": 0
-      }
-    ]
+ "leagueName": "Hold My Rings",
+ "lastUpdated": "2026-08-25",
+ "draftDate": "2026-09-08T19:30:00",
+ "commissionerNote": "Welcome to Hold My Rings' home on the web! Replace this note each season \u2014 draft reminders, trade deadlines, playoff news, whatever you want everyone to see first.",
+ "currentSeason": {
+  "year": 2026,
+  "standings": [
+   {
+    "team": "jen's Legendary Team",
+    "manager": "Shawn",
+    "record": "0-0",
+    "pointsFor": 0
+   },
+   {
+    "team": "The real sultan",
+    "manager": "Joe",
+    "record": "0-0",
+    "pointsFor": 0
+   },
+   {
+    "team": "Aarons got a Gun",
+    "manager": "John",
+    "record": "0-0",
+    "pointsFor": 0
+   },
+   {
+    "team": "Prestige Worldwide",
+    "manager": "Ben",
+    "record": "0-0",
+    "pointsFor": 0
+   },
+   {
+    "team": "Colin for the win",
+    "manager": "Chris",
+    "record": "0-0",
+    "pointsFor": 0
+   },
+   {
+    "team": "The V&G Express",
+    "manager": "Kevin",
+    "record": "0-0",
+    "pointsFor": 0
+   },
+   {
+    "team": "Maye I put it in your Boutte",
+    "manager": "Nate",
+    "record": "0-0",
+    "pointsFor": 0
+   },
+   {
+    "team": "Leeroy Judkins",
+    "manager": "JR",
+    "record": "0-0",
+    "pointsFor": 0
+   },
+   {
+    "team": "Any given Sunday",
+    "manager": "Robert",
+    "record": "0-0",
+    "pointsFor": 0
+   },
+   {
+    "team": "Saquon deez nutz",
+    "manager": "AJ",
+    "record": "0-0",
+    "pointsFor": 0
+   }
+  ]
+ },
+ "history": [
+  {
+   "year": 2025,
+   "champion": "Saquon deez nutz",
+   "championManager": "AJ",
+   "runnerUp": "Any given Sunday",
+   "runnerUpManager": "Robert"
+  }
+ ],
+ "teams": [
+  {
+   "team": "jen's Legendary Team",
+   "manager": "Shawn",
+   "roster": [
+    {
+     "player": "Matthew Stafford",
+     "pos": "QB",
+     "nfl": "LAR",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Jaylen Warren",
+     "pos": "RB",
+     "nfl": "PIT",
+     "keeperCost": 7,
+     "kept2025": false
+    },
+    {
+     "player": "Kyle Monangai",
+     "pos": "RB",
+     "nfl": "CHI",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Zach Charbonnet",
+     "pos": "RB",
+     "nfl": "SEA",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Alvin Kamara",
+     "pos": "RB",
+     "nfl": "NO",
+     "keeperCost": 3,
+     "kept2025": false
+    },
+    {
+     "player": "Devin Singletary",
+     "pos": "RB",
+     "nfl": "NYG",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Kenneth Walker III",
+     "pos": "RB",
+     "nfl": "KC",
+     "keeperCost": 4,
+     "kept2025": false
+    },
+    {
+     "player": "Alec Pierce",
+     "pos": "WR",
+     "nfl": "IND",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Michael Pittman Jr.",
+     "pos": "WR",
+     "nfl": "PIT",
+     "keeperCost": 10,
+     "kept2025": false
+    },
+    {
+     "player": "Brian Thomas Jr.",
+     "pos": "WR",
+     "nfl": "JAX",
+     "keeperCost": 8,
+     "kept2025": true
+    },
+    {
+     "player": "Jayden Reed",
+     "pos": "WR",
+     "nfl": "GB",
+     "keeperCost": 11,
+     "kept2025": false
+    },
+    {
+     "player": "Xavier Worthy",
+     "pos": "WR",
+     "nfl": "KC",
+     "keeperCost": 5,
+     "kept2025": false
+    },
+    {
+     "player": "Romeo Doubs",
+     "pos": "WR",
+     "nfl": "NE",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Kyle Pitts Sr.",
+     "pos": "TE",
+     "nfl": "ATL",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "T.J. Hockenson",
+     "pos": "TE",
+     "nfl": "MIN",
+     "keeperCost": 12,
+     "kept2025": true
+    },
+    {
+     "player": "Cam Little",
+     "pos": "K",
+     "nfl": "JAX",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Falcons",
+     "pos": "DEF",
+     "nfl": "ATL",
+     "keeperCost": 8,
+     "kept2025": false
+    }
+   ]
   },
-  "history": [
+  {
+   "team": "The real sultan",
+   "manager": "Joe",
+   "roster": [
     {
-      "year": 2025,
-      "champion": "Prestige Worldwide",
-      "championManager": "Ben",
-      "runnerUp": "Run CMC",
-      "runnerUpManager": "Mike"
+     "player": "Lamar Jackson",
+     "pos": "QB",
+     "nfl": "BAL",
+     "keeperCost": 2,
+     "kept2025": false
     },
     {
-      "year": 2024,
-      "champion": "TBD",
-      "championManager": "TBD",
-      "runnerUp": "TBD",
-      "runnerUpManager": "TBD"
+     "player": "Jayden Daniels",
+     "pos": "QB",
+     "nfl": "WAS",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Justin Herbert",
+     "pos": "QB",
+     "nfl": "LAC",
+     "keeperCost": 13,
+     "kept2025": false
+    },
+    {
+     "player": "Christian McCaffrey",
+     "pos": "RB",
+     "nfl": "SF",
+     "keeperCost": 1,
+     "kept2025": false
+    },
+    {
+     "player": "Travis Etienne Jr.",
+     "pos": "RB",
+     "nfl": "NO",
+     "keeperCost": 9,
+     "kept2025": false
+    },
+    {
+     "player": "D'Andre Swift",
+     "pos": "RB",
+     "nfl": "CHI",
+     "keeperCost": 5,
+     "kept2025": false
+    },
+    {
+     "player": "Isiah Pacheco",
+     "pos": "RB",
+     "nfl": "DET",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Chris Olave",
+     "pos": "WR",
+     "nfl": "NO",
+     "keeperCost": 6,
+     "kept2025": false
+    },
+    {
+     "player": "Garrett Wilson",
+     "pos": "WR",
+     "nfl": "NYJ",
+     "keeperCost": 4,
+     "kept2025": false
+    },
+    {
+     "player": "Malik Nabers",
+     "pos": "WR",
+     "nfl": "NYG",
+     "keeperCost": 2,
+     "kept2025": true
+    },
+    {
+     "player": "Luther Burden III",
+     "pos": "WR",
+     "nfl": "CHI",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Khalil Shakir",
+     "pos": "WR",
+     "nfl": "BUF",
+     "keeperCost": 10,
+     "kept2025": false
+    },
+    {
+     "player": "Tre Tucker",
+     "pos": "WR",
+     "nfl": "LV",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Adonai Mitchell",
+     "pos": "WR",
+     "nfl": "NYJ",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Brandon Aiyuk",
+     "pos": "WR",
+     "nfl": "SF",
+     "keeperCost": 11,
+     "kept2025": false
+    },
+    {
+     "player": "Brock Bowers",
+     "pos": "TE",
+     "nfl": "LV",
+     "keeperCost": 11,
+     "kept2025": true
+    },
+    {
+     "player": "Matt Prater",
+     "pos": "K",
+     "nfl": "FA",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Texans",
+     "pos": "DEF",
+     "nfl": "HOU",
+     "keeperCost": 8,
+     "kept2025": false
     }
-  ],
-  "teams": [
+   ]
+  },
+  {
+   "team": "Aarons got a Gun",
+   "manager": "John",
+   "roster": [
     {
-      "team": "White Pool Covers",
-      "manager": "Tom",
-      "keepers2025": 2,
-      "roster": [
-        {
-          "player": "Joe Burrow",
-          "pos": "QB",
-          "nfl": "CIN",
-          "keeperCost": 5,
-          "kept": false
-        },
-        {
-          "player": "Drake Maye",
-          "pos": "QB",
-          "nfl": "NE",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Ashton Jeanty",
-          "pos": "RB",
-          "nfl": "LV",
-          "keeperCost": 1,
-          "kept": false
-        },
-        {
-          "player": "Javonte Williams",
-          "pos": "RB",
-          "nfl": "DAL",
-          "keeperCost": 10,
-          "kept": false
-        },
-        {
-          "player": "Woody Marks",
-          "pos": "RB",
-          "nfl": "HOU",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Justin Jefferson",
-          "pos": "WR",
-          "nfl": "MIN",
-          "keeperCost": 9,
-          "kept": true
-        },
-        {
-          "player": "Jaylen Waddle",
-          "pos": "WR",
-          "nfl": "DEN",
-          "keeperCost": 4,
-          "kept": false
-        },
-        {
-          "player": "Christian Watson",
-          "pos": "WR",
-          "nfl": "GB",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Marvin Harrison Jr.",
-          "pos": "WR",
-          "nfl": "ARI",
-          "keeperCost": 2,
-          "kept": false
-        },
-        {
-          "player": "Quentin Johnston",
-          "pos": "WR",
-          "nfl": "LAC",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Deebo Samuel",
-          "pos": "WR",
-          "nfl": "WAS",
-          "keeperCost": 6,
-          "kept": false
-        },
-        {
-          "player": "Sam LaPorta",
-          "pos": "TE",
-          "nfl": "DET",
-          "keeperCost": 15,
-          "kept": true
-        },
-        {
-          "player": "Hunter Henry",
-          "pos": "TE",
-          "nfl": "NE",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Zach Ertz",
-          "pos": "TE",
-          "nfl": "WAS",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Chris Boswell",
-          "pos": "K",
-          "nfl": "PIT",
-          "keeperCost": 14,
-          "kept": false
-        },
-        {
-          "player": "Jaguars",
-          "pos": "DEF",
-          "nfl": "JAX",
-          "keeperCost": 15,
-          "kept": false
-        }
-      ]
+     "player": "Jared Goff",
+     "pos": "QB",
+     "nfl": "DET",
+     "keeperCost": 8,
+     "kept2025": false
     },
     {
-      "team": "Jimmy Jones Cutlets",
-      "manager": "Cory/Kevin",
-      "keepers2025": 4,
-      "roster": [
-        {
-          "player": "Lamar Jackson",
-          "pos": "QB",
-          "nfl": "BAL",
-          "keeperCost": 14,
-          "kept": true
-        },
-        {
-          "player": "Dak Prescott",
-          "pos": "QB",
-          "nfl": "DAL",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Breece Hall",
-          "pos": "RB",
-          "nfl": "NYJ",
-          "keeperCost": 2,
-          "kept": true
-        },
-        {
-          "player": "Travis Etienne Jr.",
-          "pos": "RB",
-          "nfl": "NO",
-          "keeperCost": 7,
-          "kept": false
-        },
-        {
-          "player": "Jordan Mason",
-          "pos": "RB",
-          "nfl": "MIN",
-          "keeperCost": 8,
-          "kept": false
-        },
-        {
-          "player": "Alvin Kamara",
-          "pos": "RB",
-          "nfl": "NO",
-          "keeperCost": 3,
-          "kept": false
-        },
-        {
-          "player": "Puka Nacua",
-          "pos": "WR",
-          "nfl": "LAR",
-          "keeperCost": 15,
-          "kept": true
-        },
-        {
-          "player": "Amon-Ra St. Brown",
-          "pos": "WR",
-          "nfl": "DET",
-          "keeperCost": 5,
-          "kept": true
-        },
-        {
-          "player": "Ladd McConkey",
-          "pos": "WR",
-          "nfl": "LAC",
-          "keeperCost": 1,
-          "kept": false
-        },
-        {
-          "player": "Khalil Shakir",
-          "pos": "WR",
-          "nfl": "BUF",
-          "keeperCost": 10,
-          "kept": false
-        },
-        {
-          "player": "Jauan Jennings",
-          "pos": "WR",
-          "nfl": "MIN",
-          "keeperCost": 9,
-          "kept": false
-        },
-        {
-          "player": "Jake Ferguson",
-          "pos": "TE",
-          "nfl": "DAL",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "T.J. Hockenson",
-          "pos": "TE",
-          "nfl": "MIN",
-          "keeperCost": 6,
-          "kept": false
-        },
-        {
-          "player": "Jake Elliott",
-          "pos": "K",
-          "nfl": "PHI",
-          "keeperCost": 15,
-          "kept": false
-        }
-      ]
+     "player": "Bijan Robinson",
+     "pos": "RB",
+     "nfl": "ATL",
+     "keeperCost": 1,
+     "kept2025": true
     },
     {
-      "team": "Terry Glenn",
-      "manager": "Rick",
-      "keepers2025": 4,
-      "roster": [
-        {
-          "player": "Jared Goff",
-          "pos": "QB",
-          "nfl": "DET",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Derrick Henry",
-          "pos": "RB",
-          "nfl": "BAL",
-          "keeperCost": 3,
-          "kept": true
-        },
-        {
-          "player": "D'Andre Swift",
-          "pos": "RB",
-          "nfl": "CHI",
-          "keeperCost": 5,
-          "kept": false
-        },
-        {
-          "player": "Rachaad White",
-          "pos": "RB",
-          "nfl": "WAS",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "James Conner",
-          "pos": "RB",
-          "nfl": "ARI",
-          "keeperCost": 1,
-          "kept": false
-        },
-        {
-          "player": "Devin Neal",
-          "pos": "RB",
-          "nfl": "NO",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Nico Collins",
-          "pos": "WR",
-          "nfl": "HOU",
-          "keeperCost": 9,
-          "kept": true
-        },
-        {
-          "player": "Terry McLaurin",
-          "pos": "WR",
-          "nfl": "WAS",
-          "keeperCost": 2,
-          "kept": false
-        },
-        {
-          "player": "Chris Godwin Jr.",
-          "pos": "WR",
-          "nfl": "TB",
-          "keeperCost": 8,
-          "kept": false
-        },
-        {
-          "player": "Tyreek Hill",
-          "pos": "WR",
-          "nfl": "MIA",
-          "keeperCost": 15,
-          "kept": true
-        },
-        {
-          "player": "Keenan Allen",
-          "pos": "WR",
-          "nfl": "LAC",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Darnell Mooney",
-          "pos": "WR",
-          "nfl": "NYG",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Keon Coleman",
-          "pos": "WR",
-          "nfl": "BUF",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "George Kittle",
-          "pos": "TE",
-          "nfl": "SF",
-          "keeperCost": 4,
-          "kept": true
-        },
-        {
-          "player": "Brenton Strange",
-          "pos": "TE",
-          "nfl": "JAX",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Tyler Loop",
-          "pos": "K",
-          "nfl": "BAL",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Texans",
-          "pos": "DEF",
-          "nfl": "HOU",
-          "keeperCost": 15,
-          "kept": false
-        }
-      ]
+     "player": "Chuba Hubbard",
+     "pos": "RB",
+     "nfl": "CAR",
+     "keeperCost": 3,
+     "kept2025": false
     },
     {
-      "team": "Huge Ditka",
-      "manager": "Nick",
-      "keepers2025": 3,
-      "roster": [
-        {
-          "player": "Patrick Mahomes",
-          "pos": "QB",
-          "nfl": "KC",
-          "keeperCost": 5,
-          "kept": false
-        },
-        {
-          "player": "Trevor Lawrence",
-          "pos": "QB",
-          "nfl": "JAX",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "TreVeyon Henderson",
-          "pos": "RB",
-          "nfl": "NE",
-          "keeperCost": 3,
-          "kept": false
-        },
-        {
-          "player": "Jaylen Warren",
-          "pos": "RB",
-          "nfl": "PIT",
-          "keeperCost": 4,
-          "kept": false
-        },
-        {
-          "player": "Rico Dowdle",
-          "pos": "RB",
-          "nfl": "PIT",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Kimani Vidal",
-          "pos": "RB",
-          "nfl": "LAC",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "CeeDee Lamb",
-          "pos": "WR",
-          "nfl": "DAL",
-          "keeperCost": 1,
-          "kept": true
-        },
-        {
-          "player": "Malik Nabers",
-          "pos": "WR",
-          "nfl": "NYG",
-          "keeperCost": 2,
-          "kept": true
-        },
-        {
-          "player": "Mike Evans",
-          "pos": "WR",
-          "nfl": "SF",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "DK Metcalf",
-          "pos": "WR",
-          "nfl": "PIT",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Jordan Addison",
-          "pos": "WR",
-          "nfl": "MIN",
-          "keeperCost": 9,
-          "kept": false
-        },
-        {
-          "player": "Troy Franklin",
-          "pos": "WR",
-          "nfl": "DEN",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Stefon Diggs",
-          "pos": "WR",
-          "nfl": "NE",
-          "keeperCost": 6,
-          "kept": false
-        },
-        {
-          "player": "Travis Kelce",
-          "pos": "TE",
-          "nfl": "KC",
-          "keeperCost": 13,
-          "kept": true
-        },
-        {
-          "player": "Harrison Butker",
-          "pos": "K",
-          "nfl": "KC",
-          "keeperCost": 11,
-          "kept": false
-        },
-        {
-          "player": "Patriots",
-          "pos": "DEF",
-          "nfl": "NE",
-          "keeperCost": 15,
-          "kept": false
-        }
-      ]
+     "player": "Kenny Gainwell",
+     "pos": "RB",
+     "nfl": "TB",
+     "keeperCost": 8,
+     "kept2025": false
     },
     {
-      "team": "Dumpster Fire",
-      "manager": "Joe",
-      "keepers2025": 3,
-      "roster": [
-        {
-          "player": "Justin Herbert",
-          "pos": "QB",
-          "nfl": "LAC",
-          "keeperCost": 9,
-          "kept": false
-        },
-        {
-          "player": "Caleb Williams",
-          "pos": "QB",
-          "nfl": "CHI",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Jahmyr Gibbs",
-          "pos": "RB",
-          "nfl": "DET",
-          "keeperCost": 1,
-          "kept": true
-        },
-        {
-          "player": "Kenneth Walker III",
-          "pos": "RB",
-          "nfl": "KC",
-          "keeperCost": 3,
-          "kept": false
-        },
-        {
-          "player": "Tony Pollard",
-          "pos": "RB",
-          "nfl": "TEN",
-          "keeperCost": 4,
-          "kept": false
-        },
-        {
-          "player": "Kenny Gainwell",
-          "pos": "RB",
-          "nfl": "TB",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Drake London",
-          "pos": "WR",
-          "nfl": "ATL",
-          "keeperCost": 2,
-          "kept": true
-        },
-        {
-          "player": "DeVonta Smith",
-          "pos": "WR",
-          "nfl": "PHI",
-          "keeperCost": 7,
-          "kept": true
-        },
-        {
-          "player": "Rome Odunze",
-          "pos": "WR",
-          "nfl": "CHI",
-          "keeperCost": 5,
-          "kept": false
-        },
-        {
-          "player": "Wan'Dale Robinson",
-          "pos": "WR",
-          "nfl": "TEN",
-          "keeperCost": 14,
-          "kept": false
-        },
-        {
-          "player": "Rashid Shaheed",
-          "pos": "WR",
-          "nfl": "SEA",
-          "keeperCost": 8,
-          "kept": false
-        },
-        {
-          "player": "Dallas Goedert",
-          "pos": "TE",
-          "nfl": "PHI",
-          "keeperCost": 6,
-          "kept": false
-        },
-        {
-          "player": "Andy Borregales",
-          "pos": "K",
-          "nfl": "NE",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Lions",
-          "pos": "DEF",
-          "nfl": "DET",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Chargers",
-          "pos": "DEF",
-          "nfl": "LAC",
-          "keeperCost": 15,
-          "kept": false
-        }
-      ]
+     "player": "Tyjae Spears",
+     "pos": "RB",
+     "nfl": "TEN",
+     "keeperCost": 8,
+     "kept2025": false
     },
     {
-      "team": "My Ball Zach Ertz",
-      "manager": "Eric",
-      "keepers2025": 4,
-      "roster": [
-        {
-          "player": "Bo Nix",
-          "pos": "QB",
-          "nfl": "DEN",
-          "keeperCost": 7,
-          "kept": false
-        },
-        {
-          "player": "Baker Mayfield",
-          "pos": "QB",
-          "nfl": "TB",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Saquon Barkley",
-          "pos": "RB",
-          "nfl": "PHI",
-          "keeperCost": 1,
-          "kept": true
-        },
-        {
-          "player": "Josh Jacobs",
-          "pos": "RB",
-          "nfl": "GB",
-          "keeperCost": 5,
-          "kept": true
-        },
-        {
-          "player": "Bucky Irving",
-          "pos": "RB",
-          "nfl": "TB",
-          "keeperCost": 15,
-          "kept": true
-        },
-        {
-          "player": "Tyrone Tracy Jr.",
-          "pos": "RB",
-          "nfl": "NYG",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "George Pickens",
-          "pos": "WR",
-          "nfl": "DAL",
-          "keeperCost": 3,
-          "kept": false
-        },
-        {
-          "player": "Rashee Rice",
-          "pos": "WR",
-          "nfl": "KC",
-          "keeperCost": 8,
-          "kept": false
-        },
-        {
-          "player": "Garrett Wilson",
-          "pos": "WR",
-          "nfl": "NYJ",
-          "keeperCost": 14,
-          "kept": true
-        },
-        {
-          "player": "DJ Moore",
-          "pos": "WR",
-          "nfl": "BUF",
-          "keeperCost": 2,
-          "kept": false
-        },
-        {
-          "player": "Jakobi Meyers",
-          "pos": "WR",
-          "nfl": "JAX",
-          "keeperCost": 6,
-          "kept": false
-        },
-        {
-          "player": "Jayden Higgins",
-          "pos": "WR",
-          "nfl": "HOU",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Travis Hunter",
-          "pos": "WR",
-          "nfl": "JAX",
-          "keeperCost": 4,
-          "kept": false
-        },
-        {
-          "player": "Kyle Pitts Sr.",
-          "pos": "TE",
-          "nfl": "ATL",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Chase McLaughlin",
-          "pos": "K",
-          "nfl": "TB",
-          "keeperCost": 13,
-          "kept": false
-        },
-        {
-          "player": "Cowboys",
-          "pos": "DEF",
-          "nfl": "DAL",
-          "keeperCost": 15,
-          "kept": false
-        }
-      ]
+     "player": "Bam Knight",
+     "pos": "RB",
+     "nfl": "ARI",
+     "keeperCost": 8,
+     "kept2025": false
     },
     {
-      "team": "Allen's Wayside Furniture",
-      "manager": "Steve",
-      "keepers2025": 4,
-      "roster": [
-        {
-          "player": "Josh Allen",
-          "pos": "QB",
-          "nfl": "BUF",
-          "keeperCost": 2,
-          "kept": false
-        },
-        {
-          "player": "Bijan Robinson",
-          "pos": "RB",
-          "nfl": "ATL",
-          "keeperCost": 1,
-          "kept": true
-        },
-        {
-          "player": "Kyren Williams",
-          "pos": "RB",
-          "nfl": "LAR",
-          "keeperCost": 14,
-          "kept": true
-        },
-        {
-          "player": "David Montgomery",
-          "pos": "RB",
-          "nfl": "HOU",
-          "keeperCost": 13,
-          "kept": true
-        },
-        {
-          "player": "Kareem Hunt",
-          "pos": "RB",
-          "nfl": "KC",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Zay Flowers",
-          "pos": "WR",
-          "nfl": "BAL",
-          "keeperCost": 5,
-          "kept": false
-        },
-        {
-          "player": "Davante Adams",
-          "pos": "WR",
-          "nfl": "LAR",
-          "keeperCost": 3,
-          "kept": false
-        },
-        {
-          "player": "Jameson Williams",
-          "pos": "WR",
-          "nfl": "DET",
-          "keeperCost": 15,
-          "kept": true
-        },
-        {
-          "player": "Michael Pittman Jr.",
-          "pos": "WR",
-          "nfl": "PIT",
-          "keeperCost": 8,
-          "kept": false
-        },
-        {
-          "player": "Xavier Worthy",
-          "pos": "WR",
-          "nfl": "KC",
-          "keeperCost": 4,
-          "kept": false
-        },
-        {
-          "player": "Tucker Kraft",
-          "pos": "TE",
-          "nfl": "GB",
-          "keeperCost": 9,
-          "kept": false
-        },
-        {
-          "player": "Mark Andrews",
-          "pos": "TE",
-          "nfl": "BAL",
-          "keeperCost": 7,
-          "kept": false
-        },
-        {
-          "player": "Dalton Kincaid",
-          "pos": "TE",
-          "nfl": "BUF",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Jake Bates",
-          "pos": "K",
-          "nfl": "DET",
-          "keeperCost": 12,
-          "kept": false
-        },
-        {
-          "player": "Seahawks",
-          "pos": "DEF",
-          "nfl": "SEA",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Saints",
-          "pos": "DEF",
-          "nfl": "NO",
-          "keeperCost": 15,
-          "kept": false
-        }
-      ]
+     "player": "Hassan Haskins",
+     "pos": "RB",
+     "nfl": "NE",
+     "keeperCost": 8,
+     "kept2025": false
     },
     {
-      "team": "Leeroy Judkins",
-      "manager": "Jordan",
-      "keepers2025": 4,
-      "roster": [
-        {
-          "player": "Jayden Daniels",
-          "pos": "QB",
-          "nfl": "WAS",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Jalen Hurts",
-          "pos": "QB",
-          "nfl": "PHI",
-          "keeperCost": 8,
-          "kept": true
-        },
-        {
-          "player": "Jaxson Dart",
-          "pos": "QB",
-          "nfl": "NYG",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "James Cook III",
-          "pos": "RB",
-          "nfl": "BUF",
-          "keeperCost": 1,
-          "kept": false
-        },
-        {
-          "player": "Chase Brown",
-          "pos": "RB",
-          "nfl": "CIN",
-          "keeperCost": 15,
-          "kept": true
-        },
-        {
-          "player": "Quinshon Judkins",
-          "pos": "RB",
-          "nfl": "CLE",
-          "keeperCost": 13,
-          "kept": false
-        },
-        {
-          "player": "Bhayshul Tuten",
-          "pos": "RB",
-          "nfl": "JAX",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "RJ Harvey",
-          "pos": "RB",
-          "nfl": "DEN",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Kyle Monangai",
-          "pos": "RB",
-          "nfl": "CHI",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Braelon Allen",
-          "pos": "RB",
-          "nfl": "NYJ",
-          "keeperCost": 9,
-          "kept": false
-        },
-        {
-          "player": "Jaxon Smith-Njigba",
-          "pos": "WR",
-          "nfl": "SEA",
-          "keeperCost": 2,
-          "kept": false
-        },
-        {
-          "player": "Emeka Egbuka",
-          "pos": "WR",
-          "nfl": "TB",
-          "keeperCost": 4,
-          "kept": false
-        },
-        {
-          "player": "Brian Thomas Jr.",
-          "pos": "WR",
-          "nfl": "JAX",
-          "keeperCost": 7,
-          "kept": true
-        },
-        {
-          "player": "Ricky Pearsall",
-          "pos": "WR",
-          "nfl": "SF",
-          "keeperCost": 6,
-          "kept": false
-        },
-        {
-          "player": "Isaac TeSlaa",
-          "pos": "WR",
-          "nfl": "DET",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Trey McBride",
-          "pos": "TE",
-          "nfl": "ARI",
-          "keeperCost": 14,
-          "kept": true
-        },
-        {
-          "player": "Harold Fannin Jr.",
-          "pos": "TE",
-          "nfl": "CLE",
-          "keeperCost": 15,
-          "kept": false
-        }
-      ]
+     "player": "Justin Jefferson",
+     "pos": "WR",
+     "nfl": "MIN",
+     "keeperCost": 5,
+     "kept2025": true
     },
     {
-      "team": "Run CMC",
-      "manager": "Mike",
-      "keepers2025": 4,
-      "roster": [
-        {
-          "player": "Jacoby Brissett",
-          "pos": "QB",
-          "nfl": "ARI",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Christian McCaffrey",
-          "pos": "RB",
-          "nfl": "SF",
-          "keeperCost": 1,
-          "kept": true
-        },
-        {
-          "player": "De'Von Achane",
-          "pos": "RB",
-          "nfl": "MIA",
-          "keeperCost": 10,
-          "kept": true
-        },
-        {
-          "player": "Cam Skattebo",
-          "pos": "RB",
-          "nfl": "NYG",
-          "keeperCost": 8,
-          "kept": false
-        },
-        {
-          "player": "Chuba Hubbard",
-          "pos": "RB",
-          "nfl": "CAR",
-          "keeperCost": 3,
-          "kept": false
-        },
-        {
-          "player": "Blake Corum",
-          "pos": "RB",
-          "nfl": "LAR",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Michael Carter",
-          "pos": "RB",
-          "nfl": "TEN",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "A.J. Brown",
-          "pos": "WR",
-          "nfl": "NE",
-          "keeperCost": 14,
-          "kept": true
-        },
-        {
-          "player": "Courtland Sutton",
-          "pos": "WR",
-          "nfl": "DEN",
-          "keeperCost": 4,
-          "kept": false
-        },
-        {
-          "player": "Michael Wilson",
-          "pos": "WR",
-          "nfl": "ARI",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Jayden Reed",
-          "pos": "WR",
-          "nfl": "GB",
-          "keeperCost": 12,
-          "kept": false
-        },
-        {
-          "player": "Jerry Jeudy",
-          "pos": "WR",
-          "nfl": "CLE",
-          "keeperCost": 7,
-          "kept": false
-        },
-        {
-          "player": "Brock Bowers",
-          "pos": "TE",
-          "nfl": "LV",
-          "keeperCost": 5,
-          "kept": true
-        },
-        {
-          "player": "Colston Loveland",
-          "pos": "TE",
-          "nfl": "CHI",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Juwan Johnson",
-          "pos": "TE",
-          "nfl": "NO",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Cameron Dicker",
-          "pos": "K",
-          "nfl": "LAC",
-          "keeperCost": 11,
-          "kept": false
-        },
-        {
-          "player": "Broncos",
-          "pos": "DEF",
-          "nfl": "DEN",
-          "keeperCost": 15,
-          "kept": false
-        }
-      ]
+     "player": "Rome Odunze",
+     "pos": "WR",
+     "nfl": "CHI",
+     "keeperCost": 7,
+     "kept2025": false
     },
     {
-      "team": "Prestige Worldwide",
-      "manager": "Ben",
-      "keepers2025": 2,
-      "roster": [
-        {
-          "player": "Brock Purdy",
-          "pos": "QB",
-          "nfl": "SF",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Matthew Stafford",
-          "pos": "QB",
-          "nfl": "LAR",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Jonathan Taylor",
-          "pos": "RB",
-          "nfl": "IND",
-          "keeperCost": 3,
-          "kept": true
-        },
-        {
-          "player": "Omarion Hampton",
-          "pos": "RB",
-          "nfl": "LAC",
-          "keeperCost": 1,
-          "kept": false
-        },
-        {
-          "player": "Rhamondre Stevenson",
-          "pos": "RB",
-          "nfl": "NE",
-          "keeperCost": 13,
-          "kept": false
-        },
-        {
-          "player": "Zach Charbonnet",
-          "pos": "RB",
-          "nfl": "SEA",
-          "keeperCost": 9,
-          "kept": false
-        },
-        {
-          "player": "Ja'Marr Chase",
-          "pos": "WR",
-          "nfl": "CIN",
-          "keeperCost": 5,
-          "kept": true
-        },
-        {
-          "player": "Chris Olave",
-          "pos": "WR",
-          "nfl": "NO",
-          "keeperCost": 6,
-          "kept": false
-        },
-        {
-          "player": "Tee Higgins",
-          "pos": "WR",
-          "nfl": "CIN",
-          "keeperCost": 2,
-          "kept": false
-        },
-        {
-          "player": "Tetairoa McMillan",
-          "pos": "WR",
-          "nfl": "CAR",
-          "keeperCost": 4,
-          "kept": false
-        },
-        {
-          "player": "Alec Pierce",
-          "pos": "WR",
-          "nfl": "IND",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Darius Slayton",
-          "pos": "WR",
-          "nfl": "NYG",
-          "keeperCost": 15,
-          "kept": false
-        },
-        {
-          "player": "Tyler Warren",
-          "pos": "TE",
-          "nfl": "IND",
-          "keeperCost": 7,
-          "kept": false
-        },
-        {
-          "player": "Brandon Aubrey",
-          "pos": "K",
-          "nfl": "DAL",
-          "keeperCost": 10,
-          "kept": false
-        },
-        {
-          "player": "Steelers",
-          "pos": "DEF",
-          "nfl": "PIT",
-          "keeperCost": 15,
-          "kept": false
-        }
-      ]
+     "player": "Jakobi Meyers",
+     "pos": "WR",
+     "nfl": "JAX",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Rashid Shaheed",
+     "pos": "WR",
+     "nfl": "SEA",
+     "keeperCost": 12,
+     "kept2025": false
+    },
+    {
+     "player": "Chimere Dike",
+     "pos": "WR",
+     "nfl": "TEN",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Brenton Strange",
+     "pos": "TE",
+     "nfl": "JAX",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Zach Ertz",
+     "pos": "TE",
+     "nfl": "WAS",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Chase McLaughlin",
+     "pos": "K",
+     "nfl": "TB",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Jaguars",
+     "pos": "DEF",
+     "nfl": "JAX",
+     "keeperCost": 8,
+     "kept2025": false
     }
-  ],
-  "teams2026": [],
-  "draftOrder2026": [
-    { "originalTeam": "White Pool Covers", "newOwner": null },
-    { "originalTeam": "Jimmy Jones Cutlets", "newOwner": null },
-    { "originalTeam": "Terry Glenn", "newOwner": null },
-    { "originalTeam": "Huge Ditka", "newOwner": null },
-    { "originalTeam": "Dumpster Fire", "newOwner": null },
-    { "originalTeam": "My Ball Zach Ertz", "newOwner": null },
-    { "originalTeam": "Allen's Wayside Furniture", "newOwner": null },
-    { "originalTeam": "Leeroy Judkins", "newOwner": null },
-    { "originalTeam": "Run CMC", "newOwner": null },
-    { "originalTeam": "Prestige Worldwide", "newOwner": null }
-  ],
-  "draftResults": [],
-  "draftResults2025": [
+   ]
+  },
+  {
+   "team": "Prestige Worldwide",
+   "manager": "Ben",
+   "roster": [
     {
-      "round": "1",
-      "picks": [
-        {
-          "team": "Huge Ditka",
-          "player": "CeeDee Lamb"
-        },
-        {
-          "team": "White Pool Covers",
-          "player": "Ashton Jeanty"
-        },
-        {
-          "team": "Bed Bath & Bijan",
-          "player": "Bijan Robinson"
-        },
-        {
-          "team": "Dumpster Fire",
-          "player": "Jahmyr Gibbs"
-        },
-        {
-          "team": "Jimmy Jones Cutlets",
-          "player": "Ladd McConkey"
-        },
-        {
-          "team": "Prestige Worldwide",
-          "player": "Omarion Hampton"
-        },
-        {
-          "team": "JR",
-          "player": "James Cook III"
-        },
-        {
-          "team": "Run CMC",
-          "player": "Christian McCaffrey"
-        },
-        {
-          "team": "Terry Glenn",
-          "player": "James Conner"
-        },
-        {
-          "team": "My Ball Zach Ertz",
-          "player": "Saquon Barkley"
-        }
-      ]
+     "player": "Dak Prescott",
+     "pos": "QB",
+     "nfl": "DAL",
+     "keeperCost": 8,
+     "kept2025": false
     },
     {
-      "round": "2",
-      "picks": [
-        {
-          "team": "Huge Ditka",
-          "player": "Malik Nabers"
-        },
-        {
-          "team": "White Pool Covers",
-          "player": "Marvin Harrison"
-        },
-        {
-          "team": "Bed Bath & Bijan",
-          "player": "Josh Allen"
-        },
-        {
-          "team": "Dumpster Fire",
-          "player": "Drake London"
-        },
-        {
-          "team": "Jimmy Jones Cutlets",
-          "player": "Breece Hall"
-        },
-        {
-          "team": "Prestige Worldwide",
-          "player": "Tee Higgins"
-        },
-        {
-          "team": "JR",
-          "player": "Jaxon Smith-Njigba"
-        },
-        {
-          "team": "Run CMC",
-          "player": "Mike Evans"
-        },
-        {
-          "team": "Terry Glenn",
-          "player": "Terry McLaurin"
-        },
-        {
-          "team": "My Ball Zach Ertz",
-          "player": "DJ Moore"
-        }
-      ]
+     "player": "Jordan Love",
+     "pos": "QB",
+     "nfl": "GB",
+     "keeperCost": 8,
+     "kept2025": false
     },
     {
-      "round": "3",
-      "picks": [
-        {
-          "team": "Huge Ditka",
-          "player": "TreVeyon Henderson"
-        },
-        {
-          "team": "White Pool Covers",
-          "player": "Isiah Pacheco"
-        },
-        {
-          "team": "Bed Bath & Bijan",
-          "player": "Davante Adams"
-        },
-        {
-          "team": "Dumpster Fire",
-          "player": "Kevin Walker III"
-        },
-        {
-          "team": "Jimmy Jones Cutlets",
-          "player": "Alvin Kamara"
-        },
-        {
-          "team": "Prestige Worldwide",
-          "player": "Jonathan Taylor"
-        },
-        {
-          "team": "JR",
-          "player": "DK Metcalf"
-        },
-        {
-          "team": "Run CMC",
-          "player": "Chuba Hubbard"
-        },
-        {
-          "team": "Terry Glenn",
-          "player": "Derrick Henry"
-        },
-        {
-          "team": "My Ball Zach Ertz",
-          "player": "George Pickens"
-        }
-      ]
+     "player": "De'Von Achane",
+     "pos": "RB",
+     "nfl": "MIA",
+     "keeperCost": 9,
+     "kept2025": true
     },
     {
-      "round": "4",
-      "picks": [
-        {
-          "team": "Huge Ditka",
-          "player": "Jaylen Warren"
-        },
-        {
-          "team": "White Pool Covers",
-          "player": "Jaylen Waddle"
-        },
-        {
-          "team": "Bed Bath & Bijan",
-          "player": "Xavier Worthy"
-        },
-        {
-          "team": "Dumpster Fire",
-          "player": "Tony Pollard"
-        },
-        {
-          "team": "Jimmy Jones Cutlets",
-          "player": "RJ Harvey"
-        },
-        {
-          "team": "Prestige Worldwide",
-          "player": "Tetairoa McMillan"
-        },
-        {
-          "team": "JR",
-          "player": "Emeka Egbuka"
-        },
-        {
-          "team": "Run CMC",
-          "player": "Courtland Sutton"
-        },
-        {
-          "team": "Terry Glenn",
-          "player": "George Kittle"
-        },
-        {
-          "team": "My Ball Zach Ertz",
-          "player": "Travis Hunter"
-        }
-      ]
+     "player": "Breece Hall",
+     "pos": "RB",
+     "nfl": "NYJ",
+     "keeperCost": 4,
+     "kept2025": false
     },
     {
-      "round": "5",
-      "picks": [
-        {
-          "team": "Huge Ditka",
-          "player": "Patrick Mahomes"
-        },
-        {
-          "team": "White Pool Covers",
-          "player": "Joe Burrow"
-        },
-        {
-          "team": "Bed Bath & Bijan",
-          "player": "Zay Flowers"
-        },
-        {
-          "team": "Dumpster Fire",
-          "player": "Rome Odunze"
-        },
-        {
-          "team": "Jimmy Jones Cutlets",
-          "player": "Amon-Ra St. Brown"
-        },
-        {
-          "team": "Prestige Worldwide",
-          "player": "Ja'Marr Chase"
-        },
-        {
-          "team": "JR",
-          "player": "Kaleb Johnson"
-        },
-        {
-          "team": "Run CMC",
-          "player": "Brock Bowers"
-        },
-        {
-          "team": "Terry Glenn",
-          "player": "D'Andre Swift"
-        },
-        {
-          "team": "My Ball Zach Ertz",
-          "player": "Josh Jacobs"
-        }
-      ]
+     "player": "Josh Jacobs",
+     "pos": "RB",
+     "nfl": "GB",
+     "keeperCost": 1,
+     "kept2025": false
     },
     {
-      "round": "6",
-      "picks": [
-        {
-          "team": "Huge Ditka",
-          "player": "Stefon Diggs"
-        },
-        {
-          "team": "White Pool Covers",
-          "player": "Deebo Samuel"
-        },
-        {
-          "team": "Bed Bath & Bijan",
-          "player": "Tyrone Tracy Jr."
-        },
-        {
-          "team": "Dumpster Fire",
-          "player": "Dallas Goedert"
-        },
-        {
-          "team": "Jimmy Jones Cutlets",
-          "player": "T.J Hockenson"
-        },
-        {
-          "team": "Prestige Worldwide",
-          "player": "Chris Olave"
-        },
-        {
-          "team": "JR",
-          "player": "Ricky Pearsall"
-        },
-        {
-          "team": "Run CMC",
-          "player": "Kyler Murray"
-        },
-        {
-          "team": "Terry Glenn",
-          "player": "Evan Engram"
-        },
-        {
-          "team": "My Ball Zach Ertz",
-          "player": "Jakobi Meyers"
-        }
-      ]
+     "player": "Cam Skattebo",
+     "pos": "RB",
+     "nfl": "NYG",
+     "keeperCost": 11,
+     "kept2025": false
     },
     {
-      "round": "7",
-      "picks": [
-        {
-          "team": "Huge Ditka",
-          "player": "Aaron Jones Sr."
-        },
-        {
-          "team": "White Pool Covers",
-          "player": "Matthew Golden"
-        },
-        {
-          "team": "Bed Bath & Bijan",
-          "player": "Mark Andrews"
-        },
-        {
-          "team": "Dumpster Fire",
-          "player": "DeVonta Smith"
-        },
-        {
-          "team": "Jimmy Jones Cutlets",
-          "player": "Travis Etienne"
-        },
-        {
-          "team": "Prestige Worldwide",
-          "player": "Tyler Warren"
-        },
-        {
-          "team": "JR",
-          "player": "Brian Thomas Jr."
-        },
-        {
-          "team": "Run CMC",
-          "player": "Jerry Jeudy"
-        },
-        {
-          "team": "Terry Glenn",
-          "player": "Brock Purdy"
-        },
-        {
-          "team": "My Ball Zach Ertz",
-          "player": "Bo Nix"
-        }
-      ]
+     "player": "Aaron Jones Sr.",
+     "pos": "RB",
+     "nfl": "MIN",
+     "keeperCost": 6,
+     "kept2025": false
     },
     {
-      "round": "8",
-      "picks": [
-        {
-          "team": "Huge Ditka",
-          "player": "Cooper Kupp"
-        },
-        {
-          "team": "White Pool Covers",
-          "player": "Keon Coleman"
-        },
-        {
-          "team": "Bed Bath & Bijan",
-          "player": "Michael Pittman Jr"
-        },
-        {
-          "team": "Dumpster Fire",
-          "player": "Rashid Shaheed"
-        },
-        {
-          "team": "Jimmy Jones Cutlets",
-          "player": "Jordan Mason"
-        },
-        {
-          "team": "Prestige Worldwide",
-          "player": "Jayden Daniels"
-        },
-        {
-          "team": "JR",
-          "player": "Jalen Hurts"
-        },
-        {
-          "team": "Run CMC",
-          "player": "Cam Skattebo"
-        },
-        {
-          "team": "Terry Glenn",
-          "player": "Chris Godwin Jr"
-        },
-        {
-          "team": "My Ball Zach Ertz",
-          "player": "Rashee Rice"
-        }
-      ]
+     "player": "Kareem Hunt",
+     "pos": "RB",
+     "nfl": "KC",
+     "keeperCost": 8,
+     "kept2025": false
     },
     {
-      "round": "9",
-      "picks": [
-        {
-          "team": "Huge Ditka",
-          "player": "Jordan Addison"
-        },
-        {
-          "team": "White Pool Covers",
-          "player": "Justin Jefferson"
-        },
-        {
-          "team": "Bed Bath & Bijan",
-          "player": "Tucker Kraft"
-        },
-        {
-          "team": "Dumpster Fire",
-          "player": "Justin Herbert"
-        },
-        {
-          "team": "Jimmy Jones Cutlets",
-          "player": "Jauan Jennings"
-        },
-        {
-          "team": "Prestige Worldwide",
-          "player": "Zach Charbonnet"
-        },
-        {
-          "team": "JR",
-          "player": "Braelon Allen"
-        },
-        {
-          "team": "Run CMC",
-          "player": "Joe Mixon"
-        },
-        {
-          "team": "Terry Glenn",
-          "player": "Nico Collin"
-        },
-        {
-          "team": "My Ball Zach Ertz",
-          "player": "J.K Dobbins"
-        }
-      ]
+     "player": "Tetairoa McMillan",
+     "pos": "WR",
+     "nfl": "CAR",
+     "keeperCost": 5,
+     "kept2025": false
     },
     {
-      "round": "10",
-      "picks": [
-        {
-          "team": "Huge Ditka",
-          "player": "C.J Stroud"
-        },
-        {
-          "team": "White Pool Covers",
-          "player": "Javonte Williams"
-        },
-        {
-          "team": "Bed Bath & Bijan",
-          "player": "Rashod Bateman"
-        },
-        {
-          "team": "Dumpster Fire",
-          "player": "Tank Bigsby"
-        },
-        {
-          "team": "Jimmy Jones Cutlets",
-          "player": "Khalil Shakir"
-        },
-        {
-          "team": "Prestige Worldwide",
-          "player": "Brandon Aubrey"
-        },
-        {
-          "team": "JR",
-          "player": "Jacory Crosky-Merritt"
-        },
-        {
-          "team": "Run CMC",
-          "player": "De'Von Achane"
-        },
-        {
-          "team": "Terry Glenn",
-          "player": "Bhayshul Tuten"
-        },
-        {
-          "team": "My Ball Zach Ertz",
-          "player": "Darnell Mooney"
-        }
-      ]
+     "player": "Tee Higgins",
+     "pos": "WR",
+     "nfl": "CIN",
+     "keeperCost": 2,
+     "kept2025": false
     },
     {
-      "round": "11",
-      "picks": [
-        {
-          "team": "Huge Ditka",
-          "player": "Harrison Butker"
-        },
-        {
-          "team": "White Pool Covers",
-          "player": "Colston Loveland"
-        },
-        {
-          "team": "Bed Bath & Bijan",
-          "player": "Josh Downs"
-        },
-        {
-          "team": "Dumpster Fire",
-          "player": "Kansas City"
-        },
-        {
-          "team": "Jimmy Jones Cutlets",
-          "player": "Tyler Bass"
-        },
-        {
-          "team": "Prestige Worldwide",
-          "player": "DeAndre Hopkins"
-        },
-        {
-          "team": "JR",
-          "player": "Austin Ekeler"
-        },
-        {
-          "team": "Run CMC",
-          "player": "Cameron Dicker"
-        },
-        {
-          "team": "Terry Glenn",
-          "player": "Cedric Tillman"
-        },
-        {
-          "team": "My Ball Zach Ertz",
-          "player": "David Njoku"
-        }
-      ]
+     "player": "DJ Moore",
+     "pos": "WR",
+     "nfl": "BUF",
+     "keeperCost": 8,
+     "kept2025": false
     },
     {
-      "round": "12",
-      "picks": [
-        {
-          "team": "Huge Ditka",
-          "player": "Baltimore"
-        },
-        {
-          "team": "White Pool Covers",
-          "player": "Tre' Harris"
-        },
-        {
-          "team": "Bed Bath & Bijan",
-          "player": "Jake Bates"
-        },
-        {
-          "team": "Dumpster Fire",
-          "player": "Joshua Palmer"
-        },
-        {
-          "team": "Jimmy Jones Cutlets",
-          "player": "Philadelphia"
-        },
-        {
-          "team": "Prestige Worldwide",
-          "player": "Baker Mayfield"
-        },
-        {
-          "team": "JR",
-          "player": "Brian Robinson Jr"
-        },
-        {
-          "team": "Run CMC",
-          "player": "Jayden Reed"
-        },
-        {
-          "team": "Terry Glenn",
-          "player": "Dak Prescott"
-        },
-        {
-          "team": "My Ball Zach Ertz",
-          "player": "Denver"
-        }
-      ]
+     "player": "Mike Evans",
+     "pos": "WR",
+     "nfl": "SF",
+     "keeperCost": 2,
+     "kept2025": true
     },
     {
-      "round": "13",
-      "picks": [
-        {
-          "team": "Huge Ditka",
-          "player": "Travis Kelce"
-        },
-        {
-          "team": "White Pool Covers",
-          "player": "Detroit"
-        },
-        {
-          "team": "Bed Bath & Bijan",
-          "player": "David Montgomery"
-        },
-        {
-          "team": "Dumpster Fire",
-          "player": "Jake Elliott"
-        },
-        {
-          "team": "Jimmy Jones Cutlets",
-          "player": "Marvin Mims Jr."
-        },
-        {
-          "team": "Prestige Worldwide",
-          "player": "Rhamondre Stevenson"
-        },
-        {
-          "team": "JR",
-          "player": "Quinshon Judkins"
-        },
-        {
-          "team": "Run CMC",
-          "player": "Brandon Aiyuk"
-        },
-        {
-          "team": "Terry Glenn",
-          "player": "Pittsburg"
-        },
-        {
-          "team": "My Ball Zach Ertz",
-          "player": "Chase McLaughlin"
-        }
-      ]
+     "player": "Deebo Samuel Sr.",
+     "pos": "WR",
+     "nfl": "SF",
+     "keeperCost": 8,
+     "kept2025": false
     },
     {
-      "round": "14",
-      "picks": [
-        {
-          "team": "Huge Ditka",
-          "player": "Amari Cooper"
-        },
-        {
-          "team": "White Pool Covers",
-          "player": "Chris Boswell"
-        },
-        {
-          "team": "Bed Bath & Bijan",
-          "player": "Kyren Williams"
-        },
-        {
-          "team": "Dumpster Fire",
-          "player": "Wan'Dale Robinson"
-        },
-        {
-          "team": "Jimmy Jones Cutlets",
-          "player": "Lamar Jackson"
-        },
-        {
-          "team": "Prestige Worldwide",
-          "player": "Buffalo"
-        },
-        {
-          "team": "JR",
-          "player": "Trey McBride"
-        },
-        {
-          "team": "Run CMC",
-          "player": "A.J. Brown"
-        },
-        {
-          "team": "Terry Glenn",
-          "player": "Ka'Imi Fairbairn"
-        },
-        {
-          "team": "My Ball Zach Ertz",
-          "player": "Garrett Wilson"
-        }
-      ]
+     "player": "Jerry Jeudy",
+     "pos": "WR",
+     "nfl": "CLE",
+     "keeperCost": 8,
+     "kept2025": false
     },
     {
-      "round": "15",
-      "picks": [
-        {
-          "team": "Huge Ditka",
-          "player": "Nick Chubb"
-        },
-        {
-          "team": "White Pool Covers",
-          "player": "Sam LaPorta"
-        },
-        {
-          "team": "Bed Bath & Bijan",
-          "player": "Jameson Williams"
-        },
-        {
-          "team": "Dumpster Fire",
-          "player": "Adam Thielen"
-        },
-        {
-          "team": "Jimmy Jones Cutlets",
-          "player": "Puka Nacua"
-        },
-        {
-          "team": "Prestige Worldwide",
-          "player": "Calvin Ridley"
-        },
-        {
-          "team": "JR",
-          "player": "Chase Brown"
-        },
-        {
-          "team": "Run CMC",
-          "player": "Keenan Allen"
-        },
-        {
-          "team": "Terry Glenn",
-          "player": "Tyreek Hill"
-        },
-        {
-          "team": "My Ball Zach Ertz",
-          "player": "Bucky Irving"
-        }
-      ]
+     "player": "Dallas Goedert",
+     "pos": "TE",
+     "nfl": "PHI",
+     "keeperCost": 16,
+     "kept2025": false
+    },
+    {
+     "player": "Mark Andrews",
+     "pos": "TE",
+     "nfl": "BAL",
+     "keeperCost": 7,
+     "kept2025": false
+    },
+    {
+     "player": "Brandon Aubrey",
+     "pos": "K",
+     "nfl": "DAL",
+     "keeperCost": 12,
+     "kept2025": false
+    },
+    {
+     "player": "Bills",
+     "pos": "DEF",
+     "nfl": "BUF",
+     "keeperCost": 15,
+     "kept2025": false
     }
-  ],
-  "keeperSelections": [
+   ]
+  },
+  {
+   "team": "Colin for the win",
+   "manager": "Chris",
+   "roster": [
     {
-      "team": "White Pool Covers",
-      "manager": "Tom",
-      "players": []
+     "player": "Drake Maye",
+     "pos": "QB",
+     "nfl": "NE",
+     "keeperCost": 9,
+     "kept2025": false
     },
     {
-      "team": "Jimmy Jones Cutlets",
-      "manager": "Cory/Kevin",
-      "players": []
+     "player": "Bo Nix",
+     "pos": "QB",
+     "nfl": "DEN",
+     "keeperCost": 8,
+     "kept2025": false
     },
     {
-      "team": "Terry Glenn",
-      "manager": "Rick",
-      "players": []
+     "player": "James Cook III",
+     "pos": "RB",
+     "nfl": "BUF",
+     "keeperCost": 3,
+     "kept2025": false
     },
     {
-      "team": "Huge Ditka",
-      "manager": "Nick",
-      "players": []
+     "player": "Derrick Henry",
+     "pos": "RB",
+     "nfl": "BAL",
+     "keeperCost": 1,
+     "kept2025": false
     },
     {
-      "team": "Dumpster Fire",
-      "manager": "Joe",
-      "players": []
+     "player": "Tony Pollard",
+     "pos": "RB",
+     "nfl": "TEN",
+     "keeperCost": 5,
+     "kept2025": false
     },
     {
-      "team": "My Ball Zach Ertz",
-      "manager": "Eric",
-      "players": []
+     "player": "Jordan Mason",
+     "pos": "RB",
+     "nfl": "MIN",
+     "keeperCost": 8,
+     "kept2025": false
     },
     {
-      "team": "Allen's Wayside Furniture",
-      "manager": "Steve",
-      "players": []
+     "player": "A.J. Brown",
+     "pos": "WR",
+     "nfl": "NE",
+     "keeperCost": 2,
+     "kept2025": false
     },
     {
-      "team": "Leeroy Judkins",
-      "manager": "Jordan",
-      "players": []
+     "player": "Zay Flowers",
+     "pos": "WR",
+     "nfl": "BAL",
+     "keeperCost": 4,
+     "kept2025": false
     },
     {
-      "team": "Run CMC",
-      "manager": "Mike",
-      "players": []
+     "player": "Jameson Williams",
+     "pos": "WR",
+     "nfl": "DET",
+     "keeperCost": 9,
+     "kept2025": true
     },
     {
-      "team": "Prestige Worldwide",
-      "manager": "Ben",
-      "players": []
+     "player": "Josh Downs",
+     "pos": "WR",
+     "nfl": "IND",
+     "keeperCost": 11,
+     "kept2025": false
+    },
+    {
+     "player": "Jordan Addison",
+     "pos": "WR",
+     "nfl": "MIN",
+     "keeperCost": 5,
+     "kept2025": true
+    },
+    {
+     "player": "Kayshon Boutte",
+     "pos": "WR",
+     "nfl": "NE",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Tucker Kraft",
+     "pos": "TE",
+     "nfl": "GB",
+     "keeperCost": 7,
+     "kept2025": false
+    },
+    {
+     "player": "Cade Otton",
+     "pos": "TE",
+     "nfl": "TB",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Hunter Henry",
+     "pos": "TE",
+     "nfl": "NE",
+     "keeperCost": 12,
+     "kept2025": false
+    },
+    {
+     "player": "Cameron Dicker",
+     "pos": "K",
+     "nfl": "LAC",
+     "keeperCost": 14,
+     "kept2025": false
+    },
+    {
+     "player": "Buccaneers",
+     "pos": "DEF",
+     "nfl": "TB",
+     "keeperCost": 8,
+     "kept2025": false
     }
-  ],
-  "trades": [
+   ]
+  },
+  {
+   "team": "The V&G Express",
+   "manager": "Kevin",
+   "roster": [
     {
-      "date": "TBD",
-      "teams": "TBD",
-      "details": "No trades logged yet this season."
+     "player": "Joe Burrow",
+     "pos": "QB",
+     "nfl": "CIN",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Jacoby Brissett",
+     "pos": "QB",
+     "nfl": "ARI",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Kyren Williams",
+     "pos": "RB",
+     "nfl": "LAR",
+     "keeperCost": 6,
+     "kept2025": true
+    },
+    {
+     "player": "TreVeyon Henderson",
+     "pos": "RB",
+     "nfl": "NE",
+     "keeperCost": 3,
+     "kept2025": false
+    },
+    {
+     "player": "Rico Dowdle",
+     "pos": "RB",
+     "nfl": "PIT",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Blake Corum",
+     "pos": "RB",
+     "nfl": "LAR",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Devin Neal",
+     "pos": "RB",
+     "nfl": "NO",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Drake London",
+     "pos": "WR",
+     "nfl": "ATL",
+     "keeperCost": 1,
+     "kept2025": false
+    },
+    {
+     "player": "George Pickens",
+     "pos": "WR",
+     "nfl": "DAL",
+     "keeperCost": 4,
+     "kept2025": false
+    },
+    {
+     "player": "Emeka Egbuka",
+     "pos": "WR",
+     "nfl": "TB",
+     "keeperCost": 6,
+     "kept2025": false
+    },
+    {
+     "player": "Courtland Sutton",
+     "pos": "WR",
+     "nfl": "DEN",
+     "keeperCost": 5,
+     "kept2025": false
+    },
+    {
+     "player": "Christian Watson",
+     "pos": "WR",
+     "nfl": "GB",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Jayden Higgins",
+     "pos": "WR",
+     "nfl": "HOU",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Tyler Warren",
+     "pos": "TE",
+     "nfl": "IND",
+     "keeperCost": 10,
+     "kept2025": false
+    },
+    {
+     "player": "Evan McPherson",
+     "pos": "K",
+     "nfl": "CIN",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Rams",
+     "pos": "DEF",
+     "nfl": "LAR",
+     "keeperCost": 8,
+     "kept2025": false
     }
-  ],
-  "rulesGroups": [
+   ]
+  },
+  {
+   "team": "Maye I put it in your Boutte",
+   "manager": "Nate",
+   "roster": [
     {
-      "title": "League Settings",
-      "rows": [
-        {
-          "label": "Trade Review",
-          "value": "League Votes"
-        },
-        {
-          "label": "Votes Required to Veto",
-          "value": "Default"
-        },
-        {
-          "label": "Trade Reject Time",
-          "value": "1 day"
-        },
-        {
-          "label": "Waiver Time",
-          "value": "2 days"
-        },
-        {
-          "label": "Waiver Type",
-          "value": "Continual rolling list"
-        },
-        {
-          "label": "Weekly Waivers Game Time",
-          "value": "Tuesday"
-        },
-        {
-          "label": "Injured players added directly to injury slot from waivers/FA",
-          "value": "Yes"
-        },
-        {
-          "label": "Playoffs",
-          "value": "6 teams \u2014 Weeks 15, 16 and 17 (ends Monday, Dec 29)"
-        },
-        {
-          "label": "Playoff Tie-Breaker",
-          "value": "Best regular season record vs opponent wins"
-        },
-        {
-          "label": "Playoff Reseeding",
-          "value": "Yes"
-        },
-        {
-          "label": "Divisions",
-          "value": "No"
-        },
-        {
-          "label": "Lock Eliminated Teams",
-          "value": "No"
-        },
-        {
-          "label": "Play Against Median Score",
-          "value": "No"
-        },
-        {
-          "label": "Play Against a Second Opponent",
-          "value": "No"
-        },
-        {
-          "label": "Apply Injured Status For Postponed Games",
-          "value": "Yes"
-        },
-        {
-          "label": "Fractional Points",
-          "value": "Yes"
-        },
-        {
-          "label": "Negative Points",
-          "value": "Yes"
-        }
-      ]
+     "player": "Brock Purdy",
+     "pos": "QB",
+     "nfl": "SF",
+     "keeperCost": 8,
+     "kept2025": false
     },
     {
-      "title": "Buy-In",
-      "rows": [
-        {
-          "label": "League Entry Fee",
-          "value": "$50 per team"
-        },
-        {
-          "label": "Keeper Cost",
-          "value": "Up to 4 keepers per team, $10 extra each"
-        }
-      ]
+     "player": "Baker Mayfield",
+     "pos": "QB",
+     "nfl": "TB",
+     "keeperCost": 11,
+     "kept2025": false
     },
     {
-      "title": "Keeper Rules",
-      "rows": [
-        {
-          "label": "Draft Position",
-          "value": "Kept players retain the draft position they were picked at the prior year"
-        },
-        {
-          "label": "Waiver Pickups",
-          "value": "A player added off waivers counts as a last-round pick for keeper purposes"
-        },
-        {
-          "label": "Last-Round Keeper Bump",
-          "value": "If a keeper was a last-round pick the prior year, they move up one draft spot"
-        },
-        {
-          "label": "Trades",
-          "value": "Same rules apply after a trade \u2014 kept at original draft position, or last-round pick if they were a waiver add by the other team"
-        },
-        {
-          "label": "Drop & Re-add (Same Team)",
-          "value": "If a team drafts, drops, and re-adds the same player, they keep their original drafted position (prevents gaming keeper value)"
-        }
-      ]
+     "player": "Saquon Barkley",
+     "pos": "RB",
+     "nfl": "PHI",
+     "keeperCost": 1,
+     "kept2025": true
     },
     {
-      "title": "Roster Positions",
-      "rows": [
-        {
-          "label": "Starters",
-          "value": "QB, WR, WR, WR, RB, RB, TE, W/R/T, K, DEF"
-        },
-        {
-          "label": "Bench",
-          "value": "BN, BN, BN, BN, BN"
-        },
-        {
-          "label": "Injured Reserve",
-          "value": "IR, IR"
-        }
-      ]
+     "player": "Javonte Williams",
+     "pos": "RB",
+     "nfl": "DAL",
+     "keeperCost": 12,
+     "kept2025": false
     },
     {
-      "title": "Offense Scoring",
-      "rows": [
-        {
-          "label": "Passing Yards",
-          "value": "25 yards per point"
-        },
-        {
-          "label": "Passing Touchdowns",
-          "value": "4"
-        },
-        {
-          "label": "Interceptions",
-          "value": "-1"
-        },
-        {
-          "label": "Rushing Yards",
-          "value": "10 yards per point"
-        },
-        {
-          "label": "Rushing Touchdowns",
-          "value": "6"
-        },
-        {
-          "label": "Receptions",
-          "value": "0.5"
-        },
-        {
-          "label": "Receiving Yards",
-          "value": "10 yards per point"
-        },
-        {
-          "label": "Receiving Touchdowns",
-          "value": "6"
-        },
-        {
-          "label": "Return Touchdowns",
-          "value": "6"
-        },
-        {
-          "label": "2-Point Conversions",
-          "value": "2"
-        },
-        {
-          "label": "Fumbles Lost",
-          "value": "-2"
-        },
-        {
-          "label": "Offensive Fumble Return TD",
-          "value": "6"
-        }
-      ]
+     "player": "RJ Harvey",
+     "pos": "RB",
+     "nfl": "DEN",
+     "keeperCost": 4,
+     "kept2025": false
     },
     {
-      "title": "Kicker Scoring",
-      "rows": [
-        {
-          "label": "Field Goals 0-19 Yards",
-          "value": "3"
-        },
-        {
-          "label": "Field Goals 20-29 Yards",
-          "value": "3"
-        },
-        {
-          "label": "Field Goals 30-39 Yards",
-          "value": "3"
-        },
-        {
-          "label": "Field Goals 40-49 Yards",
-          "value": "4"
-        },
-        {
-          "label": "Field Goals 50+ Yards",
-          "value": "5"
-        },
-        {
-          "label": "Point After Attempt Made",
-          "value": "1"
-        }
-      ]
+     "player": "J.K. Dobbins",
+     "pos": "RB",
+     "nfl": "DEN",
+     "keeperCost": 8,
+     "kept2025": false
     },
     {
-      "title": "Defense / Special Teams Scoring",
-      "rows": [
-        {
-          "label": "Sack",
-          "value": "1"
-        },
-        {
-          "label": "Interception",
-          "value": "2"
-        },
-        {
-          "label": "Fumble Recovery",
-          "value": "2"
-        },
-        {
-          "label": "Touchdown",
-          "value": "6"
-        },
-        {
-          "label": "Safety",
-          "value": "2"
-        },
-        {
-          "label": "Block Kick",
-          "value": "2"
-        },
-        {
-          "label": "Kickoff and Punt Return Touchdowns",
-          "value": "6"
-        },
-        {
-          "label": "Points Allowed 0 points",
-          "value": "10"
-        },
-        {
-          "label": "Points Allowed 1-6 points",
-          "value": "7"
-        },
-        {
-          "label": "Points Allowed 7-13 points",
-          "value": "4"
-        },
-        {
-          "label": "Points Allowed 14-20 points",
-          "value": "1"
-        },
-        {
-          "label": "Points Allowed 21-27 points",
-          "value": "0"
-        },
-        {
-          "label": "Points Allowed 28-34 points",
-          "value": "-1"
-        },
-        {
-          "label": "Points Allowed 35+ points",
-          "value": "-4"
-        },
-        {
-          "label": "Extra Point Returned",
-          "value": "2"
-        }
-      ]
+     "player": "Ja'Marr Chase",
+     "pos": "WR",
+     "nfl": "CIN",
+     "keeperCost": 2,
+     "kept2025": true
+    },
+    {
+     "player": "Parker Washington",
+     "pos": "WR",
+     "nfl": "JAX",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Michael Wilson",
+     "pos": "WR",
+     "nfl": "ARI",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Ricky Pearsall",
+     "pos": "WR",
+     "nfl": "SF",
+     "keeperCost": 5,
+     "kept2025": false
+    },
+    {
+     "player": "Jauan Jennings",
+     "pos": "WR",
+     "nfl": "MIN",
+     "keeperCost": 9,
+     "kept2025": false
+    },
+    {
+     "player": "Devaughn Vele",
+     "pos": "WR",
+     "nfl": "NO",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Travis Hunter",
+     "pos": "WR",
+     "nfl": "JAX",
+     "keeperCost": 6,
+     "kept2025": false
+    },
+    {
+     "player": "George Kittle",
+     "pos": "TE",
+     "nfl": "SF",
+     "keeperCost": 2,
+     "kept2025": false
+    },
+    {
+     "player": "Jake Ferguson",
+     "pos": "TE",
+     "nfl": "DAL",
+     "keeperCost": 14,
+     "kept2025": false
+    },
+    {
+     "player": "Will Reichard",
+     "pos": "K",
+     "nfl": "MIN",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Eagles",
+     "pos": "DEF",
+     "nfl": "PHI",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Patriots",
+     "pos": "DEF",
+     "nfl": "NE",
+     "keeperCost": 8,
+     "kept2025": false
     }
-  ],
-  "teamBadges": {}
+   ]
+  },
+  {
+   "team": "Leeroy Judkins",
+   "manager": "JR",
+   "roster": [
+    {
+     "player": "Josh Allen",
+     "pos": "QB",
+     "nfl": "BUF",
+     "keeperCost": 10,
+     "kept2025": true
+    },
+    {
+     "player": "Ashton Jeanty",
+     "pos": "RB",
+     "nfl": "LV",
+     "keeperCost": 1,
+     "kept2025": false
+    },
+    {
+     "player": "Omarion Hampton",
+     "pos": "RB",
+     "nfl": "LAC",
+     "keeperCost": 3,
+     "kept2025": false
+    },
+    {
+     "player": "Quinshon Judkins",
+     "pos": "RB",
+     "nfl": "CLE",
+     "keeperCost": 10,
+     "kept2025": false
+    },
+    {
+     "player": "Bhayshul Tuten",
+     "pos": "RB",
+     "nfl": "JAX",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Braelon Allen",
+     "pos": "RB",
+     "nfl": "NYJ",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Kaleb Johnson",
+     "pos": "RB",
+     "nfl": "PIT",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Trey Benson",
+     "pos": "RB",
+     "nfl": "ARI",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Tyler Allgeier",
+     "pos": "RB",
+     "nfl": "ARI",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "CeeDee Lamb",
+     "pos": "WR",
+     "nfl": "DAL",
+     "keeperCost": 1,
+     "kept2025": false
+    },
+    {
+     "player": "Nico Collins",
+     "pos": "WR",
+     "nfl": "HOU",
+     "keeperCost": 8,
+     "kept2025": true
+    },
+    {
+     "player": "Jaylen Waddle",
+     "pos": "WR",
+     "nfl": "DEN",
+     "keeperCost": 6,
+     "kept2025": false
+    },
+    {
+     "player": "Stefon Diggs",
+     "pos": "WR",
+     "nfl": "WAS",
+     "keeperCost": 7,
+     "kept2025": false
+    },
+    {
+     "player": "Isaac TeSlaa",
+     "pos": "WR",
+     "nfl": "DET",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Kyle Williams",
+     "pos": "WR",
+     "nfl": "NE",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Trey McBride",
+     "pos": "TE",
+     "nfl": "ARI",
+     "keeperCost": 2,
+     "kept2025": false
+    },
+    {
+     "player": "Harold Fannin Jr.",
+     "pos": "TE",
+     "nfl": "CLE",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Oronde Gadsden",
+     "pos": "TE",
+     "nfl": "LAC",
+     "keeperCost": 8,
+     "kept2025": false
+    }
+   ]
+  },
+  {
+   "team": "Any given Sunday",
+   "manager": "Robert",
+   "roster": [
+    {
+     "player": "Jalen Hurts",
+     "pos": "QB",
+     "nfl": "PHI",
+     "keeperCost": 2,
+     "kept2025": false
+    },
+    {
+     "player": "Trevor Lawrence",
+     "pos": "QB",
+     "nfl": "JAX",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Jonathan Taylor",
+     "pos": "RB",
+     "nfl": "IND",
+     "keeperCost": 2,
+     "kept2025": false
+    },
+    {
+     "player": "Bucky Irving",
+     "pos": "RB",
+     "nfl": "TB",
+     "keeperCost": 13,
+     "kept2025": true
+    },
+    {
+     "player": "David Montgomery",
+     "pos": "RB",
+     "nfl": "HOU",
+     "keeperCost": 5,
+     "kept2025": false
+    },
+    {
+     "player": "Puka Nacua",
+     "pos": "WR",
+     "nfl": "LAR",
+     "keeperCost": 2,
+     "kept2025": false
+    },
+    {
+     "player": "Amon-Ra St. Brown",
+     "pos": "WR",
+     "nfl": "DET",
+     "keeperCost": 1,
+     "kept2025": false
+    },
+    {
+     "player": "Rashee Rice",
+     "pos": "WR",
+     "nfl": "KC",
+     "keeperCost": 7,
+     "kept2025": false
+    },
+    {
+     "player": "Ladd McConkey",
+     "pos": "WR",
+     "nfl": "LAC",
+     "keeperCost": 10,
+     "kept2025": true
+    },
+    {
+     "player": "Terry McLaurin",
+     "pos": "WR",
+     "nfl": "WAS",
+     "keeperCost": 3,
+     "kept2025": false
+    },
+    {
+     "player": "Marvin Harrison Jr.",
+     "pos": "WR",
+     "nfl": "ARI",
+     "keeperCost": 4,
+     "kept2025": false
+    },
+    {
+     "player": "Wan'Dale Robinson",
+     "pos": "WR",
+     "nfl": "TEN",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Juwan Johnson",
+     "pos": "TE",
+     "nfl": "NO",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Dalton Schultz",
+     "pos": "TE",
+     "nfl": "HOU",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Ka'imi Fairbairn",
+     "pos": "K",
+     "nfl": "HOU",
+     "keeperCost": 16,
+     "kept2025": false
+    },
+    {
+     "player": "Broncos",
+     "pos": "DEF",
+     "nfl": "DEN",
+     "keeperCost": 12,
+     "kept2025": false
+    }
+   ]
+  },
+  {
+   "team": "Saquon deez nutz",
+   "manager": "AJ",
+   "roster": [
+    {
+     "player": "Caleb Williams",
+     "pos": "QB",
+     "nfl": "CHI",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Jaxson Dart",
+     "pos": "QB",
+     "nfl": "NYG",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Jahmyr Gibbs",
+     "pos": "RB",
+     "nfl": "DET",
+     "keeperCost": 1,
+     "kept2025": false
+    },
+    {
+     "player": "Chase Brown",
+     "pos": "RB",
+     "nfl": "CIN",
+     "keeperCost": 2,
+     "kept2025": false
+    },
+    {
+     "player": "Woody Marks",
+     "pos": "RB",
+     "nfl": "HOU",
+     "keeperCost": 14,
+     "kept2025": false
+    },
+    {
+     "player": "Tyrone Tracy Jr.",
+     "pos": "RB",
+     "nfl": "NYG",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Joe Mixon",
+     "pos": "RB",
+     "nfl": "FA",
+     "keeperCost": 11,
+     "kept2025": false
+    },
+    {
+     "player": "Jaxon Smith-Njigba",
+     "pos": "WR",
+     "nfl": "SEA",
+     "keeperCost": 8,
+     "kept2025": true
+    },
+    {
+     "player": "DeVonta Smith",
+     "pos": "WR",
+     "nfl": "PHI",
+     "keeperCost": 5,
+     "kept2025": false
+    },
+    {
+     "player": "Davante Adams",
+     "pos": "WR",
+     "nfl": "LAR",
+     "keeperCost": 4,
+     "kept2025": false
+    },
+    {
+     "player": "Chris Godwin Jr.",
+     "pos": "WR",
+     "nfl": "TB",
+     "keeperCost": 12,
+     "kept2025": false
+    },
+    {
+     "player": "Quentin Johnston",
+     "pos": "WR",
+     "nfl": "LAC",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Keenan Allen",
+     "pos": "WR",
+     "nfl": "LAC",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Tyreek Hill",
+     "pos": "WR",
+     "nfl": "MIA",
+     "keeperCost": 3,
+     "kept2025": false
+    },
+    {
+     "player": "Travis Kelce",
+     "pos": "TE",
+     "nfl": "KC",
+     "keeperCost": 6,
+     "kept2025": false
+    },
+    {
+     "player": "AJ Barner",
+     "pos": "TE",
+     "nfl": "SEA",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Chris Boswell",
+     "pos": "K",
+     "nfl": "PIT",
+     "keeperCost": 8,
+     "kept2025": false
+    },
+    {
+     "player": "Seahawks",
+     "pos": "DEF",
+     "nfl": "SEA",
+     "keeperCost": 8,
+     "kept2025": false
+    }
+   ]
+  }
+ ],
+ "teams2026": [],
+ "draftResults": [],
+ "draftOrder2026": [
+  {
+   "round": "1",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "2",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": "jen's Legendary Team"
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": "jen's Legendary Team"
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "3",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "4",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "5",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "6",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "7",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": "jen's Legendary Team"
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "8",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "9",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "10",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": "Leeroy Judkins"
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "11",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": "Any given Sunday"
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "12",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": "Leeroy Judkins"
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "13",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "14",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "15",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  },
+  {
+   "round": "16",
+   "picks": [
+    {
+     "originalTeam": "jen's Legendary Team",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The real sultan",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Aarons got a Gun",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Prestige Worldwide",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Colin for the win",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "The V&G Express",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Maye I put it in your Boutte",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Leeroy Judkins",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Any given Sunday",
+     "newOwner": null
+    },
+    {
+     "originalTeam": "Saquon deez nutz",
+     "newOwner": null
+    }
+   ]
+  }
+ ],
+ "trades2025": [
+  {
+   "team": "jen's Legendary Team",
+   "from": "Leeroy Judkins",
+   "received": [
+    {
+     "item": "Kyle Monangai (Chi)",
+     "pos": "RB"
+    },
+    {
+     "item": "Round 7 Pick",
+     "pos": null
+    }
+   ]
+  },
+  {
+   "team": "Leeroy Judkins",
+   "from": "jen's Legendary Team",
+   "received": [
+    {
+     "item": "Omarion Hampton (LAC)",
+     "pos": "RB"
+    },
+    {
+     "item": "Round 12 Pick",
+     "pos": null
+    }
+   ]
+  },
+  {
+   "team": "Any given Sunday",
+   "from": "jen's Legendary Team",
+   "received": [
+    {
+     "item": "Puka Nacua (LAR)",
+     "pos": "WR"
+    },
+    {
+     "item": "Round 11 Pick",
+     "pos": null
+    }
+   ]
+  },
+  {
+   "team": "jen's Legendary Team",
+   "from": "Any given Sunday",
+   "received": [
+    {
+     "item": "Xavier Worthy (KC)",
+     "pos": "WR"
+    },
+    {
+     "item": "Round 2 Pick",
+     "pos": null
+    }
+   ]
+  },
+  {
+   "team": "Leeroy Judkins",
+   "from": "jen's Legendary Team",
+   "received": [
+    {
+     "item": "Rhamondre Stevenson (NE)",
+     "pos": "RB"
+    },
+    {
+     "item": "CeeDee Lamb (Dal)",
+     "pos": "WR"
+    },
+    {
+     "item": "Round 10 Pick",
+     "pos": null
+    }
+   ]
+  },
+  {
+   "team": "jen's Legendary Team",
+   "from": "Leeroy Judkins",
+   "received": [
+    {
+     "item": "Jaylen Warren (Pit)",
+     "pos": "RB"
+    },
+    {
+     "item": "Round 2 Pick",
+     "pos": null
+    }
+   ]
+  }
+ ],
+ "draftResults2025": [
+  {
+   "round": "1",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "CeeDee Lamb"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Jahmyr Gibbs"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Amon-Ra St. Brown"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Derrick Henry"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Bijan Robinson"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Drake London"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Ashton Jeanty"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Christian McCaffrey"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Josh Jacobs"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Saquon Barkley"
+    }
+   ],
+   "extraPicks": []
+  },
+  {
+   "round": "2",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Puka Nacua"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Chase Brown"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Jonathan Taylor"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "A.J. Brown"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Jayden Daniels"
+    },
+    {
+     "team": "The V&G Express",
+     "player": null
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Trey McBride"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Lamar Jackson"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Tee Higgins"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "George Kittle"
+    }
+   ],
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "team": "Aarons got a Gun",
+       "player": "Jalen Hurts"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "round": "3",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Omarion Hampton"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Tyreek Hill"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Terry McLaurin"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "James Cook III"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Chuba Hubbard"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "TreVeyon Henderson"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": null
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Malik Nabers"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Mike Evans"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Ja'Marr Chase"
+    }
+   ],
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "team": "jen's Legendary Team",
+       "player": "Alvin Kamara"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "round": "4",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Kenneth Walker III"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Davante Adams"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Marvin Harrison Jr."
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Zay Flowers"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "James Conner"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "George Pickens"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "DK Metcalf"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Garrett Wilson"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Breece Hall"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "RJ Harvey"
+    }
+   ],
+   "extraPicks": []
+  },
+  {
+   "round": "5",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Joe Burrow"
+    },
+    {
+     "team": "The real sultan",
+     "player": "DeVonta Smith"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Xavier Worthy"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Tony Pollard"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Isiah Pacheco"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Courtland Sutton"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": null
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "D'Andre Swift"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Tetairoa McMillan"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Ricky Pearsall"
+    }
+   ],
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "team": "Aarons got a Gun",
+       "player": "David Montgomery"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "round": "6",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Calvin Ridley"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Travis Kelce"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Sam LaPorta"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Jordan Addison"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Justin Jefferson"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Emeka Egbuka"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Jaylen Waddle"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Chris Olave"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Aaron Jones Sr."
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Travis Hunter"
+    }
+   ],
+   "extraPicks": []
+  },
+  {
+   "round": "7",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": null
+    },
+    {
+     "team": "The real sultan",
+     "player": "Kaleb Johnson"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Rashee Rice"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Tucker Kraft"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Rome Odunze"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Kyren Williams"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Stefon Diggs"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Tyrone Tracy Jr."
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Mark Andrews"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Patrick Mahomes"
+    }
+   ],
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "team": "Maye I put it in your Boutte",
+       "player": "Jaylen Warren"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "round": "8",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Zach Charbonnet"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Bo Nix"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Matthew Golden"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Jordan Mason"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Jakobi Meyers"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "DJ Moore"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Braelon Allen"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Jerry Jeudy"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Deebo Samuel Sr."
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "J.K. Dobbins"
+    }
+   ],
+   "extraPicks": []
+  },
+  {
+   "round": "9",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Brian Thomas Jr."
+    },
+    {
+     "team": "The real sultan",
+     "player": "Jaxon Smith-Njigba"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": null
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Drake Maye"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Dalton Kincaid"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Evan Engram"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Nico Collins"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Travis Etienne Jr."
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Brock Purdy"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Jauan Jennings"
+    }
+   ],
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "team": "The V&G Express",
+       "player": "Jacory Croskey-Merritt"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "round": "10",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Michael Pittman Jr."
+    },
+    {
+     "team": "The real sultan",
+     "player": null
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Bhayshul Tuten"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Jameson Williams"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Christian Kirk"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Dak Prescott"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Quinshon Judkins"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Khalil Shakir"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "De'Von Achane"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Cooper Kupp"
+    }
+   ],
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "team": "The V&G Express",
+       "player": "Tyler Warren"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "round": "11",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Jayden Reed"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Joe Mixon"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Ladd McConkey"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Josh Downs"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "DeMario Douglas"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Keon Coleman"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Josh Allen"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Brandon Aiyuk"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Cam Skattebo"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Baker Mayfield"
+    }
+   ],
+   "extraPicks": []
+  },
+  {
+   "round": "12",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Kyler Murray"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Chris Godwin Jr."
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Broncos"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Hunter Henry"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Rashid Shaheed"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Austin Ekeler"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Jerome Ford"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Brock Bowers"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Brandon Aubrey"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Javonte Williams"
+    }
+   ],
+   "extraPicks": []
+  },
+  {
+   "round": "13",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "T.J. Hockenson"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Nick Chubb"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": null
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Eagles"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Dylan Sampson"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Jaydon Blue"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Ollie Gordon II"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Justin Herbert"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Darnell Mooney"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Tank Bigsby"
+    }
+   ],
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "team": "The real sultan",
+       "player": "David Njoku"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "round": "14",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Rhamondre Stevenson"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Woody Marks"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Bucky Irving"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Cameron Dicker"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Brian Robinson"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Ravens"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Colston Loveland"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Kyle Pitts Sr."
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Wan'Dale Robinson"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Jake Ferguson"
+    }
+   ],
+   "extraPicks": []
+  },
+  {
+   "round": "15",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Tyjae Spears"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Steelers"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Najee Harris"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Rashod Bateman"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Wil Lutz"
+    },
+    {
+     "team": "The V&G Express",
+     "player": "Harrison Butker"
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Jayden Higgins"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Vikings"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Bills"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Chiefs"
+    }
+   ],
+   "extraPicks": []
+  },
+  {
+   "round": "16",
+   "picks": [
+    {
+     "team": "jen's Legendary Team",
+     "player": "Texans"
+    },
+    {
+     "team": "The real sultan",
+     "player": "Tyler Bass"
+    },
+    {
+     "team": "Aarons got a Gun",
+     "player": "Ka'imi Fairbairn"
+    },
+    {
+     "team": "Prestige Worldwide",
+     "player": "Kyle Williams"
+    },
+    {
+     "team": "Colin for the win",
+     "player": "Lions"
+    },
+    {
+     "team": "The V&G Express",
+     "player": null
+    },
+    {
+     "team": "Maye I put it in your Boutte",
+     "player": "Luther Burden III"
+    },
+    {
+     "team": "Leeroy Judkins",
+     "player": "Evan McPherson"
+    },
+    {
+     "team": "Any given Sunday",
+     "player": "Dallas Goedert"
+    },
+    {
+     "team": "Saquon deez nutz",
+     "player": "Chris Boswell"
+    }
+   ],
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "team": "Maye I put it in your Boutte",
+       "player": "Jake Bates"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "ruleGroups": [
+  {
+   "title": "Keeper Basics",
+   "rows": [
+    {
+     "num": 1,
+     "rule": "Each team may keep two players.",
+     "example": null
+    },
+    {
+     "num": 2,
+     "rule": "A keeper costs the round he was drafted in the prior year \u2014 unless he has been kept multiple years.",
+     "example": null
+    },
+    {
+     "num": 3,
+     "rule": "Each additional year you keep a player, his keeper cost moves up one round.",
+     "example": null
+    }
+   ]
+  },
+  {
+   "title": "Draft Order",
+   "rows": [
+    {
+     "num": 4,
+     "rule": "Draft order follows final regular season standings for teams that miss the playoffs.",
+     "example": null
+    },
+    {
+     "num": 5,
+     "rule": "As teams are eliminated in the playoffs, the team with the better record picks later.",
+     "example": "Example: Both eliminated in the quarterfinal \u2014 Team 1 (9-5) gets pick 6, Team 2 (7-7) gets pick 5."
+    },
+    {
+     "num": 6,
+     "rule": "If records are tied, the team with more regular season points picks later.",
+     "example": null
+    }
+   ]
+  },
+  {
+   "title": "Keeper Draft Position",
+   "rows": [
+    {
+     "num": 7,
+     "rule": "A keeper claimed off waivers last season costs an 8th round pick.",
+     "example": "Exception: if you originally drafted him, he keeps his original draft spot \u2014 waiver rules do not apply."
+    },
+    {
+     "num": 8,
+     "rule": "Keeping two players from the same round: the higher-ranked player (Yahoo rankings) costs one round earlier; the other keeps that round.",
+     "example": "Example: Two 3rd rounders \u2014 the better player costs a 2nd, the other a 3rd."
+    },
+    {
+     "num": 9,
+     "rule": "Keeping two 1st rounders: the higher-ranked player (Yahoo) costs a 1st, the other a 2nd.",
+     "example": null
+    },
+    {
+     "num": 10,
+     "rule": "A keeper acquired by trade costs the round he was drafted in the prior year.",
+     "example": "Exception: if he was claimed off waivers before the trade, he costs an 8th round pick."
+    }
+   ]
+  },
+  {
+   "title": "Trading",
+   "rows": [
+    {
+     "num": 11,
+     "rule": "Roster players and draft picks may be traded before the draft.",
+     "example": null
+    },
+    {
+     "num": 12,
+     "rule": "Pick limits: 16 picks max (one per draft selection), and 14 minimum if you keep two players.",
+     "example": null
+    },
+    {
+     "num": 13,
+     "rule": "Offseason trading closes one week before keeper selections are due.",
+     "example": null
+    },
+    {
+     "num": 14,
+     "rule": "Waiver-claimed players may be traded at 8th round keeper value.",
+     "example": null
+    }
+   ]
+  }
+ ],
+ "settingsGroups": [
+  {
+   "title": "League & Draft Settings",
+   "rows": [
+    {
+     "label": "Draft Type",
+     "value": "Live Standard Draft"
+    },
+    {
+     "label": "Max Teams",
+     "value": "10"
+    },
+    {
+     "label": "Live Draft Pick Time",
+     "value": "1 minute, 15 seconds"
+    },
+    {
+     "label": "Trade End Date",
+     "value": "December 5, 2026"
+    },
+    {
+     "label": "Waiver Time",
+     "value": "2 days"
+    },
+    {
+     "label": "Waiver Type",
+     "value": "FAB w/ continual rolling list tiebreak"
+    },
+    {
+     "label": "Weekly Waivers",
+     "value": "Game time - Tuesday"
+    },
+    {
+     "label": "Injured players from waivers/FA direct to IR slot",
+     "value": "Yes"
+    },
+    {
+     "label": "Playoffs",
+     "value": "6 teams - Weeks 15, 16 and 17 (ends Monday, Dec 29)"
+    },
+    {
+     "label": "Playoff Tie-Breaker",
+     "value": "Best regular season record vs. opponent wins"
+    },
+    {
+     "label": "Playoff Reseeding",
+     "value": "Yes"
+    },
+    {
+     "label": "Roster Positions",
+     "value": "QB, WR, WR, WR, RB, RB, TE, W/R/T, K, DEF, BN, BN, BN, BN, BN, BN, IR, IR"
+    }
+   ]
+  },
+  {
+   "title": "Offense",
+   "rows": [
+    {
+     "label": "Passing Yards",
+     "value": "25 yards per point; 6 points at 400 yards"
+    },
+    {
+     "label": "Passing Touchdowns",
+     "value": 6
+    },
+    {
+     "label": "Interceptions",
+     "value": -2
+    },
+    {
+     "label": "Rushing Yards",
+     "value": "10 yards per point; 6 points at 200 yards"
+    },
+    {
+     "label": "Rushing Touchdowns",
+     "value": 6
+    },
+    {
+     "label": "Receptions",
+     "value": 1
+    },
+    {
+     "label": "Receiving Yards",
+     "value": "10 yards per point; 6 points at 200 yards"
+    },
+    {
+     "label": "Receiving Touchdowns",
+     "value": 6
+    },
+    {
+     "label": "Return Touchdowns",
+     "value": 6
+    },
+    {
+     "label": "2-Point Conversions",
+     "value": 2
+    },
+    {
+     "label": "Fumbles Lost",
+     "value": -2
+    },
+    {
+     "label": "Offensive Fumble Return TD",
+     "value": 6
+    }
+   ]
+  },
+  {
+   "title": "Kickers",
+   "rows": [
+    {
+     "label": "Field Goals 0-19 Yards",
+     "value": 3
+    },
+    {
+     "label": "Field Goals 20-29 Yards",
+     "value": 3
+    },
+    {
+     "label": "Field Goals 30-39 Yards",
+     "value": 3
+    },
+    {
+     "label": "Field Goals 40-49 Yards",
+     "value": 4
+    },
+    {
+     "label": "Field Goals 50+ Yards",
+     "value": 5
+    },
+    {
+     "label": "Point After Attempt Made",
+     "value": 1
+    }
+   ]
+  },
+  {
+   "title": "Defense / Special Teams",
+   "rows": [
+    {
+     "label": "Sack",
+     "value": 1
+    },
+    {
+     "label": "Interception",
+     "value": 2
+    },
+    {
+     "label": "Fumble Recovery",
+     "value": 2
+    },
+    {
+     "label": "Touchdown",
+     "value": 6
+    },
+    {
+     "label": "Safety",
+     "value": 2
+    },
+    {
+     "label": "Block Kick",
+     "value": 2
+    },
+    {
+     "label": "Kickoff and Punt Return Touchdowns",
+     "value": 6
+    },
+    {
+     "label": "Points Allowed 0 points",
+     "value": 10
+    },
+    {
+     "label": "Points Allowed 1-6 points",
+     "value": 7
+    },
+    {
+     "label": "Points Allowed 7-13 points",
+     "value": 4
+    },
+    {
+     "label": "Points Allowed 14-20 points",
+     "value": 1
+    },
+    {
+     "label": "Points Allowed 21-27 points",
+     "value": 0
+    },
+    {
+     "label": "Points Allowed 28-34 points",
+     "value": -1
+    },
+    {
+     "label": "Points Allowed 35+ points",
+     "value": -4
+    },
+    {
+     "label": "4th Down Stops",
+     "value": 0.5
+    },
+    {
+     "label": "Defensive Yards Allowed - Negative",
+     "value": 2
+    },
+    {
+     "label": "Extra Point Returned",
+     "value": 2
+    }
+   ]
+  }
+ ],
+ "commissionerKeeperNote": "Keepers shouldn't be a fight \u2014 the system rewards good drafting and smart in-season moves. Raising keeper cost by a round each year makes you weigh a player's real value and frees up players who used to be locked away. Suggestions welcome.",
+ "keeperSelections": [],
+ "teamBadges": {}
 };
 
 function parseAsEastern(dateStr) {
@@ -3332,11 +4283,7 @@ function renderCountdown() {
   document.getElementById("countdown-label").textContent = countdown.label;
 }
 
-function ordinal(n) {
-  const s = ["th", "st", "nd", "rd"];
-  const v = n % 100;
-  return n + (s[(v - 20) % 10] || s[v] || s[0]);
-}
+const POS_ORDER = ["QB", "RB", "WR", "TE", "K", "DEF"];
 
 function hashHue(str) {
   let hash = 0;
@@ -3396,43 +4343,70 @@ document.getElementById("player-search-input").addEventListener("input", (e) => 
 function buildTeamCard(t) {
   const card = document.createElement("div");
   card.className = "team-card";
-  let html = "<h3>" + teamBadgeHtml(t.team) + "<span class=\"team-card-name\">" + t.team + "</span></h3>" +
-    "<div class=\"manager\">" + t.manager + "</div>";
-  if (t.keepers2025 != null) {
-    html += "<div class=\"stat-line\">2025 keepers kept: " + t.keepers2025 + " of 4</div>";
-  }
+  let html = "<h3>" + teamBadgeHtml(t.team) + "<span class=\"team-card-name\">" + t.team + "</span></h3><div class=\"manager\">" + t.manager + "</div>";
   if (t.roster && t.roster.length) {
-    const posOrder = ["QB", "RB", "WR", "TE", "K", "DEF"];
-    const groups = {};
-    const otherGroup = [];
-    t.roster.forEach(p => {
-      const pos = (p.pos || "").toUpperCase();
-      if (posOrder.includes(pos)) {
-        if (!groups[pos]) groups[pos] = [];
-        groups[pos].push(p);
-      } else {
-        otherGroup.push(p);
-      }
-    });
-    html += "<table><thead><tr><th>Player</th><th>NFL</th><th>Cost</th><th>Kept</th></tr></thead><tbody>";
-    const renderRow = p => {
-      const cost = p.keeperCost ? "<span class=\"cost-badge\">" + ordinal(p.keeperCost) + "</span>" : "";
-      return "<tr><td>" + p.player + "</td><td>" + p.nfl + "</td><td>" + cost + "</td><td>" + (p.kept ? "<span class=\"kept-yes\">★</span>" : "") + "</td></tr>";
-    };
-    posOrder.forEach(pos => {
-      if (groups[pos] && groups[pos].length) {
-        html += "<tr class=\"pos-group\"><td colspan=\"4\">" + pos + "</td></tr>";
-        groups[pos].forEach(p => { html += renderRow(p); });
-      }
-    });
-    if (otherGroup.length) {
-      html += "<tr class=\"pos-group\"><td colspan=\"4\">Other</td></tr>";
-      otherGroup.forEach(p => { html += renderRow(p); });
-    }
-    html += "</tbody></table>";
+    html += renderRosterTable(t.roster);
   }
   card.innerHTML = html;
   return card;
+}
+
+function renderRosterTable(roster) {
+  const groups = {};
+  const otherGroup = [];
+  roster.forEach(p => {
+    const pos = (p.pos || "").toUpperCase();
+    if (POS_ORDER.includes(pos)) {
+      if (!groups[pos]) groups[pos] = [];
+      groups[pos].push(p);
+    } else {
+      otherGroup.push(p);
+    }
+  });
+  let html = "<table><thead><tr><th>Player</th><th>NFL</th><th>Keeper Cost</th></tr></thead><tbody>";
+  const renderRow = p => {
+    const kept = p.kept2025 ? " <span class=\"kept-badge\">KEPT '25</span>" : "";
+    const cost = p.keeperCost ? "<span class=\"cost-badge\">" + ordinal(p.keeperCost) + "</span>" : "";
+    return "<tr><td>" + p.player + kept + "</td><td>" + (p.nfl || "") + "</td><td>" + cost + "</td></tr>";
+  };
+  POS_ORDER.forEach(pos => {
+    if (groups[pos] && groups[pos].length) {
+      html += "<tr class=\"pos-group\"><td colspan=\"3\">" + pos + "</td></tr>";
+      groups[pos].forEach(p => { html += renderRow(p); });
+    }
+  });
+  if (otherGroup.length) {
+    html += "<tr class=\"pos-group\"><td colspan=\"3\">Other</td></tr>";
+    otherGroup.forEach(p => { html += renderRow(p); });
+  }
+  html += "</tbody></table>";
+  return html;
+}
+
+function ordinal(n) {
+  const s = ["th", "st", "nd", "rd"];
+  const v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
+
+const ADMIN_PASSWORD = "HoldMyRings2026";
+let CURRENT_DATA = null;
+let FIRESTORE_DB = null;
+let FIRESTORE_REF = null;
+
+function renderKeepersGrid(data) {
+  const keepersGrid = document.getElementById("keepers-grid");
+  keepersGrid.innerHTML = "";
+  data.teams.forEach(t => {
+    const card = document.createElement("div");
+    card.className = "team-card";
+    const sel = (data.keeperSelections || []).find(k => k.team === t.team);
+    const body = (sel && sel.players && sel.players.length)
+      ? "<ul style=\"margin:0; padding-left:18px; color: var(--text);\">" + sel.players.map(p => "<li>" + p + "</li>").join("") + "</ul>"
+      : "<div class=\"stat-line\" style=\"color: var(--muted); font-size: 0.85rem;\">Not yet selected</div>";
+    card.innerHTML = "<h3>" + teamBadgeHtml(t.team) + "<span class=\"team-card-name\">" + t.team + "</span></h3><div class=\"manager\">" + t.manager + "</div>" + body;
+    keepersGrid.appendChild(card);
+  });
 }
 
 function formatLastUpdated(dateStr) {
@@ -3445,71 +4419,6 @@ function formatLastUpdated(dateStr) {
 function parseRecord(record) {
   const parts = String(record || "0-0").split("-").map(Number);
   return { w: parts[0] || 0, l: parts[1] || 0 };
-}
-
-function renderTeamsGrid(data) {
-  const teamsGrid = document.getElementById("teams-grid");
-  teamsGrid.innerHTML = "";
-  data.teams.forEach(t => {
-    teamsGrid.appendChild(buildTeamCard(t));
-  });
-}
-
-function renderTeams2026(data) {
-  const teams2026 = data.teams2026 || [];
-  const teams2026Grid = document.getElementById("teams2026-grid");
-  teams2026Grid.innerHTML = "";
-  const teams2026EmptyNote = document.getElementById("teams2026-empty-note");
-  if (teams2026.length) {
-    teams2026EmptyNote.style.display = "none";
-    teams2026.forEach(t => {
-      teams2026Grid.appendChild(buildTeamCard(t));
-    });
-  } else {
-    teams2026EmptyNote.style.display = "block";
-  }
-}
-
-function renderDraftOrderSection(data) {
-  const draftOrderList = document.getElementById("draftorder-list");
-  draftOrderList.innerHTML = "";
-  (data.draftOrder2026 || []).forEach(p => {
-    const li = document.createElement("li");
-    if (p.newOwner) {
-      li.innerHTML = "<span class=\"draft-order-owner\">" + p.newOwner + "<span class=\"swap-icon\" title=\"Traded pick\" aria-hidden=\"true\">&nbsp;&#8644;</span><span class=\"sr-only\"> (traded)</span></span><span class=\"draft-order-orig\">(from " + p.originalTeam + ")</span>";
-    } else {
-      li.textContent = p.originalTeam;
-    }
-    draftOrderList.appendChild(li);
-  });
-}
-
-function renderDraftResults(data) {
-  document.getElementById("draft-heading").textContent = data.currentSeason.year + " Draft Results";
-  const draftBody = document.getElementById("draft-body");
-  draftBody.innerHTML = "";
-  const draftEmptyNote = document.getElementById("draft-empty-note");
-  const draftResults = data.draftResults || [];
-  if (draftResults.length) {
-    draftEmptyNote.style.display = "none";
-    draftResults.forEach(row => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = "<td>" + row.round + "</td><td>" + row.pick + "</td><td>" + row.team + "</td><td>" + row.player + "</td>";
-      draftBody.appendChild(tr);
-    });
-  } else {
-    draftEmptyNote.style.display = "block";
-  }
-}
-
-function renderTradesSection(data) {
-  const tradesBody = document.getElementById("trades-body");
-  tradesBody.innerHTML = "";
-  (data.trades || []).forEach(row => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = "<td>" + row.date + "</td><td>" + row.teams + "</td><td>" + row.details + "</td>";
-    tradesBody.appendChild(tr);
-  });
 }
 
 function renderStandingsBody(data) {
@@ -3525,30 +4434,6 @@ function renderStandingsBody(data) {
     tr.innerHTML = "<td>" + (i + 1) + "</td><td class=\"standings-team-cell\">" + teamBadgeHtml(row.team) + "<span>" + row.team + "</span></td><td>" + row.manager + "</td><td>" + row.record + "</td><td>" + row.pointsFor + "</td>";
     standingsBody.appendChild(tr);
   });
-}
-
-function renderKeepersGrid(data) {
-  document.getElementById("keepers-heading").textContent = data.currentSeason.year + " Keeper Selections";
-  const keepersGrid = document.getElementById("keepers-grid");
-  keepersGrid.innerHTML = "";
-  if (data.keeperSelections) {
-    data.keeperSelections.forEach(k => {
-      const card = document.createElement("div");
-      card.className = "team-card";
-      let html = "<h3>" + teamBadgeHtml(k.team) + "<span class=\"team-card-name\">" + k.team + "</span></h3><div class=\"manager\">" + k.manager + "</div>";
-      if (k.players && k.players.length) {
-        html += "<ul style=\"margin:0; padding-left:18px; font-size:0.85rem;\">";
-        k.players.forEach(p => {
-          html += "<li>" + p + "</li>";
-        });
-        html += "</ul>";
-      } else {
-        html += "<div class=\"stat-line\">Not yet selected</div>";
-      }
-      card.innerHTML = html;
-      keepersGrid.appendChild(card);
-    });
-  }
 }
 
 function getRowStandings(row) {
@@ -3690,6 +4575,123 @@ function addHistoryYearBlock(container, season) {
   container.appendChild(block);
 }
 
+function renderTeamsGrid(data) {
+  const teamsGrid = document.getElementById("teams-grid");
+  teamsGrid.innerHTML = "";
+  data.teams.forEach(t => { teamsGrid.appendChild(buildTeamCard(t)); });
+}
+
+function renderTeams2026(data) {
+  const teams2026 = data.teams2026 || [];
+  const teams2026Grid = document.getElementById("teams2026-grid");
+  teams2026Grid.innerHTML = "";
+  const teams2026EmptyNote = document.getElementById("teams2026-empty-note");
+  if (teams2026.length) {
+    teams2026EmptyNote.style.display = "none";
+    teams2026.forEach(t => { teams2026Grid.appendChild(buildTeamCard(t)); });
+  } else {
+    teams2026EmptyNote.style.display = "block";
+  }
+}
+
+function renderDraftResults(data) {
+  document.getElementById("draft-heading").textContent = data.currentSeason.year + " Draft Results";
+  const draftBody = document.getElementById("draft-body");
+  draftBody.innerHTML = "";
+  const draftEmptyNote = document.getElementById("draft-empty-note");
+  const draftResults = data.draftResults || [];
+  if (draftResults.length) {
+    draftEmptyNote.style.display = "none";
+    draftResults.forEach(row => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = "<td>" + row.round + "</td><td>" + row.pick + "</td><td>" + row.team + "</td><td>" + row.player + "</td>";
+      draftBody.appendChild(tr);
+    });
+  } else {
+    draftEmptyNote.style.display = "block";
+  }
+}
+
+function renderDraftOrderSection(data) {
+  const doTeamNames = (data.draftOrder2026 || []).length ? data.draftOrder2026[0].picks.map(p => p.originalTeam) : [];
+  const headerRow = document.querySelector("#draftorder thead tr");
+  headerRow.innerHTML = "<th>Round</th>" + doTeamNames.map(n => "<th>" + n + "</th>").join("");
+  const draftOrderBody = document.getElementById("draftorder-body");
+  draftOrderBody.innerHTML = "";
+  (data.draftOrder2026 || []).forEach(r => {
+    const tr = document.createElement("tr");
+    let html = "<td>" + r.round + "</td>";
+    r.picks.forEach(p => {
+      if (p.newOwner) {
+        html += "<td class=\"draft-order-owner\">" + p.newOwner + "<span class=\"swap-icon\" title=\"Traded pick\" aria-hidden=\"true\">&nbsp;&#8644;</span><span class=\"sr-only\"> (traded)</span></td>";
+      } else {
+        html += "<td class=\"draft-order-none\">—</td>";
+      }
+    });
+    tr.innerHTML = html;
+    draftOrderBody.appendChild(tr);
+  });
+}
+
+function renderTradesSection(data) {
+  const tradesList = document.getElementById("trades-list");
+  tradesList.innerHTML = "";
+  (data.trades2025 || []).forEach(trade => {
+    const card = document.createElement("div");
+    card.className = "trade-card";
+    let html = "<div class=\"trade-team\">" + trade.team + " acquired" + (trade.from ? " <span class=\"trade-from\">(from " + trade.from + ")</span>" : "") + "</div><ul>";
+    (trade.received || []).forEach(item => {
+      html += "<li>" + item.item + (item.pos ? " (" + item.pos + ")" : "") + "</li>";
+    });
+    html += "</ul>";
+    card.innerHTML = html;
+    tradesList.appendChild(card);
+  });
+}
+
+function addDraftResultRow(rowsWrap, round, pick, team, player) {
+  const row = document.createElement("div");
+  row.className = "admin-draftresult-row";
+  row.innerHTML = "<input type=\"text\" class=\"admin-dr-round\" placeholder=\"Rd\" value=\"" + (round || "") + "\">" +
+    "<input type=\"text\" class=\"admin-dr-pick\" placeholder=\"Pick\" value=\"" + (pick || "") + "\">" +
+    "<input type=\"text\" class=\"admin-dr-team\" placeholder=\"Team\" value=\"" + (team || "") + "\">" +
+    "<input type=\"text\" class=\"admin-dr-player\" placeholder=\"Player\" value=\"" + (player || "") + "\">" +
+    "<button type=\"button\" class=\"admin-remove-row-btn\">Remove</button>";
+  row.querySelector(".admin-remove-row-btn").addEventListener("click", () => row.remove());
+  rowsWrap.appendChild(row);
+}
+
+function addTradeItemRow(itemsWrap, item, pos) {
+  const row = document.createElement("div");
+  row.className = "admin-trade-item-row";
+  row.innerHTML = "<input type=\"text\" class=\"admin-ti-item\" placeholder=\"Player / pick received\" value=\"" + (item || "") + "\">" +
+    "<input type=\"text\" class=\"admin-ti-pos\" placeholder=\"Pos (optional)\" value=\"" + (pos || "") + "\">" +
+    "<button type=\"button\" class=\"admin-remove-row-btn\">Remove</button>";
+  row.querySelector(".admin-remove-row-btn").addEventListener("click", () => row.remove());
+  itemsWrap.appendChild(row);
+}
+
+function addTradeBlock(container, trade, teamOptionsHtml) {
+  const t = trade || { team: "", from: "", received: [] };
+  const block = document.createElement("div");
+  block.className = "admin-trade-block";
+  block.innerHTML = "<div class=\"admin-trade-head\">" +
+    "<select class=\"admin-trade-team\">" + teamOptionsHtml + "</select>" +
+    "<select class=\"admin-trade-from\">" + teamOptionsHtml + "</select>" +
+    "<button type=\"button\" class=\"admin-remove-trade-btn\">Remove Trade</button>" +
+    "</div>" +
+    "<div class=\"admin-trade-items\"></div>" +
+    "<button type=\"button\" class=\"admin-add-item-btn\">+ Add Item</button>";
+  block.querySelector(".admin-remove-trade-btn").addEventListener("click", () => block.remove());
+  block.querySelector(".admin-trade-team").value = t.team || "";
+  block.querySelector(".admin-trade-from").value = t.from || "";
+  const itemsWrap = block.querySelector(".admin-trade-items");
+  const received = (t.received && t.received.length) ? t.received : [{ item: "", pos: "" }];
+  received.forEach(r => addTradeItemRow(itemsWrap, r.item, r.pos));
+  block.querySelector(".admin-add-item-btn").addEventListener("click", () => addTradeItemRow(itemsWrap, "", ""));
+  container.appendChild(block);
+}
+
 function buildAdminForm(data) {
   document.getElementById("admin-note").value = data.commissionerNote || "";
   document.getElementById("admin-draftdate").value = data.draftDate || "";
@@ -3718,47 +4720,48 @@ function buildAdminForm(data) {
 
   const keepersEl = document.getElementById("admin-keepers");
   keepersEl.innerHTML = "";
-  const KEEPER_SLOTS = 4;
   data.teams.forEach(t => {
     const existing = (data.keeperSelections || []).find(k => k.team === t.team);
     const picks = (existing && existing.players) || [];
-    const options = ["<option value=\"\">— none —</option>"].concat(
+    const options = ["<option value=\"\">\u2014 none \u2014</option>"].concat(
       t.roster.map(p => "<option value=\"" + p.player + "\">" + p.player + "</option>")
     ).join("");
-    const block = document.createElement("div");
-    block.className = "admin-keeper-block";
-    let html = "<span class=\"admin-team-label\">" + t.team + "</span><div class=\"admin-keeper-selects\">";
-    for (let slot = 0; slot < KEEPER_SLOTS; slot++) {
-      html += "<select data-team=\"" + t.team + "\" class=\"admin-keeper-select\" data-slot=\"" + slot + "\">" + options + "</select>";
-    }
-    html += "</div>";
-    block.innerHTML = html;
-    keepersEl.appendChild(block);
-    const selects = block.querySelectorAll("select");
-    for (let slot = 0; slot < KEEPER_SLOTS; slot++) {
-      if (picks[slot]) selects[slot].value = picks[slot];
-    }
+    const div = document.createElement("div");
+    div.className = "admin-keeper-row";
+    div.innerHTML = "<span class=\"admin-team-label\">" + t.team + "</span>" +
+      "<select data-team=\"" + t.team + "\" class=\"admin-keeper-select\" data-slot=\"0\">" + options + "</select>" +
+      "<select data-team=\"" + t.team + "\" class=\"admin-keeper-select\" data-slot=\"1\">" + options + "</select>";
+    keepersEl.appendChild(div);
+    const selects = div.querySelectorAll("select");
+    if (picks[0]) selects[0].value = picks[0];
+    if (picks[1]) selects[1].value = picks[1];
   });
 
   const historyEl = document.getElementById("admin-history");
   historyEl.innerHTML = "";
-  (data.history || []).slice().sort((a, b) => b.year - a.year).forEach(season => {
-    addHistoryYearBlock(historyEl, season);
-  });
+  (data.history || []).slice().sort((a, b) => b.year - a.year).forEach(season => addHistoryYearBlock(historyEl, season));
 
-  const teamOptions = ["<option value=\"\">— no trade —</option>"].concat(
+  const teamOptions = ["<option value=\"\">— none —</option>"].concat(
     data.teams.map(t => "<option value=\"" + t.team + "\">" + t.team + "</option>")
   ).join("");
 
   const draftOrderEl = document.getElementById("admin-draftorder");
   draftOrderEl.innerHTML = "";
-  (data.draftOrder2026 || []).forEach((p, i) => {
-    const div = document.createElement("div");
-    div.className = "admin-draftorder-row";
-    div.innerHTML = "<span class=\"admin-team-label\">" + p.originalTeam + "</span>" +
-      "<select data-idx=\"" + i + "\" class=\"admin-draftorder-select\">" + teamOptions + "</select>";
-    draftOrderEl.appendChild(div);
-    if (p.newOwner) div.querySelector("select").value = p.newOwner;
+  (data.draftOrder2026 || []).forEach((roundData, rIdx) => {
+    const roundBlock = document.createElement("div");
+    roundBlock.className = "admin-draftorder-round";
+    roundBlock.dataset.round = rIdx;
+    let headHtml = "<div class=\"admin-draftorder-round-head\">Round " + roundData.round + "</div>";
+    roundBlock.innerHTML = headHtml;
+    roundData.picks.forEach((p, pIdx) => {
+      const div = document.createElement("div");
+      div.className = "admin-draftorder-row";
+      div.innerHTML = "<span class=\"admin-team-label\">" + p.originalTeam + "</span>" +
+        "<select data-round=\"" + rIdx + "\" data-idx=\"" + pIdx + "\" class=\"admin-draftorder-select\">" + teamOptions + "</select>";
+      roundBlock.appendChild(div);
+      if (p.newOwner) div.querySelector("select").value = p.newOwner;
+    });
+    draftOrderEl.appendChild(roundBlock);
   });
 
   const draftResultsEl = document.getElementById("admin-draftresults");
@@ -3767,46 +4770,14 @@ function buildAdminForm(data) {
 
   const tradesEl = document.getElementById("admin-trades");
   tradesEl.innerHTML = "";
-  (data.trades || []).forEach(t => addTradeRow(tradesEl, t.date, t.teams, t.details));
-}
-
-function addDraftResultRow(rowsWrap, round, pick, team, player) {
-  const row = document.createElement("div");
-  row.className = "admin-draftresult-row";
-  row.innerHTML = "<input type=\"text\" class=\"admin-dr-round\" placeholder=\"Rd\" value=\"" + (round || "") + "\">" +
-    "<input type=\"text\" class=\"admin-dr-pick\" placeholder=\"Pick\" value=\"" + (pick || "") + "\">" +
-    "<input type=\"text\" class=\"admin-dr-team\" placeholder=\"Team\" value=\"" + (team || "") + "\">" +
-    "<input type=\"text\" class=\"admin-dr-player\" placeholder=\"Player\" value=\"" + (player || "") + "\">" +
-    "<button type=\"button\" class=\"admin-remove-row-btn\">Remove</button>";
-  row.querySelector(".admin-remove-row-btn").addEventListener("click", () => row.remove());
-  rowsWrap.appendChild(row);
-}
-
-function addTradeRow(rowsWrap, date, teams, details) {
-  const row = document.createElement("div");
-  row.className = "admin-trade-row";
-  row.innerHTML = "<input type=\"text\" class=\"admin-trade-date\" placeholder=\"Date\" value=\"" + (date || "") + "\">" +
-    "<input type=\"text\" class=\"admin-trade-teams\" placeholder=\"Teams involved\" value=\"" + (teams || "") + "\">" +
-    "<input type=\"text\" class=\"admin-trade-details\" placeholder=\"Details\" value=\"" + (details || "") + "\">" +
-    "<button type=\"button\" class=\"admin-remove-row-btn\">Remove</button>";
-  row.querySelector(".admin-remove-row-btn").addEventListener("click", () => row.remove());
-  rowsWrap.appendChild(row);
+  (data.trades2025 || []).forEach(t => addTradeBlock(tradesEl, t, teamOptions));
 }
 
 function render(LEAGUE_DATA) {
   CURRENT_DATA = LEAGUE_DATA;
   const leagueName = LEAGUE_DATA.leagueName || "League";
   document.getElementById("page-title").textContent = leagueName + " — Fantasy Football History";
-  const pageHeadingEl = document.getElementById("page-heading");
-  const nameSplitIdx = leagueName.lastIndexOf(" ");
-  if (nameSplitIdx > -1) {
-    const escHtml = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    const namePrefix = leagueName.slice(0, nameSplitIdx + 1);
-    const nameAccent = leagueName.slice(nameSplitIdx + 1);
-    pageHeadingEl.innerHTML = escHtml(namePrefix) + "<span class=\"yr-accent\">" + escHtml(nameAccent) + "</span>";
-  } else {
-    pageHeadingEl.textContent = leagueName;
-  }
+  document.getElementById("page-heading").textContent = leagueName;
   document.getElementById("footer-league-name").textContent = leagueName;
   document.getElementById("commish-note").textContent = LEAGUE_DATA.commissionerNote;
   document.getElementById("season-heading").textContent = LEAGUE_DATA.currentSeason.year + " Season Standings";
@@ -3825,14 +4796,14 @@ function render(LEAGUE_DATA) {
 
   renderKeepersGrid(LEAGUE_DATA);
 
-  renderDraftOrderSection(LEAGUE_DATA);
   renderDraftResults(LEAGUE_DATA);
 
-  const draftResults2025 = LEAGUE_DATA.draftResults2025 || [];
-  const d25TeamNames = draftResults2025.length ? draftResults2025[0].picks.map(p => p.team) : [];
+  renderDraftOrderSection(LEAGUE_DATA);
+
+  const d25TeamNames = LEAGUE_DATA.draftResults2025.length ? LEAGUE_DATA.draftResults2025[0].picks.map(p => p.team) : [];
   document.getElementById("draft2025-team-headers-placeholder").outerHTML = d25TeamNames.map(n => "<th>" + n + "</th>").join("");
   const draft2025Body = document.getElementById("draft2025-body");
-  draftResults2025.forEach(r => {
+  LEAGUE_DATA.draftResults2025.forEach(r => {
     const tr = document.createElement("tr");
     let html = "<td>" + r.round + "</td>";
     r.picks.forEach(p => {
@@ -3840,21 +4811,53 @@ function render(LEAGUE_DATA) {
     });
     tr.innerHTML = html;
     draft2025Body.appendChild(tr);
+    (r.extraPicks || []).forEach(extraGroup => {
+      const extraRow = extraGroup.picks || [];
+      if (!extraRow.length) return;
+      const extraTr = document.createElement("tr");
+      let extraHtml = "<td></td>";
+      const byTeam = {};
+      extraRow.forEach(p => { byTeam[p.team] = p.player; });
+      d25TeamNames.forEach(n => {
+        extraHtml += "<td>" + (byTeam[n] || "") + "</td>";
+      });
+      extraTr.innerHTML = extraHtml;
+      draft2025Body.appendChild(extraTr);
+    });
   });
 
   renderTradesSection(LEAGUE_DATA);
 
   const rulesGrid = document.getElementById("rules-grid");
-  LEAGUE_DATA.rulesGroups.forEach(group => {
+  LEAGUE_DATA.ruleGroups.forEach(group => {
     const card = document.createElement("div");
     card.className = "card";
     let html = "<h3>" + group.title + "</h3><table>";
-    group.rows.forEach(pair => {
-      html += "<tr><td>" + pair.label + "</td><td>" + pair.value + "</td></tr>";
+    group.rows.forEach(row => {
+      html += "<tr><td style=\"width: 30px;\"><span class=\"rule-num\">" + row.num + "</span></td><td>" + row.rule + (row.example ? "<div class=\"rule-example\">" + row.example + "</div>" : "") + "</td></tr>";
     });
     html += "</table>";
     card.innerHTML = html;
     rulesGrid.appendChild(card);
+  });
+  if (LEAGUE_DATA.commissionerKeeperNote) {
+    const noteCard = document.createElement("div");
+    noteCard.className = "card";
+    noteCard.innerHTML = "<h3>Commissioner's Note</h3><p style=\"color: var(--muted); font-style: italic; margin: 0;\">" + LEAGUE_DATA.commissionerKeeperNote + "</p>";
+    rulesGrid.appendChild(noteCard);
+  }
+
+  const settingsGrid = document.getElementById("settings-grid");
+  LEAGUE_DATA.settingsGroups.forEach(group => {
+    const card = document.createElement("div");
+    card.className = "card";
+    let html = "<h3>" + group.title + "</h3><table>";
+    group.rows.forEach(row => {
+      html += "<tr><td>" + row.label + "</td><td>" + row.value + "</td></tr>";
+    });
+    html += "</table>";
+    card.innerHTML = html;
+    settingsGrid.appendChild(card);
   });
 
   buildAdminForm(LEAGUE_DATA);
@@ -3896,7 +4899,10 @@ document.getElementById("admin-add-draftresult-btn").addEventListener("click", (
 });
 
 document.getElementById("admin-add-trade-btn").addEventListener("click", () => {
-  addTradeRow(document.getElementById("admin-trades"), "", "", "");
+  const teamOptions = CURRENT_DATA ? ["<option value=\"\">— none —</option>"].concat(
+    CURRENT_DATA.teams.map(t => "<option value=\"" + t.team + "\">" + t.team + "</option>")
+  ).join("") : "<option value=\"\">— none —</option>";
+  addTradeBlock(document.getElementById("admin-trades"), null, teamOptions);
 });
 
 document.getElementById("admin-generate-teams2026-btn").addEventListener("click", () => {
@@ -3911,15 +4917,11 @@ document.getElementById("admin-generate-teams2026-btn").addEventListener("click"
   results.forEach(r => {
     if (!r.team) return;
     if (!byTeam[r.team]) byTeam[r.team] = [];
-    byTeam[r.team].push({ player: r.player || "", pos: "", nfl: "", keeperCost: null, kept: false });
+    byTeam[r.team].push({ player: r.player || "", pos: "", nfl: "", keeperCost: null, kept2025: false });
   });
   CURRENT_DATA.teams2026 = Object.keys(byTeam).map(teamName => {
     const existing = CURRENT_DATA.teams.find(t => t.team === teamName);
-    return {
-      team: teamName,
-      manager: existing ? existing.manager : "",
-      roster: byTeam[teamName]
-    };
+    return { team: teamName, manager: existing ? existing.manager : "", roster: byTeam[teamName] };
   });
   renderTeams2026(CURRENT_DATA);
   statusEl.textContent = "Generated " + CURRENT_DATA.teams2026.length + " team(s) from draft results — click Save Changes to publish. (Position, NFL team, and keeper cost are left blank; add those later if you want them shown.)";
@@ -3969,11 +4971,7 @@ document.getElementById("admin-save-btn").addEventListener("click", async () => 
     if (!keeperMap[team]) keeperMap[team] = [];
     if (sel.value) keeperMap[team].push(sel.value);
   });
-  CURRENT_DATA.keeperSelections = CURRENT_DATA.keeperSelections.map(k => ({
-    team: k.team,
-    manager: k.manager,
-    players: keeperMap[k.team] || []
-  }));
+  CURRENT_DATA.keeperSelections = Object.keys(keeperMap).map(team => ({ team: team, players: keeperMap[team] }));
 
   const newHistory = [];
   document.querySelectorAll("#admin-history .admin-history-year").forEach(block => {
@@ -3991,7 +4989,9 @@ document.getElementById("admin-save-btn").addEventListener("click", async () => 
   CURRENT_DATA.history = newHistory;
 
   document.querySelectorAll("#admin-draftorder .admin-draftorder-select").forEach(sel => {
-    CURRENT_DATA.draftOrder2026[Number(sel.dataset.idx)].newOwner = sel.value || null;
+    const rIdx = Number(sel.dataset.round);
+    const pIdx = Number(sel.dataset.idx);
+    CURRENT_DATA.draftOrder2026[rIdx].picks[pIdx].newOwner = sel.value || null;
   });
 
   const newDraftResults = [];
@@ -4005,13 +5005,18 @@ document.getElementById("admin-save-btn").addEventListener("click", async () => 
   CURRENT_DATA.draftResults = newDraftResults;
 
   const newTrades = [];
-  document.querySelectorAll("#admin-trades .admin-trade-row").forEach(row => {
-    const date = row.querySelector(".admin-trade-date").value.trim();
-    const teams = row.querySelector(".admin-trade-teams").value.trim();
-    const details = row.querySelector(".admin-trade-details").value.trim();
-    if (teams || details) newTrades.push({ date: date, teams: teams, details: details });
+  document.querySelectorAll("#admin-trades .admin-trade-block").forEach(block => {
+    const team = block.querySelector(".admin-trade-team").value;
+    const from = block.querySelector(".admin-trade-from").value;
+    const received = [];
+    block.querySelectorAll(".admin-trade-item-row").forEach(row => {
+      const item = row.querySelector(".admin-ti-item").value.trim();
+      const pos = row.querySelector(".admin-ti-pos").value.trim();
+      if (item) received.push({ item: item, pos: pos || null });
+    });
+    if (team && received.length) newTrades.push({ team: team, from: from || null, received: received });
   });
-  CURRENT_DATA.trades = newTrades;
+  CURRENT_DATA.trades2025 = newTrades;
 
   statusEl.textContent = "Saving…";
   try {
@@ -4023,8 +5028,8 @@ document.getElementById("admin-save-btn").addEventListener("click", async () => 
     renderStandingsBody(CURRENT_DATA);
     renderKeepersGrid(CURRENT_DATA);
     renderHistorySection(CURRENT_DATA);
-    renderDraftOrderSection(CURRENT_DATA);
     renderDraftResults(CURRENT_DATA);
+    renderDraftOrderSection(CURRENT_DATA);
     renderTradesSection(CURRENT_DATA);
     renderTeamsGrid(CURRENT_DATA);
     renderTeams2026(CURRENT_DATA);
@@ -4043,9 +5048,9 @@ async function loadAndRender() {
 
     if (snap.exists()) {
       // Merge so any field added to DEFAULT_LEAGUE_DATA later (like
-      // draftOrder2026 / draftResults2025) shows up immediately even
-      // though the live Firestore document predates it. Anything the
-      // live document already has still wins.
+      // teams2026) shows up immediately even though the live
+      // Firestore document predates it. Anything the live document
+      // already has still wins.
       render({ ...DEFAULT_LEAGUE_DATA, ...snap.data() });
       syncNote.textContent = "Live data — synced.";
     } else {
@@ -4061,6 +5066,7 @@ async function loadAndRender() {
 }
 
 loadAndRender();
+
 </script>
 
 </body>
