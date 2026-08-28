@@ -426,13 +426,14 @@ footer {
 
 <nav>
   <button data-tab="home" class="active">Home</button>
-  <button data-tab="draft2025">2025 Draft</button>
-  <button data-tab="history">History</button>
-  <button data-tab="teams">2025 Teams</button>
-  <button data-tab="trades">Trades</button>
+  <button data-tab="teams2026">2026 Teams</button>
+  <button data-tab="draft">2026 Draft</button>
   <button data-tab="keepers">Keepers</button>
   <button data-tab="draftorder">Draft Order</button>
-  <button data-tab="teams2026">2026 Teams</button>
+  <button data-tab="trades">Trades</button>
+  <button data-tab="teams">2025 Teams</button>
+  <button data-tab="draft2025">2025 Draft</button>
+  <button data-tab="history">History</button>
   <button data-tab="rules">Rules</button>
   <button data-tab="admin">Admin</button>
 </nav>
@@ -476,6 +477,60 @@ footer {
     </div>
   </section>
 
+  <section id="teams2026">
+    <h2>2026 Teams &amp; Managers</h2>
+    <p style="color: var(--muted); margin-top: -6px;">Next season's rosters &mdash; posted here once the 2026 draft wraps up.</p>
+    <div class="teams-grid" id="teams2026-grid"></div>
+    <p id="teams2026-empty-note" style="color: var(--muted); font-style: italic; margin: 10px 0 0;">
+      2026 rosters will appear here once the draft wraps up.
+    </p>
+  </section>
+
+  <section id="draft">
+    <h2 id="draft-heading">Draft Results</h2>
+    <div class="card">
+      <table>
+        <thead>
+          <tr><th>Round</th><th>Pick</th><th>Team</th><th>Player</th></tr>
+        </thead>
+        <tbody id="draft-body"></tbody>
+      </table>
+      <p id="draft-empty-note" style="color: var(--muted); font-style: italic; display:none; margin: 10px 0 0;">
+        Draft results will appear here once the commissioner enters them after the draft.
+      </p>
+    </div>
+  </section>
+
+  <section id="keepers">
+    <h2>2026 Keeper Selections</h2>
+    <p style="color: var(--muted); margin-top: -6px;">Each team may keep up to two players. Selections will be posted here once picks are finalized.</p>
+    <div class="teams-grid" id="keepers-grid"></div>
+  </section>
+
+  <section id="draftorder">
+    <h2>2026 Draft Order &amp; Traded Picks</h2>
+    <p style="color: var(--muted); margin-top: -6px;">Final round-by-round order is set by 2025 standings once the season wraps. Below shows any pick that has already changed hands via trade &mdash; an underlined name with a &#8644; means that team now owns the pick instead of its original team.</p>
+    <div class="card">
+      <table>
+        <thead>
+          <tr><th>Round</th><th id="draftorder-team-headers-placeholder"></th></tr>
+        </thead>
+        <tbody id="draftorder-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="trades">
+    <h2>2025 Trades</h2>
+    <div id="trades-list"></div>
+  </section>
+
+  <section id="teams">
+    <h2>2025 Teams &amp; Managers</h2>
+    <p style="color: var(--muted); margin-top: -6px;">Full roster with each player's 2026 keeper cost (the round it would take to keep them). A red badge marks a player kept in 2025.</p>
+    <div class="teams-grid" id="teams-grid"></div>
+  </section>
+
   <section id="draft2025">
     <h2>2025 Draft Results</h2>
     <div class="card">
@@ -499,45 +554,6 @@ footer {
       </table>
     </div>
     <p style="color: var(--muted); font-size: 0.85rem;">Full playoff history will be added once the 2025 season officially closes out.</p>
-  </section>
-
-  <section id="teams">
-    <h2>2025 Teams &amp; Managers</h2>
-    <p style="color: var(--muted); margin-top: -6px;">Full roster with each player's 2026 keeper cost (the round it would take to keep them). A red badge marks a player kept in 2025.</p>
-    <div class="teams-grid" id="teams-grid"></div>
-  </section>
-
-  <section id="trades">
-    <h2>2025 Trades</h2>
-    <div id="trades-list"></div>
-  </section>
-
-  <section id="keepers">
-    <h2>2026 Keeper Selections</h2>
-    <p style="color: var(--muted); margin-top: -6px;">Each team may keep up to two players. Selections will be posted here once picks are finalized.</p>
-    <div class="teams-grid" id="keepers-grid"></div>
-  </section>
-
-  <section id="draftorder">
-    <h2>2026 Draft Order &amp; Traded Picks</h2>
-    <p style="color: var(--muted); margin-top: -6px;">Final round-by-round order is set by 2025 standings once the season wraps. Below shows any pick that has already changed hands via trade &mdash; an underlined name with a &#8644; means that team now owns the pick instead of its original team.</p>
-    <div class="card">
-      <table>
-        <thead>
-          <tr><th>Round</th><th id="draftorder-team-headers-placeholder"></th></tr>
-        </thead>
-        <tbody id="draftorder-body"></tbody>
-      </table>
-    </div>
-  </section>
-
-  <section id="teams2026">
-    <h2>2026 Teams &amp; Managers</h2>
-    <p style="color: var(--muted); margin-top: -6px;">Next season's rosters &mdash; posted here once the 2026 draft wraps up.</p>
-    <div class="teams-grid" id="teams2026-grid"></div>
-    <p id="teams2026-empty-note" style="color: var(--muted); font-style: italic; margin: 10px 0 0;">
-      2026 rosters will appear here once the draft wraps up.
-    </p>
   </section>
 
   <section id="rules">
@@ -1948,6 +1964,7 @@ const DEFAULT_LEAGUE_DATA = {
   }
  ],
  "teams2026": [],
+ "draftResults": [],
  "draftOrder2026": [
   {
    "round": "1",
@@ -4085,6 +4102,21 @@ function render(LEAGUE_DATA) {
   }
 
   renderKeepersGrid(LEAGUE_DATA);
+
+  document.getElementById("draft-heading").textContent = LEAGUE_DATA.currentSeason.year + " Draft Results";
+  const draftBody = document.getElementById("draft-body");
+  const draftEmptyNote = document.getElementById("draft-empty-note");
+  const draftResults = LEAGUE_DATA.draftResults || [];
+  if (draftResults.length) {
+    draftEmptyNote.style.display = "none";
+    draftResults.forEach(row => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = "<td>" + row.round + "</td><td>" + row.pick + "</td><td>" + row.team + "</td><td>" + row.player + "</td>";
+      draftBody.appendChild(tr);
+    });
+  } else {
+    draftEmptyNote.style.display = "block";
+  }
 
   const doTeamNames = LEAGUE_DATA.draftOrder2026.length ? LEAGUE_DATA.draftOrder2026[0].picks.map(p => p.originalTeam) : [];
   document.getElementById("draftorder-team-headers-placeholder").outerHTML = doTeamNames.map(n => "<th>" + n + "</th>").join("");
