@@ -22,11 +22,11 @@
   --text: #0a1a33;
   --muted: #4b5b78;
   --accent: #0a2f5c;
-  --gold: #b31942;
+  --gold: #b32328;
   --red: #1f4e8c;
   --silver: #7c8aa0;
   --bronze: #a86a3d;
-  --gold-wash: rgba(179, 25, 66, 0.07);
+  --gold-wash: rgba(179, 35, 40, 0.07);
   --font-display: "Oswald", "Arial Narrow", sans-serif;
 }
 @media (prefers-color-scheme: dark) {
@@ -38,11 +38,11 @@
     --text: #f2f6fc;
     --muted: #9fb3d1;
     --accent: #030a16;
-    --gold: #e63946;
+    --gold: #e64637;
     --red: #4a90e2;
     --silver: #9aa5b8;
     --bronze: #c98b52;
-    --gold-wash: rgba(230, 57, 70, 0.1);
+    --gold-wash: rgba(230, 70, 55, 0.1);
   }
 }
 * { box-sizing: border-box; }
@@ -4757,7 +4757,7 @@ document.getElementById("admin-export-btn").addEventListener("click", () => {
 document.getElementById("admin-save-btn").addEventListener("click", async () => {
   const statusEl = document.getElementById("admin-status");
   if (!CURRENT_DATA || !FIRESTORE_REF) {
-    statusEl.textContent = "Not connected to Firebase yet — try again in a moment.";
+    statusEl.textContent = "Not connected yet — try again in a moment.";
     return;
   }
   CURRENT_DATA.commissionerNote = document.getElementById("admin-note").value;
@@ -4858,16 +4858,16 @@ async function loadAndRender() {
       // Firestore document predates it. Anything the live document
       // already has still wins.
       render({ ...DEFAULT_LEAGUE_DATA, ...snap.data() });
-      syncNote.textContent = "Live data — synced from Firebase.";
+      syncNote.textContent = "Live data — synced.";
     } else {
       await setDoc(FIRESTORE_REF, DEFAULT_LEAGUE_DATA);
       render(DEFAULT_LEAGUE_DATA);
-      syncNote.textContent = "Live data — synced from Firebase (just initialized).";
+      syncNote.textContent = "Live data — synced (just initialized).";
     }
   } catch (err) {
     console.error("Firebase load failed, using built-in defaults:", err);
     render(DEFAULT_LEAGUE_DATA);
-    syncNote.textContent = "Showing built-in defaults (couldn't reach Firebase).";
+    syncNote.textContent = "Showing built-in defaults (couldn't reach the live data).";
   }
 }
 
