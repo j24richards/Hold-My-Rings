@@ -426,12 +426,13 @@ footer {
 
 <nav>
   <button data-tab="home" class="active">Home</button>
-  <button data-tab="teams">Teams</button>
+  <button data-tab="draft2025">2025 Draft</button>
+  <button data-tab="history">History</button>
+  <button data-tab="teams">2025 Teams</button>
+  <button data-tab="trades">Trades</button>
   <button data-tab="keepers">Keepers</button>
   <button data-tab="draftorder">Draft Order</button>
-  <button data-tab="draft2025">2025 Draft</button>
-  <button data-tab="trades">Trades</button>
-  <button data-tab="history">History</button>
+  <button data-tab="teams2026">2026 Teams</button>
   <button data-tab="rules">Rules</button>
   <button data-tab="admin">Admin</button>
 </nav>
@@ -475,10 +476,40 @@ footer {
     </div>
   </section>
 
+  <section id="draft2025">
+    <h2>2025 Draft Results</h2>
+    <div class="card">
+      <table>
+        <thead>
+          <tr><th>Round</th><th id="draft2025-team-headers-placeholder"></th></tr>
+        </thead>
+        <tbody id="draft2025-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="history">
+    <h2>Champions by Year</h2>
+    <div class="card">
+      <table>
+        <thead>
+          <tr><th>Year</th><th>Champion</th><th>Runner-Up</th></tr>
+        </thead>
+        <tbody id="history-body"></tbody>
+      </table>
+    </div>
+    <p style="color: var(--muted); font-size: 0.85rem;">Full playoff history will be added once the 2025 season officially closes out.</p>
+  </section>
+
   <section id="teams">
-    <h2>Teams &amp; Managers</h2>
+    <h2>2025 Teams &amp; Managers</h2>
     <p style="color: var(--muted); margin-top: -6px;">Full roster with each player's 2026 keeper cost (the round it would take to keep them). A red badge marks a player kept in 2025.</p>
     <div class="teams-grid" id="teams-grid"></div>
+  </section>
+
+  <section id="trades">
+    <h2>2025 Trades</h2>
+    <div id="trades-list"></div>
   </section>
 
   <section id="keepers">
@@ -500,34 +531,13 @@ footer {
     </div>
   </section>
 
-  <section id="draft2025">
-    <h2>2025 Draft Results</h2>
-    <div class="card">
-      <table>
-        <thead>
-          <tr><th>Round</th><th id="draft2025-team-headers-placeholder"></th></tr>
-        </thead>
-        <tbody id="draft2025-body"></tbody>
-      </table>
-    </div>
-  </section>
-
-  <section id="trades">
-    <h2>2025 Trades</h2>
-    <div id="trades-list"></div>
-  </section>
-
-  <section id="history">
-    <h2>Champions by Year</h2>
-    <div class="card">
-      <table>
-        <thead>
-          <tr><th>Year</th><th>Champion</th><th>Runner-Up</th></tr>
-        </thead>
-        <tbody id="history-body"></tbody>
-      </table>
-    </div>
-    <p style="color: var(--muted); font-size: 0.85rem;">Full playoff history will be added once the 2025 season officially closes out.</p>
+  <section id="teams2026">
+    <h2>2026 Teams &amp; Managers</h2>
+    <p style="color: var(--muted); margin-top: -6px;">Next season's rosters &mdash; posted here once the 2026 draft wraps up.</p>
+    <div class="teams-grid" id="teams2026-grid"></div>
+    <p id="teams2026-empty-note" style="color: var(--muted); font-style: italic; margin: 10px 0 0;">
+      2026 rosters will appear here once the draft wraps up.
+    </p>
   </section>
 
   <section id="rules">
@@ -1937,6 +1947,7 @@ const DEFAULT_LEAGUE_DATA = {
    ]
   }
  ],
+ "teams2026": [],
  "draftOrder2026": [
   {
    "round": "1",
@@ -3918,6 +3929,17 @@ function renderCountdown() {
 
 const POS_ORDER = ["QB", "RB", "WR", "TE", "K", "DEF"];
 
+function buildTeamCard(t) {
+  const card = document.createElement("div");
+  card.className = "team-card";
+  let html = "<h3>" + t.team + "</h3><div class=\"manager\">" + t.manager + "</div>";
+  if (t.roster && t.roster.length) {
+    html += renderRosterTable(t.roster);
+  }
+  card.innerHTML = html;
+  return card;
+}
+
 function renderRosterTable(roster) {
   const groups = {};
   const otherGroup = [];
@@ -4047,13 +4069,20 @@ function render(LEAGUE_DATA) {
 
   const teamsGrid = document.getElementById("teams-grid");
   LEAGUE_DATA.teams.forEach(t => {
-    const card = document.createElement("div");
-    card.className = "team-card";
-    let html = "<h3>" + t.team + "</h3><div class=\"manager\">" + t.manager + "</div>";
-    html += renderRosterTable(t.roster);
-    card.innerHTML = html;
-    teamsGrid.appendChild(card);
+    teamsGrid.appendChild(buildTeamCard(t));
   });
+
+  const teams2026 = LEAGUE_DATA.teams2026 || [];
+  const teams2026Grid = document.getElementById("teams2026-grid");
+  const teams2026EmptyNote = document.getElementById("teams2026-empty-note");
+  if (teams2026.length) {
+    teams2026EmptyNote.style.display = "none";
+    teams2026.forEach(t => {
+      teams2026Grid.appendChild(buildTeamCard(t));
+    });
+  } else {
+    teams2026EmptyNote.style.display = "block";
+  }
 
   renderKeepersGrid(LEAGUE_DATA);
 
@@ -4213,7 +4242,11 @@ async function loadAndRender() {
     const snap = await getDoc(FIRESTORE_REF);
 
     if (snap.exists()) {
-      render(snap.data());
+      // Merge so any field added to DEFAULT_LEAGUE_DATA later (like
+      // teams2026) shows up immediately even though the live
+      // Firestore document predates it. Anything the live document
+      // already has still wins.
+      render({ ...DEFAULT_LEAGUE_DATA, ...snap.data() });
       syncNote.textContent = "Live data — synced from Firebase.";
     } else {
       await setDoc(FIRESTORE_REF, DEFAULT_LEAGUE_DATA);
