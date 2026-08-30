@@ -885,6 +885,20 @@ footer {
         </div>
       </div>
       <div class="card">
+        <h3 style="margin-top:0;">Change Admin Password</h3>
+        <p style="color: var(--muted); margin-top: -8px; font-size: 0.82rem;">Updates the commissioner password used to unlock this panel. Takes effect immediately — you'll need the new password next time.</p>
+        <div class="admin-field">
+          <label for="admin-new-password">New Password</label>
+          <input type="password" id="admin-new-password" autocomplete="new-password">
+        </div>
+        <div class="admin-field">
+          <label for="admin-confirm-password">Confirm New Password</label>
+          <input type="password" id="admin-confirm-password" autocomplete="new-password">
+        </div>
+        <button type="button" class="admin-btn admin-btn-secondary" id="admin-change-password-btn">Change Password</button>
+        <p id="admin-password-status" style="color: var(--muted); font-size: 0.82rem; margin-top: 8px;"></p>
+      </div>
+      <div class="card">
         <h3 style="margin-top:0;">2026 Season Standings</h3>
         <p style="color: var(--muted); margin-top: -8px; font-size: 0.82rem;">Record and points for, per team.</p>
         <div id="admin-standings"></div>
@@ -956,6 +970,7 @@ const DEFAULT_LEAGUE_DATA = {
  "leagueName": "Hold My Rings",
  "lastUpdated": "2026-08-25",
  "draftDate": "2026-09-08T19:30:00",
+  
  "commissionerNote": "Welcome to Hold My Rings' home on the web! Replace this note each season \u2014 draft reminders, trade deadlines, playoff news, whatever you want everyone to see first.",
  "currentSeason": {
   "year": 2026,
@@ -4921,12 +4936,37 @@ document.getElementById("mobile-nav-select").addEventListener("change", (e) => {
 
 document.getElementById("admin-unlock-btn").addEventListener("click", () => {
   const val = document.getElementById("admin-password").value;
-  if (val === ADMIN_PASSWORD) {
+  const activePassword = (CURRENT_DATA && CURRENT_DATA.adminPassword) || ADMIN_PASSWORD;
+  if (val === activePassword) {
     document.getElementById("admin-locked").style.display = "none";
     document.getElementById("admin-panel").style.display = "block";
     document.getElementById("admin-error").style.display = "none";
   } else {
     document.getElementById("admin-error").style.display = "block";
+  }
+});
+
+document.getElementById("admin-change-password-btn").addEventListener("click", async () => {
+  const statusEl = document.getElementById("admin-password-status");
+  const newVal = document.getElementById("admin-new-password").value;
+  const confirmVal = document.getElementById("admin-confirm-password").value;
+  if (!newVal || newVal.length < 4) {
+    statusEl.textContent = "Password must be at least 4 characters.";
+    return;
+  }
+  if (newVal !== confirmVal) {
+    statusEl.textContent = "Passwords don't match.";
+    return;
+  }
+  statusEl.textContent = "Saving…";
+  try {
+    CURRENT_DATA.adminPassword = newVal;
+    await setDoc(FIRESTORE_REF, CURRENT_DATA);
+    document.getElementById("admin-new-password").value = "";
+    document.getElementById("admin-confirm-password").value = "";
+    statusEl.textContent = "Password changed. Use the new password next time you unlock this panel.";
+  } catch (err) {
+    statusEl.textContent = "Save failed: " + err.message;
   }
 });
 
