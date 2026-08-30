@@ -5231,51 +5231,101 @@ function flattenTradesForExport(trades) {
   return rows;
 }
 
-function styleExportSheet(ws, rows, type) {
-    const headers = Object.keys(rows[0]);
+function styleExportSheet(ws, rows, type, opts) {
+    opts = opts || {};
+    const groupBy = opts.groupBy || null;
+        const groupLabel = opts.groupLabel || (key => key);
+    const hideColumns = opts.hideColumns || [];
+    const allHeaders = Object.keys(rows[0]);
+    const displayHeaders = allHeaders.filter(h => hideColumns.indexOf(h) === -1);
+    const numCols = Math.max(1, displayHeaders.length);
     const isRoster = type === "roster";
     const titleFill = isRoster ? "FF1F4E79" : "FF4472C4";
     const titleFontSize = isRoster ? 15 : 13;
     const headerFill = isRoster ? "FF2E75B6" : "FFB4C6E7";
     const headerFontColor = isRoster ? "FFFFFFFF" : "FF1F3864";
-
-    const titleRow = ws.getRow(1);
-    ws.mergeCells(1, 1, 1, headers.length);
+  
+    ws.mergeCells(1, 1, 1, numCols);
     const titleCell = ws.getCell(1, 1);
     titleCell.value = ws.name;
     titleCell.font = { name: "Calibri", size: titleFontSize, bold: true, color: { argb: "FFFFFFFF" } };
     titleCell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: titleFill } };
     titleCell.alignment = { horizontal: "center", vertical: "middle" };
-    titleRow.height = 30;
-
-    const headerRow = ws.getRow(2);
-    headers.forEach((h, idx) => {
-          const cell = headerRow.getCell(idx + 1);
-          cell.value = h;
-          cell.font = { name: "Calibri", size: 11, bold: true, color: { argb: headerFontColor } };
-          cell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: headerFill } };
-          cell.alignment = { horizontal: "center", vertical: "middle" };
-          cell.border = {
-                  bottom: { style: "medium", color: { argb: "FF8EA9DB" } },
-                  top: { style: "thin", color: { argb: "FFE0E0E0" } }
-          };
-    });
-    headerRow.height = 20;
-
-    for (let i = 0; i < rows.length; i++) {
-          const row = ws.getRow(i + 3);
-          const bandFill = i % 2 === 0 ? "FFFFFFFF" : "FFF7F7F7";
-          headers.forEach((h, idx) => {
+    ws.getRow(1).height = 30;
+  
+    function writeHeaderRow(rowNum) {
+          const headerRow = ws.getRow(rowNum);
+          displayHeaders.forEach((h, idx) => {
+                  const cell = headerRow.getCell(idx + 1);
+                  cell.value = h;
+                  cell.font = { name: "Calibri", size: 11, bold: true, color: { argb: headerFontColor } };
+                  cell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: headerFill } };
+                  cell.alignment = { horizontal: "center", vertical: "middle" };
+                  cell.border = {
+                            bottom: { style: "medium", color: { argb: "FF8EA9DB" } },
+                            top: { style: "thin", color: { argb: "FFE0E0E0" } }
+                  };
+          });
+          headerRow.height = 20;
+    }
+  
+    function writeDataRow(rowNum, rowData, bandIndex) {
+          const row = ws.getRow(rowNum);
+          const bandFill = bandIndex % 2 === 0 ? "FFFFFFFF" : "FFF7F7F7";
+          displayHeaders.forEach((h, idx) => {
                   const cell = row.getCell(idx + 1);
-                  cell.value = rows[i][h] != null ? rows[i][h] : "";
+                  cell.value = rowData[h] != null ? rowData[h] : "";
                   cell.font = { name: "Calibri", size: 11 };
                   cell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: bandFill } };
                   cell.alignment = { vertical: "middle" };
                   cell.border = { bottom: { style: "thin", color: { argb: "FFE0E0E0" } } };
           });
     }
-
-    headers.forEach((h, idx) => {
+  
+    let currentRow = 2;
+  
+    if (groupBy) {
+          const groups = [];
+          const groupLookup = new Map();
+          rows.forEach(r => {
+                  const key = groupBy(r) || "(Unassigned)";
+                  if (!groupLookup.has(key)) {
+                            groupLookup.set(key, groups.length);
+                            groups.push({ key: key, rows: [] });
+                  }
+                  groups[groupLookup.get(key)].rows.push(r);
+          });
+      
+          groups.forEach(g => {
+                  ws.mergeCells(currentRow, 1, currentRow, numCols);
+                  const sectionCell = ws.getCell(currentRow, 1);
+                  sectionCell.value = groupLabel(g.key, g.rows);
+                  sectionCell.font = { name: "Calibri", size: 12, bold: true, color: { argb: "FF1F3864" } };
+                  sectionCell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: "FFDCE6F1" } };
+                  sectionCell.alignment = { horizontal: "left", vertical: "middle", indent: 1 };
+                  ws.getRow(currentRow).height = 22;
+                  currentRow++;
+            
+                  writeHeaderRow(currentRow);
+                  currentRow++;
+            
+                  g.rows.forEach((r, i) => {
+                            writeDataRow(currentRow, r, i);
+                            currentRow++;
+                  });
+            
+                  currentRow++;
+          });
+    } else {
+          writeHeaderRow(currentRow);
+          currentRow++;
+          rows.forEach((r, i) => {
+                  writeDataRow(currentRow, r, i);
+                  currentRow++;
+          });
+    }
+  
+    displayHeaders.forEach((h, idx) => {
           let maxLen = h.length;
           rows.forEach(r => {
                   const val = r[h] == null ? "" : String(r[h]);
@@ -5283,48 +5333,59 @@ function styleExportSheet(ws, rows, type) {
           });
           ws.getColumn(idx + 1).width = Math.min(42, Math.max(10, maxLen + 3));
     });
-
-    ws.views = [{ state: "frozen", xSplit: 0, ySplit: 2 }];
+  
+    ws.views = [{ state: "frozen", xSplit: 0, ySplit: 1 }];
 }
-
+  
   document.getElementById("export-download-btn").addEventListener("click", async () => {
       const statusEl = document.getElementById("export-status");
       const data = CURRENT_DATA || DEFAULT_LEAGUE_DATA;
-
+    
+      const rosterGroupLabel = (key, groupRows) => {
+            const manager = groupRows[0] && groupRows[0].Manager;
+            return manager ? key + " — " + manager : key;
+      };
+    
       const exportSections = [
-        { id: "export-teams2026", sheet: "2026 Teams", type: "roster", rows: () => flattenRosterForExport(data.teams2026, false) },
+        { id: "export-teams2026", sheet: "2026 Teams", type: "roster", rows: () => flattenRosterForExport(data.teams2026, false),
+               groupBy: r => r.Team, groupLabel: rosterGroupLabel, hideColumns: ["Team", "Manager"] },
         { id: "export-draftResults", sheet: "2026 Draft", type: "table", rows: () => flattenDraftResultsFlat(data.draftResults) },
-        { id: "export-draftOrder2026", sheet: "Draft Order", type: "table", rows: () => flattenDraftOrderForExport(data.draftOrder2026) },
-        { id: "export-trades2025", sheet: "Trades", type: "table", rows: () => flattenTradesForExport(data.trades2025) },
-        { id: "export-teams", sheet: "2025 Teams", type: "roster", rows: () => flattenRosterForExport(data.teams, true) },
+        { id: "export-draftOrder2026", sheet: "Draft Order", type: "table", rows: () => flattenDraftOrderForExport(data.draftOrder2026),
+               groupBy: r => r["New Owner"] || r["Original Team"] },
+        { id: "export-trades2025", sheet: "Trades", type: "table", rows: () => flattenTradesForExport(data.trades2025),
+               groupBy: r => r.Team, hideColumns: ["Team"] },
+        { id: "export-teams", sheet: "2025 Teams", type: "roster", rows: () => flattenRosterForExport(data.teams, true),
+               groupBy: r => r.Team, groupLabel: rosterGroupLabel, hideColumns: ["Team", "Manager"] },
         { id: "export-draftResults2025", sheet: "2025 Draft", type: "table", rows: () => flattenDraftRounds(data.draftResults2025) }
           ];
-
+    
       const selected = exportSections.filter(s => {
             const cb = document.getElementById(s.id);
             return cb && cb.checked;
       });
-
+    
       if (!selected.length) {
             statusEl.textContent = "Pick at least one section to export.";
             return;
       }
-
+    
       statusEl.textContent = "Building workbook...";
-
+    
       const workbook = new ExcelJS.Workbook();
       workbook.creator = data.leagueName || "Hold My Rings";
       workbook.created = new Date();
-
+    
       selected.forEach(s => {
             const rows = s.rows();
             const ws = workbook.addWorksheet(s.sheet.slice(0, 31));
-            styleExportSheet(ws, rows.length ? rows : [{ "No data": "Nothing here yet" }], s.type);
+            styleExportSheet(ws, rows.length ? rows : [{ "No data": "Nothing here yet" }], s.type, {
+                    groupBy: s.groupBy, groupLabel: s.groupLabel, hideColumns: s.hideColumns
+            });
       });
-
+    
       const slug = (data.leagueName || "Hold My Rings").replace(/[^a-z0-9]+/gi, "-").replace(/^-+|-+$/g, "");
       const dateStr = new Date().toISOString().slice(0, 10);
-
+    
       try {
             const buffer = await workbook.xlsx.writeBuffer();
             const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
@@ -5340,8 +5401,7 @@ function styleExportSheet(ws, rows, type) {
       } catch (err) {
             statusEl.textContent = "Export failed: " + err.message;
       }
-  });
-async function loadAndRender() {
+  });async function loadAndRender() {
   const syncNote = document.getElementById("sync-note");
   try {
     const app = initializeApp(firebaseConfig);
