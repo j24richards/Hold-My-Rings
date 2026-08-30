@@ -4283,6 +4283,7 @@ const DEFAULT_LEAGUE_DATA = {
  ],
  "commissionerKeeperNote": "Keepers shouldn't be a fight \u2014 the system rewards good drafting and smart in-season moves. Raising keeper cost by a round each year makes you weigh a player's real value and frees up players who used to be locked away. Suggestions welcome.",
  "keeperSelections": [],
+ "keepersVisible": false,
  "teamBadges": {}
 };
 
@@ -4495,6 +4496,10 @@ let FIRESTORE_REF = null;
 function renderKeepersGrid(data) {
   const keepersGrid = document.getElementById("keepers-grid");
   keepersGrid.innerHTML = "";
+  if (!data.keepersVisible) {
+    keepersGrid.innerHTML = '<p style="color: var(--muted); grid-column: 1 / -1;">Keeper selections are not finalized yet — check back soon.</p>';
+    return;
+  }
   data.teams.forEach(t => {
     const card = document.createElement("div");
     card.className = "team-card";
@@ -4793,6 +4798,7 @@ function addTradeBlock(container, trade, teamOptionsHtml) {
 function buildAdminForm(data) {
   document.getElementById("admin-note").value = data.commissionerNote || "";
   document.getElementById("admin-draftdate").value = data.draftDate || "";
+  document.getElementById("admin-keepers-visible").checked = !!data.keepersVisible;
 
   const standingsEl = document.getElementById("admin-standings");
   standingsEl.innerHTML = "";
@@ -5095,6 +5101,7 @@ document.getElementById("admin-save-btn").addEventListener("click", async () => 
     if (sel.value) keeperMap[team].push(sel.value);
   });
   CURRENT_DATA.keeperSelections = Object.keys(keeperMap).map(team => ({ team: team, players: keeperMap[team] }));
+  CURRENT_DATA.keepersVisible = document.getElementById("admin-keepers-visible").checked;
 
   const newHistory = [];
   document.querySelectorAll("#admin-history .admin-history-year").forEach(block => {
@@ -5201,21 +5208,17 @@ function flattenDraftRounds(rounds) {
   return rows;
 }
 
-function flattenDraftOrderForExport(rounds) {
-  const rows = [];
-  (rounds || []).forEach(r => {
-    (r.picks || []).forEach((p, i) => {
-      rows.push({
-        Round: r.round,
-        Pick: i + 1,
-        "Original Team": p.originalTeam,
-        "New Owner": p.newOwner || ""
-      });
+function flattenDraftOrderMatrix(rounds) {
+    if (!rounds || !rounds.length) return [];
+    const teamNames = rounds[0].picks.map(p => p.originalTeam);
+    return rounds.map(r => {
+          const row = { Round: r.round };
+          r.picks.forEach((p, i) => {
+                  row[teamNames[i]] = p.newOwner || "—";
+          });
+          return row;
     });
-  });
-  return rows;
 }
-
 function flattenTradesForExport(trades) {
   const rows = [];
   (trades || []).forEach(t => {
@@ -5236,6 +5239,7 @@ function styleExportSheet(ws, rows, type, opts) {
     const groupBy = opts.groupBy || null;
         const groupLabel = opts.groupLabel || (key => key);
     const hideColumns = opts.hideColumns || [];
+      const cellStyle = opts.cellStyle || null;
     const allHeaders = Object.keys(rows[0]);
     const displayHeaders = allHeaders.filter(h => hideColumns.indexOf(h) === -1);
     const numCols = Math.max(1, displayHeaders.length);
@@ -5274,12 +5278,18 @@ function styleExportSheet(ws, rows, type, opts) {
           const bandFill = bandIndex % 2 === 0 ? "FFFFFFFF" : "FFF7F7F7";
           displayHeaders.forEach((h, idx) => {
                   const cell = row.getCell(idx + 1);
-                  cell.value = rowData[h] != null ? rowData[h] : "";
-                  cell.font = { name: "Calibri", size: 11 };
-                  cell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: bandFill } };
-                  cell.alignment = { vertical: "middle" };
-                  cell.border = { bottom: { style: "thin", color: { argb: "FFE0E0E0" } } };
+                      const val = rowData[h] != null ? rowData[h] : "";
+                  cell.value = val;
+                            const custom = cellStyle ? cellStyle(h, val, rowData) : null;
+                            const font = { name: "Calibri", size: 11 };
+                            if (custom && custom.bold) font.bold = true;
+                            if (custom && custom.color) font.color = { argb: custom.color };
+                            cell.font = font;
+                            cell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: bandFill } };
+                            cell.alignment = { vertical: "middle" };
+                            cell.border = { bottom: { style: "thin", color: { argb: "FFE0E0E0" } } };
           });
+            
     }
   
     let currentRow = 2;
@@ -5351,8 +5361,8 @@ function styleExportSheet(ws, rows, type, opts) {
                groupBy: r => r.Team, groupLabel: rosterGroupLabel, hideColumns: ["Team", "Manager"] },
         { id: "export-draftResults", sheet: "2026 Draft", type: "table", rows: () => flattenDraftResultsFlat(data.draftResults),
       groupBy: r => r.Team, hideColumns: ["Team"] },
-        { id: "export-draftOrder2026", sheet: "Draft Order", type: "table", rows: () => flattenDraftOrderForExport(data.draftOrder2026),
-               groupBy: r => r["New Owner"] || r["Original Team"] },
+        { id: "export-draftOrder2026", sheet: "Draft Order", type: "table", rows: () => flattenDraftOrderMatrix(data.draftOrder2026),
+               cellStyle: (header, value) => header === "Round" ? null : (value === "—" ? { color: "FF4B5B78" } : { color: "FFB82514", bold: true }) },
         { id: "export-trades2025", sheet: "Trades", type: "table", rows: () => flattenTradesForExport(data.trades2025),
                groupBy: r => r.Team, hideColumns: ["Team"] },
         { id: "export-teams", sheet: "2025 Teams", type: "roster", rows: () => flattenRosterForExport(data.teams, true),
@@ -5381,7 +5391,7 @@ function styleExportSheet(ws, rows, type, opts) {
             const rows = s.rows();
             const ws = workbook.addWorksheet(s.sheet.slice(0, 31));
             styleExportSheet(ws, rows.length ? rows : [{ "No data": "Nothing here yet" }], s.type, {
-                    groupBy: s.groupBy, groupLabel: s.groupLabel, hideColumns: s.hideColumns
+                    groupBy: s.groupBy, groupLabel: s.groupLabel, hideColumns: s.hideColumns, cellStyle: s.cellStyle
             });
       });
     
