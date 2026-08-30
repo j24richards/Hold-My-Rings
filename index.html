@@ -602,6 +602,25 @@ textarea { min-height: 80px; resize: vertical; }
   color: var(--text);
 }
 .admin-btn-secondary:hover { opacity: 0.8; }
+.export-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+  margin: 16px 0 20px;
+}
+.export-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+.export-option input { width: 16px; height: 16px; }
+.export-option label { font-weight: 600; font-size: 0.9rem; cursor: pointer; }
+.export-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+#export-status { color: var(--muted); font-size: 0.85rem; margin-top: 10px; }
 .admin-history-year {
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -721,6 +740,7 @@ footer {
   <button data-tab="teams">2025 Teams</button>
   <button data-tab="draft2025">2025 Draft</button>
   <button data-tab="history">History</button>
+  <button data-tab="export">Export</button>
   <button data-tab="rules">Rules</button>
   <button data-tab="admin">Admin</button>
 </nav>
@@ -735,6 +755,7 @@ footer {
     <option value="teams">2025 Teams</option>
     <option value="draft2025">2025 Draft</option>
     <option value="history">History</option>
+    <option value="export">Export</option>
     <option value="rules">Rules</option>
     <option value="admin">Admin</option>
   </select>
@@ -855,6 +876,29 @@ footer {
     </div>
   </section>
 
+  <section id="export">
+    <h2>Export to Excel</h2>
+    <div class="card">
+      <p style="color: var(--muted); margin-top: -4px;">Pick the sections you want, then download a spreadsheet built from the site's current live data.</p>
+      <div class="export-actions">
+        <button type="button" class="admin-btn admin-btn-secondary" id="export-select-all-btn">Select All</button>
+        <button type="button" class="admin-btn admin-btn-secondary" id="export-clear-all-btn">Clear All</button>
+      </div>
+      <div class="export-options">
+        <div class="export-option"><input type="checkbox" id="export-standings" checked><label for="export-standings">2026 Standings</label></div>
+        <div class="export-option"><input type="checkbox" id="export-teams2026" checked><label for="export-teams2026">2026 Teams</label></div>
+        <div class="export-option"><input type="checkbox" id="export-draftResults" checked><label for="export-draftResults">2026 Draft</label></div>
+        <div class="export-option"><input type="checkbox" id="export-draftOrder2026" checked><label for="export-draftOrder2026">Draft Order</label></div>
+        <div class="export-option"><input type="checkbox" id="export-trades2025" checked><label for="export-trades2025">Trades</label></div>
+        <div class="export-option"><input type="checkbox" id="export-teams" checked><label for="export-teams">2025 Teams</label></div>
+        <div class="export-option"><input type="checkbox" id="export-draftResults2025" checked><label for="export-draftResults2025">2025 Draft</label></div>
+        <div class="export-option"><input type="checkbox" id="export-history" checked><label for="export-history">History</label></div>
+      </div>
+      <button type="button" class="admin-btn" id="export-download-btn">Download Excel (.xlsx)</button>
+      <div id="export-status"></div>
+    </div>
+  </section>
+
   <section id="rules">
     <h2>League Rules</h2>
     <div class="rules-grid" id="rules-grid"></div>
@@ -953,6 +997,7 @@ footer {
 <footer><span id="footer-league-name">Hold My Rings</span> &middot; site last updated <span id="updated-date"></span></footer>
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
@@ -5116,6 +5161,133 @@ document.getElementById("admin-save-btn").addEventListener("click", async () => 
   } catch (err) {
     statusEl.textContent = "Save failed: " + err.message;
   }
+});
+
+document.getElementById("export-select-all-btn").addEventListener("click", () => {
+  document.querySelectorAll(".export-option input[type='checkbox']").forEach(cb => cb.checked = true);
+});
+document.getElementById("export-clear-all-btn").addEventListener("click", () => {
+  document.querySelectorAll(".export-option input[type='checkbox']").forEach(cb => cb.checked = false);
+});
+
+function flattenRosterForExport(teams, includeKept) {
+  const rows = [];
+  (teams || []).forEach(t => {
+    (t.roster || []).forEach(p => {
+      const row = {
+        Team: t.team,
+        Manager: t.manager || "",
+        Player: p.player,
+        Position: p.pos || "",
+        "NFL Team": p.nfl || "",
+        "Keeper Cost": p.keeperCost != null ? p.keeperCost : ""
+      };
+      if (includeKept) row["Kept"] = p.kept2025 ? "Yes" : "No";
+      rows.push(row);
+    });
+  });
+  return rows;
+}
+
+function flattenDraftResultsFlat(rows) {
+  return (rows || []).map(r => ({ Round: r.round, Pick: r.pick, Team: r.team, Player: r.player || "" }));
+}
+
+function flattenDraftRounds(rounds) {
+  const rows = [];
+  (rounds || []).forEach(r => {
+    (r.picks || []).forEach((p, i) => {
+      rows.push({ Round: r.round, Pick: i + 1, Team: p.team, Player: p.player || "" });
+    });
+  });
+  return rows;
+}
+
+function flattenDraftOrderForExport(rounds) {
+  const rows = [];
+  (rounds || []).forEach(r => {
+    (r.picks || []).forEach((p, i) => {
+      rows.push({
+        Round: r.round,
+        Pick: i + 1,
+        "Original Team": p.originalTeam,
+        "New Owner": p.newOwner || ""
+      });
+    });
+  });
+  return rows;
+}
+
+function flattenTradesForExport(trades) {
+  const rows = [];
+  (trades || []).forEach(t => {
+    (t.received || []).forEach(item => {
+      rows.push({
+        Team: t.team,
+        "Traded With": t.from || "",
+        Item: item.item,
+        Position: item.pos || ""
+      });
+    });
+  });
+  return rows;
+}
+
+function flattenStandingsForExport(standings) {
+  return (standings || []).map(s => ({
+    Team: s.team,
+    Manager: s.manager || "",
+    Record: s.record || "",
+    "Points For": s.pointsFor != null ? s.pointsFor : ""
+  }));
+}
+
+function flattenHistoryForExport(history) {
+  return (history || []).map(h => ({
+    Year: h.year,
+    Champion: h.champion || "",
+    "Champion Manager": h.championManager || "",
+    "Runner-Up": h.runnerUp || "",
+    "Runner-Up Manager": h.runnerUpManager || ""
+  }));
+}
+
+document.getElementById("export-download-btn").addEventListener("click", () => {
+  const statusEl = document.getElementById("export-status");
+  const data = CURRENT_DATA || DEFAULT_LEAGUE_DATA;
+
+  const exportSections = [
+    { id: "export-standings", sheet: "Standings", rows: () => flattenStandingsForExport(data.currentSeason && data.currentSeason.standings) },
+    { id: "export-teams2026", sheet: "2026 Teams", rows: () => flattenRosterForExport(data.teams2026, false) },
+    { id: "export-draftResults", sheet: "2026 Draft", rows: () => flattenDraftResultsFlat(data.draftResults) },
+    { id: "export-draftOrder2026", sheet: "Draft Order", rows: () => flattenDraftOrderForExport(data.draftOrder2026) },
+    { id: "export-trades2025", sheet: "Trades", rows: () => flattenTradesForExport(data.trades2025) },
+    { id: "export-teams", sheet: "2025 Teams", rows: () => flattenRosterForExport(data.teams, true) },
+    { id: "export-draftResults2025", sheet: "2025 Draft", rows: () => flattenDraftRounds(data.draftResults2025) },
+    { id: "export-history", sheet: "History", rows: () => flattenHistoryForExport(data.history) }
+  ];
+
+  const selected = exportSections.filter(s => {
+    const cb = document.getElementById(s.id);
+    return cb && cb.checked;
+  });
+
+  if (!selected.length) {
+    statusEl.textContent = "Pick at least one section to export.";
+    return;
+  }
+
+  const wb = XLSX.utils.book_new();
+  selected.forEach(s => {
+    const rows = s.rows();
+    const ws = XLSX.utils.json_to_sheet(rows.length ? rows : [{ "No data": "Nothing here yet" }]);
+    XLSX.utils.book_append_sheet(wb, ws, s.sheet.slice(0, 31));
+  });
+
+  const slug = (data.leagueName || "Hold My Rings").replace(/[^a-z0-9]+/gi, "-").replace(/^-+|-+$/g, "");
+  const dateStr = new Date().toISOString().slice(0, 10);
+  XLSX.writeFile(wb, slug + "-export-" + dateStr + ".xlsx");
+  statusEl.textContent = "Downloaded " + selected.length + " sheet(s).";
 });
 
 async function loadAndRender() {
