@@ -5349,14 +5349,16 @@ function styleExportSheet(ws, rows, type, opts) {
       const exportSections = [
         { id: "export-teams2026", sheet: "2026 Teams", type: "roster", rows: () => flattenRosterForExport(data.teams2026, false),
                groupBy: r => r.Team, groupLabel: rosterGroupLabel, hideColumns: ["Team", "Manager"] },
-        { id: "export-draftResults", sheet: "2026 Draft", type: "table", rows: () => flattenDraftResultsFlat(data.draftResults) },
+        { id: "export-draftResults", sheet: "2026 Draft", type: "table", rows: () => flattenDraftResultsFlat(data.draftResults),
+      groupBy: r => r.Team, hideColumns: ["Team"] },
         { id: "export-draftOrder2026", sheet: "Draft Order", type: "table", rows: () => flattenDraftOrderForExport(data.draftOrder2026),
                groupBy: r => r["New Owner"] || r["Original Team"] },
         { id: "export-trades2025", sheet: "Trades", type: "table", rows: () => flattenTradesForExport(data.trades2025),
                groupBy: r => r.Team, hideColumns: ["Team"] },
         { id: "export-teams", sheet: "2025 Teams", type: "roster", rows: () => flattenRosterForExport(data.teams, true),
                groupBy: r => r.Team, groupLabel: rosterGroupLabel, hideColumns: ["Team", "Manager"] },
-        { id: "export-draftResults2025", sheet: "2025 Draft", type: "table", rows: () => flattenDraftRounds(data.draftResults2025) }
+        { id: "export-draftResults2025", sheet: "2025 Draft", type: "table", rows: () => flattenDraftRounds(data.draftResults2025),
+      groupBy: r => r.Team, hideColumns: ["Team"] }
           ];
     
       const selected = exportSections.filter(s => {
