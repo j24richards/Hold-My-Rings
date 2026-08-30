@@ -5205,8 +5205,8 @@ function flattenDraftResultsFlat(rows) {
 function flattenDraftRounds(rounds) {
   const rows = [];
   (rounds || []).forEach(r => {
-    (r.picks || []).forEach((p, i) => {
-      rows.push({ Round: r.round, Pick: i + 1, Team: p.team, Player: p.player || "" });
+    (r.picks || []).forEach(p => {
+          rows.push({ Round: r.round, Team: p.team, Player: p.player || "" });
     });
   });
   return rows;
