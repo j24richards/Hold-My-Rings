@@ -296,6 +296,21 @@ tr:last-child td { border-bottom: none; }
   font-size: 0.85rem;
   margin-top: 4px;
 }
+.countdown-card .countdown-yahoo-link {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: none;
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  padding: 6px 14px;
+}
+.countdown-card .countdown-yahoo-link:hover {
+  background: var(--gold);
+  color: var(--panel);
+}
 .teams-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -764,7 +779,6 @@ footer {
   <div class="header-last-updated" id="header-last-updated"></div>
   <h1 id="page-heading">Hold My Rings</h1>
   <p>Keeper league, one belt at a time.</p>
-  <p><a href="Hold My Rings 2026.xlsx" download>Download full roster & keeper tracker (.xlsx)</a></p>
 </header>
 
 <nav>
@@ -821,6 +835,7 @@ footer {
         <span class="countdown-unit"><span class="countdown-num" id="countdown-seconds"></span><span class="countdown-suffix">s</span></span>
       </div>
       <div class="countdown-label" id="countdown-label"></div>
+      <a class="countdown-yahoo-link" href="https://football.fantasysports.yahoo.com/" target="_blank" rel="noopener noreferrer">Open Yahoo Fantasy Football &rarr;</a>
     </div>
     <h2 id="season-heading">2026 Season Standings</h2>
     <div class="card">
