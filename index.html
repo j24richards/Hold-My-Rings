@@ -405,9 +405,9 @@ tr:last-child td { border-bottom: none; }
   font-weight: 400;
 }
 .draft-order-none { color: var(--muted); }
-#draftorder td, #draftorder th { text-align: left; white-space: normal; }
-#draft2025-grid .team-card table { table-layout: fixed; }
-#draft2025-grid .team-card th:first-child, #draft2025-grid .team-card td:first-child { width: 30%; }
+#draft2025-grid .team-card table, #draftorder-grid .team-card table { table-layout: fixed; }
+#draft2025-grid .team-card th:first-child, #draft2025-grid .team-card td:first-child,
+#draftorder-grid .team-card th:first-child, #draftorder-grid .team-card td:first-child { width: 30%; }
 .trade-card {
   background: var(--panel);
   border: 1px solid var(--border);
@@ -808,18 +808,8 @@ footer {
 
   <section id="draftorder">
     <h2>2026 Draft Order &amp; Traded Picks</h2>
-    <p style="color: var(--muted); margin-top: -6px;">Final round-by-round order is set by 2025 standings once the season wraps. Every pick not listed below still belongs to its original team &mdash; only picks that have changed hands via trade are shown.</p>
-    <div class="card">
-      <table>
-        <thead>
-          <tr><th>Round</th><th>Original Team</th><th>Now Owned By</th></tr>
-        </thead>
-        <tbody id="draftorder-body"></tbody>
-      </table>
-      <p id="draftorder-empty-note" style="color: var(--muted); font-style: italic; display:none; margin: 10px 0 0;">
-        No picks have changed hands yet.
-      </p>
-    </div>
+    <p style="color: var(--muted); margin-top: -6px;">Final round-by-round order is set by 2025 standings once the season wraps. Each card below is one team's original draft slot &mdash; an underlined name with a &#8644; means that pick has been traded away.</p>
+    <div class="teams-grid" id="draftorder-grid"></div>
   </section>
 
   <section id="trades">
@@ -4729,26 +4719,33 @@ function renderDraftResults(data) {
 }
 
 function renderDraftOrderSection(data) {
-  const draftOrderBody = document.getElementById("draftorder-body");
-  draftOrderBody.innerHTML = "";
-  const tradedPicks = [];
-  (data.draftOrder2026 || []).forEach(r => {
+  const rounds = data.draftOrder2026 || [];
+  const teamNames = rounds.length ? rounds[0].picks.map(p => p.originalTeam) : [];
+  const picksByTeam = {};
+  teamNames.forEach(n => { picksByTeam[n] = []; });
+  rounds.forEach(r => {
     r.picks.forEach(p => {
-      if (p.newOwner) tradedPicks.push({ round: r.round, originalTeam: p.originalTeam, newOwner: p.newOwner });
+      if (picksByTeam[p.originalTeam]) picksByTeam[p.originalTeam].push({ round: r.round, newOwner: p.newOwner });
     });
   });
-  const emptyNote = document.getElementById("draftorder-empty-note");
-  if (tradedPicks.length) {
-    emptyNote.style.display = "none";
-    tradedPicks.forEach(p => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = "<td>" + p.round + "</td><td>" + p.originalTeam + "</td>" +
-        "<td class=\"draft-order-owner\">" + p.newOwner + "<span class=\"swap-icon\" title=\"Traded pick\" aria-hidden=\"true\">&nbsp;&#8644;</span><span class=\"sr-only\"> (traded)</span></td>";
-      draftOrderBody.appendChild(tr);
+  const grid = document.getElementById("draftorder-grid");
+  grid.innerHTML = "";
+  teamNames.forEach(name => {
+    const card = document.createElement("div");
+    card.className = "team-card";
+    let html = "<h3>" + name + "</h3><table><thead><tr><th>Rd</th><th>Owned By</th></tr></thead><tbody>";
+    picksByTeam[name].forEach(p => {
+      if (p.newOwner) {
+        html += "<tr><td>" + p.round + "</td><td class=\"draft-order-owner\">" + p.newOwner +
+          "<span class=\"swap-icon\" title=\"Traded pick\" aria-hidden=\"true\">&nbsp;&#8644;</span><span class=\"sr-only\"> (traded)</span></td></tr>";
+      } else {
+        html += "<tr><td>" + p.round + "</td><td>" + name + "</td></tr>";
+      }
     });
-  } else {
-    emptyNote.style.display = "block";
-  }
+    html += "</tbody></table>";
+    card.innerHTML = html;
+    grid.appendChild(card);
+  });
 }
 
 function renderDraft2025Grid(data) {
