@@ -5030,6 +5030,12 @@ document.getElementById("admin-unlock-btn").addEventListener("click", () => {
   }
 });
 
+document.getElementById("admin-password").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    document.getElementById("admin-unlock-btn").click();
+  }
+});
+
 document.getElementById("admin-change-password-btn").addEventListener("click", async () => {
   const statusEl = document.getElementById("admin-password-status");
   const newVal = document.getElementById("admin-new-password").value;
