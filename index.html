@@ -928,17 +928,7 @@ footer {
       </div>
       <div class="card">
         <h3 style="margin-top:0;">Change Admin Password</h3>
-        <p style="color: var(--muted); margin-top: -8px; font-size: 0.82rem;">Updates the commissioner password used to unlock this panel. Takes effect immediately — you'll need the new password next time.</p>
-        <div class="admin-field">
-          <label for="admin-new-password">New Password</label>
-          <input type="password" id="admin-new-password" autocomplete="new-password">
-        </div>
-        <div class="admin-field">
-          <label for="admin-confirm-password">Confirm New Password</label>
-          <input type="password" id="admin-confirm-password" autocomplete="new-password">
-        </div>
-        <button type="button" class="admin-btn admin-btn-secondary" id="admin-change-password-btn">Change Password</button>
-        <p id="admin-password-status" style="color: var(--muted); font-size: 0.82rem; margin-top: 8px;"></p>
+        <p style="color: var(--muted); margin-top: -8px; font-size: 0.82rem;">This panel now signs in with a real account, so the password isn't stored in this file or the site's database. To change it, go to the Firebase console for this project &rarr; Authentication &rarr; Users &rarr; find the commissioner account &rarr; Reset password.</p>
       </div>
       <div class="card">
         <h3 style="margin-top:0;">2026 Season Standings</h3>
@@ -1013,6 +1003,7 @@ footer {
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCFtbsT87kwHPOsWARXTOS3Hgeq56sniC4",
@@ -4502,10 +4493,31 @@ function ordinal(n) {
   return n + (s[(v - 20) % 10] || s[v] || s[0]);
 }
 
-const ADMIN_PASSWORD = "HoldMyRings2026";
+// The commissioner "password" box signs in to a real Firebase Auth account
+// behind the scenes, and Firestore's security rules only allow writes from
+// a signed-in user. This email doesn't need to be kept secret — it's just
+// the account's username; the actual secret is the password, which is
+// never stored in this file or in Firestore. It must exactly match the
+// email of the one user created under Authentication -> Users in the
+// Firebase console for this project.
+const COMMISSIONER_EMAIL = "commissioner@hold-my-rings.local";
 let CURRENT_DATA = null;
 let FIRESTORE_DB = null;
+let FIRESTORE_AUTH = null;
 let FIRESTORE_REF = null;
+
+function getDraftSpot(data, teamName) {
+  const round1 = (data.draftOrder2026 && data.draftOrder2026[0] && data.draftOrder2026[0].picks) || [];
+  const idx = round1.findIndex(p => p.originalTeam === teamName);
+  return idx === -1 ? 999 : idx + 1;
+}
+
+function getKeeperRound(data, teamName, playerName) {
+  const team = (data.teams || []).find(t => t.team === teamName);
+  if (!team || !team.roster) return null;
+  const rosterSpot = team.roster.find(r => r.player === playerName);
+  return rosterSpot && rosterSpot.keeperCost ? rosterSpot.keeperCost : null;
+}
 
 function renderKeepersGrid(data) {
   const keepersGrid = document.getElementById("keepers-grid");
@@ -4514,13 +4526,23 @@ function renderKeepersGrid(data) {
     keepersGrid.innerHTML = '<p style="color: var(--muted); grid-column: 1 / -1;">Keeper selections are not finalized yet — check back soon.</p>';
     return;
   }
-  data.teams.forEach(t => {
+  const sortedTeams = data.teams.slice().sort((a, b) => getDraftSpot(data, a.team) - getDraftSpot(data, b.team));
+  sortedTeams.forEach(t => {
     const card = document.createElement("div");
     card.className = "team-card";
     const sel = (data.keeperSelections || []).find(k => k.team === t.team);
-    const body = (sel && sel.players && sel.players.length)
-      ? "<ul style=\"margin:0; padding-left:18px; color: var(--text);\">" + sel.players.map(p => "<li>" + p + "</li>").join("") + "</ul>"
-      : "<div class=\"stat-line\" style=\"color: var(--muted); font-size: 0.85rem;\">Not yet selected</div>";
+    let body;
+    if (sel && sel.players && sel.players.length) {
+      const playersByRound = sel.players
+        .map(p => ({ name: p, round: getKeeperRound(data, t.team, p) }))
+        .sort((a, b) => (a.round || 999) - (b.round || 999));
+      body = "<ul style=\"margin:0; padding-left:18px; color: var(--text);\">" + playersByRound.map(p => {
+        const roundBadge = p.round ? " <span class=\"cost-badge\">Round " + ordinal(p.round) + "</span>" : "";
+        return "<li>" + p.name + roundBadge + "</li>";
+      }).join("") + "</ul>";
+    } else {
+      body = "<div class=\"stat-line\" style=\"color: var(--muted); font-size: 0.85rem;\">Not yet selected</div>";
+    }
     card.innerHTML = "<h3>" + teamBadgeHtml(t.team) + "<span class=\"team-card-name\">" + t.team + "</span></h3><div class=\"manager\">" + t.manager + "</div>" + body;
     keepersGrid.appendChild(card);
   });
@@ -5023,14 +5045,14 @@ document.getElementById("mobile-nav-select").addEventListener("change", (e) => {
   if (btn) btn.click();
 });
 
-document.getElementById("admin-unlock-btn").addEventListener("click", () => {
+document.getElementById("admin-unlock-btn").addEventListener("click", async () => {
   const val = document.getElementById("admin-password").value;
-  const activePassword = (CURRENT_DATA && CURRENT_DATA.adminPassword) || ADMIN_PASSWORD;
-  if (val === activePassword) {
+  try {
+    await signInWithEmailAndPassword(FIRESTORE_AUTH, COMMISSIONER_EMAIL, val);
     document.getElementById("admin-locked").style.display = "none";
     document.getElementById("admin-panel").style.display = "block";
     document.getElementById("admin-error").style.display = "none";
-  } else {
+  } catch (err) {
     document.getElementById("admin-error").style.display = "block";
   }
 });
@@ -5038,30 +5060,6 @@ document.getElementById("admin-unlock-btn").addEventListener("click", () => {
 document.getElementById("admin-password").addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     document.getElementById("admin-unlock-btn").click();
-  }
-});
-
-document.getElementById("admin-change-password-btn").addEventListener("click", async () => {
-  const statusEl = document.getElementById("admin-password-status");
-  const newVal = document.getElementById("admin-new-password").value;
-  const confirmVal = document.getElementById("admin-confirm-password").value;
-  if (!newVal || newVal.length < 4) {
-    statusEl.textContent = "Password must be at least 4 characters.";
-    return;
-  }
-  if (newVal !== confirmVal) {
-    statusEl.textContent = "Passwords don't match.";
-    return;
-  }
-  statusEl.textContent = "Saving…";
-  try {
-    CURRENT_DATA.adminPassword = newVal;
-    await setDoc(FIRESTORE_REF, CURRENT_DATA);
-    document.getElementById("admin-new-password").value = "";
-    document.getElementById("admin-confirm-password").value = "";
-    statusEl.textContent = "Password changed. Use the new password next time you unlock this panel.";
-  } catch (err) {
-    statusEl.textContent = "Save failed: " + err.message;
   }
 });
 
@@ -5489,6 +5487,7 @@ function styleExportSheet(ws, rows, type, opts) {
   try {
     const app = initializeApp(firebaseConfig);
     FIRESTORE_DB = getFirestore(app);
+    FIRESTORE_AUTH = getAuth(app);
     FIRESTORE_REF = doc(FIRESTORE_DB, "site", "leagueData");
     const snap = await getDoc(FIRESTORE_REF);
 
