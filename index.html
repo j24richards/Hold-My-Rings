@@ -4809,6 +4809,28 @@ function addTradeBlock(container, trade, teamOptionsHtml) {
   container.appendChild(block);
 }
 
+function populateKeeperPicker(data) {
+  const keepersEl = document.getElementById("admin-keepers");
+  if (!keepersEl) return;
+  keepersEl.innerHTML = "";
+  data.teams.forEach(t => {
+    const existing = (data.keeperSelections || []).find(k => k.team === t.team);
+    const picks = (existing && existing.players) || [];
+    const options = ["<option value=\"\">— none —</option>"].concat(
+      t.roster.map(p => "<option value=\"" + p.player + "\">" + p.player + "</option>")
+    ).join("");
+    const div = document.createElement("div");
+    div.className = "admin-keeper-row";
+    div.innerHTML = "<span class=\"admin-team-label\">" + t.team + "</span>" +
+      "<select data-team=\"" + t.team + "\" class=\"admin-keeper-select\" data-slot=\"0\">" + options + "</select>" +
+      "<select data-team=\"" + t.team + "\" class=\"admin-keeper-select\" data-slot=\"1\">" + options + "</select>";
+    keepersEl.appendChild(div);
+    const selects = div.querySelectorAll("select");
+    if (picks[0]) selects[0].value = picks[0];
+    if (picks[1]) selects[1].value = picks[1];
+  });
+}
+
 function populateMoveRosterControls(data) {
   const playerSel = document.getElementById("admin-move-player-select");
   const teamSel = document.getElementById("admin-move-team-select");
@@ -4855,25 +4877,8 @@ function buildAdminForm(data) {
     badgesEl.appendChild(div);
   });
 
-  const keepersEl = document.getElementById("admin-keepers");
-  keepersEl.innerHTML = "";
-  data.teams.forEach(t => {
-    const existing = (data.keeperSelections || []).find(k => k.team === t.team);
-    const picks = (existing && existing.players) || [];
-    const options = ["<option value=\"\">\u2014 none \u2014</option>"].concat(
-      t.roster.map(p => "<option value=\"" + p.player + "\">" + p.player + "</option>")
-    ).join("");
-    const div = document.createElement("div");
-    div.className = "admin-keeper-row";
-    div.innerHTML = "<span class=\"admin-team-label\">" + t.team + "</span>" +
-      "<select data-team=\"" + t.team + "\" class=\"admin-keeper-select\" data-slot=\"0\">" + options + "</select>" +
-      "<select data-team=\"" + t.team + "\" class=\"admin-keeper-select\" data-slot=\"1\">" + options + "</select>";
-    keepersEl.appendChild(div);
-    const selects = div.querySelectorAll("select");
-    if (picks[0]) selects[0].value = picks[0];
-    if (picks[1]) selects[1].value = picks[1];
-  });
-
+populateKeeperPicker(data);
+  
   populateMoveRosterControls(data);
 
   const historyEl = document.getElementById("admin-history");
@@ -5118,6 +5123,7 @@ document.getElementById("admin-move-player-btn").addEventListener("click", () =>
   const moved = fromTeamObj.roster.splice(idx, 1)[0];
   toTeamObj.roster.push(moved);
   populateMoveRosterControls(CURRENT_DATA);
+  populateKeeperPicker(CURRENT_DATA);
   statusEl.textContent = "Moved " + playerName + " from " + fromTeam + " to " + toTeam + ". Click Save Changes to publish.";
 });
 
