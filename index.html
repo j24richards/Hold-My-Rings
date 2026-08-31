@@ -405,16 +405,16 @@ tr:last-child td { border-bottom: none; }
   font-weight: 400;
 }
 .draft-order-none { color: var(--muted); }
-#draftorder .card, #draft2025 .card {
+#draftorder .card {
   padding: 14px 6px;
 }
-#draftorder table, #draft2025 table {
+#draftorder table {
   table-layout: fixed;
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
 }
-#draftorder th, #draftorder td, #draft2025 th, #draft2025 td {
+#draftorder th, #draftorder td {
   white-space: normal;
   overflow-wrap: break-word;
   font-size: 0.74rem;
@@ -422,16 +422,15 @@ tr:last-child td { border-bottom: none; }
   text-align: center;
   line-height: 1.25;
 }
-#draftorder th:first-child, #draftorder td:first-child,
-#draft2025 th:first-child, #draft2025 td:first-child {
+#draftorder th:first-child, #draftorder td:first-child {
   width: 32px;
   text-align: left;
 }
-#draftorder tbody tr:nth-child(even), #draft2025 tbody tr:nth-child(even) {
+#draftorder tbody tr:nth-child(even) {
   background: var(--panel-2);
 }
 @media (max-width: 700px) and (min-width: 481px) {
-  #draftorder th, #draftorder td, #draft2025 th, #draft2025 td {
+  #draftorder th, #draftorder td {
     font-size: 0.62rem;
     padding: 5px 2px;
   }
@@ -440,32 +439,32 @@ tr:last-child td { border-bottom: none; }
    back to a clean horizontal scroll with normal-size, unwrapped text
    rather than the tiny word-broken grid that would otherwise result. */
 @media (max-width: 480px) {
-  #draftorder .card, #draft2025 .card {
+  #draftorder .card {
     overflow-x: auto;
   }
-  #draftorder table, #draft2025 table {
+  #draftorder table {
     table-layout: auto;
     width: auto;
     min-width: 100%;
   }
-  #draftorder th, #draftorder td, #draft2025 th, #draft2025 td {
+  #draftorder th, #draftorder td {
     white-space: nowrap;
     overflow-wrap: normal;
     font-size: 0.78rem;
     padding: 8px 12px;
   }
-  #draftorder th:first-child, #draftorder td:first-child,
-  #draft2025 th:first-child, #draft2025 td:first-child {
+  #draftorder th:first-child, #draftorder td:first-child {
     width: auto;
     position: sticky;
     left: 0;
     background: var(--panel);
   }
-  #draftorder tbody tr:nth-child(even) td:first-child,
-  #draft2025 tbody tr:nth-child(even) td:first-child {
+  #draftorder tbody tr:nth-child(even) td:first-child {
     background: var(--panel-2);
   }
 }
+#draft2025-grid .team-card table { table-layout: fixed; }
+#draft2025-grid .team-card th:first-child, #draft2025-grid .team-card td:first-child { width: 30%; }
 .trade-card {
   background: var(--panel);
   border: 1px solid var(--border);
@@ -890,14 +889,8 @@ footer {
 
   <section id="draft2025">
     <h2>2025 Draft Results</h2>
-    <div class="card">
-      <table>
-        <thead>
-          <tr><th>Round</th><th id="draft2025-team-headers-placeholder"></th></tr>
-        </thead>
-        <tbody id="draft2025-body"></tbody>
-      </table>
-    </div>
+    <p style="color: var(--muted); margin-top: -6px;">Every team's picks, round by round.</p>
+    <div class="teams-grid" id="draft2025-grid"></div>
   </section>
 
   <section id="history">
@@ -4810,6 +4803,36 @@ function renderDraftOrderSection(data) {
   });
 }
 
+function renderDraft2025Grid(data) {
+  const rounds = data.draftResults2025 || [];
+  const teamNames = rounds.length ? rounds[0].picks.map(p => p.team) : [];
+  const picksByTeam = {};
+  teamNames.forEach(n => { picksByTeam[n] = []; });
+  rounds.forEach(r => {
+    r.picks.forEach(p => {
+      if (picksByTeam[p.team]) picksByTeam[p.team].push({ round: r.round, player: p.player });
+    });
+    (r.extraPicks || []).forEach(group => {
+      (group.picks || []).forEach(p => {
+        if (picksByTeam[p.team]) picksByTeam[p.team].push({ round: r.round + " (extra)", player: p.player });
+      });
+    });
+  });
+  const grid = document.getElementById("draft2025-grid");
+  grid.innerHTML = "";
+  teamNames.forEach(name => {
+    const card = document.createElement("div");
+    card.className = "team-card";
+    let html = "<h3>" + name + "</h3><table><thead><tr><th>Rd</th><th>Player</th></tr></thead><tbody>";
+    picksByTeam[name].forEach(p => {
+      html += "<tr><td>" + p.round + "</td><td>" + (p.player || "—") + "</td></tr>";
+    });
+    html += "</tbody></table>";
+    card.innerHTML = html;
+    grid.appendChild(card);
+  });
+}
+
 function renderTradesSection(data) {
   const tradesList = document.getElementById("trades-list");
   tradesList.innerHTML = "";
@@ -5004,31 +5027,7 @@ function render(LEAGUE_DATA) {
 
   renderDraftOrderSection(LEAGUE_DATA);
 
-  const d25TeamNames = LEAGUE_DATA.draftResults2025.length ? LEAGUE_DATA.draftResults2025[0].picks.map(p => p.team) : [];
-  document.getElementById("draft2025-team-headers-placeholder").outerHTML = d25TeamNames.map(n => "<th>" + n + "</th>").join("");
-  const draft2025Body = document.getElementById("draft2025-body");
-  LEAGUE_DATA.draftResults2025.forEach(r => {
-    const tr = document.createElement("tr");
-    let html = "<td>" + r.round + "</td>";
-    r.picks.forEach(p => {
-      html += "<td>" + (p.player || "—") + "</td>";
-    });
-    tr.innerHTML = html;
-    draft2025Body.appendChild(tr);
-    (r.extraPicks || []).forEach(extraGroup => {
-      const extraRow = extraGroup.picks || [];
-      if (!extraRow.length) return;
-      const extraTr = document.createElement("tr");
-      let extraHtml = "<td></td>";
-      const byTeam = {};
-      extraRow.forEach(p => { byTeam[p.team] = p.player; });
-      d25TeamNames.forEach(n => {
-        extraHtml += "<td>" + (byTeam[n] || "") + "</td>";
-      });
-      extraTr.innerHTML = extraHtml;
-      draft2025Body.appendChild(extraTr);
-    });
-  });
+  renderDraft2025Grid(LEAGUE_DATA);
 
   renderTradesSection(LEAGUE_DATA);
 
