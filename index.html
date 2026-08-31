@@ -960,6 +960,16 @@ footer {
               </label>
       </div>
       <div class="card">
+        <h3 style="margin-top:0;">Move a Player Between Rosters</h3>
+        <p style="color: var(--muted); margin-top: -8px; font-size: 0.82rem;">Fix a roster mistake by moving a player from one team's roster to another.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:8px;">
+          <select id="admin-move-player-select" style="flex:2; min-width:180px;"></select>
+          <select id="admin-move-team-select" style="flex:1; min-width:140px;"></select>
+          <button type="button" class="admin-btn admin-btn-secondary" id="admin-move-player-btn">Move Player</button>
+        </div>
+        <p id="admin-move-status" style="color: var(--muted); font-size: 0.82rem;"></p>
+      </div>
+      <div class="card">
         <h3 style="margin-top:0;">Season History</h3>
         <p style="color: var(--muted); margin-top: -8px; font-size: 0.82rem;">Add each season's full final standings, top team first. Leave a team blank to drop that row.</p>
         <div id="admin-history"></div>
@@ -4799,6 +4809,25 @@ function addTradeBlock(container, trade, teamOptionsHtml) {
   container.appendChild(block);
 }
 
+function populateMoveRosterControls(data) {
+  const playerSel = document.getElementById("admin-move-player-select");
+  const teamSel = document.getElementById("admin-move-team-select");
+  if (!playerSel || !teamSel) return;
+  const players = [];
+  data.teams.forEach(t => {
+    t.roster.forEach(p => {
+      players.push({ team: t.team, player: p.player });
+    });
+  });
+  players.sort((a, b) => a.player.localeCompare(b.player));
+  playerSel.innerHTML = players.map(p =>
+    "<option value=\"" + p.team + "||" + p.player + "\">" + p.player + " (" + p.team + ")</option>"
+  ).join("");
+  teamSel.innerHTML = data.teams.map(t =>
+    "<option value=\"" + t.team + "\">" + t.team + "</option>"
+  ).join("");
+}
+
 function buildAdminForm(data) {
   document.getElementById("admin-note").value = data.commissionerNote || "";
   document.getElementById("admin-draftdate").value = data.draftDate || "";
@@ -4844,6 +4873,8 @@ function buildAdminForm(data) {
     if (picks[0]) selects[0].value = picks[0];
     if (picks[1]) selects[1].value = picks[1];
   });
+
+  populateMoveRosterControls(data);
 
   const historyEl = document.getElementById("admin-history");
   historyEl.innerHTML = "";
@@ -5058,6 +5089,30 @@ document.getElementById("admin-generate-teams2026-btn").addEventListener("click"
   });
   renderTeams2026(CURRENT_DATA);
   statusEl.textContent = "Generated " + CURRENT_DATA.teams2026.length + " team(s) from draft results — click Save Changes to publish. (Position, NFL team, and keeper cost are left blank; add those later if you want them shown.)";
+});
+
+document.getElementById("admin-move-player-btn").addEventListener("click", () => {
+  const statusEl = document.getElementById("admin-move-status");
+  if (!CURRENT_DATA) return;
+  const playerSel = document.getElementById("admin-move-player-select");
+  const teamSel = document.getElementById("admin-move-team-select");
+  const raw = playerSel.value;
+  if (!raw) { statusEl.textContent = "No player available to move."; return; }
+  const sep = raw.indexOf("||");
+  const fromTeam = raw.slice(0, sep);
+  const playerName = raw.slice(sep + 2);
+  const toTeam = teamSel.value;
+  if (!toTeam) { statusEl.textContent = "Choose a destination team."; return; }
+  if (fromTeam === toTeam) { statusEl.textContent = playerName + " is already on " + toTeam + "."; return; }
+  const fromTeamObj = CURRENT_DATA.teams.find(t => t.team === fromTeam);
+  const toTeamObj = CURRENT_DATA.teams.find(t => t.team === toTeam);
+  if (!fromTeamObj || !toTeamObj) { statusEl.textContent = "Team not found."; return; }
+  const idx = fromTeamObj.roster.findIndex(p => p.player === playerName);
+  if (idx === -1) { statusEl.textContent = "Player not found on " + fromTeam + "."; return; }
+  const moved = fromTeamObj.roster.splice(idx, 1)[0];
+  toTeamObj.roster.push(moved);
+  populateMoveRosterControls(CURRENT_DATA);
+  statusEl.textContent = "Moved " + playerName + " from " + fromTeam + " to " + toTeam + ". Click Save Changes to publish.";
 });
 
 document.getElementById("admin-export-btn").addEventListener("click", () => {
