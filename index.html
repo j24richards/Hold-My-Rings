@@ -405,9 +405,67 @@ tr:last-child td { border-bottom: none; }
   font-weight: 400;
 }
 .draft-order-none { color: var(--muted); }
-#draft2025-grid .team-card table, #draftorder-grid .team-card table { table-layout: fixed; }
-#draft2025-grid .team-card th:first-child, #draft2025-grid .team-card td:first-child,
-#draftorder-grid .team-card th:first-child, #draftorder-grid .team-card td:first-child { width: 30%; }
+#draftorder .card, #draft2025 .card {
+  padding: 14px 6px;
+}
+#draftorder table, #draft2025 table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+#draftorder th, #draftorder td, #draft2025 th, #draft2025 td {
+  white-space: normal;
+  overflow-wrap: break-word;
+  font-size: 0.74rem;
+  padding: 7px 4px;
+  text-align: center;
+  line-height: 1.25;
+}
+#draftorder th:first-child, #draftorder td:first-child,
+#draft2025 th:first-child, #draft2025 td:first-child {
+  width: 32px;
+  text-align: left;
+}
+#draftorder tbody tr:nth-child(even), #draft2025 tbody tr:nth-child(even) {
+  background: var(--panel-2);
+}
+@media (max-width: 700px) and (min-width: 481px) {
+  #draftorder th, #draftorder td, #draft2025 th, #draft2025 td {
+    font-size: 0.62rem;
+    padding: 5px 2px;
+  }
+}
+/* Phones: 11 real columns can't stay legible with no scroll, so fall
+   back to a clean horizontal scroll with normal-size, unwrapped text
+   rather than the tiny word-broken grid that would otherwise result. */
+@media (max-width: 480px) {
+  #draftorder .card, #draft2025 .card {
+    overflow-x: auto;
+  }
+  #draftorder table, #draft2025 table {
+    table-layout: auto;
+    width: auto;
+    min-width: 100%;
+  }
+  #draftorder th, #draftorder td, #draft2025 th, #draft2025 td {
+    white-space: nowrap;
+    overflow-wrap: normal;
+    font-size: 0.78rem;
+    padding: 8px 12px;
+  }
+  #draftorder th:first-child, #draftorder td:first-child,
+  #draft2025 th:first-child, #draft2025 td:first-child {
+    width: auto;
+    position: sticky;
+    left: 0;
+    background: var(--panel);
+  }
+  #draftorder tbody tr:nth-child(even) td:first-child,
+  #draft2025 tbody tr:nth-child(even) td:first-child {
+    background: var(--panel-2);
+  }
+}
 .trade-card {
   background: var(--panel);
   border: 1px solid var(--border);
@@ -808,8 +866,15 @@ footer {
 
   <section id="draftorder">
     <h2>2026 Draft Order &amp; Traded Picks</h2>
-    <p style="color: var(--muted); margin-top: -6px;">Final round-by-round order is set by 2025 standings once the season wraps. Each card below is one team's original draft slot &mdash; an underlined name with a &#8644; means that pick has been traded away.</p>
-    <div class="teams-grid" id="draftorder-grid"></div>
+    <p style="color: var(--muted); margin-top: -6px;">Final round-by-round order is set by 2025 standings once the season wraps. Below shows any pick that has already changed hands via trade &mdash; an underlined name with a &#8644; means that team now owns the pick instead of its original team.</p>
+    <div class="card">
+      <table>
+        <thead>
+          <tr><th>Round</th><th id="draftorder-team-headers-placeholder"></th></tr>
+        </thead>
+        <tbody id="draftorder-body"></tbody>
+      </table>
+    </div>
   </section>
 
   <section id="trades">
@@ -825,8 +890,14 @@ footer {
 
   <section id="draft2025">
     <h2>2025 Draft Results</h2>
-    <p style="color: var(--muted); margin-top: -6px;">Every team's picks, round by round.</p>
-    <div class="teams-grid" id="draft2025-grid"></div>
+    <div class="card">
+      <table>
+        <thead>
+          <tr><th>Round</th><th id="draft2025-team-headers-placeholder"></th></tr>
+        </thead>
+        <tbody id="draft2025-body"></tbody>
+      </table>
+    </div>
   </section>
 
   <section id="history">
@@ -4719,62 +4790,23 @@ function renderDraftResults(data) {
 }
 
 function renderDraftOrderSection(data) {
-  const rounds = data.draftOrder2026 || [];
-  const teamNames = rounds.length ? rounds[0].picks.map(p => p.originalTeam) : [];
-  const picksByTeam = {};
-  teamNames.forEach(n => { picksByTeam[n] = []; });
-  rounds.forEach(r => {
+  const doTeamNames = (data.draftOrder2026 || []).length ? data.draftOrder2026[0].picks.map(p => p.originalTeam) : [];
+  const headerRow = document.querySelector("#draftorder thead tr");
+  headerRow.innerHTML = "<th>Round</th>" + doTeamNames.map(n => "<th>" + n + "</th>").join("");
+  const draftOrderBody = document.getElementById("draftorder-body");
+  draftOrderBody.innerHTML = "";
+  (data.draftOrder2026 || []).forEach(r => {
+    const tr = document.createElement("tr");
+    let html = "<td>" + r.round + "</td>";
     r.picks.forEach(p => {
-      if (picksByTeam[p.originalTeam]) picksByTeam[p.originalTeam].push({ round: r.round, newOwner: p.newOwner });
-    });
-  });
-  const grid = document.getElementById("draftorder-grid");
-  grid.innerHTML = "";
-  teamNames.forEach(name => {
-    const card = document.createElement("div");
-    card.className = "team-card";
-    let html = "<h3>" + name + "</h3><table><thead><tr><th>Rd</th><th>Owned By</th></tr></thead><tbody>";
-    picksByTeam[name].forEach(p => {
       if (p.newOwner) {
-        html += "<tr><td>" + p.round + "</td><td class=\"draft-order-owner\">" + p.newOwner +
-          "<span class=\"swap-icon\" title=\"Traded pick\" aria-hidden=\"true\">&nbsp;&#8644;</span><span class=\"sr-only\"> (traded)</span></td></tr>";
+        html += "<td class=\"draft-order-owner\" aria-label=\"" + p.newOwner + ", traded pick\">" + p.newOwner + "<span class=\"swap-icon\" title=\"Traded pick\" aria-hidden=\"true\">&nbsp;&#8644;</span></td>";
       } else {
-        html += "<tr><td>" + p.round + "</td><td>" + name + "</td></tr>";
+        html += "<td class=\"draft-order-none\">—</td>";
       }
     });
-    html += "</tbody></table>";
-    card.innerHTML = html;
-    grid.appendChild(card);
-  });
-}
-
-function renderDraft2025Grid(data) {
-  const rounds = data.draftResults2025 || [];
-  const teamNames = rounds.length ? rounds[0].picks.map(p => p.team) : [];
-  const picksByTeam = {};
-  teamNames.forEach(n => { picksByTeam[n] = []; });
-  rounds.forEach(r => {
-    r.picks.forEach(p => {
-      if (picksByTeam[p.team]) picksByTeam[p.team].push({ round: r.round, player: p.player });
-    });
-    (r.extraPicks || []).forEach(group => {
-      (group.picks || []).forEach(p => {
-        if (picksByTeam[p.team]) picksByTeam[p.team].push({ round: r.round + " (extra)", player: p.player });
-      });
-    });
-  });
-  const grid = document.getElementById("draft2025-grid");
-  grid.innerHTML = "";
-  teamNames.forEach(name => {
-    const card = document.createElement("div");
-    card.className = "team-card";
-    let html = "<h3>" + name + "</h3><table><thead><tr><th>Rd</th><th>Player</th></tr></thead><tbody>";
-    picksByTeam[name].forEach(p => {
-      html += "<tr><td>" + p.round + "</td><td>" + (p.player || "—") + "</td></tr>";
-    });
-    html += "</tbody></table>";
-    card.innerHTML = html;
-    grid.appendChild(card);
+    tr.innerHTML = html;
+    draftOrderBody.appendChild(tr);
   });
 }
 
@@ -4972,7 +5004,31 @@ function render(LEAGUE_DATA) {
 
   renderDraftOrderSection(LEAGUE_DATA);
 
-  renderDraft2025Grid(LEAGUE_DATA);
+  const d25TeamNames = LEAGUE_DATA.draftResults2025.length ? LEAGUE_DATA.draftResults2025[0].picks.map(p => p.team) : [];
+  document.getElementById("draft2025-team-headers-placeholder").outerHTML = d25TeamNames.map(n => "<th>" + n + "</th>").join("");
+  const draft2025Body = document.getElementById("draft2025-body");
+  LEAGUE_DATA.draftResults2025.forEach(r => {
+    const tr = document.createElement("tr");
+    let html = "<td>" + r.round + "</td>";
+    r.picks.forEach(p => {
+      html += "<td>" + (p.player || "—") + "</td>";
+    });
+    tr.innerHTML = html;
+    draft2025Body.appendChild(tr);
+    (r.extraPicks || []).forEach(extraGroup => {
+      const extraRow = extraGroup.picks || [];
+      if (!extraRow.length) return;
+      const extraTr = document.createElement("tr");
+      let extraHtml = "<td></td>";
+      const byTeam = {};
+      extraRow.forEach(p => { byTeam[p.team] = p.player; });
+      d25TeamNames.forEach(n => {
+        extraHtml += "<td>" + (byTeam[n] || "") + "</td>";
+      });
+      extraTr.innerHTML = extraHtml;
+      draft2025Body.appendChild(extraTr);
+    });
+  });
 
   renderTradesSection(LEAGUE_DATA);
 
