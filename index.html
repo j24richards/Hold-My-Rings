@@ -660,12 +660,17 @@ textarea { min-height: 80px; resize: vertical; }
   margin-bottom: 8px;
 }
 .admin-badge-row input { text-align: center; }
-.admin-keeper-row {
+.admin-keeper-block {
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.admin-keeper-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.admin-keeper-block .admin-team-label { font-weight: 600; font-size: 0.88rem; margin-bottom: 6px; display: block; }
+.admin-keeper-selects {
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 8px;
 }
 .admin-keeper-pair {
   display: flex;
@@ -673,10 +678,12 @@ textarea { min-height: 80px; resize: vertical; }
   align-items: center;
 }
 .admin-keeper-pair .admin-keeper-select { flex: 1; min-width: 0; }
-.admin-keeper-round-input, .admin-keeper-adp-input {
-  width: 56px;
+input.admin-keeper-round-input, input.admin-keeper-adp-input {
+  width: 70px;
   flex-shrink: 0;
   text-align: center;
+  padding-left: 4px;
+  padding-right: 4px;
 }
 .admin-keeper-adp-input.stale-adp {
   border: 1px solid #d99a00;
@@ -5176,8 +5183,8 @@ function populateKeeperPicker(data) {
       t.roster.map(p => "<option value=\"" + p.player + "\">" + p.player + "</option>")
     ).join("");
     const div = document.createElement("div");
-    div.className = "admin-keeper-row";
-    let html = "<span class=\"admin-team-label\">" + t.team + "</span>";
+    div.className = "admin-keeper-block";
+    let html = "<span class=\"admin-team-label\">" + t.team + "</span><div class=\"admin-keeper-selects\">";
     for (let slot = 0; slot < KEEPER_SLOTS; slot++) {
       html += "<div class=\"admin-keeper-pair\">" +
         "<select data-team=\"" + t.team + "\" class=\"admin-keeper-select\" data-slot=\"" + slot + "\">" + options + "</select>" +
@@ -5185,6 +5192,7 @@ function populateKeeperPicker(data) {
         "<input type=\"number\" min=\"1\" step=\"0.1\" class=\"admin-keeper-adp-input\" data-team=\"" + t.team + "\" data-slot=\"" + slot + "\" title=\"Fantasy Football Calculator PPR ADP (average draft position) -- lower is more valuable\" placeholder=\"ADP\">" +
         "</div>";
     }
+    html += "</div>";
     div.innerHTML = html;
     keepersEl.appendChild(div);
     const pairs = div.querySelectorAll(".admin-keeper-pair");
