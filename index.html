@@ -662,10 +662,21 @@ textarea { min-height: 80px; resize: vertical; }
 .admin-badge-row input { text-align: center; }
 .admin-keeper-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 2fr;
   gap: 10px;
   align-items: center;
   margin-bottom: 10px;
+}
+.admin-keeper-pair {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.admin-keeper-pair .admin-keeper-select { flex: 1; min-width: 0; }
+.admin-keeper-round-input, .admin-keeper-adp-input {
+  width: 56px;
+  flex-shrink: 0;
+  text-align: center;
 }
 .admin-team-label { font-weight: 600; font-size: 0.88rem; }
 .admin-btn {
@@ -1029,7 +1040,7 @@ footer {
       <details class="card admin-details">
         <summary class="admin-summary">2026 Keeper Selections<span class="admin-chevron">&#9656;</span></summary>
         <div class="admin-body">
-          <p style="color: var(--muted); margin-top: 0; font-size: 0.82rem;">Pick up to two kept players per team.</p>
+          <p style="color: var(--muted); margin-top: 0; font-size: 0.82rem;">Pick up to two kept players per team. Enter each player's base draft round (Rd) and Yahoo ADP (lower = more valuable) — used to auto-resolve round conflicts when two keepers land on the same round.</p>
           <div id="admin-keepers"></div>
           <label style="display:flex; align-items:center; gap:8px; margin-top:14px; font-size:0.9rem; color: var(--text); cursor:pointer;">
             <input type="checkbox" id="admin-keepers-visible">
@@ -4619,6 +4630,67 @@ function getKeeperRound(data, teamName, playerName) {
   return rosterSpot && rosterSpot.keeperCost ? rosterSpot.keeperCost : null;
 }
 
+function resolveTeamKeeperRounds(data, teamName) {
+  const team = (data.teams || []).find(t => t.team === teamName);
+  const selection = (data.keeperSelections || []).find(k => k.team === teamName);
+  if (!team || !team.roster || !selection || !selection.players || !selection.players.length) return {};
+
+  const rosterByName = {};
+  team.roster.forEach(r => { rosterByName[r.player] = r; });
+
+  const entries = selection.players
+    .map(name => {
+      const r = rosterByName[name];
+      return {
+        name: name,
+        baseRound: r && r.keeperCost != null ? r.keeperCost : null,
+        adp: r && r.adp != null ? Number(r.adp) : 9999
+      };
+    })
+    .filter(e => e.baseRound != null);
+
+  const result = {};
+  const occupied = new Set();
+
+  const placeDown = (entry) => {
+    let round = entry.baseRound;
+    while (occupied.has(round) && round > 1) round--;
+    if (occupied.has(round)) {
+      // Extremely rare: round 1 is already taken by an earlier cross-bucket
+      // cascade. Fall back to searching upward from the base round instead.
+      round = entry.baseRound;
+      while (occupied.has(round)) round++;
+    }
+    result[entry.name] = round;
+    occupied.add(round);
+  };
+
+  const placeUp = (entry) => {
+    let round = entry.baseRound;
+    while (occupied.has(round)) round++;
+    result[entry.name] = round;
+    occupied.add(round);
+  };
+
+  // Base round 2+: the less valuable (worse/higher ADP) player keeps its base
+  // round; a more valuable player kept at the same round bumps up to an
+  // earlier round, cascading further if that round is also taken.
+  entries
+    .filter(e => e.baseRound > 1)
+    .sort((a, b) => b.adp - a.adp) // worst ADP first, so it claims its base round
+    .forEach(placeDown);
+
+  // Round 1 has no earlier round to move to, so the rule flips (Rule 9): the
+  // more valuable player keeps round 1, and the less valuable player is
+  // pushed to a later round instead.
+  entries
+    .filter(e => e.baseRound === 1)
+    .sort((a, b) => a.adp - b.adp) // best ADP first, so it claims round 1
+    .forEach(placeUp);
+
+  return result;
+}
+
 function renderKeepersGrid(data) {
   const keepersGrid = document.getElementById("keepers-grid");
   keepersGrid.innerHTML = "";
@@ -4633,8 +4705,9 @@ function renderKeepersGrid(data) {
     const sel = (data.keeperSelections || []).find(k => k.team === t.team);
     let body;
     if (sel && sel.players && sel.players.length) {
+      const resolvedRounds = resolveTeamKeeperRounds(data, t.team);
       const playersByRound = sel.players
-        .map(p => ({ name: p, round: getKeeperRound(data, t.team, p) }))
+        .map(p => ({ name: p, round: resolvedRounds[p] != null ? resolvedRounds[p] : getKeeperRound(data, t.team, p) }))
         .sort((a, b) => (a.round || 999) - (b.round || 999));
       body = "<ul style=\"margin:0; padding-left:18px; color: var(--text);\">" + playersByRound.map(p => {
         const roundBadge = p.round ? " <span class=\"cost-badge\">Round " + ordinal(p.round) + "</span>" : "";
@@ -4965,21 +5038,43 @@ function populateKeeperPicker(data) {
   const keepersEl = document.getElementById("admin-keepers");
   if (!keepersEl) return;
   keepersEl.innerHTML = "";
+  const KEEPER_SLOTS = 2;
   data.teams.forEach(t => {
     const existing = (data.keeperSelections || []).find(k => k.team === t.team);
     const picks = (existing && existing.players) || [];
+    const rosterByName = {};
+    t.roster.forEach(p => { rosterByName[p.player] = p; });
     const options = ["<option value=\"\">— none —</option>"].concat(
       t.roster.map(p => "<option value=\"" + p.player + "\">" + p.player + "</option>")
     ).join("");
     const div = document.createElement("div");
     div.className = "admin-keeper-row";
-    div.innerHTML = "<span class=\"admin-team-label\">" + t.team + "</span>" +
-      "<select data-team=\"" + t.team + "\" class=\"admin-keeper-select\" data-slot=\"0\">" + options + "</select>" +
-      "<select data-team=\"" + t.team + "\" class=\"admin-keeper-select\" data-slot=\"1\">" + options + "</select>";
+    let html = "<span class=\"admin-team-label\">" + t.team + "</span>";
+    for (let slot = 0; slot < KEEPER_SLOTS; slot++) {
+      html += "<div class=\"admin-keeper-pair\">" +
+        "<select data-team=\"" + t.team + "\" class=\"admin-keeper-select\" data-slot=\"" + slot + "\">" + options + "</select>" +
+        "<input type=\"number\" min=\"1\" max=\"20\" class=\"admin-keeper-round-input\" data-team=\"" + t.team + "\" data-slot=\"" + slot + "\" title=\"Base draft round (the round this player was picked/kept at last year)\" placeholder=\"Rd\">" +
+        "<input type=\"number\" min=\"1\" step=\"0.1\" class=\"admin-keeper-adp-input\" data-team=\"" + t.team + "\" data-slot=\"" + slot + "\" title=\"Yahoo ADP (average draft position) -- lower is more valuable\" placeholder=\"ADP\">" +
+        "</div>";
+    }
+    div.innerHTML = html;
     keepersEl.appendChild(div);
-    const selects = div.querySelectorAll("select");
-    if (picks[0]) selects[0].value = picks[0];
-    if (picks[1]) selects[1].value = picks[1];
+    const pairs = div.querySelectorAll(".admin-keeper-pair");
+    for (let slot = 0; slot < KEEPER_SLOTS; slot++) {
+      const select = pairs[slot].querySelector("select");
+      const roundInput = pairs[slot].querySelector(".admin-keeper-round-input");
+      const adpInput = pairs[slot].querySelector(".admin-keeper-adp-input");
+      const pick = picks[slot];
+      if (pick) select.value = pick;
+      const rosterSpot = rosterByName[select.value];
+      roundInput.value = rosterSpot && rosterSpot.keeperCost != null ? rosterSpot.keeperCost : "";
+      adpInput.value = rosterSpot && rosterSpot.adp != null ? rosterSpot.adp : "";
+      select.addEventListener("change", () => {
+        const spot = rosterByName[select.value];
+        roundInput.value = spot && spot.keeperCost != null ? spot.keeperCost : "";
+        adpInput.value = spot && spot.adp != null ? spot.adp : "";
+      });
+    }
   });
 }
 
@@ -5277,6 +5372,29 @@ document.getElementById("admin-save-btn").addEventListener("click", async () => 
   });
   CURRENT_DATA.keeperSelections = Object.keys(keeperMap).map(team => ({ team: team, players: keeperMap[team] }));
   CURRENT_DATA.keepersVisible = document.getElementById("admin-keepers-visible").checked;
+
+  document.querySelectorAll(".admin-keeper-round-input").forEach(input => {
+    if (input.value === "") return;
+    const team = input.dataset.team;
+    const pair = input.closest(".admin-keeper-pair");
+    const select = pair ? pair.querySelector(".admin-keeper-select") : null;
+    const playerName = select ? select.value : "";
+    if (!playerName) return;
+    const teamObj = CURRENT_DATA.teams.find(t => t.team === team);
+    const rosterSpot = teamObj && teamObj.roster.find(r => r.player === playerName);
+    if (rosterSpot) rosterSpot.keeperCost = Number(input.value) || rosterSpot.keeperCost;
+  });
+  document.querySelectorAll(".admin-keeper-adp-input").forEach(input => {
+    if (input.value === "") return;
+    const team = input.dataset.team;
+    const pair = input.closest(".admin-keeper-pair");
+    const select = pair ? pair.querySelector(".admin-keeper-select") : null;
+    const playerName = select ? select.value : "";
+    if (!playerName) return;
+    const teamObj = CURRENT_DATA.teams.find(t => t.team === team);
+    const rosterSpot = teamObj && teamObj.roster.find(r => r.player === playerName);
+    if (rosterSpot) rosterSpot.adp = Number(input.value);
+  });
 
   const newHistory = [];
   document.querySelectorAll("#admin-history .admin-history-year").forEach(block => {
