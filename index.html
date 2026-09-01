@@ -1040,12 +1040,19 @@ footer {
       <details class="card admin-details">
         <summary class="admin-summary">2026 Keeper Selections<span class="admin-chevron">&#9656;</span></summary>
         <div class="admin-body">
-          <p style="color: var(--muted); margin-top: 0; font-size: 0.82rem;">Pick up to two kept players per team. Enter each player's base draft round (Rd) and Yahoo ADP (lower = more valuable) — used to auto-resolve round conflicts when two keepers land on the same round.</p>
+          <p style="color: var(--muted); margin-top: 0; font-size: 0.82rem;">Pick up to two kept players per team. Enter each player's base draft round (Rd) and FantasyPros PPR ADP (lower = more valuable) — used to auto-resolve round conflicts when two keepers land on the same round. PPR ADP is used since this league is PPR scoring.</p>
           <div id="admin-keepers"></div>
           <label style="display:flex; align-items:center; gap:8px; margin-top:14px; font-size:0.9rem; color: var(--text); cursor:pointer;">
             <input type="checkbox" id="admin-keepers-visible">
             Make keeper selections visible to everyone
           </label>
+        </div>
+      </details>
+      <details class="card admin-details">
+        <summary class="admin-summary">Keeper Rules Text<span class="admin-chevron">&#9656;</span></summary>
+        <div class="admin-body">
+          <p style="color: var(--muted); margin-top: 0; font-size: 0.82rem;">Wording shown on the Rules page under "Keeper Draft Position." Edit any line below and Save Changes to publish it.</p>
+          <div id="admin-keeperrules"></div>
         </div>
       </details>
       <details class="card admin-details">
@@ -4146,12 +4153,12 @@ const DEFAULT_LEAGUE_DATA = {
     },
     {
      "num": 8,
-     "rule": "Keeping two players from the same round: the higher-ranked player (Yahoo rankings) costs one round earlier; the other keeps that round.",
+     "rule": "Keeping two players from the same round: the higher-ranked player (FantasyPros PPR ADP) costs one round earlier; the other keeps that round.",
      "example": "Example: Two 3rd rounders \u2014 the better player costs a 2nd, the other a 3rd."
     },
     {
      "num": 9,
-     "rule": "Keeping two 1st rounders: the higher-ranked player (Yahoo) costs a 1st, the other a 2nd.",
+     "rule": "Keeping two 1st rounders: the higher-ranked player (FantasyPros PPR ADP) costs a 1st, the other a 2nd.",
      "example": null
     },
     {
@@ -5054,7 +5061,7 @@ function populateKeeperPicker(data) {
       html += "<div class=\"admin-keeper-pair\">" +
         "<select data-team=\"" + t.team + "\" class=\"admin-keeper-select\" data-slot=\"" + slot + "\">" + options + "</select>" +
         "<input type=\"number\" min=\"1\" max=\"20\" class=\"admin-keeper-round-input\" data-team=\"" + t.team + "\" data-slot=\"" + slot + "\" title=\"Base draft round (the round this player was picked/kept at last year)\" placeholder=\"Rd\">" +
-        "<input type=\"number\" min=\"1\" step=\"0.1\" class=\"admin-keeper-adp-input\" data-team=\"" + t.team + "\" data-slot=\"" + slot + "\" title=\"Yahoo ADP (average draft position) -- lower is more valuable\" placeholder=\"ADP\">" +
+        "<input type=\"number\" min=\"1\" step=\"0.1\" class=\"admin-keeper-adp-input\" data-team=\"" + t.team + "\" data-slot=\"" + slot + "\" title=\"FantasyPros PPR ADP (average draft position) -- lower is more valuable\" placeholder=\"ADP\">" +
         "</div>";
     }
     div.innerHTML = html;
@@ -5075,6 +5082,24 @@ function populateKeeperPicker(data) {
         adpInput.value = spot && spot.adp != null ? spot.adp : "";
       });
     }
+  });
+}
+
+function populateKeeperRulesEditor(data) {
+  const el = document.getElementById("admin-keeperrules");
+  if (!el) return;
+  el.innerHTML = "";
+  const group = (data.ruleGroups || []).find(g => g.title === "Keeper Draft Position");
+  if (!group || !group.rows) {
+    el.innerHTML = "<p style=\"color: var(--muted); font-size: 0.82rem;\">No \"Keeper Draft Position\" group found in the Rules data.</p>";
+    return;
+  }
+  group.rows.forEach((row, i) => {
+    const div = document.createElement("div");
+    div.className = "admin-field";
+    div.innerHTML = "<label>Rule " + row.num + "</label>" +
+      "<textarea data-idx=\"" + i + "\" class=\"admin-keeperrule-input\" rows=\"2\">" + row.rule + "</textarea>";
+    el.appendChild(div);
   });
 }
 
@@ -5125,7 +5150,8 @@ function buildAdminForm(data) {
   });
 
 populateKeeperPicker(data);
-  
+  populateKeeperRulesEditor(data);
+
   populateMoveRosterControls(data);
 
   const historyEl = document.getElementById("admin-history");
@@ -5395,6 +5421,14 @@ document.getElementById("admin-save-btn").addEventListener("click", async () => 
     const rosterSpot = teamObj && teamObj.roster.find(r => r.player === playerName);
     if (rosterSpot) rosterSpot.adp = Number(input.value);
   });
+
+  const keeperRulesGroup = (CURRENT_DATA.ruleGroups || []).find(g => g.title === "Keeper Draft Position");
+  if (keeperRulesGroup) {
+    document.querySelectorAll(".admin-keeperrule-input").forEach(textarea => {
+      const idx = Number(textarea.dataset.idx);
+      if (keeperRulesGroup.rows[idx]) keeperRulesGroup.rows[idx].rule = textarea.value;
+    });
+  }
 
   const newHistory = [];
   document.querySelectorAll("#admin-history .admin-history-year").forEach(block => {
