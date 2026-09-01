@@ -1268,6 +1268,8 @@ const DEFAULT_LEAGUE_DATA = {
      "pos": "RB",
      "nfl": "KC",
      "keeperCost": 4,
+     "adp": 21.2,
+     "adpYear": 2026,
      "kept2025": false
     },
     {
@@ -1365,6 +1367,8 @@ const DEFAULT_LEAGUE_DATA = {
      "pos": "QB",
      "nfl": "LAC",
      "keeperCost": 13,
+     "adp": 105,
+     "adpYear": 2026,
      "kept2025": false
     },
     {
@@ -1421,6 +1425,8 @@ const DEFAULT_LEAGUE_DATA = {
      "pos": "WR",
      "nfl": "CHI",
      "keeperCost": 8,
+     "adp": 55.4,
+     "adpYear": 2026,
      "kept2025": false
     },
     {
@@ -1456,6 +1462,8 @@ const DEFAULT_LEAGUE_DATA = {
      "pos": "TE",
      "nfl": "LV",
      "keeperCost": 11,
+     "adp": 35.1,
+     "adpYear": 2026,
      "kept2025": true
     },
     {
@@ -1615,6 +1623,8 @@ const DEFAULT_LEAGUE_DATA = {
      "pos": "RB",
      "nfl": "MIA",
      "keeperCost": 9,
+     "adp": 10.3,
+     "adpYear": 2026,
      "kept2025": true
     },
     {
@@ -1657,6 +1667,8 @@ const DEFAULT_LEAGUE_DATA = {
      "pos": "WR",
      "nfl": "CAR",
      "keeperCost": 5,
+     "adp": 31.1,
+     "adpYear": 2026,
      "kept2025": false
     },
     {
@@ -1997,6 +2009,8 @@ const DEFAULT_LEAGUE_DATA = {
      "pos": "RB",
      "nfl": "DAL",
      "keeperCost": 12,
+     "adp": 36.8,
+     "adpYear": 2026,
      "kept2025": false
     },
     {
@@ -2018,6 +2032,8 @@ const DEFAULT_LEAGUE_DATA = {
      "pos": "WR",
      "nfl": "CIN",
      "keeperCost": 2,
+     "adp": 3.9,
+     "adpYear": 2026,
      "kept2025": true
     },
     {
@@ -2108,6 +2124,8 @@ const DEFAULT_LEAGUE_DATA = {
      "pos": "QB",
      "nfl": "BUF",
      "keeperCost": 10,
+     "adp": 34.1,
+     "adpYear": 2026,
      "kept2025": true
     },
     {
@@ -2178,6 +2196,8 @@ const DEFAULT_LEAGUE_DATA = {
      "pos": "WR",
      "nfl": "HOU",
      "keeperCost": 8,
+     "adp": 21.2,
+     "adpYear": 2026,
      "kept2025": true
     },
     {
@@ -2289,6 +2309,8 @@ const DEFAULT_LEAGUE_DATA = {
      "pos": "WR",
      "nfl": "KC",
      "keeperCost": 7,
+     "adp": 15.9,
+     "adpYear": 2026,
      "kept2025": false
     },
     {
@@ -2296,6 +2318,8 @@ const DEFAULT_LEAGUE_DATA = {
      "pos": "WR",
      "nfl": "LAC",
      "keeperCost": 10,
+     "adp": 38,
+     "adpYear": 2026,
      "kept2025": true
     },
     {
@@ -2372,6 +2396,8 @@ const DEFAULT_LEAGUE_DATA = {
      "pos": "RB",
      "nfl": "DET",
      "keeperCost": 1,
+     "adp": 1.5,
+     "adpYear": 2026,
      "kept2025": false
     },
     {
@@ -2407,6 +2433,8 @@ const DEFAULT_LEAGUE_DATA = {
      "pos": "WR",
      "nfl": "SEA",
      "keeperCost": 8,
+     "adp": 5.5,
+     "adpYear": 2026,
      "kept2025": true
     },
     {
@@ -4641,6 +4669,30 @@ function getKeeperRound(data, teamName, playerName) {
   return rosterSpot && rosterSpot.keeperCost ? rosterSpot.keeperCost : null;
 }
 
+// Resolves the actual draft-round cost of each of a team's chosen keepers.
+//
+// Each kept player's base round is the draft position they held the prior
+// year (their stored keeperCost). The round-collision rule only compares ADP
+// between players who genuinely share the SAME base round -- i.e. were
+// actually drafted/kept at the identical round last year:
+//   - Round 2+: the better (lower-numeric) Fantasy Football Calculator ADP
+//     player is displaced one round earlier; the other keeps the shared base
+//     round.
+//   - Round 1: there's no earlier round, so the rule flips -- the better-ADP
+//     player keeps round 1, and the other is pushed to round 2 instead.
+//
+// That displacement can land on a round some OTHER kept player already
+// legitimately occupies (a different, unrelated base round) -- e.g. the
+// mover's new round is another player's actual prior-year draft position.
+// When that happens, it's a pure mechanical bump: whoever already held that
+// round shifts one further in the same direction (toward round 1 normally,
+// or away from it past round 1), regardless of their own ADP -- there's no
+// second ADP comparison. This is what "kept players move up one draft spot"
+// means when a moved keeper claims their round. Movers are therefore
+// resolved first so they claim their target round outright; everyone else
+// (untouched natives, plus any "loser" of an original tie) settles in after,
+// shifting further if their round is already spoken for.
+// Returns { playerName: finalRound }.
 function resolveTeamKeeperRounds(data, teamName) {
   const team = (data.teams || []).find(t => t.team === teamName);
   const selection = (data.keeperSelections || []).find(k => k.team === teamName);
@@ -4653,9 +4705,6 @@ function resolveTeamKeeperRounds(data, teamName) {
   const entries = selection.players
     .map(name => {
       const r = rosterByName[name];
-      // An ADP value only counts if it was confirmed for the season being
-      // drafted right now -- a stale value left over from a prior year (or
-      // never stamped) is treated as missing rather than trusted.
       const adpIsCurrent = r && r.adp != null && r.adpYear === currentYear;
       return {
         name: name,
@@ -4665,44 +4714,64 @@ function resolveTeamKeeperRounds(data, teamName) {
     })
     .filter(e => e.baseRound != null);
 
-  const result = {};
-  const occupied = new Set();
+  // Step 1: group by the ORIGINAL shared base round to find genuine ties,
+  // and decide each entry's target round plus who is a "mover".
+  const byBaseRound = {};
+  entries.forEach(e => {
+    (byBaseRound[e.baseRound] = byBaseRound[e.baseRound] || []).push(e);
+  });
 
-  const placeDown = (entry) => {
-    let round = entry.baseRound;
-    while (occupied.has(round) && round > 1) round--;
-    if (occupied.has(round)) {
-      // Extremely rare: round 1 is already taken by an earlier cross-bucket
-      // cascade. Fall back to searching upward from the base round instead.
-      round = entry.baseRound;
+  const targetRound = {};
+  const isMover = {};
+  Object.keys(byBaseRound).forEach(key => {
+    const round = Number(key);
+    const group = byBaseRound[key];
+    if (group.length < 2) {
+      targetRound[group[0].name] = round;
+      return;
+    }
+    const sorted = group.slice().sort((a, b) => a.adp - b.adp); // best ADP first
+    if (round === 1) {
+      targetRound[sorted[0].name] = 1;
+      for (let i = 1; i < sorted.length; i++) {
+        targetRound[sorted[i].name] = 2;
+        isMover[sorted[i].name] = true;
+      }
+    } else {
+      targetRound[sorted[0].name] = round - 1;
+      isMover[sorted[0].name] = true;
+      for (let i = 1; i < sorted.length; i++) targetRound[sorted[i].name] = round;
+    }
+  });
+
+  // Step 2: settle everyone into real rounds. Movers go first so they claim
+  // their displaced round outright. Non-movers settle worst-ADP-first, so a
+  // less valuable player claims a contested shared round before a more
+  // valuable one does (the more valuable one cascades to a costlier round
+  // instead) -- consistent with better players never costing less.
+  const movers = entries.filter(e => isMover[e.name]);
+  const nonMovers = entries
+    .filter(e => !isMover[e.name])
+    .sort((a, b) => b.adp - a.adp); // worst ADP first
+  const order = movers.concat(nonMovers).map(e => e.name);
+
+  const occupied = new Set();
+  const result = {};
+  order.forEach(name => {
+    const wanted = targetRound[name];
+    let round = wanted;
+    if (round > 1) {
+      while (occupied.has(round) && round > 1) round--;
+      if (occupied.has(round)) {
+        round = wanted;
+        while (occupied.has(round)) round++;
+      }
+    } else {
       while (occupied.has(round)) round++;
     }
-    result[entry.name] = round;
     occupied.add(round);
-  };
-
-  const placeUp = (entry) => {
-    let round = entry.baseRound;
-    while (occupied.has(round)) round++;
-    result[entry.name] = round;
-    occupied.add(round);
-  };
-
-  // Base round 2+: the less valuable (worse/higher ADP) player keeps its base
-  // round; a more valuable player kept at the same round bumps up to an
-  // earlier round, cascading further if that round is also taken.
-  entries
-    .filter(e => e.baseRound > 1)
-    .sort((a, b) => b.adp - a.adp) // worst ADP first, so it claims its base round
-    .forEach(placeDown);
-
-  // Round 1 has no earlier round to move to, so the rule flips (Rule 9): the
-  // more valuable player keeps round 1, and the less valuable player is
-  // pushed to a later round instead.
-  entries
-    .filter(e => e.baseRound === 1)
-    .sort((a, b) => a.adp - b.adp) // best ADP first, so it claims round 1
-    .forEach(placeUp);
+    result[name] = round;
+  });
 
   return result;
 }
