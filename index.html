@@ -27,6 +27,7 @@
   --silver: #7c8aa0;
   --bronze: #a86a3d;
   --gold-wash: rgba(184, 37, 20, 0.07);
+  --keeper: #1a7f37;
   --font-display: "Oswald", "Arial Narrow", sans-serif;
 }
 @media (prefers-color-scheme: dark) {
@@ -43,6 +44,7 @@
     --silver: #9aa5b8;
     --bronze: #c98b52;
     --gold-wash: rgba(220, 44, 24, 0.1);
+    --keeper: #3fb950;
   }
 }
 * { box-sizing: border-box; }
@@ -420,6 +422,14 @@ tr:last-child td { border-bottom: none; }
   font-weight: 400;
 }
 .draft-order-none { color: var(--muted); }
+.draft-order-keeper {
+  color: var(--keeper);
+  font-weight: 600;
+}
+.draft-order-keeper .keeper-icon {
+  margin-left: 3px;
+  font-weight: 400;
+}
 #draftorder .card {
   padding: 14px 6px;
 }
@@ -933,7 +943,7 @@ footer {
 
   <section id="draftorder">
     <h2>2026 Draft Order &amp; Traded Picks</h2>
-    <p style="color: var(--muted); margin-top: -6px;">Final round-by-round order is set by 2025 standings once the season wraps. Below shows any pick that has already changed hands via trade &mdash; an underlined name with a &#8644; means that team now owns the pick instead of its original team.</p>
+    <p style="color: var(--muted); margin-top: -6px;">Final round-by-round order is set by 2025 standings once the season wraps. Below shows any pick that has already changed hands via trade &mdash; an underlined name with a &#8644; means that team now owns the pick instead of its original team. A green player name with a &#128274; marks a round a team is spending on a keeper instead of drafting.</p>
     <div class="card">
       <table>
         <thead>
@@ -4815,6 +4825,23 @@ function resolveTeamKeeperRounds(data, teamName) {
   return result;
 }
 
+// Returns { finalRound: [playerName, ...] } for a team's kept players, using
+// the same round-resolution logic as the Keepers tab (resolveTeamKeeperRounds),
+// falling back to the player's raw keeperCost if a resolved round isn't
+// available for some reason.
+function getTeamKeeperRoundMap(data, teamName) {
+  const selection = (data.keeperSelections || []).find(k => k.team === teamName);
+  if (!selection || !selection.players || !selection.players.length) return {};
+  const resolvedRounds = resolveTeamKeeperRounds(data, teamName);
+  const map = {};
+  selection.players.forEach(p => {
+    const round = resolvedRounds[p] != null ? resolvedRounds[p] : getKeeperRound(data, teamName, p);
+    if (round == null) return;
+    (map[round] = map[round] || []).push(p);
+  });
+  return map;
+}
+
 function renderKeepersGrid(data) {
   const keepersGrid = document.getElementById("keepers-grid");
   keepersGrid.innerHTML = "";
@@ -5056,11 +5083,20 @@ function renderDraftOrderSection(data) {
   headerRow.innerHTML = "<th>Round</th>" + doTeamNames.map(n => "<th>" + n + "</th>").join("");
   const draftOrderBody = document.getElementById("draftorder-body");
   draftOrderBody.innerHTML = "";
+  const keeperMapsByTeam = {};
+  if (data.keepersVisible) {
+    doTeamNames.forEach(n => { keeperMapsByTeam[n] = getTeamKeeperRoundMap(data, n); });
+  }
   (data.draftOrder2026 || []).forEach(r => {
     const tr = document.createElement("tr");
     let html = "<td>" + r.round + "</td>";
     r.picks.forEach(p => {
-      if (p.newOwner) {
+      const keeperMap = keeperMapsByTeam[p.originalTeam];
+      const keeperPlayers = keeperMap ? keeperMap[Number(r.round)] : null;
+      if (keeperPlayers && keeperPlayers.length) {
+        const names = keeperPlayers.join(", ");
+        html += "<td class=\"draft-order-keeper\" aria-label=\"" + names + ", kept player\">" + names + "<span class=\"keeper-icon\" title=\"Keeper\" aria-hidden=\"true\">&nbsp;&#128274;</span></td>";
+      } else if (p.newOwner) {
         html += "<td class=\"draft-order-owner\" aria-label=\"" + p.newOwner + ", traded pick\">" + p.newOwner + "<span class=\"swap-icon\" title=\"Traded pick\" aria-hidden=\"true\">&nbsp;&#8644;</span></td>";
       } else {
         html += "<td class=\"draft-order-none\">—</td>";
@@ -5680,13 +5716,19 @@ function flattenDraftRounds(rounds) {
   return rows;
 }
 
-function flattenDraftOrderMatrix(rounds) {
+function flattenDraftOrderMatrix(rounds, data) {
     if (!rounds || !rounds.length) return [];
     const teamNames = rounds[0].picks.map(p => p.originalTeam);
+    const keeperMapsByTeam = {};
+    if (data && data.keepersVisible) {
+      teamNames.forEach(n => { keeperMapsByTeam[n] = getTeamKeeperRoundMap(data, n); });
+    }
     return rounds.map(r => {
           const row = { Round: r.round };
           r.picks.forEach((p, i) => {
-                  row[teamNames[i]] = p.newOwner || "—";
+                  const keeperMap = keeperMapsByTeam[teamNames[i]];
+                  const keeperPlayers = keeperMap ? keeperMap[Number(r.round)] : null;
+                  row[teamNames[i]] = (keeperPlayers && keeperPlayers.length) ? keeperPlayers.join(", ") : (p.newOwner || "—");
           });
           return row;
     });
@@ -5833,7 +5875,7 @@ function styleExportSheet(ws, rows, type, opts) {
                groupBy: r => r.Team, groupLabel: rosterGroupLabel, hideColumns: ["Team", "Manager"] },
         { id: "export-draftResults", sheet: "2026 Draft", type: "table", rows: () => flattenDraftResultsFlat(data.draftResults),
       groupBy: r => r.Team, hideColumns: ["Team"] },
-        { id: "export-draftOrder2026", sheet: "Draft Order", type: "table", rows: () => flattenDraftOrderMatrix(data.draftOrder2026),
+        { id: "export-draftOrder2026", sheet: "Draft Order", type: "table", rows: () => flattenDraftOrderMatrix(data.draftOrder2026, data),
                cellStyle: (header, value) => header === "Round" ? null : (value === "—" ? { color: "FF4B5B78" } : { color: "FFB82514", bold: true }) },
         { id: "export-trades2025", sheet: "Trades", type: "table", rows: () => flattenTradesForExport(data.trades2025),
                groupBy: r => r.Team, hideColumns: ["Team"] },
