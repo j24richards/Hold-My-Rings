@@ -930,17 +930,11 @@ footer {
 
   <section id="draft">
     <h2 id="draft-heading">Draft Results</h2>
-    <div class="card">
-      <table>
-        <thead>
-          <tr><th>Round</th><th>Pick</th><th>Team</th><th>Player</th></tr>
-        </thead>
-        <tbody id="draft-body"></tbody>
-      </table>
-      <p id="draft-empty-note" style="color: var(--muted); font-style: italic; display:none; margin: 10px 0 0;">
-        Draft results will appear here once the commissioner enters them after the draft.
-      </p>
-    </div>
+    <p style="color: var(--muted); margin-top: -6px;">Every team's picks, round by round.</p>
+    <div class="teams-grid" id="draft-grid"></div>
+    <p id="draft-empty-note" style="color: var(--muted); font-style: italic; display:none; margin: 10px 0 0;">
+      Draft results will appear here once the commissioner enters them after the draft.
+    </p>
   </section>
 
   <section id="keepers">
@@ -5078,21 +5072,37 @@ function renderTeams2026(data) {
 
 function renderDraftResults(data) {
   document.getElementById("draft-heading").textContent = data.currentSeason.year + " Draft Results";
-  const draftBody = document.getElementById("draft-body");
-  draftBody.innerHTML = "";
+  const draftGrid = document.getElementById("draft-grid");
+  draftGrid.innerHTML = "";
   const draftEmptyNote = document.getElementById("draft-empty-note");
   const draftResults = data.draftResults || [];
   if (draftResults.length) {
     draftEmptyNote.style.display = "none";
-    draftResults.forEach(row => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = "<td>" + row.round + "</td><td>" + row.pick + "</td><td>" + row.team + "</td><td>" + row.player + "</td>";
-      draftBody.appendChild(tr);
+    const teamNames = (data.teams || []).map(t => t.team);
+    const picksByTeam = {};
+    teamNames.forEach(n => { picksByTeam[n] = []; });
+    draftResults.forEach(r => {
+      if (!picksByTeam[r.team]) picksByTeam[r.team] = [];
+      picksByTeam[r.team].push(r);
+    });
+    teamNames.forEach(name => {
+      const picks = picksByTeam[name].slice().sort((a, b) => Number(a.round) - Number(b.round));
+      const card = document.createElement("div");
+      card.className = "team-card";
+      let html = "<h3>" + name + "</h3><table><thead><tr><th>Rd</th><th>Player</th></tr></thead><tbody>";
+      picks.forEach(p => {
+        html += "<tr><td>" + p.round + "</td><td>" + (p.player || "—") + "</td></tr>";
+      });
+      html += "</tbody></table>";
+      card.innerHTML = html;
+      draftGrid.appendChild(card);
     });
   } else {
     draftEmptyNote.style.display = "block";
   }
 }
+
+
 
 function renderDraftOrderSection(data) {
   const doTeamNames = (data.draftOrder2026 || []).length ? data.draftOrder2026[0].picks.map(p => p.originalTeam) : [];
