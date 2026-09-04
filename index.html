@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ZZZTESTZZZhtml>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -670,6 +670,14 @@ textarea { min-height: 80px; resize: vertical; }
   margin-bottom: 8px;
 }
 .admin-badge-row input { text-align: center; }
+.admin-teamname-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
 .admin-keeper-block {
   margin-bottom: 14px;
   padding-bottom: 14px;
@@ -1044,7 +1052,16 @@ footer {
           <p style="color: var(--muted); margin-top: 0; font-size: 0.82rem;">This panel now signs in with a real account, so the password isn't stored in this file or the site's database. To change it, go to the Firebase console for this project &rarr; Authentication &rarr; Users &rarr; find the commissioner account &rarr; Reset password.</p>
         </div>
       </details>
-      <details class="card admin-details">
+            <details class="card admin-details">
+        <summary class="admin-summary">Team Names<span class="admin-chevron">&#9656;</span></summary>
+        <div class="admin-body">
+          <p style="color: var(--muted); margin-top: 0; font-size: 0.82rem;">Rename a team. This updates the name everywhere it's currently used (standings, badges, keepers, draft order/results, trades) but leaves past Season History entries untouched, since those are a record of the name at the time.</p>
+          <div id="admin-teamnames"></div>
+          <button type="button" class="admin-btn admin-btn-secondary" id="admin-rename-teams-btn">Apply Renames</button>
+          <p id="admin-teamnames-status" style="color: var(--muted); font-size: 0.82rem;"></p>
+        </div>
+      </details>
+<details class="card admin-details">
         <summary class="admin-summary">2026 Season Standings<span class="admin-chevron">&#9656;</span></summary>
         <div class="admin-body">
           <p style="color: var(--muted); margin-top: 0; font-size: 0.82rem;">Record and points for, per team.</p>
@@ -5295,14 +5312,50 @@ function populateMoveRosterControls(data) {
   teamSel.innerHTML = data.teams.map(t =>
     "<option value=\"" + t.team + "\">" + t.team + "</option>"
   ).join("");
+}function renameTeamEverywhere(data, oldName, newName) {
+  const renameField = (obj, key) => { if (obj && obj[key] === oldName) obj[key] = newName; };
+
+  (data.teams || []).forEach(t => renameField(t, "team"));
+  (data.teams2026 || []).forEach(t => renameField(t, "team"));
+  if (data.currentSeason && data.currentSeason.standings) {
+    data.currentSeason.standings.forEach(row => renameField(row, "team"));
+  }
+  if (data.teamBadges && Object.prototype.hasOwnProperty.call(data.teamBadges, oldName)) {
+    data.teamBadges[newName] = data.teamBadges[oldName];
+    delete data.teamBadges[oldName];
+  }
+  (data.keeperSelections || []).forEach(k => renameField(k, "team"));
+  (data.draftOrder2026 || []).forEach(round => {
+    (round.picks || []).forEach(p => {
+      renameField(p, "originalTeam");
+      renameField(p, "newOwner");
+    });
+  });
+  (data.draftResults || []).forEach(r => renameField(r, "team"));
+  (data.trades2025 || []).forEach(t => {
+    renameField(t, "team");
+    renameField(t, "from");
+  });
 }
+
+
 
 function buildAdminForm(data) {
   document.getElementById("admin-note").value = data.commissionerNote || "";
   document.getElementById("admin-draftdate").value = data.draftDate || "";
   document.getElementById("admin-keepers-visible").checked = !!data.keepersVisible;
 
-  const standingsEl = document.getElementById("admin-standings");
+    const teamNamesEl = document.getElementById("admin-teamnames");
+  teamNamesEl.innerHTML = "";
+  data.teams.forEach(t => {
+    const div = document.createElement("div");
+    div.className = "admin-teamname-row";
+    div.innerHTML = "<span class=\"admin-team-label\">" + t.manager + "</span>" +
+      "<input type=\"text\" class=\"admin-teamname-input\" data-original=\"" + t.team + "\" value=\"" + t.team + "\">";
+    teamNamesEl.appendChild(div);
+  });
+
+const standingsEl = document.getElementById("admin-standings");
   standingsEl.innerHTML = "";
   data.currentSeason.standings.forEach((row, i) => {
     const div = document.createElement("div");
@@ -5478,7 +5531,25 @@ document.getElementById("admin-add-trade-btn").addEventListener("click", () => {
     CURRENT_DATA.teams.map(t => "<option value=\"" + t.team + "\">" + t.team + "</option>")
   ).join("") : "<option value=\"\">— none —</option>";
   addTradeBlock(document.getElementById("admin-trades"), null, teamOptions);
+});document.getElementById("admin-rename-teams-btn").addEventListener("click", () => {
+  const statusEl = document.getElementById("admin-teamnames-status");
+  if (!CURRENT_DATA) return;
+  const renames = [];
+  document.querySelectorAll(".admin-teamname-input").forEach(input => {
+    const oldName = input.dataset.original;
+    const newName = input.value.trim();
+    if (newName && newName !== oldName) renames.push([oldName, newName]);
+  });
+  if (!renames.length) {
+    statusEl.textContent = "No changes to apply.";
+    return;
+  }
+  renames.forEach(([oldName, newName]) => renameTeamEverywhere(CURRENT_DATA, oldName, newName));
+  buildAdminForm(CURRENT_DATA);
+  statusEl.textContent = "Applied " + renames.length + " rename(s) — click \"Save Changes\" at the bottom to publish.";
 });
+
+
 
 document.getElementById("admin-generate-teams2026-btn").addEventListener("click", () => {
   const statusEl = document.getElementById("admin-generate-status");
