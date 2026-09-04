@@ -486,6 +486,31 @@ tr:last-child td { border-bottom: none; }
   margin-top: 2px;
 }
 .mockdraft-onclock.is-user { color: var(--gold); }
+.mockdraft-onclock .mockdraft-onclock-next {
+  display: block;
+  font-family: inherit;
+  text-transform: none;
+  font-size: 0.78rem;
+  color: var(--gold);
+  font-weight: 600;
+  margin-top: 4px;
+}
+.mockdraft-nextpick-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 5px 10px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  text-align: center;
+  color: var(--gold);
+  background: var(--gold-wash);
+  border-top: 1px dashed var(--gold);
+  border-bottom: 1px dashed var(--gold);
+}
 .mockdraft-timer-wrap { display: flex; align-items: center; gap: 8px; flex: none; }
 .mockdraft-timer-bar {
   width: 140px;
@@ -5870,6 +5895,27 @@ function getAllKeptPlayerNames(data) {
   return names;
 }
 
+// Kept players are pulled out of the available pool entirely (see
+// getAllKeptPlayerNames) but they still occupy a real roster spot for their
+// team -- so the mock should seed each team's roster with them up front,
+// same as a real draft where those spots are already spoken for. Seeding
+// them before any picks are made also means they claim their starter/FLEX
+// slot first (assignMockRosterSlots just walks the roster array in order),
+// and count against that team's position caps (e.g. a kept QB leaves room
+// for only one more before the 2-QB cap kicks in).
+function getTeamKeptRosterEntries(data, teamName) {
+  if (!data.keepersVisible) return [];
+  const selection = (data.keeperSelections || []).find(k => k.team === teamName);
+  if (!selection || !selection.players || !selection.players.length) return [];
+  const team = (data.teams || []).find(t => t.team === teamName);
+  const rosterByName = {};
+  (team && team.roster || []).forEach(r => { rosterByName[r.player] = r; });
+  return selection.players.map(name => {
+    const r = rosterByName[name];
+    return { player: name, pos: r ? r.pos : "", nfl: r ? r.nfl : "", kept2025: true, keeperCost: r ? r.keeperCost : null };
+  });
+}
+
 function mockCapsOk(roster, pos) {
   if (pos === "QB") return roster.filter(p => p.pos === "QB").length < 2;
   if (pos === "K") return roster.filter(p => p.pos === "K").length < 1;
@@ -5941,7 +5987,7 @@ function startMockDraft() {
   const keptNames = getAllKeptPlayerNames(CURRENT_DATA);
   MOCK_STATE.available = keptNames.size ? MOCK_DRAFT_POOL.filter(p => !keptNames.has(p.player)) : MOCK_DRAFT_POOL.slice();
   MOCK_STATE.rosters = {};
-  teamNames.forEach(n => { MOCK_STATE.rosters[n] = []; });
+  teamNames.forEach(n => { MOCK_STATE.rosters[n] = getTeamKeptRosterEntries(CURRENT_DATA, n); });
   MOCK_STATE.log = [];
   MOCK_STATE.filterPos = "ALL";
   MOCK_STATE.searchQuery = "";
@@ -5992,12 +6038,38 @@ function advanceMockPick() {
   }
 }
 
+// Looks ahead in the (already keeper/trade-resolved) pick list to find the
+// next time `team` is due to pick after `fromIndex`. Returns how many total
+// picks (across every team) happen in between, plus that pick's round and
+// overall number -- null if this is their last pick of the draft. Used both
+// for the "next pick" line under the on-the-clock header and to mark roughly
+// where that pick will land in the available-players list.
+function mockNextTurnForTeam(fromIndex, team) {
+  const list = MOCK_STATE.pickList;
+  for (let j = fromIndex + 1; j < list.length; j++) {
+    if (list[j].team === team) {
+      return { picksAway: j - fromIndex, round: list[j].round, overall: j + 1 };
+    }
+  }
+  return null;
+}
+
 function renderMockOnClock(current) {
   const el = document.getElementById("mockdraft-onclock");
   const isUser = current.team === MOCK_STATE.userTeam;
   el.className = "mockdraft-onclock" + (isUser ? " is-user" : "");
+  const next = mockNextTurnForTeam(MOCK_STATE.pickIndex, current.team);
+  let nextLine;
+  if (next) {
+    const who = isUser ? "Your next pick" : current.team + "’s next pick";
+    nextLine = who + ": Round " + next.round + " &middot; Pick " + next.overall +
+      " (" + next.picksAway + " pick" + (next.picksAway === 1 ? "" : "s") + " away)";
+  } else {
+    nextLine = isUser ? "This is your last pick of the draft" : current.team + "’s last pick of the draft";
+  }
   el.innerHTML = "Round " + current.round + " &mdash; Pick " + (MOCK_STATE.pickIndex + 1) + " of " + MOCK_STATE.pickList.length +
-    "<span class=\"mockdraft-onclock-sub\">" + (isUser ? "You're on the clock" : current.team + " is on the clock") + "</span>";
+    "<span class=\"mockdraft-onclock-sub\">" + (isUser ? "You're on the clock" : current.team + " is on the clock") + "</span>" +
+    "<span class=\"mockdraft-onclock-next\">" + nextLine + "</span>";
   document.getElementById("mockdraft-timer-wrap").style.display = isUser ? "flex" : "none";
 }
 
@@ -6099,8 +6171,28 @@ function renderMockAvailablePlayers() {
   const current = MOCK_STATE.pickList[MOCK_STATE.pickIndex];
   const isUserTurn = !MOCK_STATE.paused && !!(current && current.team === MOCK_STATE.userTeam);
   const q = (MOCK_STATE.searchQuery || "").toLowerCase();
+  // Roughly where the on-the-clock team's next pick will land in this list,
+  // assuming players keep coming off the board top-down (same assumption the
+  // bots draft under). `dividerAt` is an index into the *unfiltered*
+  // available pool -- a rank depth, not a row count -- so it stays in the
+  // right neighborhood even while a position filter or search is applied.
+  const nextTurn = current ? mockNextTurnForTeam(MOCK_STATE.pickIndex, current.team) : null;
+  const dividerAt = nextTurn ? nextTurn.picksAway : -1;
+  const dividerLabel = nextTurn ?
+    (current.team === MOCK_STATE.userTeam ?
+      "Your next pick (Rd " + nextTurn.round + ", Pick " + nextTurn.overall + ") is likely around here" :
+      current.team + "’s next pick (Rd " + nextTurn.round + ", Pick " + nextTurn.overall + ") is likely around here")
+    : "";
+  let dividerShown = false;
   let shown = 0;
   for (let i = 0; i < MOCK_STATE.available.length && shown < 150; i++) {
+    if (!dividerShown && dividerAt >= 0 && i === dividerAt) {
+      dividerShown = true;
+      const divider = document.createElement("div");
+      divider.className = "mockdraft-nextpick-divider";
+      divider.innerHTML = "<span>" + dividerLabel + "</span>";
+      listEl.appendChild(divider);
+    }
     const p = MOCK_STATE.available[i];
     if (MOCK_STATE.filterPos !== "ALL" && p.pos !== MOCK_STATE.filterPos) continue;
     if (q && p.player.toLowerCase().indexOf(q) === -1) continue;
