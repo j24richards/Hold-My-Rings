@@ -5779,6 +5779,19 @@ function buildMockDraftPickList(data) {
   return { teamNames, picks };
 }
 
+// All player names currently locked up as a keeper anywhere in the league --
+// these are real rosters, not available for anyone (bots included) to draft
+// in the mock. Gated on keepersVisible the same way the round-skip logic is,
+// so an unfinalized keeper list doesn't prematurely pull players out.
+function getAllKeptPlayerNames(data) {
+  const names = new Set();
+  if (!data.keepersVisible) return names;
+  (data.keeperSelections || []).forEach(sel => {
+    (sel.players || []).forEach(p => { if (p) names.add(p); });
+  });
+  return names;
+}
+
 function mockCapsOk(roster, pos) {
   if (pos === "QB") return roster.filter(p => p.pos === "QB").length < 2;
   if (pos === "K") return roster.filter(p => p.pos === "K").length < 1;
@@ -5847,7 +5860,8 @@ function startMockDraft() {
   MOCK_STATE.teamNames = teamNames;
   MOCK_STATE.pickList = picks;
   MOCK_STATE.pickIndex = 0;
-  MOCK_STATE.available = MOCK_DRAFT_POOL.slice();
+  const keptNames = getAllKeptPlayerNames(CURRENT_DATA);
+  MOCK_STATE.available = keptNames.size ? MOCK_DRAFT_POOL.filter(p => !keptNames.has(p.player)) : MOCK_DRAFT_POOL.slice();
   MOCK_STATE.rosters = {};
   teamNames.forEach(n => { MOCK_STATE.rosters[n] = []; });
   MOCK_STATE.log = [];
