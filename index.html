@@ -599,6 +599,72 @@ tr:last-child td { border-bottom: none; }
 .mockdraft-pick-log-rd { color: var(--muted); flex: none; width: 60px; }
 .mockdraft-pick-log-team { font-weight: 600; flex: none; width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 #mockdraft-board-body td, #mockdraft-board-headers { font-size: 0.78rem; }
+.mockdraft-paused-badge {
+  display: none;
+  background: var(--gold);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 4px 12px;
+  flex: none;
+}
+.mockdraft-board.is-paused .mockdraft-paused-badge { display: inline-block; }
+.mockdraft-board.is-paused .mockdraft-player-list { opacity: 0.45; pointer-events: none; }
+.mockdraft-roster-slots {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.mockdraft-slot-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+.mockdraft-slot-row:last-child { border-bottom: none; }
+.mockdraft-slot-row.bench { border-radius: 0; }
+.mockdraft-slot-label {
+  flex: none;
+  width: 56px;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+.mockdraft-slot-player { font-weight: 600; text-align: right; }
+.mockdraft-slot-player.mockdraft-slot-empty { color: var(--muted); font-weight: 400; font-style: italic; }
+.mockdraft-slot-meta { color: var(--muted); font-size: 0.75rem; font-weight: 400; margin-left: 6px; }
+.mockdraft-roster-bench-label {
+  margin-top: 12px;
+  margin-bottom: 6px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.mockdraft-roster-bench {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.mockdraft-roster-bench-empty { color: var(--muted); font-size: 0.82rem; }
+.mockdraft-otherteams { margin-top: 20px; }
+.mockdraft-otherteams-summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  padding: 10px 0;
+}
+.mockdraft-otherteams-body { padding-top: 10px; }
+.mockdraft-otherteams-btn.is-you { border-color: var(--gold); }
 #draftorder .card {
   padding: 14px 6px;
 }
@@ -1144,10 +1210,12 @@ footer {
     <div class="mockdraft-board" id="mockdraft-board" style="display:none;">
       <div class="mockdraft-board-top">
         <div class="mockdraft-onclock" id="mockdraft-onclock"></div>
+        <span class="mockdraft-paused-badge" id="mockdraft-paused-badge">Paused</span>
         <div class="mockdraft-timer-wrap" id="mockdraft-timer-wrap" style="display:none;">
           <div class="mockdraft-timer-bar"><div class="mockdraft-timer-fill" id="mockdraft-timer-fill"></div></div>
           <div class="mockdraft-timer-num" id="mockdraft-timer-num">1:15</div>
         </div>
+        <button type="button" class="admin-btn admin-btn-secondary" id="mockdraft-pause-btn">Pause</button>
         <button type="button" class="admin-btn admin-btn-secondary" id="mockdraft-quit-btn">Quit / Restart</button>
       </div>
 
@@ -1165,6 +1233,14 @@ footer {
           <div class="mockdraft-pick-log" id="mockdraft-pick-log"></div>
         </div>
       </div>
+
+      <details class="mockdraft-otherteams" id="mockdraft-otherteams">
+        <summary class="mockdraft-otherteams-summary">View Other Teams' Picks</summary>
+        <div class="mockdraft-otherteams-body">
+          <div class="mockdraft-team-grid" id="mockdraft-otherteams-grid"></div>
+          <div id="mockdraft-otherteams-roster"></div>
+        </div>
+      </details>
     </div>
 
     <div class="mockdraft-results" id="mockdraft-results" style="display:none;">
@@ -5751,7 +5827,9 @@ const MOCK_STATE = {
   timerRemaining: 75,
   botHandle: null,
   filterPos: "ALL",
-  searchQuery: ""
+  searchQuery: "",
+  paused: false,
+  viewingTeam: null
 };
 
 // Builds the linear (non-snake) mock-draft pick sequence directly from the
@@ -5867,14 +5945,22 @@ function startMockDraft() {
   MOCK_STATE.log = [];
   MOCK_STATE.filterPos = "ALL";
   MOCK_STATE.searchQuery = "";
+  MOCK_STATE.paused = false;
+  MOCK_STATE.viewingTeam = null;
   const searchEl = document.getElementById("mockdraft-player-search");
   if (searchEl) searchEl.value = "";
   document.getElementById("mockdraft-setup").style.display = "none";
   document.getElementById("mockdraft-results").style.display = "none";
   document.getElementById("mockdraft-board").style.display = "block";
+  document.getElementById("mockdraft-board").classList.remove("is-paused");
+  const pauseBtn = document.getElementById("mockdraft-pause-btn");
+  if (pauseBtn) pauseBtn.textContent = "Pause";
+  const otherTeamsDetails = document.getElementById("mockdraft-otherteams");
+  if (otherTeamsDetails) otherTeamsDetails.open = false;
   renderMockFilters();
   renderMockMyRoster();
   renderMockPickLog();
+  renderMockOtherTeamsGrid();
   advanceMockPick();
 }
 
@@ -5926,6 +6012,10 @@ function updateMockTimerUI() {
 function startMockTimer() {
   MOCK_STATE.timerRemaining = 75;
   updateMockTimerUI();
+  runMockTimerInterval();
+}
+
+function runMockTimerInterval() {
   MOCK_STATE.timerHandle = setInterval(() => {
     MOCK_STATE.timerRemaining--;
     updateMockTimerUI();
@@ -5936,6 +6026,48 @@ function startMockTimer() {
       if (pick) makeMockPick(current.team, pick);
     }
   }, 1000);
+}
+
+// Pausing just stops whichever clock is currently running (the human's
+// countdown, or the pending bot-pick timeout) without touching any draft
+// state, so the user can sit on the current pick and look around. Resuming
+// picks the same clock back up -- the human's timer continues from wherever
+// it left off rather than resetting to 1:15, and a bot's turn gets a fresh
+// short "thinking" delay.
+function pauseMockDraft() {
+  if (!MOCK_STATE.active || MOCK_STATE.paused) return;
+  MOCK_STATE.paused = true;
+  clearMockTimer();
+  clearMockBotTimeout();
+  document.getElementById("mockdraft-board").classList.add("is-paused");
+  const btn = document.getElementById("mockdraft-pause-btn");
+  if (btn) btn.textContent = "Resume";
+  renderMockAvailablePlayers();
+}
+
+function resumeMockDraft() {
+  if (!MOCK_STATE.active || !MOCK_STATE.paused) return;
+  MOCK_STATE.paused = false;
+  document.getElementById("mockdraft-board").classList.remove("is-paused");
+  const btn = document.getElementById("mockdraft-pause-btn");
+  if (btn) btn.textContent = "Pause";
+  const current = MOCK_STATE.pickList[MOCK_STATE.pickIndex];
+  if (current) {
+    if (current.team === MOCK_STATE.userTeam) {
+      runMockTimerInterval();
+    } else {
+      const delay = 500 + Math.floor(Math.random() * 700);
+      MOCK_STATE.botHandle = setTimeout(() => {
+        const pick = mockBestAvailable(current.team);
+        if (pick) makeMockPick(current.team, pick);
+      }, delay);
+    }
+  }
+  renderMockAvailablePlayers();
+}
+
+function togglePauseMockDraft() {
+  if (MOCK_STATE.paused) resumeMockDraft(); else pauseMockDraft();
 }
 
 function humanMockDraft(poolEntry) {
@@ -5956,6 +6088,7 @@ function makeMockPick(team, poolEntry) {
   MOCK_STATE.pickIndex++;
   renderMockMyRoster();
   renderMockPickLog();
+  refreshMockOtherTeamsView();
   advanceMockPick();
 }
 
@@ -5964,7 +6097,7 @@ function renderMockAvailablePlayers() {
   if (!listEl) return;
   listEl.innerHTML = "";
   const current = MOCK_STATE.pickList[MOCK_STATE.pickIndex];
-  const isUserTurn = !!(current && current.team === MOCK_STATE.userTeam);
+  const isUserTurn = !MOCK_STATE.paused && !!(current && current.team === MOCK_STATE.userTeam);
   const q = (MOCK_STATE.searchQuery || "").toLowerCase();
   let shown = 0;
   for (let i = 0; i < MOCK_STATE.available.length && shown < 150; i++) {
@@ -5988,10 +6121,100 @@ function renderMockAvailablePlayers() {
   }
 }
 
+// Starter slots per position, matching the league's real roster format
+// (QB, WR, WR, WR, RB, RB, TE, W/R/T, K, DEF, plus bench). A drafted player
+// fills their own position's next open starter slot first; once that
+// position is full, an RB/WR/TE overflows into the shared FLEX slot; once
+// FLEX is also taken (or for QB/K/DEF, which aren't FLEX-eligible), the
+// pick goes to the bench.
+const MOCK_STARTER_CAPS = { QB: 1, RB: 2, WR: 3, TE: 1, K: 1, DEF: 1 };
+const MOCK_FLEX_ELIGIBLE = ["RB", "WR", "TE"];
+
+function assignMockRosterSlots(picks) {
+  const starters = { QB: [], RB: [], WR: [], TE: [], K: [], DEF: [] };
+  let flex = null;
+  const bench = [];
+  (picks || []).forEach(p => {
+    const cap = MOCK_STARTER_CAPS[p.pos];
+    if (cap === undefined) { bench.push(p); return; }
+    if (starters[p.pos].length < cap) {
+      starters[p.pos].push(p);
+    } else if (MOCK_FLEX_ELIGIBLE.includes(p.pos) && !flex) {
+      flex = p;
+    } else {
+      bench.push(p);
+    }
+  });
+  return { starters, flex, bench };
+}
+
+function renderRosterSlots(picks) {
+  const { starters, flex, bench } = assignMockRosterSlots(picks);
+  const slotRowHtml = (label, player) => {
+    if (player) {
+      return "<div class=\"mockdraft-slot-row\"><span class=\"mockdraft-slot-label\">" + label + "</span>" +
+        "<span class=\"mockdraft-slot-player\">" + player.player + "<span class=\"mockdraft-slot-meta\">" + player.pos + " &middot; " + player.nfl + "</span></span></div>";
+    }
+    return "<div class=\"mockdraft-slot-row\"><span class=\"mockdraft-slot-label\">" + label + "</span>" +
+      "<span class=\"mockdraft-slot-player mockdraft-slot-empty\">Empty</span></div>";
+  };
+  let html = "<div class=\"mockdraft-roster-slots\">";
+  html += slotRowHtml("QB", starters.QB[0]);
+  html += slotRowHtml("RB 1", starters.RB[0]);
+  html += slotRowHtml("RB 2", starters.RB[1]);
+  html += slotRowHtml("WR 1", starters.WR[0]);
+  html += slotRowHtml("WR 2", starters.WR[1]);
+  html += slotRowHtml("WR 3", starters.WR[2]);
+  html += slotRowHtml("TE", starters.TE[0]);
+  html += slotRowHtml("FLEX", flex);
+  html += slotRowHtml("K", starters.K[0]);
+  html += slotRowHtml("DEF", starters.DEF[0]);
+  html += "</div>";
+  html += "<div class=\"mockdraft-roster-bench-label\">Bench (" + bench.length + ")</div>";
+  if (bench.length) {
+    html += "<div class=\"mockdraft-roster-bench\">" + bench.map(p =>
+      "<div class=\"mockdraft-slot-row bench\"><span class=\"mockdraft-slot-player\">" + p.player + "<span class=\"mockdraft-slot-meta\">" + p.pos + " &middot; " + p.nfl + "</span></span></div>"
+    ).join("") + "</div>";
+  } else {
+    html += "<div class=\"mockdraft-roster-bench-empty\">No bench players yet.</div>";
+  }
+  return html;
+}
+
 function renderMockMyRoster() {
   const el = document.getElementById("mockdraft-my-roster");
   if (!el) return;
-  el.innerHTML = MOCK_STATE.userTeam ? renderRosterTable(MOCK_STATE.rosters[MOCK_STATE.userTeam] || []) : "";
+  el.innerHTML = MOCK_STATE.userTeam ? renderRosterSlots(MOCK_STATE.rosters[MOCK_STATE.userTeam] || []) : "";
+}
+
+function renderMockOtherTeamsGrid() {
+  const grid = document.getElementById("mockdraft-otherteams-grid");
+  if (!grid) return;
+  grid.innerHTML = "";
+  MOCK_STATE.teamNames.forEach(name => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "mockdraft-team-btn mockdraft-otherteams-btn" + (name === MOCK_STATE.userTeam ? " is-you" : "");
+    btn.textContent = name + (name === MOCK_STATE.userTeam ? " (You)" : "");
+    btn.addEventListener("click", () => {
+      grid.querySelectorAll(".mockdraft-otherteams-btn").forEach(b => b.classList.remove("selected"));
+      btn.classList.add("selected");
+      MOCK_STATE.viewingTeam = name;
+      renderMockOtherTeamRoster(name);
+    });
+    grid.appendChild(btn);
+  });
+  document.getElementById("mockdraft-otherteams-roster").innerHTML = "";
+}
+
+function renderMockOtherTeamRoster(teamName) {
+  const el = document.getElementById("mockdraft-otherteams-roster");
+  if (!el) return;
+  el.innerHTML = renderRosterSlots(MOCK_STATE.rosters[teamName] || []);
+}
+
+function refreshMockOtherTeamsView() {
+  if (MOCK_STATE.viewingTeam) renderMockOtherTeamRoster(MOCK_STATE.viewingTeam);
 }
 
 function renderMockPickLog() {
@@ -6012,7 +6235,7 @@ function finishMockDraft() {
   MOCK_STATE.active = false;
   document.getElementById("mockdraft-board").style.display = "none";
   document.getElementById("mockdraft-results").style.display = "block";
-  document.getElementById("mockdraft-final-roster").innerHTML = renderRosterTable(MOCK_STATE.rosters[MOCK_STATE.userTeam] || []);
+  document.getElementById("mockdraft-final-roster").innerHTML = renderRosterSlots(MOCK_STATE.rosters[MOCK_STATE.userTeam] || []);
 
   const headerRow = document.getElementById("mockdraft-board-header-row");
   headerRow.innerHTML = "<th>Round</th>" + MOCK_STATE.teamNames.map(n => "<th>" + n + "</th>").join("");
@@ -6041,6 +6264,8 @@ function quitMockDraft() {
   clearMockTimer();
   clearMockBotTimeout();
   MOCK_STATE.active = false;
+  MOCK_STATE.paused = false;
+  document.getElementById("mockdraft-board").classList.remove("is-paused");
   document.getElementById("mockdraft-board").style.display = "none";
   document.getElementById("mockdraft-results").style.display = "none";
   if (CURRENT_DATA) initMockDraftTab(CURRENT_DATA);
@@ -6048,6 +6273,9 @@ function quitMockDraft() {
 
 const mockStartBtn = document.getElementById("mockdraft-start-btn");
 if (mockStartBtn) mockStartBtn.addEventListener("click", startMockDraft);
+
+const mockPauseBtn = document.getElementById("mockdraft-pause-btn");
+if (mockPauseBtn) mockPauseBtn.addEventListener("click", togglePauseMockDraft);
 
 const mockQuitBtn = document.getElementById("mockdraft-quit-btn");
 if (mockQuitBtn) mockQuitBtn.addEventListener("click", quitMockDraft);
