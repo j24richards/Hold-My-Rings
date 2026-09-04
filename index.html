@@ -5569,19 +5569,27 @@ document.getElementById("admin-generate-teams2026-btn").addEventListener("click"
     statusEl.textContent = "No draft results yet — fill those in first.";
     return;
   }
+  const playerPosPattern = /^(.*?)\s*\(([A-Za-z]+)\s*-\s*([A-Za-z]+)\)$/;
   const byTeam = {};
   results.forEach(r => {
     if (!r.team) return;
     if (!byTeam[r.team]) byTeam[r.team] = [];
-    byTeam[r.team].push({ player: r.player || "", pos: "", nfl: "", keeperCost: null, kept2025: false });
+    const m = playerPosPattern.exec(r.player || "");
+    if (m) {
+      byTeam[r.team].push({ player: m[1].trim(), pos: m[3].toUpperCase(), nfl: m[2].toUpperCase(), keeperCost: null, kept2025: false });
+    } else {
+      byTeam[r.team].push({ player: r.player || "", pos: "", nfl: "", keeperCost: null, kept2025: false });
+    }
   });
   CURRENT_DATA.teams2026 = Object.keys(byTeam).map(teamName => {
     const existing = CURRENT_DATA.teams.find(t => t.team === teamName);
     return { team: teamName, manager: existing ? existing.manager : "", roster: byTeam[teamName] };
   });
   renderTeams2026(CURRENT_DATA);
-  statusEl.textContent = "Generated " + CURRENT_DATA.teams2026.length + " team(s) from draft results — click Save Changes to publish. (Position, NFL team, and keeper cost are left blank; add those later if you want them shown.)";
+  statusEl.textContent = "Generated " + CURRENT_DATA.teams2026.length + " team(s) from draft results — click Save Changes to publish. (Position and NFL team are parsed from \"Player (NFL - POS)\" when present; keeper cost is left blank.)";
 });
+
+
 
 document.getElementById("admin-move-player-btn").addEventListener("click", () => {
   const statusEl = document.getElementById("admin-move-status");
