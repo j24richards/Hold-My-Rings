@@ -430,6 +430,175 @@ tr:last-child td { border-bottom: none; }
   margin-left: 3px;
   font-weight: 400;
 }
+.mockdraft-team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+  margin: 14px 0;
+}
+.mockdraft-team-btn {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  text-align: left;
+}
+.mockdraft-team-btn:hover { border-color: var(--gold); }
+.mockdraft-team-btn.selected {
+  background: var(--gold-wash);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.mockdraft-rules-note {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  margin: 14px 0;
+  padding: 10px 12px;
+  background: var(--panel-2);
+  border-radius: 8px;
+}
+.mockdraft-board-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.mockdraft-onclock {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 1.05rem;
+  color: var(--text);
+  flex: 1 1 auto;
+}
+.mockdraft-onclock .mockdraft-onclock-sub {
+  display: block;
+  font-family: inherit;
+  text-transform: none;
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 400;
+  margin-top: 2px;
+}
+.mockdraft-onclock.is-user { color: var(--gold); }
+.mockdraft-timer-wrap { display: flex; align-items: center; gap: 8px; flex: none; }
+.mockdraft-timer-bar {
+  width: 140px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.mockdraft-timer-fill {
+  height: 100%;
+  width: 100%;
+  background: var(--gold);
+  transition: width 1s linear;
+}
+.mockdraft-timer-num {
+  font-weight: 700;
+  font-size: 0.85rem;
+  min-width: 38px;
+  text-align: right;
+}
+.mockdraft-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 20px;
+}
+@media (max-width: 800px) {
+  .mockdraft-columns { grid-template-columns: 1fr; }
+}
+.mockdraft-col {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+.mockdraft-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.mockdraft-filter-chip {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.mockdraft-filter-chip.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #fff;
+}
+#mockdraft-player-search {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.mockdraft-player-list {
+  max-height: 420px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.mockdraft-player-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+.mockdraft-player-row:last-child { border-bottom: none; }
+.mockdraft-player-info { display: flex; flex-direction: column; }
+.mockdraft-player-name { font-weight: 600; }
+.mockdraft-player-meta { color: var(--muted); font-size: 0.75rem; }
+.mockdraft-draft-btn {
+  background: var(--gold);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  flex: none;
+}
+.mockdraft-draft-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.mockdraft-pick-log {
+  max-height: 260px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-top: 8px;
+}
+.mockdraft-pick-log-row {
+  display: flex;
+  gap: 8px;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.8rem;
+}
+.mockdraft-pick-log-row:last-child { border-bottom: none; }
+.mockdraft-pick-log-row.is-user { background: var(--gold-wash); }
+.mockdraft-pick-log-rd { color: var(--muted); flex: none; width: 60px; }
+.mockdraft-pick-log-team { font-weight: 600; flex: none; width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#mockdraft-board-body td, #mockdraft-board-headers { font-size: 0.78rem; }
 #draftorder .card {
   padding: 14px 6px;
 }
@@ -858,6 +1027,7 @@ footer {
   <button data-tab="draft">2026 Draft</button>
   <button data-tab="keepers">Keepers</button>
   <button data-tab="draftorder">Draft Order</button>
+  <button data-tab="mockdraft">Mock Draft</button>
   <button data-tab="trades">Trades</button>
   <button data-tab="teams">2025 Teams</button>
   <button data-tab="draft2025">2025 Draft</button>
@@ -873,6 +1043,7 @@ footer {
     <option value="draft">2026 Draft</option>
     <option value="keepers">Keepers</option>
     <option value="draftorder">Draft Order</option>
+    <option value="mockdraft">Mock Draft</option>
     <option value="trades">Trades</option>
     <option value="teams">2025 Teams</option>
     <option value="draft2025">2025 Draft</option>
@@ -953,6 +1124,61 @@ footer {
         </thead>
         <tbody id="draftorder-body"></tbody>
       </table>
+    </div>
+  </section>
+
+  <section id="mockdraft">
+    <h2>Mock Draft</h2>
+    <p style="color: var(--muted); margin-top: -6px;">Practice against bots using the real 2026 draft order, trades, and keeper-locked rounds. Nothing here is saved to the actual draft.</p>
+
+    <div class="card" id="mockdraft-setup">
+      <h3 style="margin-top:0;">Pick your team</h3>
+      <p style="color: var(--muted); font-size: 0.85rem; margin-top:-6px;">There's no login for this site, so just pick whichever team you want to practice drafting for &mdash; bots will run every other team.</p>
+      <div class="mockdraft-team-grid" id="mockdraft-team-grid"></div>
+      <div class="mockdraft-rules-note">
+        <strong>Rules:</strong> Linear order (not snake), matching the Draft Order tab exactly &mdash; trades and keeper-locked rounds are honored, so a round with a keeper is skipped entirely. Max 2 QB, 1 K, 1 DEF per roster. You get 1:15 per pick; if time runs out you auto-draft the best player available (skipping anyone who'd bust a position cap). Bots pick quickly so the draft moves fast.
+      </div>
+      <button type="button" class="admin-btn" id="mockdraft-start-btn" disabled>Start Mock Draft</button>
+    </div>
+
+    <div class="mockdraft-board" id="mockdraft-board" style="display:none;">
+      <div class="mockdraft-board-top">
+        <div class="mockdraft-onclock" id="mockdraft-onclock"></div>
+        <div class="mockdraft-timer-wrap" id="mockdraft-timer-wrap" style="display:none;">
+          <div class="mockdraft-timer-bar"><div class="mockdraft-timer-fill" id="mockdraft-timer-fill"></div></div>
+          <div class="mockdraft-timer-num" id="mockdraft-timer-num">1:15</div>
+        </div>
+        <button type="button" class="admin-btn admin-btn-secondary" id="mockdraft-quit-btn">Quit / Restart</button>
+      </div>
+
+      <div class="mockdraft-columns">
+        <div class="mockdraft-col">
+          <h3 style="margin-top:0;">Available Players</h3>
+          <div class="mockdraft-filters" id="mockdraft-filters"></div>
+          <input type="text" id="mockdraft-player-search" placeholder="Search available players&hellip;" autocomplete="off">
+          <div class="mockdraft-player-list" id="mockdraft-player-list"></div>
+        </div>
+        <div class="mockdraft-col">
+          <h3 style="margin-top:0;">Your Team</h3>
+          <div id="mockdraft-my-roster"></div>
+          <h3>Pick Log</h3>
+          <div class="mockdraft-pick-log" id="mockdraft-pick-log"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mockdraft-results" id="mockdraft-results" style="display:none;">
+      <h3 style="margin-top:0;">Mock Draft Complete</h3>
+      <button type="button" class="admin-btn" id="mockdraft-restart-btn">Start New Mock Draft</button>
+      <h4>Your Final Roster</h4>
+      <div id="mockdraft-final-roster"></div>
+      <h4>Full Board</h4>
+      <div class="card" style="overflow-x:auto;">
+        <table>
+          <thead><tr id="mockdraft-board-header-row"><th>Round</th></tr></thead>
+          <tbody id="mockdraft-board-body"></tbody>
+        </table>
+      </div>
     </div>
   </section>
 
@@ -5134,6 +5360,696 @@ function renderDraftOrderSection(data) {
   });
 }
 
+// ---------------------------------------------------------------------
+// Mock Draft
+//
+// A solo practice draft against bots, sourced from the same live data as
+// the Draft Order tab above: the pick sequence is linear (not snake),
+// follows that tab's fixed column order every round, honors trades
+// (newOwner) and skips any round a team is spending on a keeper. Rosters
+// built here are entirely separate scratch rosters -- nothing about a mock
+// run is saved anywhere.
+// ---------------------------------------------------------------------
+
+const MOCK_DRAFT_POOL_RAW = [
+["Jahmyr Gibbs","Det","RB"],
+["Bijan Robinson","Atl","RB"],
+["Ja'Marr Chase","Cin","WR"],
+["Puka Nacua","LAR","WR"],
+["Jonathan Taylor","Ind","RB"],
+["Christian McCaffrey","SF","RB"],
+["Amon-Ra St. Brown","Det","WR"],
+["Jaxon Smith-Njigba","Sea","WR"],
+["James Cook III","Buf","RB"],
+["Saquon Barkley","Phi","RB"],
+["Kenneth Walker III","KC","RB"],
+["CeeDee Lamb","Dal","WR"],
+["Justin Jefferson","Min","WR"],
+["Chase Brown","Cin","RB"],
+["Derrick Henry","Bal","RB"],
+["Omarion Hampton","LAC","RB"],
+["De'Von Achane","Mia","RB"],
+["Nico Collins","Hou","WR"],
+["Brock Bowers","LV","TE"],
+["Drake London","Atl","WR"],
+["Ashton Jeanty","LV","RB"],
+["George Pickens","Dal","WR"],
+["A.J. Brown","NE","WR"],
+["Chris Olave","NO","WR"],
+["Malik Nabers","NYG","WR"],
+["DeVonta Smith","Phi","WR"],
+["Kyren Williams","LAR","RB"],
+["Jeremiyah Love","Ari","RB"],
+["Javonte Williams","Dal","RB"],
+["Breece Hall","NYJ","RB"],
+["Tee Higgins","Cin","WR"],
+["Zay Flowers","Bal","WR"],
+["Jaylen Waddle","Den","WR"],
+["Trey McBride","Ari","TE"],
+["Josh Allen","Buf","QB"],
+["Garrett Wilson","NYJ","WR"],
+["Tetairoa McMillan","Car","WR"],
+["Colston Loveland","Chi","TE"],
+["Rashee Rice","KC","WR"],
+["Travis Etienne Jr.","NO","RB"],
+["Ladd McConkey","LAC","WR"],
+["D'Andre Swift","Chi","RB"],
+["Emeka Egbuka","TB","WR"],
+["Luther Burden III","Chi","WR"],
+["DJ Moore","Buf","WR"],
+["Tyler Warren","Ind","TE"],
+["Terry McLaurin","Was","WR"],
+["Cam Skattebo","NYG","RB"],
+["Jameson Williams","Det","WR"],
+["Bucky Irving","TB","RB"],
+["Rome Odunze","Chi","WR"],
+["Christian Watson","GB","WR"],
+["Lamar Jackson","Bal","QB"],
+["Parker Washington","Jax","WR"],
+["Davante Adams","LAR","WR"],
+["Quinshon Judkins","Cle","RB"],
+["David Montgomery","Hou","RB"],
+["Bhayshul Tuten","Jax","RB"],
+["Jadarian Price","Sea","RB"],
+["Mike Evans","SF","WR"],
+["Drake Maye","NE","QB"],
+["Rhamondre Stevenson","NE","RB"],
+["Jalen Hurts","Phi","QB"],
+["Joe Burrow","Cin","QB"],
+["TreVeyon Henderson","NE","RB"],
+["Tucker Kraft","GB","TE"],
+["Jayden Daniels","Was","QB"],
+["Marvin Harrison Jr.","Ari","WR"],
+["Jaylen Warren","Pit","RB"],
+["Sam LaPorta","Det","TE"],
+["MarShawn Lloyd","GB","RB"],
+["Caleb Williams","Chi","QB"],
+["Brian Thomas Jr.","Jax","WR"],
+["Carnell Tate","Ten","WR"],
+["Justin Herbert","LAC","QB"],
+["DK Metcalf","Pit","WR"],
+["Jonathon Brooks","Car","RB"],
+["Harold Fannin Jr.","Cle","TE"],
+["Kyle Pitts Sr.","Atl","TE"],
+["Trevor Lawrence","Jax","QB"],
+["Tony Pollard","Ten","RB"],
+["Chris Godwin Jr.","TB","WR"],
+["Dak Prescott","Dal","QB"],
+["Chuba Hubbard","Car","RB"],
+["J.K. Dobbins","Den","RB"],
+["Rico Dowdle","Pit","RB"],
+["George Kittle","SF","TE"],
+["Josh Downs","Ind","WR"],
+["Quentin Johnston","LAC","WR"],
+["Michael Wilson","Ari","WR"],
+["Jacory Croskey-Merritt","Was","RB"],
+["Blake Corum","LAR","RB"],
+["De'Zhaun Stribling","SF","WR"],
+["Jayden Reed","GB","WR"],
+["Jordan Addison","Min","WR"],
+["Alec Pierce","Ind","WR"],
+["Stefon Diggs","Was","WR"],
+["KC Concepcion","Cle","WR"],
+["Matthew Golden","GB","WR"],
+["Courtland Sutton","Den","WR"],
+["Brock Purdy","SF","QB"],
+["Makai Lemon","Phi","WR"],
+["Jordan Mason","Min","RB"],
+["Michael Pittman Jr.","Pit","WR"],
+["Bo Nix","Den","QB"],
+["Dalton Kincaid","Buf","TE"],
+["Jaxson Dart","NYG","QB"],
+["RJ Harvey","Den","RB"],
+["Wan'Dale Robinson","Ten","WR"],
+["Kyle Monangai","Chi","RB"],
+["Kenny Gainwell","TB","RB"],
+["Chris Rodriguez Jr.","Jax","RB"],
+["Jalen Coker","Car","WR"],
+["Rachaad White","Was","RB"],
+["Matthew Stafford","LAR","QB"],
+["Dallas Goedert","Phi","TE"],
+["Jared Goff","Det","QB"],
+["Travis Kelce","KC","TE"],
+["Kyler Murray","Min","QB"],
+["Isaiah Likely","NYG","TE"],
+["Romeo Doubs","NE","WR"],
+["Patrick Mahomes","KC","QB"],
+["Aaron Jones Sr.","Min","RB"],
+["Keaton Mitchell","LAC","RB"],
+["Jordan Love","GB","QB"],
+["Josh Jacobs","GB","RB"],
+["Jakobi Meyers","Jax","WR"],
+["Mike Washington Jr.","LV","RB"],
+["Jordyn Tyson","NO","WR"],
+["Woody Marks","Hou","RB"],
+["Xavier Worthy","KC","WR"],
+["Rashid Shaheed","Sea","WR"],
+["Malik Willis","Mia","QB"],
+["Juwan Johnson","NO","TE"],
+["Mark Andrews","Bal","TE"],
+["Tyler Allgeier","Ari","RB"],
+["Baker Mayfield","TB","QB"],
+["Tank Bigsby","Phi","RB"],
+["Khalil Shakir","Buf","WR"],
+["Tyjae Spears","Ten","RB"],
+["Jonah Coleman","Den","RB"],
+["Tre Tucker","LV","WR"],
+["Tyler Shough","NO","QB"],
+["Denzel Boston","Cle","WR"],
+["Adonai Mitchell","NYJ","WR"],
+["Jake Ferguson","Dal","TE"],
+["Keenan Allen","Ind","WR"],
+["Zach Charbonnet","Sea","RB"],
+["Dalton Schultz","Hou","TE"],
+["Texans","Hou","DEF"],
+["Terrance Ferguson","LAR","TE"],
+["Dontayvion Wicks","Phi","WR"],
+["Brandon Aubrey","Dal","K"],
+["Deebo Samuel Sr.","SF","WR"],
+["Rams","LAR","DEF"],
+["Sam Darnold","Sea","QB"],
+["Emmett Johnson","KC","RB"],
+["Chig Okonkwo","Was","TE"],
+["Ray Davis","Buf","RB"],
+["Jalen McMillan","TB","WR"],
+["Ja'Kobi Lane","Bal","WR"],
+["Brian Robinson","Atl","RB"],
+["Broncos","Den","DEF"],
+["Braelon Allen","NYJ","RB"],
+["Seahawks","Sea","DEF"],
+["Hunter Henry","NE","TE"],
+["Daniel Jones","Ind","QB"],
+["Ka'imi Fairbairn","Hou","K"],
+["Kaelon Black","SF","RB"],
+["Eagles","Phi","DEF"],
+["Pat Bryant","Den","WR"],
+["Ryan Flournoy","Dal","WR"],
+["Dylan Sampson","Cle","RB"],
+["Brenton Strange","Jax","TE"],
+["C.J. Stroud","Hou","QB"],
+["Malik Davis","Dal","RB"],
+["Kayshon Boutte","Hou","WR"],
+["Cameron Dicker","LAC","K"],
+["Caleb Douglas","Mia","WR"],
+["Cyrus Allen","KC","WR"],
+["Ravens","Bal","DEF"],
+["Bryce Young","Car","QB"],
+["AJ Barner","Sea","TE"],
+["Tre' Harris","LAC","WR"],
+["Cam Ward","Ten","QB"],
+["Jalen Nailor","LV","WR"],
+["Travis Hunter","Jax","WR"],
+["Jason Myers","Sea","K"],
+["Vikings","Min","DEF"],
+["Jaylin Noel","Hou","WR"],
+["Alvin Kamara","NO","RB"],
+["Omar Cooper Jr.","NYJ","WR"],
+["Greg Dulcich","Mia","TE"],
+["Cam Little","Jax","K"],
+["Kenyon Sadiq","NYJ","TE"],
+["Jerry Jeudy","Cle","WR"],
+["Isiah Pacheco","Det","RB"],
+["Jaguars","Jax","DEF"],
+["Steelers","Pit","DEF"],
+["Patriots","NE","DEF"],
+["Najee Harris","NYG","RB"],
+["Tyler Loop","Bal","K"],
+["Demond Claiborne","Min","RB"],
+["Nicholas Singleton","Ten","RB"],
+["Devaughn Vele","NO","WR"],
+["Chris Bell","Mia","WR"],
+["Jauan Jennings","Min","WR"],
+["Malik Washington","Mia","WR"],
+["Jacoby Brissett","Ari","QB"],
+["Kaleb Johnson","GB","RB"],
+["Will Reichard","Min","K"],
+["Zachariah Branch","Atl","WR"],
+["Kimani Vidal","LAC","RB"],
+["Fernando Mendoza","LV","QB"],
+["T.J. Hockenson","Min","TE"],
+["Pat Freiermuth","Pit","TE"],
+["Oronde Gadsden","LAC","TE"],
+["Cairo Santos","Chi","K"],
+["George Holani","Sea","RB"],
+["Eddy Pineiro","SF","K"],
+["Evan McPherson","Cin","K"],
+["Rashod Bateman","Bal","WR"],
+["Cade Otton","TB","TE"],
+["Seth McGowan","Ind","RB"],
+["Malachi Fields","NYG","WR"],
+["Cowboys","Dal","DEF"],
+["Kaytron Allen","Was","RB"],
+["Kendre Miller","NO","RB"],
+["Wil Lutz","Den","K"],
+["Samaje Perine","Cin","RB"],
+["Tyquan Thornton","KC","WR"],
+["Tyrone Tracy Jr.","NYG","RB"],
+["Chargers","LAC","DEF"],
+["Jahan Dotson","Atl","WR"],
+["Jake Bates","Det","K"],
+["Jack Bech","LV","WR"],
+["Lions","Det","DEF"],
+["Antonio Williams","Was","WR"],
+["Chiefs","KC","DEF"],
+["Packers","GB","DEF"],
+["Ted Hurst III","TB","WR"],
+["Jordan James","SF","RB"],
+["Bills","Buf","DEF"],
+["Chris Brooks","GB","RB"],
+["Geno Smith","NYJ","QB"],
+["Justice Hill","Bal","RB"],
+["Colby Parkinson","LAR","TE"],
+["Darren Waller","Car","TE"],
+["Aaron Rodgers","Pit","QB"],
+["Michael Penix Jr.","Atl","QB"],
+["Calvin Ridley","Ten","WR"],
+["Harrison Mevis","LAR","K"],
+["Sean Tucker","TB","RB"],
+["Isaac TeSlaa","Det","WR"],
+["Jaylen Wright","Mia","RB"],
+["Adam Randall","Bal","RB"],
+["Bengals","Cin","DEF"],
+["Emanuel Wilson","Sea","RB"],
+["Charlie Kolar","LAC","TE"],
+["49ers","SF","DEF"],
+["Darnell Mooney","NYG","WR"],
+["Tank Dell","Hou","WR"],
+["Cooper Kupp","Sea","WR"],
+["Gunnar Helm","Ten","TE"],
+["Trey Smack","GB","K"],
+["Germie Bernard","Pit","WR"],
+["Giants","NYG","DEF"],
+["Xavier Legette","Car","WR"],
+["Chase McLaughlin","TB","K"],
+["Chris Boswell","Pit","K"],
+["James Conner","Ari","RB"],
+["Colts","Ind","DEF"],
+["Buccaneers","TB","DEF"],
+["Eli Raridon","NE","TE"],
+["Keon Coleman","Buf","WR"],
+["Devin Singletary","NYG","RB"],
+["Harrison Butker","KC","K"],
+["Treylon Burks","Was","WR"],
+["Isaiah Davis","NYJ","RB"],
+["Roschon Johnson","Chi","RB"],
+["Tahj Brooks","Cin","RB"],
+["DJ Giddens","Ind","RB"],
+["Charlie Smyth","NO","K"],
+["Andy Borregales","NE","K"],
+["Ollie Gordon II","Mia","RB"],
+["Evan Engram","Den","TE"],
+["Bryce Lance","NO","WR"],
+["Michael Mayer","LV","TE"],
+["Saints","NO","DEF"],
+["Bears","Chi","DEF"],
+["Falcons","Atl","DEF"],
+["Joshua Palmer","Buf","WR"],
+["DeMario Douglas","NE","WR"],
+["Tua Tagovailoa","Atl","QB"],
+["Xavier Hutchinson","Hou","WR"],
+["Malik Benson","LV","WR"],
+["Tory Horton","Sea","WR"],
+["Darius Slayton","NYG","WR"],
+["Troy Franklin","Den","WR"],
+["Jake Tonges","SF","TE"],
+["Elijah Sarratt","Bal","WR"],
+["Browns","Cle","DEF"],
+["Titans","Ten","DEF"],
+["Eli Stowers","Phi","TE"],
+["Shedeur Sanders","Cle","QB"],
+["Deshaun Watson","Cle","QB"],
+["Marlin Klein","Hou","TE"],
+["Kirk Cousins","LV","QB"],
+["Skyler Bell","Buf","WR"],
+["Brenen Thompson","LAC","WR"],
+["Darnell Washington","Pit","TE"],
+["Elijah Arroyo","Sea","TE"],
+["Mike Gesicki","Cin","TE"],
+["Mason Taylor","NYJ","TE"],
+["David Njoku","LAC","TE"],
+["Ashton Dulin","Ind","WR"],
+["Erick All Jr.","Cin","TE"],
+["Carson Beck","Ari","QB"],
+["Devin Neal","NO","RB"],
+["LeQuint Allen Jr.","Jax","RB"],
+["Andrei Iosivas","Cin","WR"],
+["Chimere Dike","Ten","WR"],
+["Elic Ayomanor","Ten","WR"],
+["Trevor Etienne","Car","RB"],
+["Luke McCaffrey","Was","WR"],
+["Raheim Sanders","Cle","RB"],
+["Oscar Delp","NO","TE"],
+["Sione Vaki","Det","RB"],
+["Kyle Williams","NE","WR"],
+["Kareem Hunt","KC","RB"],
+["Christian Kirk","SF","WR"],
+["Jaydon Blue","Phi","RB"],
+["Ty Johnson","Buf","RB"],
+["Theo Johnson","NYG","TE"],
+["Brashard Smith","KC","RB"],
+["Isaiah Bond","Cle","WR"],
+["Marvin Mims Jr.","Den","WR"],
+["Phil Mafah","Dal","RB"],
+["Colbie Young","Cin","WR"],
+["Brandon Aiyuk","SF","WR"],
+["CJ Daniels","LAR","WR"],
+["Jarquez Hunter","Mia","RB"],
+["Emari Demercado","Dal","RB"],
+["Savion Williams","GB","WR"],
+["Zavion Thomas","Chi","WR"],
+["Jake Elliott","Phi","K"],
+["Spencer Shrader","Ind","K"],
+["Zane Gonzalez","Mia","K"],
+["Jake Moody","Bal","K"],
+["Brandon McManus","GB","K"],
+["Joey Slye","Ten","K"],
+["Chad Ryland","Ari","K"],
+["Blake Grupe","NYJ","K"],
+["Nick Folk","Atl","K"],
+["Matt Gay","LV","K"],
+["Dolphins","Mia","DEF"],
+["Panthers","Car","DEF"],
+["Cardinals","Ari","DEF"],
+["Commanders","Was","DEF"],
+["Raiders","LV","DEF"],
+["Jets","NYJ","DEF"]
+];
+
+const MOCK_DRAFT_POOL = MOCK_DRAFT_POOL_RAW.map(r => ({ player: r[0], nfl: r[1], pos: r[2] }));
+
+const MOCK_STATE = {
+  active: false,
+  userTeam: null,
+  selectedTeam: null,
+  teamNames: [],
+  pickList: [],
+  pickIndex: 0,
+  available: [],
+  rosters: {},
+  log: [],
+  timerHandle: null,
+  timerRemaining: 75,
+  botHandle: null,
+  filterPos: "ALL",
+  searchQuery: ""
+};
+
+// Builds the linear (non-snake) mock-draft pick sequence directly from the
+// live Draft Order tab's own data: same fixed column order every round,
+// trades resolved via newOwner, and any round a team is spending on a
+// keeper skipped entirely -- mirroring renderDraftOrderSection exactly so
+// the mock always matches what's currently shown on that tab.
+function buildMockDraftPickList(data) {
+  const order = data.draftOrder2026 || [];
+  const teamNames = order.length ? order[0].picks.map(p => p.originalTeam) : [];
+  const keeperMaps = {};
+  if (data.keepersVisible) {
+    teamNames.forEach(n => { keeperMaps[n] = getTeamKeeperRoundMap(data, n); });
+  }
+  const picks = [];
+  order.forEach(roundObj => {
+    roundObj.picks.forEach(p => {
+      const keeperMap = keeperMaps[p.originalTeam];
+      const keeperPlayers = keeperMap ? keeperMap[Number(roundObj.round)] : null;
+      if (keeperPlayers && keeperPlayers.length) return;
+      const owner = p.newOwner || p.originalTeam;
+      picks.push({ round: roundObj.round, team: owner });
+    });
+  });
+  return { teamNames, picks };
+}
+
+function mockCapsOk(roster, pos) {
+  if (pos === "QB") return roster.filter(p => p.pos === "QB").length < 2;
+  if (pos === "K") return roster.filter(p => p.pos === "K").length < 1;
+  if (pos === "DEF") return roster.filter(p => p.pos === "DEF").length < 1;
+  return true;
+}
+
+function mockBestAvailable(teamName) {
+  const roster = MOCK_STATE.rosters[teamName] || [];
+  for (let i = 0; i < MOCK_STATE.available.length; i++) {
+    if (mockCapsOk(roster, MOCK_STATE.available[i].pos)) return MOCK_STATE.available[i];
+  }
+  return MOCK_STATE.available[0] || null;
+}
+
+function initMockDraftTab(data) {
+  if (MOCK_STATE.active) return;
+  const grid = document.getElementById("mockdraft-team-grid");
+  if (!grid) return;
+  const { teamNames } = buildMockDraftPickList(data);
+  MOCK_STATE.teamNames = teamNames;
+  MOCK_STATE.selectedTeam = null;
+  grid.innerHTML = "";
+  teamNames.forEach(name => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "mockdraft-team-btn";
+    btn.textContent = name;
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".mockdraft-team-btn").forEach(b => b.classList.remove("selected"));
+      btn.classList.add("selected");
+      MOCK_STATE.selectedTeam = name;
+      document.getElementById("mockdraft-start-btn").disabled = false;
+    });
+    grid.appendChild(btn);
+  });
+  document.getElementById("mockdraft-start-btn").disabled = true;
+  document.getElementById("mockdraft-setup").style.display = "block";
+  document.getElementById("mockdraft-board").style.display = "none";
+  document.getElementById("mockdraft-results").style.display = "none";
+}
+
+function renderMockFilters() {
+  const wrap = document.getElementById("mockdraft-filters");
+  wrap.innerHTML = "";
+  ["ALL"].concat(POS_ORDER).forEach(pos => {
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "mockdraft-filter-chip" + (MOCK_STATE.filterPos === pos ? " active" : "");
+    chip.textContent = pos;
+    chip.addEventListener("click", () => {
+      MOCK_STATE.filterPos = pos;
+      renderMockFilters();
+      renderMockAvailablePlayers();
+    });
+    wrap.appendChild(chip);
+  });
+}
+
+function startMockDraft() {
+  if (!MOCK_STATE.selectedTeam || !CURRENT_DATA) return;
+  const { teamNames, picks } = buildMockDraftPickList(CURRENT_DATA);
+  if (!picks.length) return;
+  MOCK_STATE.active = true;
+  MOCK_STATE.userTeam = MOCK_STATE.selectedTeam;
+  MOCK_STATE.teamNames = teamNames;
+  MOCK_STATE.pickList = picks;
+  MOCK_STATE.pickIndex = 0;
+  MOCK_STATE.available = MOCK_DRAFT_POOL.slice();
+  MOCK_STATE.rosters = {};
+  teamNames.forEach(n => { MOCK_STATE.rosters[n] = []; });
+  MOCK_STATE.log = [];
+  MOCK_STATE.filterPos = "ALL";
+  MOCK_STATE.searchQuery = "";
+  const searchEl = document.getElementById("mockdraft-player-search");
+  if (searchEl) searchEl.value = "";
+  document.getElementById("mockdraft-setup").style.display = "none";
+  document.getElementById("mockdraft-results").style.display = "none";
+  document.getElementById("mockdraft-board").style.display = "block";
+  renderMockFilters();
+  renderMockMyRoster();
+  renderMockPickLog();
+  advanceMockPick();
+}
+
+function clearMockTimer() {
+  if (MOCK_STATE.timerHandle) { clearInterval(MOCK_STATE.timerHandle); MOCK_STATE.timerHandle = null; }
+}
+function clearMockBotTimeout() {
+  if (MOCK_STATE.botHandle) { clearTimeout(MOCK_STATE.botHandle); MOCK_STATE.botHandle = null; }
+}
+
+function advanceMockPick() {
+  clearMockTimer();
+  clearMockBotTimeout();
+  if (MOCK_STATE.pickIndex >= MOCK_STATE.pickList.length) {
+    finishMockDraft();
+    return;
+  }
+  const current = MOCK_STATE.pickList[MOCK_STATE.pickIndex];
+  renderMockOnClock(current);
+  renderMockAvailablePlayers();
+  if (current.team === MOCK_STATE.userTeam) {
+    startMockTimer();
+  } else {
+    const delay = 500 + Math.floor(Math.random() * 700);
+    MOCK_STATE.botHandle = setTimeout(() => {
+      const pick = mockBestAvailable(current.team);
+      if (pick) makeMockPick(current.team, pick);
+    }, delay);
+  }
+}
+
+function renderMockOnClock(current) {
+  const el = document.getElementById("mockdraft-onclock");
+  const isUser = current.team === MOCK_STATE.userTeam;
+  el.className = "mockdraft-onclock" + (isUser ? " is-user" : "");
+  el.innerHTML = "Round " + current.round + " &mdash; Pick " + (MOCK_STATE.pickIndex + 1) + " of " + MOCK_STATE.pickList.length +
+    "<span class=\"mockdraft-onclock-sub\">" + (isUser ? "You're on the clock" : current.team + " is on the clock") + "</span>";
+  document.getElementById("mockdraft-timer-wrap").style.display = isUser ? "flex" : "none";
+}
+
+function updateMockTimerUI() {
+  const n = Math.max(0, MOCK_STATE.timerRemaining);
+  const mm = Math.floor(n / 60);
+  const ss = String(n % 60).padStart(2, "0");
+  document.getElementById("mockdraft-timer-num").textContent = mm + ":" + ss;
+  document.getElementById("mockdraft-timer-fill").style.width = Math.max(0, (n / 75) * 100) + "%";
+}
+
+function startMockTimer() {
+  MOCK_STATE.timerRemaining = 75;
+  updateMockTimerUI();
+  MOCK_STATE.timerHandle = setInterval(() => {
+    MOCK_STATE.timerRemaining--;
+    updateMockTimerUI();
+    if (MOCK_STATE.timerRemaining <= 0) {
+      clearMockTimer();
+      const current = MOCK_STATE.pickList[MOCK_STATE.pickIndex];
+      const pick = mockBestAvailable(current.team);
+      if (pick) makeMockPick(current.team, pick);
+    }
+  }, 1000);
+}
+
+function humanMockDraft(poolEntry) {
+  const current = MOCK_STATE.pickList[MOCK_STATE.pickIndex];
+  if (!current || current.team !== MOCK_STATE.userTeam) return;
+  if (!mockCapsOk(MOCK_STATE.rosters[MOCK_STATE.userTeam], poolEntry.pos)) return;
+  makeMockPick(MOCK_STATE.userTeam, poolEntry);
+}
+
+function makeMockPick(team, poolEntry) {
+  clearMockTimer();
+  clearMockBotTimeout();
+  const idx = MOCK_STATE.available.indexOf(poolEntry);
+  if (idx !== -1) MOCK_STATE.available.splice(idx, 1);
+  MOCK_STATE.rosters[team].push({ player: poolEntry.player, pos: poolEntry.pos, nfl: poolEntry.nfl, kept2025: false, keeperCost: null });
+  const current = MOCK_STATE.pickList[MOCK_STATE.pickIndex];
+  MOCK_STATE.log.push({ round: current.round, team: team, player: poolEntry.player, pos: poolEntry.pos, nfl: poolEntry.nfl, isUser: team === MOCK_STATE.userTeam });
+  MOCK_STATE.pickIndex++;
+  renderMockMyRoster();
+  renderMockPickLog();
+  advanceMockPick();
+}
+
+function renderMockAvailablePlayers() {
+  const listEl = document.getElementById("mockdraft-player-list");
+  if (!listEl) return;
+  listEl.innerHTML = "";
+  const current = MOCK_STATE.pickList[MOCK_STATE.pickIndex];
+  const isUserTurn = !!(current && current.team === MOCK_STATE.userTeam);
+  const q = (MOCK_STATE.searchQuery || "").toLowerCase();
+  let shown = 0;
+  for (let i = 0; i < MOCK_STATE.available.length && shown < 150; i++) {
+    const p = MOCK_STATE.available[i];
+    if (MOCK_STATE.filterPos !== "ALL" && p.pos !== MOCK_STATE.filterPos) continue;
+    if (q && p.player.toLowerCase().indexOf(q) === -1) continue;
+    shown++;
+    const row = document.createElement("div");
+    row.className = "mockdraft-player-row";
+    const capOk = isUserTurn && mockCapsOk(MOCK_STATE.rosters[MOCK_STATE.userTeam] || [], p.pos);
+    row.innerHTML = "<div class=\"mockdraft-player-info\"><span class=\"mockdraft-player-name\">" + p.player + "</span>" +
+      "<span class=\"mockdraft-player-meta\">" + p.pos + " &middot; " + p.nfl + "</span></div>" +
+      "<button type=\"button\" class=\"mockdraft-draft-btn\"" + (capOk ? "" : " disabled") + ">Draft</button>";
+    if (capOk) {
+      row.querySelector(".mockdraft-draft-btn").addEventListener("click", () => humanMockDraft(p));
+    }
+    listEl.appendChild(row);
+  }
+  if (!shown) {
+    listEl.innerHTML = "<div class=\"mockdraft-player-row\" style=\"color:var(--muted);\">No players match.</div>";
+  }
+}
+
+function renderMockMyRoster() {
+  const el = document.getElementById("mockdraft-my-roster");
+  if (!el) return;
+  el.innerHTML = MOCK_STATE.userTeam ? renderRosterTable(MOCK_STATE.rosters[MOCK_STATE.userTeam] || []) : "";
+}
+
+function renderMockPickLog() {
+  const el = document.getElementById("mockdraft-pick-log");
+  if (!el) return;
+  el.innerHTML = "";
+  MOCK_STATE.log.slice().reverse().forEach(entry => {
+    const row = document.createElement("div");
+    row.className = "mockdraft-pick-log-row" + (entry.isUser ? " is-user" : "");
+    row.innerHTML = "<span class=\"mockdraft-pick-log-rd\">Rd " + entry.round + "</span>" +
+      "<span class=\"mockdraft-pick-log-team\">" + entry.team + "</span>" +
+      "<span>" + entry.player + " (" + entry.nfl + " - " + entry.pos + ")</span>";
+    el.appendChild(row);
+  });
+}
+
+function finishMockDraft() {
+  MOCK_STATE.active = false;
+  document.getElementById("mockdraft-board").style.display = "none";
+  document.getElementById("mockdraft-results").style.display = "block";
+  document.getElementById("mockdraft-final-roster").innerHTML = renderRosterTable(MOCK_STATE.rosters[MOCK_STATE.userTeam] || []);
+
+  const headerRow = document.getElementById("mockdraft-board-header-row");
+  headerRow.innerHTML = "<th>Round</th>" + MOCK_STATE.teamNames.map(n => "<th>" + n + "</th>").join("");
+
+  const picksByTeamRound = {};
+  MOCK_STATE.log.forEach(entry => {
+    picksByTeamRound[entry.team + "|" + entry.round] = entry.player + " (" + entry.nfl + " - " + entry.pos + ")";
+  });
+  const rounds = [];
+  MOCK_STATE.pickList.forEach(p => { if (rounds.indexOf(p.round) === -1) rounds.push(p.round); });
+  const bodyEl = document.getElementById("mockdraft-board-body");
+  bodyEl.innerHTML = "";
+  rounds.forEach(round => {
+    const tr = document.createElement("tr");
+    let html = "<td>" + round + "</td>";
+    MOCK_STATE.teamNames.forEach(team => {
+      const val = picksByTeamRound[team + "|" + round];
+      html += "<td>" + (val || "&mdash;") + "</td>";
+    });
+    tr.innerHTML = html;
+    bodyEl.appendChild(tr);
+  });
+}
+
+function quitMockDraft() {
+  clearMockTimer();
+  clearMockBotTimeout();
+  MOCK_STATE.active = false;
+  document.getElementById("mockdraft-board").style.display = "none";
+  document.getElementById("mockdraft-results").style.display = "none";
+  if (CURRENT_DATA) initMockDraftTab(CURRENT_DATA);
+}
+
+const mockStartBtn = document.getElementById("mockdraft-start-btn");
+if (mockStartBtn) mockStartBtn.addEventListener("click", startMockDraft);
+
+const mockQuitBtn = document.getElementById("mockdraft-quit-btn");
+if (mockQuitBtn) mockQuitBtn.addEventListener("click", quitMockDraft);
+
+const mockRestartBtn = document.getElementById("mockdraft-restart-btn");
+if (mockRestartBtn) mockRestartBtn.addEventListener("click", () => {
+  document.getElementById("mockdraft-results").style.display = "none";
+  if (CURRENT_DATA) initMockDraftTab(CURRENT_DATA);
+});
+
+const mockSearchInput = document.getElementById("mockdraft-player-search");
+if (mockSearchInput) mockSearchInput.addEventListener("input", (e) => {
+  MOCK_STATE.searchQuery = e.target.value;
+  renderMockAvailablePlayers();
+});
+
 function renderDraft2025Grid(data) {
   const rounds = data.draftResults2025 || [];
   const teamNames = rounds.length ? rounds[0].picks.map(p => p.team) : [];
@@ -5454,6 +6370,8 @@ function render(LEAGUE_DATA) {
   renderDraftResults(LEAGUE_DATA);
 
   renderDraftOrderSection(LEAGUE_DATA);
+
+  initMockDraftTab(LEAGUE_DATA);
 
   renderDraft2025Grid(LEAGUE_DATA);
 
