@@ -524,6 +524,96 @@ tr:last-child td { border-bottom: none; }
   margin-bottom: 16px;
 }
 .mockdraft-begin-text { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+.mockdraft-view-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.mockdraft-view-btn {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.mockdraft-view-btn.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #fff;
+}
+.mockdraft-grid-wrap {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 6px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+.mockdraft-grid-table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9rem;
+}
+.mockdraft-grid-table th, .mockdraft-grid-table td {
+  white-space: normal;
+  overflow-wrap: break-word;
+  font-size: 0.72rem;
+  padding: 7px 4px;
+  text-align: center;
+  line-height: 1.25;
+  border-bottom: 1px solid var(--border);
+}
+.mockdraft-grid-table th:first-child, .mockdraft-grid-table td:first-child {
+  width: 34px;
+  text-align: left;
+  color: var(--muted);
+  font-weight: 600;
+}
+.mockdraft-grid-table tbody tr:nth-child(even) { background: var(--panel-2); }
+.mockdraft-grid-table th.is-you, .mockdraft-grid-table td.is-you { background: var(--gold-wash); }
+.mockdraft-grid-table th.is-you { color: var(--gold); }
+.mockdraft-grid-cell-player {
+  display: block;
+  font-weight: 600;
+  color: var(--text);
+}
+.mockdraft-grid-cell-player + .mockdraft-grid-cell-player {
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top: 1px dashed var(--border);
+}
+.mockdraft-grid-cell-meta { display: block; color: var(--muted); font-size: 0.65rem; }
+.mockdraft-grid-cell-keeper { color: var(--keeper); font-weight: 600; }
+.mockdraft-grid-cell-keeper .keeper-icon { margin-left: 2px; font-weight: 400; }
+.mockdraft-grid-cell-none { color: var(--border); }
+.mockdraft-grid-cell-onclock {
+  background: var(--gold) !important;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 4px;
+  animation: mockdraft-onclock-pulse 1.4s ease-in-out infinite;
+}
+@keyframes mockdraft-onclock-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+@media (max-width: 700px) and (min-width: 481px) {
+  .mockdraft-grid-table th, .mockdraft-grid-table td { font-size: 0.6rem; padding: 5px 2px; }
+}
+@media (max-width: 480px) {
+  .mockdraft-grid-wrap { overflow-x: auto; }
+  .mockdraft-grid-table { table-layout: auto; width: auto; min-width: 100%; }
+  .mockdraft-grid-table th, .mockdraft-grid-table td { white-space: nowrap; overflow-wrap: normal; font-size: 0.76rem; padding: 8px 12px; }
+  .mockdraft-grid-table th:first-child, .mockdraft-grid-table td:first-child { width: auto; position: sticky; left: 0; background: var(--panel); }
+  .mockdraft-grid-table tbody tr:nth-child(even) td:first-child { background: var(--panel-2); }
+}
+.mockdraft-board.view-grid .mockdraft-columns { grid-template-columns: 1fr; }
+.mockdraft-board.view-grid #mockdraft-col-roster { display: none; }
 .mockdraft-timer-wrap { display: flex; align-items: center; gap: 8px; flex: none; }
 .mockdraft-timer-bar {
   width: 140px;
@@ -1262,14 +1352,26 @@ footer {
         <button type="button" class="admin-btn" id="mockdraft-begin-btn">Start Draft</button>
       </div>
 
-      <div class="mockdraft-columns">
-        <div class="mockdraft-col">
+      <div class="mockdraft-view-toggle" id="mockdraft-view-toggle">
+        <button type="button" class="mockdraft-view-btn active" data-view="list">List View</button>
+        <button type="button" class="mockdraft-view-btn" data-view="grid">Draft Board View</button>
+      </div>
+
+      <div class="mockdraft-grid-wrap" id="mockdraft-grid-wrap" style="display:none;">
+        <table class="mockdraft-grid-table">
+          <thead><tr id="mockdraft-grid-header"></tr></thead>
+          <tbody id="mockdraft-grid-body"></tbody>
+        </table>
+      </div>
+
+      <div class="mockdraft-columns" id="mockdraft-columns">
+        <div class="mockdraft-col" id="mockdraft-col-players">
           <h3 style="margin-top:0;">Available Players</h3>
           <div class="mockdraft-filters" id="mockdraft-filters"></div>
           <input type="text" id="mockdraft-player-search" placeholder="Search available players&hellip;" autocomplete="off">
           <div class="mockdraft-player-list" id="mockdraft-player-list"></div>
         </div>
-        <div class="mockdraft-col">
+        <div class="mockdraft-col" id="mockdraft-col-roster">
           <h3 style="margin-top:0;">Your Team</h3>
           <div id="mockdraft-my-roster"></div>
           <h3>Pick Log</h3>
@@ -5859,6 +5961,7 @@ const MOCK_DRAFT_POOL = MOCK_DRAFT_POOL_RAW.map(r => ({ player: r[0], nfl: r[1],
 const MOCK_STATE = {
   active: false,
   started: false,
+  view: "list",
   userTeam: null,
   selectedTeam: null,
   teamNames: [],
@@ -6018,6 +6121,13 @@ function startMockDraft() {
   // the ready-to-go state: pick 1's on-clock info, the full player pool,
   // and everyone's rosters (keepers included) up front.
   MOCK_STATE.started = false;
+  // Every new mock starts in List View regardless of what was picked last
+  // time, so the board looks the same way each time you start one.
+  MOCK_STATE.view = "list";
+  document.getElementById("mockdraft-board").classList.remove("view-grid");
+  const gridWrap = document.getElementById("mockdraft-grid-wrap");
+  if (gridWrap) gridWrap.style.display = "none";
+  document.querySelectorAll(".mockdraft-view-btn").forEach(b => b.classList.toggle("active", b.dataset.view === "list"));
   const searchEl = document.getElementById("mockdraft-player-search");
   if (searchEl) searchEl.value = "";
   document.getElementById("mockdraft-setup").style.display = "none";
@@ -6036,6 +6146,7 @@ function startMockDraft() {
   renderMockOtherTeamsGrid();
   renderMockOnClock(MOCK_STATE.pickList[0]);
   renderMockAvailablePlayers();
+  renderMockGrid();
 }
 
 // Fired by the board's own "Start Draft" button. This is the moment the
@@ -6077,6 +6188,7 @@ function advanceMockPick() {
   const current = MOCK_STATE.pickList[MOCK_STATE.pickIndex];
   renderMockOnClock(current);
   renderMockAvailablePlayers();
+  renderMockGrid();
   if (current.team === MOCK_STATE.userTeam) {
     startMockTimer();
   } else {
@@ -6122,6 +6234,86 @@ function renderMockOnClock(current) {
     "<span class=\"mockdraft-onclock-sub\">" + (isUser ? "You're on the clock" : current.team + " is on the clock") + "</span>" +
     (nextLine ? "<span class=\"mockdraft-onclock-next\">" + nextLine + "</span>" : "");
   document.getElementById("mockdraft-timer-wrap").style.display = (isUser && MOCK_STATE.started) ? "flex" : "none";
+}
+
+// Renders "Draft Board View" -- a Draft-Order-tab-style grid (one row per
+// round, one column per team) built live from the mock's own state. Keeper
+// rounds are shown exactly like the real Draft Order tab (they never appear
+// in MOCK_STATE.pickList at all, so their round numbers are pulled in
+// separately here); made picks show the player; the team currently on the
+// clock gets a pulsing highlight even before Start Draft is clicked, to
+// match the on-clock header's own pre-start preview. Cheap enough to just
+// rebuild in full after every pick rather than patch individual cells.
+//
+// A team-column model can't tell apart two picks the SAME team owns in the
+// SAME round (a trade can hand a team an extra pick in a round it already
+// had one in) -- MOCK_STATE.pickList collapses those to identical
+// {round, team} entries with no slot identity to split them into separate
+// columns. Rather than rebuild the pick-slot-column model the real Draft
+// Order tab uses (which would mean threading a slot id through the whole
+// pick list/log), every completed pick for a team+round is kept and shown
+// stacked in that one cell, so a second pick is never silently dropped.
+function renderMockGrid() {
+  const headerRow = document.getElementById("mockdraft-grid-header");
+  const bodyEl = document.getElementById("mockdraft-grid-body");
+  if (!headerRow || !bodyEl || !MOCK_STATE.active) return;
+
+  headerRow.innerHTML = "<th>Rd</th>" + MOCK_STATE.teamNames.map(n =>
+    "<th" + (n === MOCK_STATE.userTeam ? " class=\"is-you\"" : "") + ">" + n + "</th>"
+  ).join("");
+
+  const keeperMapsByTeam = {};
+  if (CURRENT_DATA && CURRENT_DATA.keepersVisible) {
+    MOCK_STATE.teamNames.forEach(n => { keeperMapsByTeam[n] = getTeamKeeperRoundMap(CURRENT_DATA, n); });
+  }
+  const picksByTeamRound = {};
+  MOCK_STATE.log.forEach(entry => {
+    const key = entry.team + "|" + Number(entry.round);
+    (picksByTeamRound[key] = picksByTeamRound[key] || []).push(entry);
+  });
+  const current = MOCK_STATE.pickList[MOCK_STATE.pickIndex];
+
+  const roundSet = new Set();
+  MOCK_STATE.pickList.forEach(p => roundSet.add(Number(p.round)));
+  Object.keys(keeperMapsByTeam).forEach(team => {
+    Object.keys(keeperMapsByTeam[team]).forEach(r => roundSet.add(Number(r)));
+  });
+  const rounds = Array.from(roundSet).sort((a, b) => a - b);
+
+  bodyEl.innerHTML = "";
+  rounds.forEach(round => {
+    const tr = document.createElement("tr");
+    let html = "<td>" + round + "</td>";
+    MOCK_STATE.teamNames.forEach(team => {
+      const isYou = team === MOCK_STATE.userTeam;
+      const keeperMap = keeperMapsByTeam[team];
+      const keeperPlayers = keeperMap ? keeperMap[round] : null;
+      const isOnClock = !!(current && current.team === team && Number(current.round) === round);
+      let cls = isYou ? "is-you" : "";
+      let inner;
+      if (keeperPlayers && keeperPlayers.length) {
+        inner = "<span class=\"mockdraft-grid-cell-keeper\">" + keeperPlayers.join(", ") +
+          "<span class=\"keeper-icon\" title=\"Keeper\" aria-hidden=\"true\">&nbsp;&#128274;</span></span>";
+      } else {
+        const entries = picksByTeamRound[team + "|" + round] || [];
+        const madeHtml = entries.map(entry =>
+          "<span class=\"mockdraft-grid-cell-player\">" + entry.player +
+            "<span class=\"mockdraft-grid-cell-meta\">" + entry.pos + " &middot; " + entry.nfl + "</span></span>"
+        ).join("");
+        if (isOnClock) {
+          cls = (cls + " mockdraft-grid-cell-onclock").trim();
+          inner = madeHtml + "<span>On the clock</span>";
+        } else if (madeHtml) {
+          inner = madeHtml;
+        } else {
+          inner = "<span class=\"mockdraft-grid-cell-none\">&mdash;</span>";
+        }
+      }
+      html += "<td" + (cls ? " class=\"" + cls + "\"" : "") + ">" + inner + "</td>";
+    });
+    tr.innerHTML = html;
+    bodyEl.appendChild(tr);
+  });
 }
 
 function updateMockTimerUI() {
@@ -6418,6 +6610,23 @@ if (mockStartBtn) mockStartBtn.addEventListener("click", startMockDraft);
 
 const mockBeginBtn = document.getElementById("mockdraft-begin-btn");
 if (mockBeginBtn) mockBeginBtn.addEventListener("click", beginMockDraft);
+
+// List View is the roster-and-pick-log layout that's always existed; Draft
+// Board View swaps that side column out for a Draft-Order-tab-style grid of
+// every team's picks (Available Players stays put either way, so you can
+// keep drafting from whichever view you're looking at).
+document.querySelectorAll(".mockdraft-view-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const view = btn.dataset.view;
+    if (MOCK_STATE.view === view) return;
+    MOCK_STATE.view = view;
+    document.querySelectorAll(".mockdraft-view-btn").forEach(b => b.classList.toggle("active", b === btn));
+    document.getElementById("mockdraft-board").classList.toggle("view-grid", view === "grid");
+    const gridWrap = document.getElementById("mockdraft-grid-wrap");
+    if (gridWrap) gridWrap.style.display = view === "grid" ? "block" : "none";
+    if (view === "grid") renderMockGrid();
+  });
+});
 
 const mockPauseBtn = document.getElementById("mockdraft-pause-btn");
 if (mockPauseBtn) mockPauseBtn.addEventListener("click", togglePauseMockDraft);
