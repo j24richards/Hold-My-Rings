@@ -511,6 +511,19 @@ tr:last-child td { border-bottom: none; }
   border-top: 1px dashed var(--gold);
   border-bottom: 1px dashed var(--gold);
 }
+.mockdraft-begin-bar {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  background: var(--gold-wash);
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+}
+.mockdraft-begin-text { font-size: 0.9rem; font-weight: 600; color: var(--text); }
 .mockdraft-timer-wrap { display: flex; align-items: center; gap: 8px; flex: none; }
 .mockdraft-timer-bar {
   width: 140px;
@@ -1227,7 +1240,7 @@ footer {
       <p style="color: var(--muted); font-size: 0.85rem; margin-top:-6px;">There's no login for this site, so just pick whichever team you want to practice drafting for &mdash; bots will run every other team.</p>
       <div class="mockdraft-team-grid" id="mockdraft-team-grid"></div>
       <div class="mockdraft-rules-note">
-        <strong>Rules:</strong> Linear order (not snake), matching the Draft Order tab exactly &mdash; trades and keeper-locked rounds are honored, so a round with a keeper is skipped entirely. Max 2 QB, 1 K, 1 DEF per roster. You get 1:15 per pick; if time runs out you auto-draft the best player available (skipping anyone who'd bust a position cap). Bots pick quickly so the draft moves fast.
+        <strong>Rules:</strong> Linear order (not snake), matching the Draft Order tab exactly &mdash; trades and keeper-locked rounds are honored, so a round with a keeper is skipped entirely. Max 2 QB, 1 K, 1 DEF per roster. You get 1:15 per pick; if time runs out you auto-draft the best player available (skipping anyone who'd bust a position cap). Bots take a few seconds (2&ndash;5) between picks so you can follow along. Picking a team below takes you to the board first &mdash; nothing starts until you hit Start Draft there.
       </div>
       <button type="button" class="admin-btn" id="mockdraft-start-btn" disabled>Start Mock Draft</button>
     </div>
@@ -1242,6 +1255,11 @@ footer {
         </div>
         <button type="button" class="admin-btn admin-btn-secondary" id="mockdraft-pause-btn">Pause</button>
         <button type="button" class="admin-btn admin-btn-secondary" id="mockdraft-quit-btn">Quit / Restart</button>
+      </div>
+
+      <div class="mockdraft-begin-bar" id="mockdraft-begin-bar">
+        <div class="mockdraft-begin-text">Rosters are set and the board is ready &mdash; start the draft whenever you are.</div>
+        <button type="button" class="admin-btn" id="mockdraft-begin-btn">Start Draft</button>
       </div>
 
       <div class="mockdraft-columns">
@@ -5840,6 +5858,7 @@ const MOCK_DRAFT_POOL = MOCK_DRAFT_POOL_RAW.map(r => ({ player: r[0], nfl: r[1],
 
 const MOCK_STATE = {
   active: false,
+  started: false,
   userTeam: null,
   selectedTeam: null,
   teamNames: [],
@@ -5993,6 +6012,12 @@ function startMockDraft() {
   MOCK_STATE.searchQuery = "";
   MOCK_STATE.paused = false;
   MOCK_STATE.viewingTeam = null;
+  // The board is shown as soon as you pick a team, but nothing actually
+  // happens yet -- no bot picks, no countdown -- until you hit the "Start
+  // Draft" button on the board itself (beginMockDraft). This just renders
+  // the ready-to-go state: pick 1's on-clock info, the full player pool,
+  // and everyone's rosters (keepers included) up front.
+  MOCK_STATE.started = false;
   const searchEl = document.getElementById("mockdraft-player-search");
   if (searchEl) searchEl.value = "";
   document.getElementById("mockdraft-setup").style.display = "none";
@@ -6000,13 +6025,29 @@ function startMockDraft() {
   document.getElementById("mockdraft-board").style.display = "block";
   document.getElementById("mockdraft-board").classList.remove("is-paused");
   const pauseBtn = document.getElementById("mockdraft-pause-btn");
-  if (pauseBtn) pauseBtn.textContent = "Pause";
+  if (pauseBtn) { pauseBtn.textContent = "Pause"; pauseBtn.disabled = true; }
+  const beginBar = document.getElementById("mockdraft-begin-bar");
+  if (beginBar) beginBar.style.display = "flex";
   const otherTeamsDetails = document.getElementById("mockdraft-otherteams");
   if (otherTeamsDetails) otherTeamsDetails.open = false;
   renderMockFilters();
   renderMockMyRoster();
   renderMockPickLog();
   renderMockOtherTeamsGrid();
+  renderMockOnClock(MOCK_STATE.pickList[0]);
+  renderMockAvailablePlayers();
+}
+
+// Fired by the board's own "Start Draft" button. This is the moment the
+// draft actually goes live -- bots start picking and, if you're up first,
+// your countdown starts.
+function beginMockDraft() {
+  if (!MOCK_STATE.active || MOCK_STATE.started) return;
+  MOCK_STATE.started = true;
+  const beginBar = document.getElementById("mockdraft-begin-bar");
+  if (beginBar) beginBar.style.display = "none";
+  const pauseBtn = document.getElementById("mockdraft-pause-btn");
+  if (pauseBtn) pauseBtn.disabled = false;
   advanceMockPick();
 }
 
@@ -6015,6 +6056,15 @@ function clearMockTimer() {
 }
 function clearMockBotTimeout() {
   if (MOCK_STATE.botHandle) { clearTimeout(MOCK_STATE.botHandle); MOCK_STATE.botHandle = null; }
+}
+
+// Bots pause for a few seconds before picking (instead of firing almost
+// instantly) so a human watching the board has time to actually see each
+// pick land before the next one shows up.
+const MOCK_BOT_PICK_DELAY_MIN = 2000;
+const MOCK_BOT_PICK_DELAY_MAX = 5000;
+function mockBotPickDelay() {
+  return MOCK_BOT_PICK_DELAY_MIN + Math.floor(Math.random() * (MOCK_BOT_PICK_DELAY_MAX - MOCK_BOT_PICK_DELAY_MIN + 1));
 }
 
 function advanceMockPick() {
@@ -6030,11 +6080,10 @@ function advanceMockPick() {
   if (current.team === MOCK_STATE.userTeam) {
     startMockTimer();
   } else {
-    const delay = 500 + Math.floor(Math.random() * 700);
     MOCK_STATE.botHandle = setTimeout(() => {
       const pick = mockBestAvailable(current.team);
       if (pick) makeMockPick(current.team, pick);
-    }, delay);
+    }, mockBotPickDelay());
   }
 }
 
@@ -6058,19 +6107,21 @@ function renderMockOnClock(current) {
   const el = document.getElementById("mockdraft-onclock");
   const isUser = current.team === MOCK_STATE.userTeam;
   el.className = "mockdraft-onclock" + (isUser ? " is-user" : "");
-  const next = mockNextTurnForTeam(MOCK_STATE.pickIndex, current.team);
-  let nextLine;
-  if (next) {
-    const who = isUser ? "Your next pick" : current.team + "’s next pick";
-    nextLine = who + ": Round " + next.round + " &middot; Pick " + next.overall +
-      " (" + next.picksAway + " pick" + (next.picksAway === 1 ? "" : "s") + " away)";
-  } else {
-    nextLine = isUser ? "This is your last pick of the draft" : current.team + "’s last pick of the draft";
+  // The "next pick" line is only ever about YOUR team -- when a bot is on
+  // the clock there's nothing useful to tell you about its next turn, so
+  // skip the lookup entirely rather than showing it for every team in turn.
+  let nextLine = "";
+  if (isUser) {
+    const next = mockNextTurnForTeam(MOCK_STATE.pickIndex, current.team);
+    nextLine = next ?
+      ("Your next pick: Round " + next.round + " &middot; Pick " + next.overall +
+        " (" + next.picksAway + " pick" + (next.picksAway === 1 ? "" : "s") + " away)") :
+      "This is your last pick of the draft";
   }
   el.innerHTML = "Round " + current.round + " &mdash; Pick " + (MOCK_STATE.pickIndex + 1) + " of " + MOCK_STATE.pickList.length +
     "<span class=\"mockdraft-onclock-sub\">" + (isUser ? "You're on the clock" : current.team + " is on the clock") + "</span>" +
-    "<span class=\"mockdraft-onclock-next\">" + nextLine + "</span>";
-  document.getElementById("mockdraft-timer-wrap").style.display = isUser ? "flex" : "none";
+    (nextLine ? "<span class=\"mockdraft-onclock-next\">" + nextLine + "</span>" : "");
+  document.getElementById("mockdraft-timer-wrap").style.display = (isUser && MOCK_STATE.started) ? "flex" : "none";
 }
 
 function updateMockTimerUI() {
@@ -6128,11 +6179,10 @@ function resumeMockDraft() {
     if (current.team === MOCK_STATE.userTeam) {
       runMockTimerInterval();
     } else {
-      const delay = 500 + Math.floor(Math.random() * 700);
       MOCK_STATE.botHandle = setTimeout(() => {
         const pick = mockBestAvailable(current.team);
         if (pick) makeMockPick(current.team, pick);
-      }, delay);
+      }, mockBotPickDelay());
     }
   }
   renderMockAvailablePlayers();
@@ -6169,20 +6219,20 @@ function renderMockAvailablePlayers() {
   if (!listEl) return;
   listEl.innerHTML = "";
   const current = MOCK_STATE.pickList[MOCK_STATE.pickIndex];
-  const isUserTurn = !MOCK_STATE.paused && !!(current && current.team === MOCK_STATE.userTeam);
+  const isUserOnClock = !!(current && current.team === MOCK_STATE.userTeam);
+  const isUserTurn = MOCK_STATE.started && !MOCK_STATE.paused && isUserOnClock;
   const q = (MOCK_STATE.searchQuery || "").toLowerCase();
-  // Roughly where the on-the-clock team's next pick will land in this list,
-  // assuming players keep coming off the board top-down (same assumption the
-  // bots draft under). `dividerAt` is an index into the *unfiltered*
-  // available pool -- a rank depth, not a row count -- so it stays in the
-  // right neighborhood even while a position filter or search is applied.
-  const nextTurn = current ? mockNextTurnForTeam(MOCK_STATE.pickIndex, current.team) : null;
+  // Roughly where YOUR next pick will land in this list, assuming players
+  // keep coming off the board top-down (same assumption the bots draft
+  // under). Only shown while you're the one on the clock -- a bot's next
+  // turn isn't something you need marked. `dividerAt` is an index into the
+  // *unfiltered* available pool -- a rank depth, not a row count -- so it
+  // stays in the right neighborhood even while a position filter or search
+  // is applied.
+  const nextTurn = isUserOnClock ? mockNextTurnForTeam(MOCK_STATE.pickIndex, current.team) : null;
   const dividerAt = nextTurn ? nextTurn.picksAway : -1;
   const dividerLabel = nextTurn ?
-    (current.team === MOCK_STATE.userTeam ?
-      "Your next pick (Rd " + nextTurn.round + ", Pick " + nextTurn.overall + ") is likely around here" :
-      current.team + "’s next pick (Rd " + nextTurn.round + ", Pick " + nextTurn.overall + ") is likely around here")
-    : "";
+    "Your next pick (Rd " + nextTurn.round + ", Pick " + nextTurn.overall + ") is likely around here" : "";
   let dividerShown = false;
   let shown = 0;
   for (let i = 0; i < MOCK_STATE.available.length && shown < 150; i++) {
@@ -6365,6 +6415,9 @@ function quitMockDraft() {
 
 const mockStartBtn = document.getElementById("mockdraft-start-btn");
 if (mockStartBtn) mockStartBtn.addEventListener("click", startMockDraft);
+
+const mockBeginBtn = document.getElementById("mockdraft-begin-btn");
+if (mockBeginBtn) mockBeginBtn.addEventListener("click", beginMockDraft);
 
 const mockPauseBtn = document.getElementById("mockdraft-pause-btn");
 if (mockPauseBtn) mockPauseBtn.addEventListener("click", togglePauseMockDraft);
