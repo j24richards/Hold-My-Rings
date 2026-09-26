@@ -28,6 +28,9 @@
   --bronze: #a86a3d;
   --gold-wash: rgba(184, 37, 20, 0.07);
   --keeper: #1a7f37;
+  --injury-risk: #a5680a;
+  --injury-risk-wash: rgba(165, 104, 10, 0.1);
+  --rookie-tag: #2f5fa8;
   --font-display: "Oswald", "Arial Narrow", sans-serif;
 }
 @media (prefers-color-scheme: dark) {
@@ -45,6 +48,9 @@
     --bronze: #c98b52;
     --gold-wash: rgba(220, 44, 24, 0.1);
     --keeper: #3fb950;
+    --injury-risk: #e8a33d;
+    --injury-risk-wash: rgba(232, 163, 61, 0.14);
+    --rookie-tag: #6ea3e0;
   }
 }
 * { box-sizing: border-box; }
@@ -614,6 +620,7 @@ tr:last-child td { border-bottom: none; }
 }
 .mockdraft-board.view-grid .mockdraft-columns { grid-template-columns: 1fr; }
 .mockdraft-board.view-grid #mockdraft-col-roster { display: none; }
+.mockdraft-board.view-grid #mockdraft-col-recent { display: none; }
 .mockdraft-timer-wrap { display: flex; align-items: center; gap: 8px; flex: none; }
 .mockdraft-timer-bar {
   width: 140px;
@@ -637,11 +644,16 @@ tr:last-child td { border-bottom: none; }
 }
 .mockdraft-columns {
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr) minmax(0, 1.1fr);
   gap: 20px;
+}
+@media (max-width: 1050px) {
+  .mockdraft-columns { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); }
+  .mockdraft-col-recent { grid-column: 1 / -1; order: -1; }
 }
 @media (max-width: 800px) {
   .mockdraft-columns { grid-template-columns: 1fr; }
+  .mockdraft-col-recent { grid-column: auto; order: 0; }
 }
 .mockdraft-col {
   background: var(--panel);
@@ -693,6 +705,58 @@ tr:last-child td { border-bottom: none; }
 .mockdraft-player-info { display: flex; flex-direction: column; }
 .mockdraft-player-name { font-weight: 600; }
 .mockdraft-player-meta { color: var(--muted); font-size: 0.75rem; }
+.mockdraft-injury-tag { color: var(--injury-risk); font-weight: 600; }
+.mockdraft-situation-tag { font-weight: 600; }
+.mockdraft-situation-tag.positive { color: var(--keeper); }
+.mockdraft-situation-tag.negative { color: var(--injury-risk); }
+.mockdraft-rookie-badge {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--rookie-tag);
+  border-radius: 4px;
+  padding: 1px 5px;
+  margin-right: 3px;
+  vertical-align: 1px;
+}
+.mockdraft-rookie-tag { font-weight: 600; }
+.mockdraft-rookie-tag.positive { color: var(--keeper); }
+.mockdraft-rookie-tag.negative { color: var(--injury-risk); }
+.mockdraft-rookie-tag.neutral { color: var(--muted); }
+.mockdraft-needs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.mockdraft-needs-label {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.68rem;
+  margin-right: 2px;
+}
+.mockdraft-needs-chip {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--injury-risk-wash);
+  border: 1px solid var(--injury-risk);
+  color: var(--injury-risk);
+  font-weight: 600;
+  font-size: 0.68rem;
+}
+.mockdraft-needs-complete {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--keeper);
+  font-weight: 600;
+  font-size: 0.72rem;
+  margin-bottom: 10px;
+}
 .mockdraft-draft-btn {
   background: var(--gold);
   color: #fff;
@@ -726,6 +790,9 @@ tr:last-child td { border-bottom: none; }
 .mockdraft-pick-log-row.is-user { background: var(--gold-wash); }
 .mockdraft-pick-log-rd { color: var(--muted); flex: none; width: 60px; }
 .mockdraft-pick-log-team { font-weight: 600; flex: none; width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mockdraft-recent-picks { max-height: 420px; }
+.mockdraft-recent-picks-empty { color: var(--muted); font-size: 0.8rem; padding: 8px 10px; }
+@media (max-width: 1050px) { .mockdraft-recent-picks { max-height: 220px; } }
 #mockdraft-board-body td, #mockdraft-board-headers { font-size: 0.78rem; }
 .mockdraft-paused-badge {
   display: none;
@@ -1343,6 +1410,7 @@ footer {
           <div class="mockdraft-timer-bar"><div class="mockdraft-timer-fill" id="mockdraft-timer-fill"></div></div>
           <div class="mockdraft-timer-num" id="mockdraft-timer-num">1:15</div>
         </div>
+        <button type="button" class="admin-btn admin-btn-secondary" id="mockdraft-sound-btn" title="Play a chime when you're on the clock">&#128276; Sound: On</button>
         <button type="button" class="admin-btn admin-btn-secondary" id="mockdraft-pause-btn">Pause</button>
         <button type="button" class="admin-btn admin-btn-secondary" id="mockdraft-quit-btn">Quit / Restart</button>
       </div>
@@ -1365,6 +1433,10 @@ footer {
       </div>
 
       <div class="mockdraft-columns" id="mockdraft-columns">
+        <div class="mockdraft-col mockdraft-col-recent" id="mockdraft-col-recent">
+          <h3 style="margin-top:0;">Recent Picks</h3>
+          <div class="mockdraft-pick-log mockdraft-recent-picks" id="mockdraft-recent-picks"></div>
+        </div>
         <div class="mockdraft-col" id="mockdraft-col-players">
           <h3 style="margin-top:0;">Available Players</h3>
           <div class="mockdraft-filters" id="mockdraft-filters"></div>
@@ -5976,8 +6048,44 @@ const MOCK_STATE = {
   filterPos: "ALL",
   searchQuery: "",
   paused: false,
-  viewingTeam: null
+  viewingTeam: null,
+  soundEnabled: true
 };
+
+// Lightweight "you're on the clock" chime built with the Web Audio API --
+// no audio file to host. The context is created (or resumed) lazily from
+// the "Start Draft" click handler so it's unlocked by a real user gesture
+// before the timer/bot-pick code path ever tries to play it automatically.
+let MOCK_AUDIO_CTX = null;
+function getMockAudioCtx() {
+  const Ctx = window.AudioContext || window.webkitAudioContext;
+  if (!Ctx) return null;
+  if (!MOCK_AUDIO_CTX) MOCK_AUDIO_CTX = new Ctx();
+  if (MOCK_AUDIO_CTX.state === "suspended") MOCK_AUDIO_CTX.resume();
+  return MOCK_AUDIO_CTX;
+}
+// A short two-note ding, only ever played when it becomes the human
+// drafter's own turn (never for bot picks) -- an audible cue to look back
+// at the tab.
+function playMockOnClockChime() {
+  if (!MOCK_STATE.soundEnabled) return;
+  const ctx = getMockAudioCtx();
+  if (!ctx) return;
+  const now = ctx.currentTime;
+  [[880, 0, 0.16], [1318.5, 0.11, 0.24]].forEach(([freq, offset, dur]) => {
+    const start = now + offset;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = "sine";
+    osc.frequency.value = freq;
+    gain.gain.setValueAtTime(0, start);
+    gain.gain.linearRampToValueAtTime(0.25, start + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.001, start + dur);
+    osc.connect(gain).connect(ctx.destination);
+    osc.start(start);
+    osc.stop(start + dur + 0.02);
+  });
+}
 
 // Builds the linear (non-snake) mock-draft pick sequence directly from the
 // live Draft Order tab's own data: same fixed column order every round,
@@ -6045,12 +6153,236 @@ function mockCapsOk(roster, pos) {
   return true;
 }
 
-function mockBestAvailable(teamName) {
-  const roster = MOCK_STATE.rosters[teamName] || [];
-  for (let i = 0; i < MOCK_STATE.available.length; i++) {
-    if (mockCapsOk(roster, MOCK_STATE.available[i].pos)) return MOCK_STATE.available[i];
+// Soft roster-construction targets used only to weight a bot's preference
+// toward filling out a real-looking roster (a starter plus some depth at
+// each skill position) -- separate from the hard position caps in
+// mockCapsOk above, which this never overrides.
+const MOCK_ROSTER_TARGETS = { QB: 2, RB: 5, WR: 6, TE: 2, K: 1, DEF: 1 };
+
+// Bots don't draft pure best-ADP-available -- real people don't either.
+// Each pick is scored on a mix of ADP, this team's positional need, and a
+// bit of per-pick unpredictability standing in for a player's upside/
+// downside, then the highest-scoring option after that randomness is
+// applied gets taken. Only the next MOCK_PICK_WINDOW cap-eligible players
+// on the board are ever in play for a given pick, so the result is always
+// a plausible reach or fall -- never absurd (a true late-round player can
+// never sneak into round 1). Players still in the top MOCK_ELITE_TIER of
+// the whole remaining board get an extra bump so true difference-makers
+// ("potential league winners") rarely slide far past their real ADP,
+// exactly the way a bot recognizing star power would behave.
+const MOCK_PICK_WINDOW = 10;
+const MOCK_ELITE_TIER = 24;
+
+// Real, current-as-of-the-2026-opener availability situations, sourced
+// beyond what the ADP snapshot alone bakes in -- weeksOut is the best
+// public estimate of games missed to start the season; vet marks a player
+// with enough banked NFL snaps to slot back into a known role without a
+// speed-of-the-game adjustment; eliteTalent marks talent good enough to
+// shrink that adjustment even for a less experienced player (a gifted
+// young player can play through rust that would sink an average one).
+// durabilityConcern is a separate, softer flag for a player who isn't
+// projected to miss time but carries real recurrence risk. None of this
+// claims certainty -- real injury timelines shift by the day -- it's a
+// deliberately modest nudge, not a hard rule.
+// severity is a soft, plain-language label (Minor/Moderate/Serious) -- not a
+// strict medical grading, just a quick read on how worried to be. ir flags
+// an actual Injured Reserve stint (as opposed to day-to-day/questionable or
+// a PUP-list situation) so the tag can call that out specifically, since a
+// human drafting against a rookie they don't recognize may not otherwise
+// know a name on their board is currently on IR at all.
+const MOCK_INJURY_NOTES = {
+  "Isiah Pacheco": { weeksOut: 4, vet: true, eliteTalent: false, ir: true, severity: "Moderate", note: "Back — eligible Wk5" },
+  "Malik Nabers": { weeksOut: 2, vet: false, eliteTalent: true, ir: false, severity: "Serious", note: "ACL recovery — Wk1 questionable" },
+  "Zach Charbonnet": { weeksOut: 4, vet: false, eliteTalent: false, ir: false, severity: "Serious", note: "Torn ACL (PUP) — unlikely Wk1" },
+  "Christian McCaffrey": { weeksOut: 0, vet: true, eliteTalent: true, durabilityConcern: true, severity: "Minor", note: "Camp soreness on heavy '25 usage" },
+  "Jeremiyah Love": { weeksOut: 1, vet: false, eliteTalent: true, ir: false, severity: "Minor", note: "High ankle sprain — hopeful for Wk1" },
+  "Jordyn Tyson": { weeksOut: 8, vet: false, eliteTalent: false, ir: true, severity: "Serious", note: "Hamstring (2nd recurrence) — designated to return, ~8 wks" }
+};
+
+function mockInjuryScoreAdjustment(player) {
+  const injury = MOCK_INJURY_NOTES[player.player];
+  if (!injury) return 0;
+  let adj = 0;
+  if (injury.weeksOut) {
+    // Missed time is a real cost no matter who it is.
+    adj -= injury.weeksOut * 1.5;
+    // A proven vet returning to a known role, or a young player whose raw
+    // talent shrinks the rust/learning-curve gap, integrates back close to
+    // full speed -- the discount an ADP snapshot already applies tends to
+    // overstate the risk, so this only partially re-costs the missed time
+    // (high risk, high reward). A less-proven, non-elite player is the
+    // opposite: NFL-speed rust stacks on top of the missed reps, so it's
+    // realistically slower to pay off even once "back" (high risk, low
+    // reward) -- fade them further instead.
+    adj += (injury.vet || injury.eliteTalent) ? injury.weeksOut * 1.2 : -2;
   }
-  return MOCK_STATE.available[0] || null;
+  if (injury.durabilityConcern) {
+    // No missed time projected, but real recurrence risk -- modeled as
+    // extra downside variance rather than a flat discount.
+    adj -= Math.random() * 5;
+  }
+  return adj;
+}
+
+// Small inline tag surfacing the same injury note the bots are weighing,
+// so a human drafting against them can see why a reach or a fall happened
+// -- and factor the risk into their own pick -- instead of it being an
+// invisible thumb on the scale.
+function mockInjuryTagHtml(player) {
+  const injury = MOCK_INJURY_NOTES[player.player];
+  if (!injury) return "";
+  const irLabel = injury.ir ? "IR &middot; " : "";
+  const severityLabel = injury.severity ? " (" + injury.severity + ")" : "";
+  const text = irLabel + injury.note + severityLabel;
+  return " &middot; <span class=\"mockdraft-injury-tag\" title=\"" + text + "\">&#9888; " + text + "</span>";
+}
+
+// 2026 NFL Draft rookies present in this pool -- real draft round/pick plus
+// a short, general buzz note (as of the 2026 preseason/Week 1) so a human
+// who doesn't recognize a name can immediately tell it's a rookie, where
+// they were actually picked, and whether analysts are generally high, low,
+// or mixed on the landing spot. Kept brief and general on purpose -- no
+// naming a specific teammate as "ahead of" or "behind" the rookie, since a
+// depth chart is unsettled and reads as a stronger claim than intended.
+const MOCK_ROOKIE_NOTES = {
+  "Jeremiyah Love": { round: 1, pick: 3, outlook: "high", note: "Minimal RB competition" },
+  "Carnell Tate": { round: 1, pick: 4, outlook: "high", note: "Top-5 pick, rising role" },
+  "Jordyn Tyson": { round: 1, pick: 8, outlook: "high", note: "Projected Week 1 starter" },
+  "Makai Lemon": { round: 1, pick: 20, outlook: "mixed", note: "Elite metrics, crowded WR room" },
+  "KC Concepcion": { round: 1, pick: 24, outlook: "mixed", note: "Talented, shaky QB situation" },
+  "Jadarian Price": { round: 1, pick: 32, outlook: "mixed", note: "Round 1 capital, crowded backfield" },
+  "De'Zhaun Stribling": { round: 2, pick: 33, outlook: "mixed", note: "Depth role now, upside later" },
+  "Denzel Boston": { round: 2, pick: 39, outlook: "mixed", note: "Physical, crowded WR room" },
+  "Ja'Kobi Lane": { round: 3, pick: 80, outlook: "low", note: "Cheap flier, unproven role" },
+  "Chris Bell": { round: 3, pick: 94, outlook: "high", note: "Wide-open WR room, real opportunity" },
+  "Caleb Douglas": { round: 3, pick: 75, outlook: "mixed", note: "Wide-open competition, real opportunity" },
+  "Jonah Coleman": { round: 4, pick: 108, outlook: "low", note: "Limited early-down opportunity so far" },
+  "Mike Washington Jr.": { round: 4, pick: 122, outlook: "low", note: "Change-of-pace role, not a lead back" },
+  "Emmett Johnson": { round: 5, pick: 161, outlook: "mixed", note: "Day 3 pick, depth role" },
+  "Cyrus Allen": { round: 5, pick: 176, outlook: "low", note: "Crowded WR room, deep-league flier" }
+};
+
+// Small inline tag identifying a rookie and surfacing the same draft-capital
+// and outlook context a bot's evaluation implicitly weighs, so a human
+// opponent isn't left guessing who an unfamiliar name is.
+function mockRookieTagHtml(player) {
+  const r = MOCK_ROOKIE_NOTES[player.player];
+  if (!r) return "";
+  const cls = r.outlook === "high" ? "positive" : r.outlook === "low" ? "negative" : "neutral";
+  const icon = r.outlook === "high" ? "&#9650;" : r.outlook === "low" ? "&#9660;" : "&#9679;";
+  const title = "2026 NFL Draft — Round " + r.round + ", Pick " + r.pick + ": " + r.note;
+  return " &middot; <span class=\"mockdraft-rookie-badge\" title=\"" + title + "\">ROOKIE</span>" +
+    " <span class=\"mockdraft-rookie-tag " + cls + "\" title=\"" + title + "\">" + icon + " Rd" + r.round + " &middot; " + r.note + "</span>";
+}
+
+// Real-world team-situation context for a curated set of players where the
+// 2026 backfield/target-share picture is unusually lopsided or unsettled --
+// a new offensive coordinator's scheme, a committee with a clear lead back,
+// or a suspension/exempt-list absence. This is NOT an attempt to hand-grade
+// scheme fit for all players in the pool (most ADP-driven boards already
+// price that in reasonably well) -- it's a small, deliberately modest nudge
+// for the handful of situations public reporting is unusually clear on as of
+// the 2026 opener, the same spirit as MOCK_INJURY_NOTES above. Positive adj
+// = situation working in the player's favor beyond raw ADP; negative = a
+// real reason to expect less than ADP implies.
+const MOCK_SITUATION_NOTES = {
+  "Josh Jacobs": { adj: -7, note: "On NFL Commissioner's Exempt List — no return timeline", positive: false },
+  "MarShawn Lloyd": { adj: 3, note: "Early-down lead role while Jacobs is out", positive: true },
+  "Omarion Hampton": { adj: 3, note: "New McDaniel scheme features the RB heavily as a receiver", positive: true },
+  "Quentin Johnston": { adj: 2, note: "New McDaniel scheme adds downfield shot-play volume", positive: true },
+  "Ladd McConkey": { adj: 2.5, note: "Slot role projects for a high 2026 target share", positive: true },
+  "Ray Davis": { adj: 2, note: "Clear #2 behind Cook — real standalone handcuff value", positive: true },
+  "Keaton Mitchell": { adj: -2, note: "Speed-package role only, not the early-down back", positive: false },
+  "Tank Bigsby": { adj: 1.5, note: "Complementary role behind Barkley in a run-first offense", positive: true },
+  "Braelon Allen": { adj: -2, note: "Behind Isaiah Davis in the NYJ backfield pecking order", positive: false },
+  "Kaelon Black": { adj: -1.5, note: "RB2 behind McCaffrey; passing-down role still unproven", positive: false },
+  "Jameson Williams": { adj: -2, note: "New-scheme deep-route share trimmed; competes with LaPorta for looks", positive: false },
+  "Sam LaPorta": { adj: 2.5, note: "New scheme leans on the TE — bounce-back target volume", positive: true },
+  "Kenneth Walker III": { adj: 3, note: "New-scheme workhorse role with expanded touches", positive: true }
+};
+
+function mockSituationScoreAdjustment(player) {
+  const situation = MOCK_SITUATION_NOTES[player.player];
+  return situation ? situation.adj : 0;
+}
+
+// Same idea as mockInjuryTagHtml -- surfaces the situational note driving a
+// bot's reach or fade so a human opponent sees the same context, rather than
+// it being an invisible thumb on the scale.
+function mockSituationTagHtml(player) {
+  const situation = MOCK_SITUATION_NOTES[player.player];
+  if (!situation) return "";
+  const cls = "mockdraft-situation-tag " + (situation.positive ? "positive" : "negative");
+  const icon = situation.positive ? "&#9650;" : "&#9660;";
+  return " &middot; <span class=\"" + cls + "\" title=\"" + situation.note + "\">" + icon + " " + situation.note + "</span>";
+}
+
+// How hard need should outweigh raw ADP, by round. Early rounds stay close
+// to best-player-available (a real manager still leans need a little even
+// in round 1 -- nobody drafts a third QB round 2 -- so this never hits pure
+// zero), then climbs steadily so that by the middle-late rounds a real roster
+// hole matters more than a small ADP reach, the way actual managers draft
+// for need once the "best player" tier thins out. Capped so it never gets
+// so extreme that a truly special player can't still get taken.
+function mockNeedWeight(round) {
+  return Math.min(3.2, 1 + (Math.max(1, round) - 1) * 0.17);
+}
+
+// Real drafters treat K/DEF as pure end-of-draft roster filler, no matter
+// where a raw ADP snapshot happens to rank a top option -- taking one early
+// costs a bench-depth pick at RB/WR/FLEX that's worth far more the rest of
+// the season, so good managers punt both positions almost to the very last
+// picks. This suppresses K/DEF hard until the final two rounds (when a real
+// starter finally outweighs one more speculative RB/WR flier), so those
+// middle-late rounds stay about building out RB/WR/FLEX depth instead.
+function mockPuntAdjustment(pos, roundsRemaining) {
+  if (pos !== "K" && pos !== "DEF") return 0;
+  if (roundsRemaining <= 1) return 0;
+  return -18 - roundsRemaining * 1.5;
+}
+
+// Bots score every cap-eligible player in the current pick window on ADP
+// position, positional need, elite-tier stickiness, real injury/situation
+// context, and a punt discount for K/DEF, then add a per-pick random swing
+// standing in for upside/downside before taking the top score. Same model
+// Year 14's mock draft uses -- ADP itself still comes from this league's
+// own full-PPR-sourced MOCK_DRAFT_POOL above, not Year 14's.
+function mockBestAvailable(teamName, round) {
+  const roster = MOCK_STATE.rosters[teamName] || [];
+  const needWeight = mockNeedWeight(round || 1);
+  const lastPick = MOCK_STATE.pickList[MOCK_STATE.pickList.length - 1];
+  const totalRounds = lastPick ? lastPick.round : (round || 1);
+  const roundsRemaining = Math.max(0, totalRounds - (round || 1));
+  const eligible = [];
+  for (let i = 0; i < MOCK_STATE.available.length && eligible.length < MOCK_PICK_WINDOW; i++) {
+    const p = MOCK_STATE.available[i];
+    if (mockCapsOk(roster, p.pos)) eligible.push({ player: p, boardIndex: i });
+  }
+  if (!eligible.length) return MOCK_STATE.available[0] || null;
+
+  let best = eligible[0].player;
+  let bestScore = -Infinity;
+  eligible.forEach((entry, windowIndex) => {
+    const p = entry.player;
+    let score = MOCK_PICK_WINDOW - windowIndex;
+
+    const target = MOCK_ROSTER_TARGETS[p.pos];
+    if (target) {
+      const have = roster.filter(r => r.pos === p.pos).length;
+      score += (have < target ? (target - have) * 3 : -5) * needWeight;
+    }
+
+    if (entry.boardIndex < MOCK_ELITE_TIER) score += 6;
+
+    score += mockInjuryScoreAdjustment(p);
+    score += mockSituationScoreAdjustment(p);
+    score += mockPuntAdjustment(p.pos, roundsRemaining);
+
+    score = Math.max(0.5, score) * (0.5 + Math.random());
+
+    if (score > bestScore) { bestScore = score; best = p; }
+  });
+  return best;
 }
 
 function initMockDraftTab(data) {
@@ -6143,6 +6475,7 @@ function startMockDraft() {
   renderMockFilters();
   renderMockMyRoster();
   renderMockPickLog();
+  renderMockRecentPicks();
   renderMockOtherTeamsGrid();
   renderMockOnClock(MOCK_STATE.pickList[0]);
   renderMockAvailablePlayers();
@@ -6190,10 +6523,11 @@ function advanceMockPick() {
   renderMockAvailablePlayers();
   renderMockGrid();
   if (current.team === MOCK_STATE.userTeam) {
+    playMockOnClockChime();
     startMockTimer();
   } else {
     MOCK_STATE.botHandle = setTimeout(() => {
-      const pick = mockBestAvailable(current.team);
+      const pick = mockBestAvailable(current.team, current.round);
       if (pick) makeMockPick(current.team, pick);
     }, mockBotPickDelay());
   }
@@ -6398,10 +6732,11 @@ function makeMockPick(team, poolEntry) {
   if (idx !== -1) MOCK_STATE.available.splice(idx, 1);
   MOCK_STATE.rosters[team].push({ player: poolEntry.player, pos: poolEntry.pos, nfl: poolEntry.nfl, kept2025: false, keeperCost: null });
   const current = MOCK_STATE.pickList[MOCK_STATE.pickIndex];
-  MOCK_STATE.log.push({ round: current.round, team: team, player: poolEntry.player, pos: poolEntry.pos, nfl: poolEntry.nfl, isUser: team === MOCK_STATE.userTeam });
+  MOCK_STATE.log.push({ round: current.round, overall: MOCK_STATE.pickIndex + 1, team: team, player: poolEntry.player, pos: poolEntry.pos, nfl: poolEntry.nfl, isUser: team === MOCK_STATE.userTeam });
   MOCK_STATE.pickIndex++;
   renderMockMyRoster();
   renderMockPickLog();
+  renderMockRecentPicks();
   refreshMockOtherTeamsView();
   advanceMockPick();
 }
@@ -6443,7 +6778,7 @@ function renderMockAvailablePlayers() {
     row.className = "mockdraft-player-row";
     const capOk = isUserTurn && mockCapsOk(MOCK_STATE.rosters[MOCK_STATE.userTeam] || [], p.pos);
     row.innerHTML = "<div class=\"mockdraft-player-info\"><span class=\"mockdraft-player-name\">" + p.player + "</span>" +
-      "<span class=\"mockdraft-player-meta\">" + p.pos + " &middot; " + p.nfl + "</span></div>" +
+      "<span class=\"mockdraft-player-meta\">" + p.pos + " &middot; " + p.nfl + mockRookieTagHtml(p) + mockInjuryTagHtml(p) + mockSituationTagHtml(p) + "</span></div>" +
       "<button type=\"button\" class=\"mockdraft-draft-btn\"" + (capOk ? "" : " disabled") + ">Draft</button>";
     if (capOk) {
       row.querySelector(".mockdraft-draft-btn").addEventListener("click", () => humanMockDraft(p));
@@ -6541,10 +6876,38 @@ function renderMockOtherTeamsGrid() {
   document.getElementById("mockdraft-otherteams-roster").innerHTML = "";
 }
 
+// Which starting-lineup slots a team still hasn't filled -- used to give
+// an at-a-glance "still needs" chip row when looking at another team's
+// roster in View Other Teams' Picks, rather than making you scan every
+// slot row for the word "Empty".
+function computeMockRosterNeeds(picks) {
+  const { starters, flex } = assignMockRosterSlots(picks);
+  const needs = [];
+  const need = (label, have, cap) => { if (have < cap) needs.push({ label: label, have: have, cap: cap }); };
+  need("QB", starters.QB.length, MOCK_STARTER_CAPS.QB);
+  need("RB", starters.RB.length, MOCK_STARTER_CAPS.RB);
+  need("WR", starters.WR.length, MOCK_STARTER_CAPS.WR);
+  need("TE", starters.TE.length, MOCK_STARTER_CAPS.TE);
+  need("FLEX", flex ? 1 : 0, 1);
+  need("K", starters.K.length, MOCK_STARTER_CAPS.K);
+  need("DEF", starters.DEF.length, MOCK_STARTER_CAPS.DEF);
+  return needs;
+}
+
+function renderMockNeedsBadge(picks) {
+  const needs = computeMockRosterNeeds(picks);
+  if (!needs.length) {
+    return "<div class=\"mockdraft-needs-complete\">&#9989; Starting lineup set</div>";
+  }
+  return "<div class=\"mockdraft-needs\"><span class=\"mockdraft-needs-label\">Still needs:</span>" +
+    needs.map(n => "<span class=\"mockdraft-needs-chip\">" + n.label + " " + n.have + "/" + n.cap + "</span>").join("") + "</div>";
+}
+
 function renderMockOtherTeamRoster(teamName) {
   const el = document.getElementById("mockdraft-otherteams-roster");
   if (!el) return;
-  el.innerHTML = renderRosterSlots(MOCK_STATE.rosters[teamName] || []);
+  const picks = MOCK_STATE.rosters[teamName] || [];
+  el.innerHTML = renderMockNeedsBadge(picks) + renderRosterSlots(picks);
 }
 
 function refreshMockOtherTeamsView() {
@@ -6561,6 +6924,26 @@ function renderMockPickLog() {
     row.innerHTML = "<span class=\"mockdraft-pick-log-rd\">Rd " + entry.round + "</span>" +
       "<span class=\"mockdraft-pick-log-team\">" + entry.team + "</span>" +
       "<span>" + entry.player + " (" + entry.nfl + " - " + entry.pos + ")</span>";
+    el.appendChild(row);
+  });
+}
+
+// A narrower, "most recent pick first" feed shown in its own column so it's
+// visible without opening the fuller Pick Log inside Your Team.
+function renderMockRecentPicks() {
+  const el = document.getElementById("mockdraft-recent-picks");
+  if (!el) return;
+  el.innerHTML = "";
+  if (!MOCK_STATE.log.length) {
+    el.innerHTML = "<div class=\"mockdraft-recent-picks-empty\">Picks will appear here as the draft goes.</div>";
+    return;
+  }
+  MOCK_STATE.log.slice().reverse().forEach(entry => {
+    const row = document.createElement("div");
+    row.className = "mockdraft-pick-log-row mockdraft-recent-row" + (entry.isUser ? " is-user" : "");
+    row.innerHTML = "<span class=\"mockdraft-pick-log-rd\">#" + entry.overall + "</span>" +
+      "<span class=\"mockdraft-pick-log-team\">" + entry.team + "</span>" +
+      "<span class=\"mockdraft-recent-row-detail\">" + entry.player + " &middot; " + entry.pos + "</span>";
     el.appendChild(row);
   });
 }
@@ -6626,6 +7009,16 @@ document.querySelectorAll(".mockdraft-view-btn").forEach(btn => {
     if (gridWrap) gridWrap.style.display = view === "grid" ? "block" : "none";
     if (view === "grid") renderMockGrid();
   });
+});
+
+const mockSoundBtn = document.getElementById("mockdraft-sound-btn");
+if (mockSoundBtn) mockSoundBtn.addEventListener("click", () => {
+  MOCK_STATE.soundEnabled = !MOCK_STATE.soundEnabled;
+  mockSoundBtn.innerHTML = "&#128276; Sound: " + (MOCK_STATE.soundEnabled ? "On" : "Off");
+  if (MOCK_STATE.soundEnabled) {
+    getMockAudioCtx(); // re-warm/unlock on this click too, then confirm audibly
+    playMockOnClockChime();
+  }
 });
 
 const mockPauseBtn = document.getElementById("mockdraft-pause-btn");
