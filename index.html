@@ -5801,7 +5801,7 @@ function renderDraftResults(data) {
       card.className = "team-card";
       const teamGrade = grades && grades.teamGrades[name];
       const gradeBadge = teamGrade
-        ? " <span class=\"draft-grade draft-grade-" + (teamGrade.avgValue >= 1 ? "good" : teamGrade.avgValue <= -1 ? "bad" : "mid") + "\" title=\"Average ADP value: " + (teamGrade.avgValue >= 0 ? "+" : "") + teamGrade.avgValue.toFixed(1) + " ranks\">" + teamGrade.grade + "</span>"
+        ? " <span class=\"draft-grade draft-grade-" + (teamGrade.avgValue >= 1 ? "good" : teamGrade.avgValue <= -1 ? "bad" : "mid") + "\">" + teamGrade.grade + "</span>"
         : "";
       let html = "<h3>" + name + gradeBadge + "</h3><table><thead><tr><th>Rd</th><th>Player</th></tr></thead><tbody>";
       picks.forEach(p => {
