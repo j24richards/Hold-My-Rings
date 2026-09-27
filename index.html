@@ -345,6 +345,19 @@ tr:last-child td { border-bottom: none; }
   font-size: 0.85rem;
   margin-bottom: 10px;
 }
+.draft-grade {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+.draft-grade-good { color: var(--keeper); }
+.draft-grade-mid { color: var(--muted); }
+.draft-grade-bad { color: var(--injury-risk); }
 .team-badge {
   display: inline-flex;
   align-items: center;
@@ -1119,6 +1132,7 @@ textarea { min-height: 80px; resize: vertical; }
 .admin-managerhistory-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
 .admin-managerhistory-row .admin-team-label { flex: 0 0 140px; }
 .admin-managerhistory-row .admin-manager-history-text { flex: 1 1 200px; color: var(--muted); font-size: 0.82rem; }
+.admin-managerhistory-row .admin-manager-profile-text { color: var(--accent); font-size: 0.78rem; display: inline-block; margin-top: 2px; }
 .admin-managerhistory-row input { flex: 1 1 120px; }
 
 .admin-keeper-block {
@@ -1362,6 +1376,10 @@ footer {
         <tbody id="standings-body"></tbody>
       </table>
     </div>
+    <div class="card" id="power-rankings-card" style="display:none;">
+      <h3 style="margin-top:0;">Power Rankings</h3>
+      <ul id="power-rankings-list" style="margin: 0; padding-left: 18px; color: var(--muted); font-size: 0.9rem;"></ul>
+    </div>
   </section>
 
   <section id="teams2026">
@@ -1376,6 +1394,7 @@ footer {
   <section id="draft">
     <h2 id="draft-heading">Draft Results</h2>
     <p style="color: var(--muted); margin-top: -6px;">Every team's picks, round by round.</p>
+    <p id="draft-grades-callout" style="display:none; color: var(--muted); font-size: 0.88rem; margin: 0 0 14px;"></p>
     <div class="teams-grid" id="draft-grid"></div>
     <p id="draft-empty-note" style="color: var(--muted); font-style: italic; display:none; margin: 10px 0 0;">
       Draft results will appear here once the commissioner enters them after the draft.
@@ -5453,6 +5472,91 @@ function renderStandingsBody(data) {
   });
 }
 
+// A short, always-available power-rankings blurb built entirely from the
+// current standings snapshot -- no week-over-week history required, so it
+// works from Week 1 on. Adapts to whichever fields this league's standings
+// actually track (HMR only has record/pointsFor; a richer model with
+// streak/pointsAgainst gets extra lines for free). Returns null before any
+// games are played, so an all-0-0 league doesn't get a blurb about nothing.
+function computePowerRankingsBlurb(data) {
+  const standings = (data.currentSeason && data.currentSeason.standings) || [];
+  if (!standings.length) return null;
+  const withStats = standings.map(row => {
+    const rec = parseRecord(row.record);
+    return {
+      team: row.team,
+      manager: row.manager,
+      w: rec.w,
+      l: rec.l,
+      pointsFor: row.pointsFor || 0,
+      pointsAgainst: row.pointsAgainst != null ? row.pointsAgainst : null,
+      streak: row.streak || null
+    };
+  });
+  if (!withStats.some(r => r.w + r.l > 0)) return null;
+
+  const lines = [];
+  const sorted = withStats.slice().sort((a, b) => (b.w - a.w) || (b.pointsFor - a.pointsFor));
+  const leader = sorted[0];
+  lines.push(leader.team + " (" + leader.manager + ") sits atop the standings at " + leader.w + "-" + leader.l + ".");
+
+  const cellar = sorted[sorted.length - 1];
+  if (cellar.team !== leader.team) {
+    lines.push(cellar.team + " (" + cellar.manager + ") is currently in the basement at " + cellar.w + "-" + cellar.l + ".");
+  }
+
+  let tightest = null;
+  for (let i = 0; i < sorted.length - 1; i++) {
+    const a = sorted[i], b = sorted[i + 1];
+    if (a.w === b.w && (!tightest || Math.abs(a.pointsFor - b.pointsFor) < tightest.gap)) {
+      tightest = { a: a, b: b, gap: Math.abs(a.pointsFor - b.pointsFor) };
+    }
+  }
+  if (tightest) {
+    lines.push(tightest.a.team + " and " + tightest.b.team + " are deadlocked at " + tightest.a.w + "-" + tightest.a.l + ", separated only by points for.");
+  }
+
+  const byPoints = withStats.slice().sort((a, b) => b.pointsFor - a.pointsFor);
+  if (byPoints[0].team !== leader.team) {
+    lines.push(byPoints[0].team + " has outscored the whole league (" + byPoints[0].pointsFor.toFixed(1) + " points for) but isn't the record leader yet.");
+  }
+
+  if (withStats.some(r => r.streak)) {
+    const parseStreak = s => {
+      const m = /^([WL])\s*(\d+)$/i.exec(s || "");
+      return m ? { dir: m[1].toUpperCase(), len: Number(m[2]) } : null;
+    };
+    const streaks = withStats.map(r => ({ team: r.team, s: parseStreak(r.streak) })).filter(r => r.s);
+    const hottest = streaks.filter(r => r.s.dir === "W").sort((a, b) => b.s.len - a.s.len)[0];
+    const coldest = streaks.filter(r => r.s.dir === "L").sort((a, b) => b.s.len - a.s.len)[0];
+    if (hottest && hottest.s.len >= 2) lines.push(hottest.team + " is riding a " + hottest.s.len + "-game winning streak.");
+    if (coldest && coldest.s.len >= 2) lines.push(coldest.team + " has dropped " + coldest.s.len + " straight.");
+  }
+
+  if (withStats.some(r => r.pointsAgainst != null)) {
+    const luck = withStats.map(r => ({ team: r.team, diff: r.pointsFor - (r.pointsAgainst || 0), w: r.w, l: r.l }));
+    const unlucky = luck.filter(r => r.diff > 0 && r.l > r.w).sort((a, b) => b.diff - a.diff)[0];
+    const lucky = luck.filter(r => r.diff < 0 && r.w > r.l).sort((a, b) => a.diff - b.diff)[0];
+    if (unlucky) lines.push(unlucky.team + " has outscored more opponents than its record shows (+" + unlucky.diff.toFixed(1) + " point differential) -- tough schedule so far.");
+    if (lucky) lines.push(lucky.team + " is winning despite a negative point differential (" + lucky.diff.toFixed(1) + ") -- riding some close finishes.");
+  }
+
+  return lines;
+}
+
+function renderPowerRankings(data) {
+  const card = document.getElementById("power-rankings-card");
+  const list = document.getElementById("power-rankings-list");
+  if (!card || !list) return;
+  const lines = computePowerRankingsBlurb(data);
+  if (!lines || !lines.length) {
+    card.style.display = "none";
+    return;
+  }
+  card.style.display = "block";
+  list.innerHTML = lines.map(l => "<li style=\"margin-bottom: 6px;\">" + l + "</li>").join("");
+}
+
 function getRowStandings(row) {
   if (row.standings && row.standings.length) return row.standings;
   const arr = [];
@@ -5613,14 +5717,86 @@ function renderTeams2026(data) {
   }
 }
 
+// Grades the real draft against this year's own ADP order (MOCK_DRAFT_POOL
+// is already ADP-sorted -- see mockBestAvailable's comment above it -- so a
+// player's index there doubles as their ADP rank with no separate lookup
+// table to keep in sync). A pick's "value" is adpRank minus the overall
+// pick number it was actually taken at: positive means it fell past where
+// ADP expected (good value), negative means it went earlier (a reach).
+// Skips any pick whose player isn't in this year's pool (e.g. a rookie
+// added after the pool was generated) rather than guessing at their ADP.
+function computeDraftGrades(data) {
+  const results = data.draftResults || [];
+  if (!results.length) return null;
+  const teamCount = (data.teams || []).length || 10;
+  const adpRankByName = {};
+  MOCK_DRAFT_POOL.forEach((p, i) => { adpRankByName[p.player] = i + 1; });
+
+  const picks = [];
+  results.forEach(r => {
+    if (!r.team || !r.player) return;
+    const round = Number(r.round);
+    const pickInRound = Number(r.pick);
+    const adpRank = adpRankByName[r.player];
+    if (!round || !pickInRound || !adpRank) return;
+    const overallPick = (round - 1) * teamCount + pickInRound;
+    picks.push({ team: r.team, player: r.player, round: round, overallPick: overallPick, adpRank: adpRank, value: adpRank - overallPick });
+  });
+  if (!picks.length) return null;
+
+  const byTeam = {};
+  picks.forEach(p => { (byTeam[p.team] = byTeam[p.team] || []).push(p); });
+
+  // Bands tuned to a ~15-round draft, where most teams land within a few
+  // ADP-rank slots of neutral on average and only a consistent pattern of
+  // reaches or steals pushes a team to the extremes.
+  function letterGrade(avgValue) {
+    if (avgValue >= 8) return "A+";
+    if (avgValue >= 5) return "A";
+    if (avgValue >= 3) return "B+";
+    if (avgValue >= 1) return "B";
+    if (avgValue >= -1) return "C";
+    if (avgValue >= -3) return "D";
+    if (avgValue >= -5) return "D-";
+    return "F";
+  }
+  const teamGrades = {};
+  Object.keys(byTeam).forEach(team => {
+    const teamPicks = byTeam[team];
+    const avgValue = teamPicks.reduce((s, p) => s + p.value, 0) / teamPicks.length;
+    teamGrades[team] = { avgValue: avgValue, grade: letterGrade(avgValue), picks: teamPicks };
+  });
+
+  const sortedByValue = picks.slice().sort((a, b) => b.value - a.value);
+  return {
+    teamGrades: teamGrades,
+    bestValue: sortedByValue[0],
+    biggestReach: sortedByValue[sortedByValue.length - 1]
+  };
+}
+
 function renderDraftResults(data) {
   document.getElementById("draft-heading").textContent = data.currentSeason.year + " Draft Results";
   const draftGrid = document.getElementById("draft-grid");
   draftGrid.innerHTML = "";
   const draftEmptyNote = document.getElementById("draft-empty-note");
   const draftResults = data.draftResults || [];
+  const draftGradesCallout = document.getElementById("draft-grades-callout");
   if (draftResults.length) {
     draftEmptyNote.style.display = "none";
+    const grades = computeDraftGrades(data);
+    if (draftGradesCallout) {
+      if (grades && grades.bestValue && grades.biggestReach) {
+        draftGradesCallout.style.display = "block";
+        draftGradesCallout.innerHTML =
+          "<strong>Best value:</strong> " + grades.bestValue.player + " to " + grades.bestValue.team +
+          " (Rd " + grades.bestValue.round + ", ADP rank " + grades.bestValue.adpRank + ") &nbsp;&nbsp; " +
+          "<strong>Biggest reach:</strong> " + grades.biggestReach.player + " to " + grades.biggestReach.team +
+          " (Rd " + grades.biggestReach.round + ", ADP rank " + grades.biggestReach.adpRank + ")";
+      } else {
+        draftGradesCallout.style.display = "none";
+      }
+    }
     const teamNames = (data.teams || []).map(t => t.team);
     const picksByTeam = {};
     teamNames.forEach(n => { picksByTeam[n] = []; });
@@ -5632,7 +5808,11 @@ function renderDraftResults(data) {
       const picks = picksByTeam[name].slice().sort((a, b) => Number(a.round) - Number(b.round));
       const card = document.createElement("div");
       card.className = "team-card";
-      let html = "<h3>" + name + "</h3><table><thead><tr><th>Rd</th><th>Player</th></tr></thead><tbody>";
+      const teamGrade = grades && grades.teamGrades[name];
+      const gradeBadge = teamGrade
+        ? " <span class=\"draft-grade draft-grade-" + (teamGrade.avgValue >= 1 ? "good" : teamGrade.avgValue <= -1 ? "bad" : "mid") + "\" title=\"Average ADP value: " + (teamGrade.avgValue >= 0 ? "+" : "") + teamGrade.avgValue.toFixed(1) + " ranks\">" + teamGrade.grade + "</span>"
+        : "";
+      let html = "<h3>" + name + gradeBadge + "</h3><table><thead><tr><th>Rd</th><th>Player</th></tr></thead><tbody>";
       picks.forEach(p => {
         html += "<tr><td>" + p.round + "</td><td>" + (p.player || "—") + "</td></tr>";
       });
@@ -5642,6 +5822,7 @@ function renderDraftResults(data) {
     });
   } else {
     draftEmptyNote.style.display = "block";
+    if (draftGradesCallout) draftGradesCallout.style.display = "none";
   }
 }
 
@@ -6299,6 +6480,27 @@ function mockManagerProfile(data, manager) {
     bonus[pos] = Math.max(-4, Math.min(6, (actual - expected) * 20));
   });
   return { bonus: bonus, noise: 1 };
+}
+
+// Human-readable summary of what a manager's mock draft bot is actually
+// doing right now -- either still on a random archetype (with a progress
+// count toward the two-year threshold) or running their own learned
+// tendencies (with the one or two positions it leans hardest toward/away
+// from). Admin-only visibility into logic that otherwise runs invisibly.
+function describeManagerProfile(data, manager) {
+  const years = new Set((data.draftArchive || []).filter(e => e.manager === manager && e.pos).map(e => e.year));
+  const yearCount = years.size;
+  const profile = mockManagerProfile(data, manager);
+  if (!profile) {
+    return "Random archetype (" + yearCount + "/" + MOCK_MANAGER_MIN_YEARS + " draft years archived for " + manager + ")";
+  }
+  const sorted = Object.entries(profile.bonus).sort((a, b) => b[1] - a[1]);
+  const favors = sorted.filter(e => e[1] > 1).slice(0, 2).map(e => e[0]);
+  const avoids = sorted.filter(e => e[1] < -1).slice(-2).map(e => e[0]).reverse();
+  let desc = "Learned tendencies (" + yearCount + " draft years archived)";
+  if (favors.length) desc += " — favors " + favors.join("/");
+  if (avoids.length) desc += (favors.length ? ", avoids " : " — avoids ") + avoids.join("/");
+  return desc;
 }
 
 // Bots don't draft pure best-ADP-available -- real people don't either.
@@ -7497,10 +7699,12 @@ function buildAdminForm(data) {
   data.teams.forEach(t => {
     const history = getManagerHistory(data, t.team).slice().sort((a, b) => a.sinceYear - b.sinceYear);
     const historyText = history.map(h => h.manager + " (since " + h.sinceYear + ")").join(" → ");
+    const profileText = describeManagerProfile(data, t.manager);
     const div = document.createElement("div");
     div.className = "admin-managerhistory-row";
     div.innerHTML = "<span class=\"admin-team-label\">" + t.team + "</span>" +
-      "<span class=\"admin-manager-history-text\">" + historyText + "</span>" +
+      "<span class=\"admin-manager-history-text\">" + historyText +
+      "<br><span class=\"admin-manager-profile-text\">Bot profile: " + profileText + "</span></span>" +
       "<input type=\"text\" class=\"admin-newmanager-input\" placeholder=\"New manager's name\">" +
       "<input type=\"number\" class=\"admin-newmanager-year-input\" placeholder=\"Starting year\">" +
       "<button type=\"button\" class=\"admin-btn admin-btn-secondary\">Record Change</button>";
@@ -7600,6 +7804,7 @@ function render(LEAGUE_DATA) {
   setInterval(renderCountdown, 1000);
 
   renderStandingsBody(LEAGUE_DATA);
+  renderPowerRankings(LEAGUE_DATA);
 
   renderHistorySection(LEAGUE_DATA);
 
@@ -7919,6 +8124,7 @@ document.getElementById("admin-save-btn").addEventListener("click", async () => 
     document.getElementById("updated-date").textContent = CURRENT_DATA.lastUpdated;
     document.getElementById("header-last-updated").textContent = formatLastUpdated(CURRENT_DATA.lastUpdated);
     renderStandingsBody(CURRENT_DATA);
+    renderPowerRankings(CURRENT_DATA);
     renderKeepersGrid(CURRENT_DATA);
     renderHistorySection(CURRENT_DATA);
     renderDraftResults(CURRENT_DATA);
