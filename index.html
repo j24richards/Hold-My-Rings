@@ -1313,6 +1313,13 @@ input.admin-keeper-round-input, input.admin-keeper-adp-input {
   align-items: center;
   margin-bottom: 8px;
 }
+.admin-waiver-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.4fr 1.4fr auto;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
 .admin-trade-block {
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -1335,7 +1342,7 @@ input.admin-keeper-round-input, input.admin-keeper-adp-input {
   margin-bottom: 8px;
 }
 @media (max-width: 640px) {
-  .admin-draftresult-row, .admin-draftorder-row, .admin-trade-head, .admin-trade-item-row, .admin-trade-row { grid-template-columns: 1fr; }
+  .admin-draftresult-row, .admin-draftorder-row, .admin-trade-head, .admin-trade-item-row, .admin-trade-row, .admin-waiver-row { grid-template-columns: 1fr; }
 }
 #admin-status {
   margin-top: 12px;
@@ -1462,6 +1469,7 @@ footer {
       <button data-tab="draftorder">Draft Order</button>
       <button data-tab="mockdraft">Mock Draft</button>
       <button data-tab="trades2026">Trades</button>
+      <button data-tab="waivers2026">Waivers</button>
     </div>
   </div>
   <button data-tab="tradeanalyzer">Trade Analyzer</button>
@@ -1493,6 +1501,7 @@ footer {
       <option value="draftorder">Draft Order</option>
       <option value="mockdraft">Mock Draft</option>
       <option value="trades2026">Trades</option>
+      <option value="waivers2026">Waivers</option>
     </optgroup>
     <option value="tradeanalyzer">Trade Analyzer</option>
     <optgroup label="2025 Archive">
@@ -1681,6 +1690,18 @@ footer {
           <tr><th>Date</th><th>Teams Involved</th><th>Details</th></tr>
         </thead>
         <tbody id="trades2026-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="waivers2026">
+    <h2>Waivers</h2>
+    <div class="card">
+      <table>
+        <thead>
+          <tr><th>Date</th><th>Team</th><th>Added</th><th>Dropped</th></tr>
+        </thead>
+        <tbody id="waivers2026-body"></tbody>
       </table>
     </div>
   </section>
@@ -1911,6 +1932,13 @@ footer {
           <p style="color: var(--muted); margin-top: 0; font-size: 0.82rem;">Each trade lists which team acquired players/picks, and from whom.</p>
           <div id="admin-trades"></div>
           <button type="button" class="admin-btn admin-btn-secondary" id="admin-add-trade-btn">+ Add Trade</button>
+        </div>
+      </details>
+      <details class="card admin-details">
+        <summary class="admin-summary">Waivers<span class="admin-chevron">&#9656;</span></summary>
+        <div class="admin-body">
+          <div id="admin-waivers2026"></div>
+          <button type="button" class="admin-btn admin-btn-secondary" id="admin-add-waiver2026-btn">+ Add Waiver Move</button>
         </div>
       </details>
       <details class="card admin-details">
@@ -4978,6 +5006,7 @@ const DEFAULT_LEAGUE_DATA = {
   }
  ],
  "trades": [],
+ "waivers": [],
  "ruleGroups": [
   {
    "title": "Keeper Basics",
@@ -7939,6 +7968,29 @@ function addTradeRow(rowsWrap, date, teams, details) {
   rowsWrap.appendChild(row);
 }
 
+function renderWaiversSection(data) {
+  const waivers2026Body = document.getElementById("waivers2026-body");
+  if (!waivers2026Body) return;
+  waivers2026Body.innerHTML = "";
+  (data.waivers || []).forEach(row => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = "<td>" + row.date + "</td><td>" + row.team + "</td><td>" + row.added + "</td><td>" + row.dropped + "</td>";
+    waivers2026Body.appendChild(tr);
+  });
+}
+
+function addWaiverRow(rowsWrap, date, team, added, dropped) {
+  const row = document.createElement("div");
+  row.className = "admin-waiver-row";
+  row.innerHTML = "<input type=\"text\" class=\"admin-waiver-date\" placeholder=\"Date\" value=\"" + (date || "") + "\">" +
+    "<input type=\"text\" class=\"admin-waiver-team\" placeholder=\"Team\" value=\"" + (team || "") + "\">" +
+    "<input type=\"text\" class=\"admin-waiver-added\" placeholder=\"Added\" value=\"" + (added || "") + "\">" +
+    "<input type=\"text\" class=\"admin-waiver-dropped\" placeholder=\"Dropped\" value=\"" + (dropped || "") + "\">" +
+    "<button type=\"button\" class=\"admin-remove-row-btn\">Remove</button>";
+  row.querySelector(".admin-remove-row-btn").addEventListener("click", () => row.remove());
+  rowsWrap.appendChild(row);
+}
+
 // Trade Analyzer: a what-if value scale, not a stored grade. A player's
 // value here is how far his real draft-pool rank sits above (bargain) or
 // below (overpriced) the rank you'd expect for the round it costs to keep
@@ -8325,6 +8377,12 @@ populateKeeperPicker(data);
     trades2026El.innerHTML = "";
     (data.trades || []).forEach(t => addTradeRow(trades2026El, t.date, t.teams, t.details));
   }
+
+  const waivers2026El = document.getElementById("admin-waivers2026");
+  if (waivers2026El) {
+    waivers2026El.innerHTML = "";
+    (data.waivers || []).forEach(w => addWaiverRow(waivers2026El, w.date, w.team, w.added, w.dropped));
+  }
 }
 
 function render(LEAGUE_DATA) {
@@ -8360,6 +8418,7 @@ function render(LEAGUE_DATA) {
   renderDraft2025Grid(LEAGUE_DATA);
 
   renderTradesSection(LEAGUE_DATA);
+  renderWaiversSection(LEAGUE_DATA);
   renderTradeAnalyzer(LEAGUE_DATA);
 
   const rulesGrid = document.getElementById("rules-grid");
@@ -8490,6 +8549,10 @@ document.getElementById("admin-add-trade-btn").addEventListener("click", () => {
 
 document.getElementById("admin-add-trade2026-btn").addEventListener("click", () => {
   addTradeRow(document.getElementById("admin-trades2026"), "", "", "");
+});
+
+document.getElementById("admin-add-waiver2026-btn").addEventListener("click", () => {
+  addWaiverRow(document.getElementById("admin-waivers2026"), "", "", "", "");
 });
 
 document.getElementById("admin-rename-teams-btn").addEventListener("click", () => {
@@ -8719,6 +8782,16 @@ document.getElementById("admin-save-btn").addEventListener("click", async () => 
   });
   CURRENT_DATA.trades = newTrades2026;
 
+  const newWaivers2026 = [];
+  document.querySelectorAll("#admin-waivers2026 .admin-waiver-row").forEach(row => {
+    const date = row.querySelector(".admin-waiver-date").value.trim();
+    const team = row.querySelector(".admin-waiver-team").value.trim();
+    const added = row.querySelector(".admin-waiver-added").value.trim();
+    const dropped = row.querySelector(".admin-waiver-dropped").value.trim();
+    if (team || added || dropped) newWaivers2026.push({ date: date, team: team, added: added, dropped: dropped });
+  });
+  CURRENT_DATA.waivers = newWaivers2026;
+
   statusEl.textContent = "Saving…";
   try {
     await setDoc(FIRESTORE_REF, CURRENT_DATA);
@@ -8733,6 +8806,7 @@ document.getElementById("admin-save-btn").addEventListener("click", async () => 
     renderDraftResults(CURRENT_DATA);
     renderDraftOrderSection(CURRENT_DATA);
     renderTradesSection(CURRENT_DATA);
+    renderWaiversSection(CURRENT_DATA);
     renderTradeAnalyzer(CURRENT_DATA);
     renderTeamsGrid(CURRENT_DATA);
     renderTeams2026(CURRENT_DATA);
@@ -9016,7 +9090,15 @@ function styleExportSheet(ws, rows, type, opts) {
   } catch (err) {
     console.error("Firebase load failed, using built-in defaults:", err);
     render(DEFAULT_LEAGUE_DATA);
-    syncNote.textContent = "Showing built-in defaults (couldn't reach the live data).";
+    syncNote.innerHTML = "Showing built-in defaults (couldn't reach the live data). <a href=\"#\" id=\"sync-retry-link\" style=\"color: var(--gold); text-decoration: underline;\">Retry</a>";
+    const retryLink = document.getElementById("sync-retry-link");
+    if (retryLink) {
+      retryLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        syncNote.textContent = "Retrying…";
+        loadAndRender();
+      });
+    }
   }
 }
 
