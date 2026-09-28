@@ -164,6 +164,46 @@ nav button.active {
   color: #ffffff;
   font-weight: 600;
 }
+.nav-group { position: relative; }
+.nav-group-toggle { display: inline-flex; align-items: center; gap: 4px; }
+.nav-group-toggle.active-group {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #ffffff;
+  font-weight: 600;
+}
+.nav-group-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: column;
+  gap: 4px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px;
+  min-width: 170px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+  z-index: 60;
+}
+.nav-group-menu.open { display: flex; }
+.nav-group-menu button {
+  text-align: left;
+  border-radius: 6px;
+  color: var(--text);
+  border-color: transparent;
+  background: none;
+  padding: 8px 12px;
+}
+.nav-group-menu button:hover { background: var(--panel-2); }
+.nav-group-menu button.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #ffffff;
+  font-weight: 600;
+}
 main {
   max-width: 960px;
   margin: 0 auto;
@@ -1402,36 +1442,57 @@ footer {
 
 <nav>
   <button data-tab="home" class="active">Home</button>
-  <button data-tab="teams2026">2026 Teams</button>
-  <button data-tab="draft">2026 Draft</button>
-  <button data-tab="keepers">Keepers</button>
-  <button data-tab="draftorder">Draft Order</button>
-  <button data-tab="mockdraft">Mock Draft</button>
+  <div class="nav-group">
+    <button type="button" class="nav-group-toggle" data-group="season2026" aria-haspopup="true" aria-expanded="false">2026 Season <span aria-hidden="true">&#9662;</span></button>
+    <div class="nav-group-menu" data-group-menu="season2026">
+      <button data-tab="teams2026">2026 Teams</button>
+      <button data-tab="draft">2026 Draft</button>
+      <button data-tab="keepers">Keepers</button>
+      <button data-tab="draftorder">Draft Order</button>
+      <button data-tab="mockdraft">Mock Draft</button>
+    </div>
+  </div>
   <button data-tab="trades">Trades</button>
   <button data-tab="tradeanalyzer">Trade Analyzer</button>
-  <button data-tab="teams">2025 Teams</button>
-  <button data-tab="draft2025">2025 Draft</button>
-  <button data-tab="history">History</button>
-  <button data-tab="export">Export</button>
-  <button data-tab="rules">Rules</button>
-  <button data-tab="admin">Admin</button>
+  <div class="nav-group">
+    <button type="button" class="nav-group-toggle" data-group="archive2025" aria-haspopup="true" aria-expanded="false">2025 Archive <span aria-hidden="true">&#9662;</span></button>
+    <div class="nav-group-menu" data-group-menu="archive2025">
+      <button data-tab="teams">2025 Teams</button>
+      <button data-tab="draft2025">2025 Draft</button>
+      <button data-tab="history">History</button>
+    </div>
+  </div>
+  <div class="nav-group">
+    <button type="button" class="nav-group-toggle" data-group="tools" aria-haspopup="true" aria-expanded="false">Tools <span aria-hidden="true">&#9662;</span></button>
+    <div class="nav-group-menu" data-group-menu="tools">
+      <button data-tab="export">Export</button>
+      <button data-tab="rules">Rules</button>
+      <button data-tab="admin">Admin</button>
+    </div>
+  </div>
 </nav>
 <div class="mobile-nav">
   <select id="mobile-nav-select" aria-label="Navigate to section">
     <option value="home">Home</option>
-    <option value="teams2026">2026 Teams</option>
-    <option value="draft">2026 Draft</option>
-    <option value="keepers">Keepers</option>
-    <option value="draftorder">Draft Order</option>
-    <option value="mockdraft">Mock Draft</option>
+    <optgroup label="2026 Season">
+      <option value="teams2026">2026 Teams</option>
+      <option value="draft">2026 Draft</option>
+      <option value="keepers">Keepers</option>
+      <option value="draftorder">Draft Order</option>
+      <option value="mockdraft">Mock Draft</option>
+    </optgroup>
     <option value="trades">Trades</option>
     <option value="tradeanalyzer">Trade Analyzer</option>
-    <option value="teams">2025 Teams</option>
-    <option value="draft2025">2025 Draft</option>
-    <option value="history">History</option>
-    <option value="export">Export</option>
-    <option value="rules">Rules</option>
-    <option value="admin">Admin</option>
+    <optgroup label="2025 Archive">
+      <option value="teams">2025 Teams</option>
+      <option value="draft2025">2025 Draft</option>
+      <option value="history">History</option>
+    </optgroup>
+    <optgroup label="Tools">
+      <option value="export">Export</option>
+      <option value="rules">Rules</option>
+      <option value="admin">Admin</option>
+    </optgroup>
   </select>
 </div>
 
@@ -8275,15 +8336,57 @@ function render(LEAGUE_DATA) {
   buildAdminForm(LEAGUE_DATA);
 }
 
-document.querySelectorAll("nav button").forEach(btn => {
+document.querySelectorAll("nav button[data-tab]").forEach(btn => {
   btn.addEventListener("click", () => {
-    document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll("nav button[data-tab]").forEach(b => b.classList.remove("active"));
     document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
     btn.classList.add("active");
     document.getElementById(btn.dataset.tab).classList.add("active");
     const mobileSelect = document.getElementById("mobile-nav-select");
     if (mobileSelect) mobileSelect.value = btn.dataset.tab;
+    // Desktop nav groups (2026 Season / 2025 Archive / Tools): close
+    // whichever dropdown was open, and highlight its toggle if the tab
+    // just picked lives inside that group, so the group stays identifiable
+    // after its menu closes.
+    document.querySelectorAll(".nav-group-menu.open").forEach(m => m.classList.remove("open"));
+    document.querySelectorAll(".nav-group-toggle").forEach(t => {
+      t.classList.remove("active-group");
+      t.setAttribute("aria-expanded", "false");
+    });
+    const parentGroupMenu = btn.closest(".nav-group-menu");
+    if (parentGroupMenu) {
+      const groupToggle = document.querySelector('.nav-group-toggle[data-group="' + parentGroupMenu.dataset.groupMenu + '"]');
+      if (groupToggle) groupToggle.classList.add("active-group");
+    }
   });
+});
+
+// Desktop nav group dropdowns (2026 Season / 2025 Archive / Tools) -- a
+// toggle opens its own menu and closes any other open one; clicking
+// anywhere outside a group, or pressing Escape, closes it.
+document.querySelectorAll(".nav-group-toggle").forEach(toggle => {
+  toggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const menu = document.querySelector('.nav-group-menu[data-group-menu="' + toggle.dataset.group + '"]');
+    if (!menu) return;
+    const isOpen = menu.classList.contains("open");
+    document.querySelectorAll(".nav-group-menu.open").forEach(m => m.classList.remove("open"));
+    document.querySelectorAll(".nav-group-toggle").forEach(t => t.setAttribute("aria-expanded", "false"));
+    if (!isOpen) {
+      menu.classList.add("open");
+      toggle.setAttribute("aria-expanded", "true");
+    }
+  });
+});
+document.addEventListener("click", (e) => {
+  if (e.target.closest(".nav-group")) return;
+  document.querySelectorAll(".nav-group-menu.open").forEach(m => m.classList.remove("open"));
+  document.querySelectorAll(".nav-group-toggle").forEach(t => t.setAttribute("aria-expanded", "false"));
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key !== "Escape") return;
+  document.querySelectorAll(".nav-group-menu.open").forEach(m => m.classList.remove("open"));
+  document.querySelectorAll(".nav-group-toggle").forEach(t => t.setAttribute("aria-expanded", "false"));
 });
 
 document.getElementById("mobile-nav-select").addEventListener("change", (e) => {
