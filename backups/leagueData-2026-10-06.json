@@ -1,0 +1,6738 @@
+{
+ "adminPassword": "HoldMyRings2026",
+ "commissionerKeeperNote": "Keepers shouldn't be a fight — the system rewards good drafting and smart in-season moves. Raising keeper cost by a round each year makes you weigh a player's real value and frees up players who used to be locked away. Suggestions welcome.",
+ "commissionerNote": "Reigning champ: AJ",
+ "currentSeason": {
+  "standings": [
+   {
+    "manager": "Shawn",
+    "pointsFor": 0,
+    "record": "0-0",
+    "team": "Burden of Proof"
+   },
+   {
+    "manager": "Joe",
+    "pointsFor": 0,
+    "record": "0-0",
+    "team": "The real sultan"
+   },
+   {
+    "manager": "John",
+    "pointsFor": 0,
+    "record": "0-0",
+    "team": "Aarons got a Gun"
+   },
+   {
+    "manager": "Ben",
+    "pointsFor": 0,
+    "record": "0-0",
+    "team": "Prestige Worldwide"
+   },
+   {
+    "manager": "Chris",
+    "pointsFor": 0,
+    "record": "0-0",
+    "team": "Colin for the win"
+   },
+   {
+    "manager": "Kevin",
+    "pointsFor": 0,
+    "record": "0-0",
+    "team": "Pickens some Rams"
+   },
+   {
+    "manager": "Nate",
+    "pointsFor": 0,
+    "record": "0-0",
+    "team": "Maye I put it in your Boutte"
+   },
+   {
+    "manager": "JR",
+    "pointsFor": 0,
+    "record": "0-0",
+    "team": "Brown Tuten Boutte"
+   },
+   {
+    "manager": "Robert",
+    "pointsFor": 0,
+    "record": "0-0",
+    "team": "Any given Sunday"
+   },
+   {
+    "manager": "AJ",
+    "pointsFor": 0,
+    "record": "0-0",
+    "team": "Saquon deez nutz"
+   }
+  ],
+  "year": 2026
+ },
+ "draftArchive": [
+  {
+   "manager": "Shawn",
+   "player": "Bijan Robinson",
+   "pos": "RB",
+   "round": 1,
+   "team": "Burden of Proof",
+   "year": 2026
+  },
+  {
+   "manager": "Shawn",
+   "player": "CeeDee Lamb",
+   "pos": "WR",
+   "round": 2,
+   "team": "Burden of Proof",
+   "year": 2026
+  },
+  {
+   "manager": "Shawn",
+   "player": "Breece Hall",
+   "pos": "RB",
+   "round": 3,
+   "team": "Burden of Proof",
+   "year": 2026
+  },
+  {
+   "manager": "Shawn",
+   "player": "Kenneth Walker III",
+   "pos": "RB",
+   "round": 4,
+   "team": "Burden of Proof",
+   "year": 2026
+  },
+  {
+   "manager": "Shawn",
+   "player": "Bucky Irving",
+   "pos": "RB",
+   "round": 5,
+   "team": "Burden of Proof",
+   "year": 2026
+  },
+  {
+   "manager": "Shawn",
+   "player": "Jalen Hurts",
+   "pos": "QB",
+   "round": 7,
+   "team": "Burden of Proof",
+   "year": 2026
+  },
+  {
+   "manager": "Shawn",
+   "player": "Luther Burden III",
+   "pos": "WR",
+   "round": 8,
+   "team": "Burden of Proof",
+   "year": 2026
+  },
+  {
+   "manager": "Shawn",
+   "player": "Quentin Johnston",
+   "pos": "WR",
+   "round": 9,
+   "team": "Burden of Proof",
+   "year": 2026
+  },
+  {
+   "manager": "Shawn",
+   "player": "Wan'Dale Robinson",
+   "pos": "WR",
+   "round": 13,
+   "team": "Burden of Proof",
+   "year": 2026
+  },
+  {
+   "manager": "Shawn",
+   "player": "Rashid Shaheed",
+   "pos": "WR",
+   "round": 14,
+   "team": "Burden of Proof",
+   "year": 2026
+  },
+  {
+   "manager": "Shawn",
+   "player": "Zach Charbonnet",
+   "pos": "RB",
+   "round": 15,
+   "team": "Burden of Proof",
+   "year": 2026
+  },
+  {
+   "manager": "Shawn",
+   "player": "Jaguars",
+   "pos": "DEF",
+   "round": 16,
+   "team": "Burden of Proof",
+   "year": 2026
+  },
+  {
+   "manager": "Joe",
+   "player": "Puka Nacua",
+   "pos": "WR",
+   "round": 1,
+   "team": "The real sultan",
+   "year": 2026
+  },
+  {
+   "manager": "Joe",
+   "player": "Ashton Jeanty",
+   "pos": "RB",
+   "round": 2,
+   "team": "The real sultan",
+   "year": 2026
+  },
+  {
+   "manager": "Joe",
+   "player": "Jeremiyah Love",
+   "pos": "RB",
+   "round": 3,
+   "team": "The real sultan",
+   "year": 2026
+  },
+  {
+   "manager": "Joe",
+   "player": "DJ Moore",
+   "pos": "WR",
+   "round": 4,
+   "team": "The real sultan",
+   "year": 2026
+  },
+  {
+   "manager": "Joe",
+   "player": "Quinshon Judkins",
+   "pos": "RB",
+   "round": 5,
+   "team": "The real sultan",
+   "year": 2026
+  },
+  {
+   "manager": "Joe",
+   "player": "Marvin Harrison Jr.",
+   "pos": "WR",
+   "round": 6,
+   "team": "The real sultan",
+   "year": 2026
+  },
+  {
+   "manager": "Joe",
+   "player": "Rhamondre Stevenson",
+   "pos": "RB",
+   "round": 7,
+   "team": "The real sultan",
+   "year": 2026
+  },
+  {
+   "manager": "Joe",
+   "player": "Brian Thomas Jr.",
+   "pos": "WR",
+   "round": 8,
+   "team": "The real sultan",
+   "year": 2026
+  },
+  {
+   "manager": "Joe",
+   "player": "Michael Pittman Jr.",
+   "pos": "WR",
+   "round": 10,
+   "team": "The real sultan",
+   "year": 2026
+  },
+  {
+   "manager": "Joe",
+   "player": "Brock Bowers",
+   "pos": "TE",
+   "round": 11,
+   "team": "The real sultan",
+   "year": 2026
+  },
+  {
+   "manager": "Joe",
+   "player": "Travis Kelce",
+   "pos": "TE",
+   "round": 12,
+   "team": "The real sultan",
+   "year": 2026
+  },
+  {
+   "manager": "Joe",
+   "player": "Justin Herbert",
+   "pos": "QB",
+   "round": 13,
+   "team": "The real sultan",
+   "year": 2026
+  },
+  {
+   "manager": "Joe",
+   "player": "Deebo Samuel Sr.",
+   "pos": "WR",
+   "round": 14,
+   "team": "The real sultan",
+   "year": 2026
+  },
+  {
+   "manager": "Joe",
+   "player": "Cameron Dicker",
+   "pos": "K",
+   "round": 15,
+   "team": "The real sultan",
+   "year": 2026
+  },
+  {
+   "manager": "Joe",
+   "player": "Steelers",
+   "pos": "DEF",
+   "round": 16,
+   "team": "The real sultan",
+   "year": 2026
+  },
+  {
+   "manager": "John",
+   "player": "Jonathan Taylor",
+   "pos": "RB",
+   "round": 1,
+   "team": "Aarons got a Gun",
+   "year": 2026
+  },
+  {
+   "manager": "John",
+   "player": "Derrick Henry",
+   "pos": "RB",
+   "round": 2,
+   "team": "Aarons got a Gun",
+   "year": 2026
+  },
+  {
+   "manager": "John",
+   "player": "Malik Nabers",
+   "pos": "WR",
+   "round": 3,
+   "team": "Aarons got a Gun",
+   "year": 2026
+  },
+  {
+   "manager": "John",
+   "player": "Emeka Egbuka",
+   "pos": "WR",
+   "round": 4,
+   "team": "Aarons got a Gun",
+   "year": 2026
+  },
+  {
+   "manager": "John",
+   "player": "Justin Jefferson",
+   "pos": "WR",
+   "round": 5,
+   "team": "Aarons got a Gun",
+   "year": 2026
+  },
+  {
+   "manager": "John",
+   "player": "Jayden Daniels",
+   "pos": "QB",
+   "round": 6,
+   "team": "Aarons got a Gun",
+   "year": 2026
+  },
+  {
+   "manager": "John",
+   "player": "Rome Odunze",
+   "pos": "WR",
+   "round": 7,
+   "team": "Aarons got a Gun",
+   "year": 2026
+  },
+  {
+   "manager": "John",
+   "player": "Kyle Pitts Sr.",
+   "pos": "TE",
+   "round": 8,
+   "team": "Aarons got a Gun",
+   "year": 2026
+  },
+  {
+   "manager": "John",
+   "player": "Jonathon Brooks",
+   "pos": "RB",
+   "round": 9,
+   "team": "Aarons got a Gun",
+   "year": 2026
+  },
+  {
+   "manager": "John",
+   "player": "Trevor Lawrence",
+   "pos": "QB",
+   "round": 10,
+   "team": "Aarons got a Gun",
+   "year": 2026
+  },
+  {
+   "manager": "John",
+   "player": "Jordan Addison",
+   "pos": "WR",
+   "round": 11,
+   "team": "Aarons got a Gun",
+   "year": 2026
+  },
+  {
+   "manager": "John",
+   "player": "Chris Rodriguez Jr.",
+   "pos": "RB",
+   "round": 12,
+   "team": "Aarons got a Gun",
+   "year": 2026
+  },
+  {
+   "manager": "John",
+   "player": "Isaiah Likely",
+   "pos": "TE",
+   "round": 13,
+   "team": "Aarons got a Gun",
+   "year": 2026
+  },
+  {
+   "manager": "John",
+   "player": "Jaxson Dart",
+   "pos": "QB",
+   "round": 14,
+   "team": "Aarons got a Gun",
+   "year": 2026
+  },
+  {
+   "manager": "John",
+   "player": "Ka'imi Fairbairn",
+   "pos": "K",
+   "round": 15,
+   "team": "Aarons got a Gun",
+   "year": 2026
+  },
+  {
+   "manager": "John",
+   "player": "Vikings",
+   "pos": "DEF",
+   "round": 16,
+   "team": "Aarons got a Gun",
+   "year": 2026
+  },
+  {
+   "manager": "Ben",
+   "player": "Saquon Barkley",
+   "pos": "RB",
+   "round": 1,
+   "team": "Prestige Worldwide",
+   "year": 2026
+  },
+  {
+   "manager": "Ben",
+   "player": "A.J. Brown",
+   "pos": "WR",
+   "round": 2,
+   "team": "Prestige Worldwide",
+   "year": 2026
+  },
+  {
+   "manager": "Ben",
+   "player": "Jaylen Waddle",
+   "pos": "WR",
+   "round": 3,
+   "team": "Prestige Worldwide",
+   "year": 2026
+  },
+  {
+   "manager": "Ben",
+   "player": "Joe Burrow",
+   "pos": "QB",
+   "round": 4,
+   "team": "Prestige Worldwide",
+   "year": 2026
+  },
+  {
+   "manager": "Ben",
+   "player": "Tetairoa McMillan",
+   "pos": "WR",
+   "round": 5,
+   "team": "Prestige Worldwide",
+   "year": 2026
+  },
+  {
+   "manager": "Ben",
+   "player": "TreVeyon Henderson",
+   "pos": "RB",
+   "round": 6,
+   "team": "Prestige Worldwide",
+   "year": 2026
+  },
+  {
+   "manager": "Ben",
+   "player": "Sam LaPorta",
+   "pos": "TE",
+   "round": 7,
+   "team": "Prestige Worldwide",
+   "year": 2026
+  },
+  {
+   "manager": "Ben",
+   "player": "Alec Pierce",
+   "pos": "WR",
+   "round": 8,
+   "team": "Prestige Worldwide",
+   "year": 2026
+  },
+  {
+   "manager": "Ben",
+   "player": "De'Von Achane",
+   "pos": "RB",
+   "round": 9,
+   "team": "Prestige Worldwide",
+   "year": 2026
+  },
+  {
+   "manager": "Ben",
+   "player": "Jayden Reed",
+   "pos": "WR",
+   "round": 10,
+   "team": "Prestige Worldwide",
+   "year": 2026
+  },
+  {
+   "manager": "Ben",
+   "player": "Kenny Gainwell",
+   "pos": "RB",
+   "round": 11,
+   "team": "Prestige Worldwide",
+   "year": 2026
+  },
+  {
+   "manager": "Ben",
+   "player": "Bo Nix",
+   "pos": "QB",
+   "round": 12,
+   "team": "Prestige Worldwide",
+   "year": 2026
+  },
+  {
+   "manager": "Ben",
+   "player": "Texans",
+   "pos": "DEF",
+   "round": 13,
+   "team": "Prestige Worldwide",
+   "year": 2026
+  },
+  {
+   "manager": "Ben",
+   "player": "Xavier Worthy",
+   "pos": "WR",
+   "round": 14,
+   "team": "Prestige Worldwide",
+   "year": 2026
+  },
+  {
+   "manager": "Ben",
+   "player": "Jason Myers",
+   "pos": "K",
+   "round": 15,
+   "team": "Prestige Worldwide",
+   "year": 2026
+  },
+  {
+   "manager": "Ben",
+   "player": "Hunter Henry",
+   "pos": "TE",
+   "round": 16,
+   "team": "Prestige Worldwide",
+   "year": 2026
+  },
+  {
+   "manager": "Chris",
+   "player": "James Cook III",
+   "pos": "RB",
+   "round": 1,
+   "team": "Colin for the win",
+   "year": 2026
+  },
+  {
+   "manager": "Chris",
+   "player": "Drake London",
+   "pos": "WR",
+   "round": 2,
+   "team": "Colin for the win",
+   "year": 2026
+  },
+  {
+   "manager": "Chris",
+   "player": "Cam Skattebo",
+   "pos": "RB",
+   "round": 3,
+   "team": "Colin for the win",
+   "year": 2026
+  },
+  {
+   "manager": "Chris",
+   "player": "Jameson Williams",
+   "pos": "WR",
+   "round": 4,
+   "team": "Colin for the win",
+   "year": 2026
+  },
+  {
+   "manager": "Chris",
+   "player": "Parker Washington",
+   "pos": "WR",
+   "round": 5,
+   "team": "Colin for the win",
+   "year": 2026
+  },
+  {
+   "manager": "Chris",
+   "player": "Dalton Kincaid",
+   "pos": "TE",
+   "round": 6,
+   "team": "Colin for the win",
+   "year": 2026
+  },
+  {
+   "manager": "Chris",
+   "player": "Tucker Kraft",
+   "pos": "TE",
+   "round": 7,
+   "team": "Colin for the win",
+   "year": 2026
+  },
+  {
+   "manager": "Chris",
+   "player": "Tony Pollard",
+   "pos": "RB",
+   "round": 8,
+   "team": "Colin for the win",
+   "year": 2026
+  },
+  {
+   "manager": "Chris",
+   "player": "Drake Maye",
+   "pos": "QB",
+   "round": 9,
+   "team": "Colin for the win",
+   "year": 2026
+  },
+  {
+   "manager": "Chris",
+   "player": "De'Zhaun Stribling",
+   "pos": "WR",
+   "round": 10,
+   "team": "Colin for the win",
+   "year": 2026
+  },
+  {
+   "manager": "Chris",
+   "player": "Courtland Sutton",
+   "pos": "WR",
+   "round": 11,
+   "team": "Colin for the win",
+   "year": 2026
+  },
+  {
+   "manager": "Chris",
+   "player": "Brandon Aubrey",
+   "pos": "K",
+   "round": 12,
+   "team": "Colin for the win",
+   "year": 2026
+  },
+  {
+   "manager": "Chris",
+   "player": "Broncos",
+   "pos": "DEF",
+   "round": 13,
+   "team": "Colin for the win",
+   "year": 2026
+  },
+  {
+   "manager": "Chris",
+   "player": "Aaron Jones Sr.",
+   "pos": "RB",
+   "round": 14,
+   "team": "Colin for the win",
+   "year": 2026
+  },
+  {
+   "manager": "Chris",
+   "player": "Jalen Coker",
+   "pos": "WR",
+   "round": 15,
+   "team": "Colin for the win",
+   "year": 2026
+  },
+  {
+   "manager": "Chris",
+   "player": "Jared Goff",
+   "pos": "QB",
+   "round": 16,
+   "team": "Colin for the win",
+   "year": 2026
+  },
+  {
+   "manager": "Kevin",
+   "player": "Amon-Ra St. Brown",
+   "pos": "WR",
+   "round": 1,
+   "team": "Pickens some Rams",
+   "year": 2026
+  },
+  {
+   "manager": "Kevin",
+   "player": "Kyren Williams",
+   "pos": "RB",
+   "round": 2,
+   "team": "Pickens some Rams",
+   "year": 2026
+  },
+  {
+   "manager": "Kevin",
+   "player": "Colston Loveland",
+   "pos": "TE",
+   "round": 3,
+   "team": "Pickens some Rams",
+   "year": 2026
+  },
+  {
+   "manager": "Kevin",
+   "player": "George Pickens",
+   "pos": "WR",
+   "round": 4,
+   "team": "Pickens some Rams",
+   "year": 2026
+  },
+  {
+   "manager": "Kevin",
+   "player": "Jadarian Price",
+   "pos": "RB",
+   "round": 5,
+   "team": "Pickens some Rams",
+   "year": 2026
+  },
+  {
+   "manager": "Kevin",
+   "player": "Caleb Williams",
+   "pos": "QB",
+   "round": 6,
+   "team": "Pickens some Rams",
+   "year": 2026
+  },
+  {
+   "manager": "Kevin",
+   "player": "Rico Dowdle",
+   "pos": "RB",
+   "round": 7,
+   "team": "Pickens some Rams",
+   "year": 2026
+  },
+  {
+   "manager": "Kevin",
+   "player": "Josh Downs",
+   "pos": "WR",
+   "round": 8,
+   "team": "Pickens some Rams",
+   "year": 2026
+  },
+  {
+   "manager": "Kevin",
+   "player": "Blake Corum",
+   "pos": "RB",
+   "round": 9,
+   "team": "Pickens some Rams",
+   "year": 2026
+  },
+  {
+   "manager": "Kevin",
+   "player": "Tyler Warren",
+   "pos": "TE",
+   "round": 10,
+   "team": "Pickens some Rams",
+   "year": 2026
+  },
+  {
+   "manager": "Kevin",
+   "player": "Matthew Golden",
+   "pos": "WR",
+   "round": 11,
+   "team": "Pickens some Rams",
+   "year": 2026
+  },
+  {
+   "manager": "Kevin",
+   "player": "Rams",
+   "pos": "DEF",
+   "round": 12,
+   "team": "Pickens some Rams",
+   "year": 2026
+  },
+  {
+   "manager": "Kevin",
+   "player": "Jakobi Meyers",
+   "pos": "WR",
+   "round": 13,
+   "team": "Pickens some Rams",
+   "year": 2026
+  },
+  {
+   "manager": "Kevin",
+   "player": "Matthew Stafford",
+   "pos": "QB",
+   "round": 14,
+   "team": "Pickens some Rams",
+   "year": 2026
+  },
+  {
+   "manager": "Kevin",
+   "player": "Denzel Boston",
+   "pos": "WR",
+   "round": 15,
+   "team": "Pickens some Rams",
+   "year": 2026
+  },
+  {
+   "manager": "Kevin",
+   "player": "Cam Little",
+   "pos": "K",
+   "round": 16,
+   "team": "Pickens some Rams",
+   "year": 2026
+  },
+  {
+   "manager": "Nate",
+   "player": "Christian McCaffrey",
+   "pos": "RB",
+   "round": 1,
+   "team": "Maye I put it in your Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "Nate",
+   "player": "Ja'Marr Chase",
+   "pos": "WR",
+   "round": 2,
+   "team": "Maye I put it in your Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "Nate",
+   "player": "Zay Flowers",
+   "pos": "WR",
+   "round": 3,
+   "team": "Maye I put it in your Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "Nate",
+   "player": "Travis Etienne Jr.",
+   "pos": "RB",
+   "round": 4,
+   "team": "Maye I put it in your Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "Nate",
+   "player": "Davante Adams",
+   "pos": "WR",
+   "round": 5,
+   "team": "Maye I put it in your Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "Nate",
+   "player": "Harold Fannin Jr.",
+   "pos": "TE",
+   "round": 6,
+   "team": "Maye I put it in your Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "Nate",
+   "player": "Dak Prescott",
+   "pos": "QB",
+   "round": 7,
+   "team": "Maye I put it in your Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "Nate",
+   "player": "Chris Godwin Jr.",
+   "pos": "WR",
+   "round": 8,
+   "team": "Maye I put it in your Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "Nate",
+   "player": "Chuba Hubbard",
+   "pos": "RB",
+   "round": 9,
+   "team": "Maye I put it in your Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "Nate",
+   "player": "Brock Purdy",
+   "pos": "QB",
+   "round": 10,
+   "team": "Maye I put it in your Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "Nate",
+   "player": "Mike Washington Jr.",
+   "pos": "RB",
+   "round": 11,
+   "team": "Maye I put it in your Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "Nate",
+   "player": "Javonte Williams",
+   "pos": "RB",
+   "round": 12,
+   "team": "Maye I put it in your Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "Nate",
+   "player": "Mark Andrews",
+   "pos": "TE",
+   "round": 13,
+   "team": "Maye I put it in your Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "Nate",
+   "player": "Seahawks",
+   "pos": "DEF",
+   "round": 14,
+   "team": "Maye I put it in your Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "Nate",
+   "player": "Ja'Kobi Lane",
+   "pos": "WR",
+   "round": 15,
+   "team": "Maye I put it in your Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "Nate",
+   "player": "Harrison Butker",
+   "pos": "K",
+   "round": 16,
+   "team": "Maye I put it in your Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "JR",
+   "player": "Chase Brown",
+   "pos": "RB",
+   "round": 1,
+   "team": "Brown Tuten Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "JR",
+   "player": "Garrett Wilson",
+   "pos": "WR",
+   "round": 3,
+   "team": "Brown Tuten Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "JR",
+   "player": "Christian Watson",
+   "pos": "WR",
+   "round": 4,
+   "team": "Brown Tuten Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "JR",
+   "player": "Bhayshul Tuten",
+   "pos": "RB",
+   "round": 5,
+   "team": "Brown Tuten Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "JR",
+   "player": "MarShawn Lloyd",
+   "pos": "RB",
+   "round": 6,
+   "team": "Brown Tuten Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "JR",
+   "player": "Nico Collins",
+   "pos": "WR",
+   "round": 8,
+   "team": "Brown Tuten Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "JR",
+   "player": "Jacory Croskey-Merritt",
+   "pos": "RB",
+   "round": 9,
+   "team": "Brown Tuten Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "JR",
+   "player": "Stefon Diggs",
+   "pos": "WR",
+   "round": 10,
+   "team": "Brown Tuten Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "JR",
+   "player": "Kyle Monangai",
+   "pos": "RB",
+   "round": 11,
+   "team": "Brown Tuten Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "JR",
+   "player": "Dallas Goedert",
+   "pos": "TE",
+   "round": 12,
+   "team": "Brown Tuten Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "JR",
+   "player": "Juwan Johnson",
+   "pos": "TE",
+   "round": 13,
+   "team": "Brown Tuten Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "JR",
+   "player": "Khalil Shakir",
+   "pos": "WR",
+   "round": 14,
+   "team": "Brown Tuten Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "JR",
+   "player": "Kayshon Boutte",
+   "pos": "WR",
+   "round": 15,
+   "team": "Brown Tuten Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "JR",
+   "player": "Tyler Allgeier",
+   "pos": "RB",
+   "round": 16,
+   "team": "Brown Tuten Boutte",
+   "year": 2026
+  },
+  {
+   "manager": "Robert",
+   "player": "Omarion Hampton",
+   "pos": "RB",
+   "round": 1,
+   "team": "Any given Sunday",
+   "year": 2026
+  },
+  {
+   "manager": "Robert",
+   "player": "Tee Higgins",
+   "pos": "WR",
+   "round": 3,
+   "team": "Any given Sunday",
+   "year": 2026
+  },
+  {
+   "manager": "Robert",
+   "player": "David Montgomery",
+   "pos": "RB",
+   "round": 4,
+   "team": "Any given Sunday",
+   "year": 2026
+  },
+  {
+   "manager": "Robert",
+   "player": "Jaylen Warren",
+   "pos": "RB",
+   "round": 5,
+   "team": "Any given Sunday",
+   "year": 2026
+  },
+  {
+   "manager": "Robert",
+   "player": "Carnell Tate",
+   "pos": "WR",
+   "round": 6,
+   "team": "Any given Sunday",
+   "year": 2026
+  },
+  {
+   "manager": "Robert",
+   "player": "Rashee Rice",
+   "pos": "WR",
+   "round": 7,
+   "team": "Any given Sunday",
+   "year": 2026
+  },
+  {
+   "manager": "Robert",
+   "player": "KC Concepcion",
+   "pos": "WR",
+   "round": 8,
+   "team": "Any given Sunday",
+   "year": 2026
+  },
+  {
+   "manager": "Robert",
+   "player": "Jordan Mason",
+   "pos": "RB",
+   "round": 9,
+   "team": "Any given Sunday",
+   "year": 2026
+  },
+  {
+   "manager": "Robert",
+   "player": "Ladd McConkey",
+   "pos": "WR",
+   "round": 10,
+   "team": "Any given Sunday",
+   "year": 2026
+  },
+  {
+   "manager": "Robert",
+   "player": "Patrick Mahomes",
+   "pos": "QB",
+   "round": 11,
+   "team": "Any given Sunday",
+   "year": 2026
+  },
+  {
+   "manager": "Robert",
+   "player": "Jake Ferguson",
+   "pos": "TE",
+   "round": 12,
+   "team": "Any given Sunday",
+   "year": 2026
+  },
+  {
+   "manager": "Robert",
+   "player": "Woody Marks",
+   "pos": "RB",
+   "round": 13,
+   "team": "Any given Sunday",
+   "year": 2026
+  },
+  {
+   "manager": "Robert",
+   "player": "Eagles",
+   "pos": "DEF",
+   "round": 14,
+   "team": "Any given Sunday",
+   "year": 2026
+  },
+  {
+   "manager": "Robert",
+   "player": "Tyler Loop",
+   "pos": "K",
+   "round": 15,
+   "team": "Any given Sunday",
+   "year": 2026
+  },
+  {
+   "manager": "Robert",
+   "player": "Jonah Coleman",
+   "pos": "RB",
+   "round": 16,
+   "team": "Any given Sunday",
+   "year": 2026
+  },
+  {
+   "manager": "AJ",
+   "player": "Jahmyr Gibbs",
+   "pos": "RB",
+   "round": 1,
+   "team": "Saquon deez nutz",
+   "year": 2026
+  },
+  {
+   "manager": "AJ",
+   "player": "Chris Olave",
+   "pos": "WR",
+   "round": 2,
+   "team": "Saquon deez nutz",
+   "year": 2026
+  },
+  {
+   "manager": "AJ",
+   "player": "Lamar Jackson",
+   "pos": "QB",
+   "round": 3,
+   "team": "Saquon deez nutz",
+   "year": 2026
+  },
+  {
+   "manager": "AJ",
+   "player": "Terry McLaurin",
+   "pos": "WR",
+   "round": 4,
+   "team": "Saquon deez nutz",
+   "year": 2026
+  },
+  {
+   "manager": "AJ",
+   "player": "D'Andre Swift",
+   "pos": "RB",
+   "round": 5,
+   "team": "Saquon deez nutz",
+   "year": 2026
+  },
+  {
+   "manager": "AJ",
+   "player": "DK Metcalf",
+   "pos": "WR",
+   "round": 6,
+   "team": "Saquon deez nutz",
+   "year": 2026
+  },
+  {
+   "manager": "AJ",
+   "player": "Josh Jacobs",
+   "pos": "RB",
+   "round": 7,
+   "team": "Saquon deez nutz",
+   "year": 2026
+  },
+  {
+   "manager": "AJ",
+   "player": "Jaxon Smith-Njigba",
+   "pos": "WR",
+   "round": 8,
+   "team": "Saquon deez nutz",
+   "year": 2026
+  },
+  {
+   "manager": "AJ",
+   "player": "George Kittle",
+   "pos": "TE",
+   "round": 9,
+   "team": "Saquon deez nutz",
+   "year": 2026
+  },
+  {
+   "manager": "AJ",
+   "player": "RJ Harvey",
+   "pos": "RB",
+   "round": 10,
+   "team": "Saquon deez nutz",
+   "year": 2026
+  },
+  {
+   "manager": "AJ",
+   "player": "Jordyn Tyson",
+   "pos": "WR",
+   "round": 11,
+   "team": "Saquon deez nutz",
+   "year": 2026
+  },
+  {
+   "manager": "AJ",
+   "player": "Keenan Allen",
+   "pos": "WR",
+   "round": 12,
+   "team": "Saquon deez nutz",
+   "year": 2026
+  },
+  {
+   "manager": "AJ",
+   "player": "Brian Robinson",
+   "pos": "RB",
+   "round": 13,
+   "team": "Saquon deez nutz",
+   "year": 2026
+  },
+  {
+   "manager": "AJ",
+   "player": "Cooper Kupp",
+   "pos": "WR",
+   "round": 14,
+   "team": "Saquon deez nutz",
+   "year": 2026
+  },
+  {
+   "manager": "AJ",
+   "player": "Harrison Mevis",
+   "pos": "K",
+   "round": 15,
+   "team": "Saquon deez nutz",
+   "year": 2026
+  },
+  {
+   "manager": "AJ",
+   "player": "Patriots",
+   "pos": "DEF",
+   "round": 16,
+   "team": "Saquon deez nutz",
+   "year": 2026
+  }
+ ],
+ "draftDate": "2026-09-03T19:45",
+ "draftOrder2026": [
+  {
+   "picks": [
+    {
+     "newOwner": null,
+     "originalTeam": "Burden of Proof"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "The real sultan"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Aarons got a Gun"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Prestige Worldwide"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Colin for the win"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Pickens some Rams"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Maye I put it in your Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Brown Tuten Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Any given Sunday"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Saquon deez nutz"
+    }
+   ],
+   "round": "1"
+  },
+  {
+   "picks": [
+    {
+     "newOwner": null,
+     "originalTeam": "Burden of Proof"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "The real sultan"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Aarons got a Gun"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Prestige Worldwide"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Colin for the win"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Pickens some Rams"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Maye I put it in your Boutte"
+    },
+    {
+     "newOwner": "Burden of Proof",
+     "originalTeam": "Brown Tuten Boutte"
+    },
+    {
+     "newOwner": "Burden of Proof",
+     "originalTeam": "Any given Sunday"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Saquon deez nutz"
+    }
+   ],
+   "round": "2"
+  },
+  {
+   "picks": [
+    {
+     "newOwner": null,
+     "originalTeam": "Burden of Proof"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "The real sultan"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Aarons got a Gun"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Prestige Worldwide"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Colin for the win"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Pickens some Rams"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Maye I put it in your Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Brown Tuten Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Any given Sunday"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Saquon deez nutz"
+    }
+   ],
+   "round": "3"
+  },
+  {
+   "picks": [
+    {
+     "newOwner": null,
+     "originalTeam": "Burden of Proof"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "The real sultan"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Aarons got a Gun"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Prestige Worldwide"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Colin for the win"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Pickens some Rams"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Maye I put it in your Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Brown Tuten Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Any given Sunday"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Saquon deez nutz"
+    }
+   ],
+   "round": "4"
+  },
+  {
+   "picks": [
+    {
+     "newOwner": null,
+     "originalTeam": "Burden of Proof"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "The real sultan"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Aarons got a Gun"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Prestige Worldwide"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Colin for the win"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Pickens some Rams"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Maye I put it in your Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Brown Tuten Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Any given Sunday"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Saquon deez nutz"
+    }
+   ],
+   "round": "5"
+  },
+  {
+   "picks": [
+    {
+     "newOwner": "The real sultan",
+     "originalTeam": "Burden of Proof"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "The real sultan"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Aarons got a Gun"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Prestige Worldwide"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Colin for the win"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Pickens some Rams"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Maye I put it in your Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Brown Tuten Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Any given Sunday"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Saquon deez nutz"
+    }
+   ],
+   "round": "6"
+  },
+  {
+   "picks": [
+    {
+     "newOwner": null,
+     "originalTeam": "Burden of Proof"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "The real sultan"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Aarons got a Gun"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Prestige Worldwide"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Colin for the win"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Pickens some Rams"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Maye I put it in your Boutte"
+    },
+    {
+     "newOwner": "Burden of Proof",
+     "originalTeam": "Brown Tuten Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Any given Sunday"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Saquon deez nutz"
+    }
+   ],
+   "round": "7"
+  },
+  {
+   "picks": [
+    {
+     "newOwner": null,
+     "originalTeam": "Burden of Proof"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "The real sultan"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Aarons got a Gun"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Prestige Worldwide"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Colin for the win"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Pickens some Rams"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Maye I put it in your Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Brown Tuten Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Any given Sunday"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Saquon deez nutz"
+    }
+   ],
+   "round": "8"
+  },
+  {
+   "picks": [
+    {
+     "newOwner": null,
+     "originalTeam": "Burden of Proof"
+    },
+    {
+     "newOwner": "Burden of Proof",
+     "originalTeam": "The real sultan"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Aarons got a Gun"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Prestige Worldwide"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Colin for the win"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Pickens some Rams"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Maye I put it in your Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Brown Tuten Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Any given Sunday"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Saquon deez nutz"
+    }
+   ],
+   "round": "9"
+  },
+  {
+   "picks": [
+    {
+     "newOwner": "Brown Tuten Boutte",
+     "originalTeam": "Burden of Proof"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "The real sultan"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Aarons got a Gun"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Prestige Worldwide"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Colin for the win"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Pickens some Rams"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Maye I put it in your Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Brown Tuten Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Any given Sunday"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Saquon deez nutz"
+    }
+   ],
+   "round": "10"
+  },
+  {
+   "picks": [
+    {
+     "newOwner": "Any given Sunday",
+     "originalTeam": "Burden of Proof"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "The real sultan"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Aarons got a Gun"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Prestige Worldwide"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Colin for the win"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Pickens some Rams"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Maye I put it in your Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Brown Tuten Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Any given Sunday"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Saquon deez nutz"
+    }
+   ],
+   "round": "11"
+  },
+  {
+   "picks": [
+    {
+     "newOwner": "Brown Tuten Boutte",
+     "originalTeam": "Burden of Proof"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "The real sultan"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Aarons got a Gun"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Prestige Worldwide"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Colin for the win"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Pickens some Rams"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Maye I put it in your Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Brown Tuten Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Any given Sunday"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Saquon deez nutz"
+    }
+   ],
+   "round": "12"
+  },
+  {
+   "picks": [
+    {
+     "newOwner": null,
+     "originalTeam": "Burden of Proof"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "The real sultan"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Aarons got a Gun"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Prestige Worldwide"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Colin for the win"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Pickens some Rams"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Maye I put it in your Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Brown Tuten Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Any given Sunday"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Saquon deez nutz"
+    }
+   ],
+   "round": "13"
+  },
+  {
+   "picks": [
+    {
+     "newOwner": null,
+     "originalTeam": "Burden of Proof"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "The real sultan"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Aarons got a Gun"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Prestige Worldwide"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Colin for the win"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Pickens some Rams"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Maye I put it in your Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Brown Tuten Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Any given Sunday"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Saquon deez nutz"
+    }
+   ],
+   "round": "14"
+  },
+  {
+   "picks": [
+    {
+     "newOwner": null,
+     "originalTeam": "Burden of Proof"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "The real sultan"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Aarons got a Gun"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Prestige Worldwide"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Colin for the win"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Pickens some Rams"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Maye I put it in your Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Brown Tuten Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Any given Sunday"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Saquon deez nutz"
+    }
+   ],
+   "round": "15"
+  },
+  {
+   "picks": [
+    {
+     "newOwner": null,
+     "originalTeam": "Burden of Proof"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "The real sultan"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Aarons got a Gun"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Prestige Worldwide"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Colin for the win"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Pickens some Rams"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Maye I put it in your Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Brown Tuten Boutte"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Any given Sunday"
+    },
+    {
+     "newOwner": null,
+     "originalTeam": "Saquon deez nutz"
+    }
+   ],
+   "round": "16"
+  }
+ ],
+ "draftResults": [
+  {
+   "pick": "1",
+   "player": "Bijan Robinson (Atl - RB)",
+   "round": "1",
+   "team": "Burden of Proof"
+  },
+  {
+   "pick": "11",
+   "player": "CeeDee Lamb (Dal - WR)",
+   "round": "2",
+   "team": "Burden of Proof"
+  },
+  {
+   "pick": "18",
+   "player": "DeVonta Smith (Phi - WR)",
+   "round": "2",
+   "team": "Burden of Proof"
+  },
+  {
+   "pick": "19",
+   "player": "Trey McBride (Ari - TE)",
+   "round": "2",
+   "team": "Burden of Proof"
+  },
+  {
+   "pick": "21",
+   "player": "Breece Hall (NYJ - RB)",
+   "round": "3",
+   "team": "Burden of Proof"
+  },
+  {
+   "pick": "31",
+   "player": "Kenneth Walker III (KC - RB)",
+   "round": "4",
+   "team": "Burden of Proof"
+  },
+  {
+   "pick": "41",
+   "player": "Bucky Irving (TB - RB)",
+   "round": "5",
+   "team": "Burden of Proof"
+  },
+  {
+   "pick": "61",
+   "player": "Jalen Hurts (Phi - QB)",
+   "round": "7",
+   "team": "Burden of Proof"
+  },
+  {
+   "pick": "68",
+   "player": "Michael Wilson (Ari - WR)",
+   "round": "7",
+   "team": "Burden of Proof"
+  },
+  {
+   "pick": "71",
+   "player": "Luther Burden III (Chi - WR)",
+   "round": "8",
+   "team": "Burden of Proof"
+  },
+  {
+   "pick": "81",
+   "player": "Quentin Johnston (LAC - WR)",
+   "round": "9",
+   "team": "Burden of Proof"
+  },
+  {
+   "pick": "82",
+   "player": "J.K. Dobbins (Den - RB)",
+   "round": "9",
+   "team": "Burden of Proof"
+  },
+  {
+   "pick": "121",
+   "player": "Wan'Dale Robinson (Ten - WR)",
+   "round": "13",
+   "team": "Burden of Proof"
+  },
+  {
+   "pick": "131",
+   "player": "Rashid Shaheed (Sea - WR)",
+   "round": "14",
+   "team": "Burden of Proof"
+  },
+  {
+   "pick": "141",
+   "player": "Zach Charbonnet (Sea - RB)",
+   "round": "15",
+   "team": "Burden of Proof"
+  },
+  {
+   "pick": "151",
+   "player": "Jaguars (Jax - DEF)",
+   "round": "16",
+   "team": "Burden of Proof"
+  },
+  {
+   "pick": "2",
+   "player": "Puka Nacua (LAR - WR)",
+   "round": "1",
+   "team": "The real sultan"
+  },
+  {
+   "pick": "12",
+   "player": "Ashton Jeanty (LV - RB)",
+   "round": "2",
+   "team": "The real sultan"
+  },
+  {
+   "pick": "22",
+   "player": "Jeremiyah Love (Ari - RB)",
+   "round": "3",
+   "team": "The real sultan"
+  },
+  {
+   "pick": "32",
+   "player": "DJ Moore (Buf - WR)",
+   "round": "4",
+   "team": "The real sultan"
+  },
+  {
+   "pick": "42",
+   "player": "Quinshon Judkins (Cle - RB)",
+   "round": "5",
+   "team": "The real sultan"
+  },
+  {
+   "pick": "51",
+   "player": "Marvin Harrison Jr. (Ari - WR)",
+   "round": "6",
+   "team": "The real sultan"
+  },
+  {
+   "pick": "52",
+   "player": "Mike Evans (SF - WR)",
+   "round": "6",
+   "team": "The real sultan"
+  },
+  {
+   "pick": "62",
+   "player": "Rhamondre Stevenson (NE - RB)",
+   "round": "7",
+   "team": "The real sultan"
+  },
+  {
+   "pick": "72",
+   "player": "Brian Thomas Jr. (Jax - WR)",
+   "round": "8",
+   "team": "The real sultan"
+  },
+  {
+   "pick": "92",
+   "player": "Michael Pittman Jr. (Pit - WR)",
+   "round": "10",
+   "team": "The real sultan"
+  },
+  {
+   "pick": "102",
+   "player": "Brock Bowers (LV - TE)",
+   "round": "11",
+   "team": "The real sultan"
+  },
+  {
+   "pick": "112",
+   "player": "Travis Kelce (KC - TE)",
+   "round": "12",
+   "team": "The real sultan"
+  },
+  {
+   "pick": "122",
+   "player": "Justin Herbert (LAC - QB)",
+   "round": "13",
+   "team": "The real sultan"
+  },
+  {
+   "pick": "132",
+   "player": "Deebo Samuel Sr. (SF - WR)",
+   "round": "14",
+   "team": "The real sultan"
+  },
+  {
+   "pick": "142",
+   "player": "Cameron Dicker (LAC - K)",
+   "round": "15",
+   "team": "The real sultan"
+  },
+  {
+   "pick": "152",
+   "player": "Steelers (Pit - DEF)",
+   "round": "16",
+   "team": "The real sultan"
+  },
+  {
+   "pick": "3",
+   "player": "Jonathan Taylor (Ind - RB)",
+   "round": "1",
+   "team": "Aarons got a Gun"
+  },
+  {
+   "pick": "13",
+   "player": "Derrick Henry (Bal - RB)",
+   "round": "2",
+   "team": "Aarons got a Gun"
+  },
+  {
+   "pick": "23",
+   "player": "Malik Nabers (NYG - WR)",
+   "round": "3",
+   "team": "Aarons got a Gun"
+  },
+  {
+   "pick": "33",
+   "player": "Emeka Egbuka (TB - WR)",
+   "round": "4",
+   "team": "Aarons got a Gun"
+  },
+  {
+   "pick": "43",
+   "player": "Justin Jefferson (Min - WR)",
+   "round": "5",
+   "team": "Aarons got a Gun"
+  },
+  {
+   "pick": "53",
+   "player": "Jayden Daniels (Was - QB)",
+   "round": "6",
+   "team": "Aarons got a Gun"
+  },
+  {
+   "pick": "63",
+   "player": "Rome Odunze (Chi - WR)",
+   "round": "7",
+   "team": "Aarons got a Gun"
+  },
+  {
+   "pick": "73",
+   "player": "Kyle Pitts Sr. (Atl - TE)",
+   "round": "8",
+   "team": "Aarons got a Gun"
+  },
+  {
+   "pick": "83",
+   "player": "Jonathon Brooks (Car - RB)",
+   "round": "9",
+   "team": "Aarons got a Gun"
+  },
+  {
+   "pick": "93",
+   "player": "Trevor Lawrence (Jax - QB)",
+   "round": "10",
+   "team": "Aarons got a Gun"
+  },
+  {
+   "pick": "103",
+   "player": "Jordan Addison (Min - WR)",
+   "round": "11",
+   "team": "Aarons got a Gun"
+  },
+  {
+   "pick": "113",
+   "player": "Chris Rodriguez Jr. (Jax - RB)",
+   "round": "12",
+   "team": "Aarons got a Gun"
+  },
+  {
+   "pick": "123",
+   "player": "Isaiah Likely (NYG - TE)",
+   "round": "13",
+   "team": "Aarons got a Gun"
+  },
+  {
+   "pick": "133",
+   "player": "Jaxson Dart (NYG - QB)",
+   "round": "14",
+   "team": "Aarons got a Gun"
+  },
+  {
+   "pick": "143",
+   "player": "Ka'imi Fairbairn (Hou - K)",
+   "round": "15",
+   "team": "Aarons got a Gun"
+  },
+  {
+   "pick": "153",
+   "player": "Vikings (Min - DEF)",
+   "round": "16",
+   "team": "Aarons got a Gun"
+  },
+  {
+   "pick": "4",
+   "player": "Saquon Barkley (Phi - RB)",
+   "round": "1",
+   "team": "Prestige Worldwide"
+  },
+  {
+   "pick": "14",
+   "player": "A.J. Brown (NE - WR)",
+   "round": "2",
+   "team": "Prestige Worldwide"
+  },
+  {
+   "pick": "24",
+   "player": "Jaylen Waddle (Den - WR)",
+   "round": "3",
+   "team": "Prestige Worldwide"
+  },
+  {
+   "pick": "34",
+   "player": "Joe Burrow (Cin - QB)",
+   "round": "4",
+   "team": "Prestige Worldwide"
+  },
+  {
+   "pick": "44",
+   "player": "Tetairoa McMillan (Car - WR)",
+   "round": "5",
+   "team": "Prestige Worldwide"
+  },
+  {
+   "pick": "54",
+   "player": "TreVeyon Henderson (NE - RB)",
+   "round": "6",
+   "team": "Prestige Worldwide"
+  },
+  {
+   "pick": "64",
+   "player": "Sam LaPorta (Det - TE)",
+   "round": "7",
+   "team": "Prestige Worldwide"
+  },
+  {
+   "pick": "74",
+   "player": "Alec Pierce (Ind - WR)",
+   "round": "8",
+   "team": "Prestige Worldwide"
+  },
+  {
+   "pick": "84",
+   "player": "De'Von Achane (Mia - RB)",
+   "round": "9",
+   "team": "Prestige Worldwide"
+  },
+  {
+   "pick": "94",
+   "player": "Jayden Reed (GB - WR)",
+   "round": "10",
+   "team": "Prestige Worldwide"
+  },
+  {
+   "pick": "104",
+   "player": "Kenny Gainwell (TB - RB)",
+   "round": "11",
+   "team": "Prestige Worldwide"
+  },
+  {
+   "pick": "114",
+   "player": "Bo Nix (Den - QB)",
+   "round": "12",
+   "team": "Prestige Worldwide"
+  },
+  {
+   "pick": "124",
+   "player": "Texans (Hou - DEF)",
+   "round": "13",
+   "team": "Prestige Worldwide"
+  },
+  {
+   "pick": "134",
+   "player": "Xavier Worthy (KC - WR)",
+   "round": "14",
+   "team": "Prestige Worldwide"
+  },
+  {
+   "pick": "144",
+   "player": "Jason Myers (Sea - K)",
+   "round": "15",
+   "team": "Prestige Worldwide"
+  },
+  {
+   "pick": "154",
+   "player": "Hunter Henry (NE - TE)",
+   "round": "16",
+   "team": "Prestige Worldwide"
+  },
+  {
+   "pick": "5",
+   "player": "James Cook III (Buf - RB)",
+   "round": "1",
+   "team": "Colin for the win"
+  },
+  {
+   "pick": "15",
+   "player": "Drake London (Atl - WR)",
+   "round": "2",
+   "team": "Colin for the win"
+  },
+  {
+   "pick": "25",
+   "player": "Cam Skattebo (NYG - RB)",
+   "round": "3",
+   "team": "Colin for the win"
+  },
+  {
+   "pick": "35",
+   "player": "Jameson Williams (Det - WR)",
+   "round": "4",
+   "team": "Colin for the win"
+  },
+  {
+   "pick": "45",
+   "player": "Parker Washington (Jax - WR)",
+   "round": "5",
+   "team": "Colin for the win"
+  },
+  {
+   "pick": "55",
+   "player": "Dalton Kincaid (Buf - TE)",
+   "round": "6",
+   "team": "Colin for the win"
+  },
+  {
+   "pick": "65",
+   "player": "Tucker Kraft (GB - TE)",
+   "round": "7",
+   "team": "Colin for the win"
+  },
+  {
+   "pick": "75",
+   "player": "Tony Pollard (Ten - RB)",
+   "round": "8",
+   "team": "Colin for the win"
+  },
+  {
+   "pick": "85",
+   "player": "Drake Maye (NE - QB)",
+   "round": "9",
+   "team": "Colin for the win"
+  },
+  {
+   "pick": "95",
+   "player": "De'Zhaun Stribling (SF - WR)",
+   "round": "10",
+   "team": "Colin for the win"
+  },
+  {
+   "pick": "105",
+   "player": "Courtland Sutton (Den - WR)",
+   "round": "11",
+   "team": "Colin for the win"
+  },
+  {
+   "pick": "115",
+   "player": "Brandon Aubrey (Dal - K)",
+   "round": "12",
+   "team": "Colin for the win"
+  },
+  {
+   "pick": "125",
+   "player": "Broncos (Den - DEF)",
+   "round": "13",
+   "team": "Colin for the win"
+  },
+  {
+   "pick": "135",
+   "player": "Aaron Jones Sr. (Min - RB)",
+   "round": "14",
+   "team": "Colin for the win"
+  },
+  {
+   "pick": "145",
+   "player": "Jalen Coker (Car - WR)",
+   "round": "15",
+   "team": "Colin for the win"
+  },
+  {
+   "pick": "155",
+   "player": "Jared Goff (Det - QB)",
+   "round": "16",
+   "team": "Colin for the win"
+  },
+  {
+   "pick": "6",
+   "player": "Amon-Ra St. Brown (Det - WR)",
+   "round": "1",
+   "team": "Pickens some Rams"
+  },
+  {
+   "pick": "16",
+   "player": "Kyren Williams (LAR - RB)",
+   "round": "2",
+   "team": "Pickens some Rams"
+  },
+  {
+   "pick": "26",
+   "player": "Colston Loveland (Chi - TE)",
+   "round": "3",
+   "team": "Pickens some Rams"
+  },
+  {
+   "pick": "36",
+   "player": "George Pickens (Dal - WR)",
+   "round": "4",
+   "team": "Pickens some Rams"
+  },
+  {
+   "pick": "46",
+   "player": "Jadarian Price (Sea - RB)",
+   "round": "5",
+   "team": "Pickens some Rams"
+  },
+  {
+   "pick": "56",
+   "player": "Caleb Williams (Chi - QB)",
+   "round": "6",
+   "team": "Pickens some Rams"
+  },
+  {
+   "pick": "66",
+   "player": "Rico Dowdle (Pit - RB)",
+   "round": "7",
+   "team": "Pickens some Rams"
+  },
+  {
+   "pick": "76",
+   "player": "Josh Downs (Ind - WR)",
+   "round": "8",
+   "team": "Pickens some Rams"
+  },
+  {
+   "pick": "86",
+   "player": "Blake Corum (LAR - RB)",
+   "round": "9",
+   "team": "Pickens some Rams"
+  },
+  {
+   "pick": "96",
+   "player": "Tyler Warren (Ind - TE)",
+   "round": "10",
+   "team": "Pickens some Rams"
+  },
+  {
+   "pick": "106",
+   "player": "Matthew Golden (GB - WR)",
+   "round": "11",
+   "team": "Pickens some Rams"
+  },
+  {
+   "pick": "116",
+   "player": "Rams (LAR - DEF)",
+   "round": "12",
+   "team": "Pickens some Rams"
+  },
+  {
+   "pick": "126",
+   "player": "Jakobi Meyers (Jax - WR)",
+   "round": "13",
+   "team": "Pickens some Rams"
+  },
+  {
+   "pick": "136",
+   "player": "Matthew Stafford (LAR - QB)",
+   "round": "14",
+   "team": "Pickens some Rams"
+  },
+  {
+   "pick": "146",
+   "player": "Denzel Boston (Cle - WR)",
+   "round": "15",
+   "team": "Pickens some Rams"
+  },
+  {
+   "pick": "156",
+   "player": "Cam Little (Jax - K)",
+   "round": "16",
+   "team": "Pickens some Rams"
+  },
+  {
+   "pick": "7",
+   "player": "Christian McCaffrey (SF - RB)",
+   "round": "1",
+   "team": "Maye I put it in your Boutte"
+  },
+  {
+   "pick": "17",
+   "player": "Ja'Marr Chase (Cin - WR)",
+   "round": "2",
+   "team": "Maye I put it in your Boutte"
+  },
+  {
+   "pick": "27",
+   "player": "Zay Flowers (Bal - WR)",
+   "round": "3",
+   "team": "Maye I put it in your Boutte"
+  },
+  {
+   "pick": "37",
+   "player": "Travis Etienne Jr. (NO - RB)",
+   "round": "4",
+   "team": "Maye I put it in your Boutte"
+  },
+  {
+   "pick": "47",
+   "player": "Davante Adams (LAR - WR)",
+   "round": "5",
+   "team": "Maye I put it in your Boutte"
+  },
+  {
+   "pick": "57",
+   "player": "Harold Fannin Jr. (Cle - TE)",
+   "round": "6",
+   "team": "Maye I put it in your Boutte"
+  },
+  {
+   "pick": "67",
+   "player": "Dak Prescott (Dal - QB)",
+   "round": "7",
+   "team": "Maye I put it in your Boutte"
+  },
+  {
+   "pick": "77",
+   "player": "Chris Godwin Jr. (TB - WR)",
+   "round": "8",
+   "team": "Maye I put it in your Boutte"
+  },
+  {
+   "pick": "87",
+   "player": "Chuba Hubbard (Car - RB)",
+   "round": "9",
+   "team": "Maye I put it in your Boutte"
+  },
+  {
+   "pick": "97",
+   "player": "Brock Purdy (SF - QB)",
+   "round": "10",
+   "team": "Maye I put it in your Boutte"
+  },
+  {
+   "pick": "107",
+   "player": "Mike Washington Jr. (LV - RB)",
+   "round": "11",
+   "team": "Maye I put it in your Boutte"
+  },
+  {
+   "pick": "117",
+   "player": "Javonte Williams (Dal - RB)",
+   "round": "12",
+   "team": "Maye I put it in your Boutte"
+  },
+  {
+   "pick": "127",
+   "player": "Mark Andrews (Bal - TE)",
+   "round": "13",
+   "team": "Maye I put it in your Boutte"
+  },
+  {
+   "pick": "137",
+   "player": "Seahawks (Sea - DEF)",
+   "round": "14",
+   "team": "Maye I put it in your Boutte"
+  },
+  {
+   "pick": "147",
+   "player": "Ja'Kobi Lane (Bal - WR)",
+   "round": "15",
+   "team": "Maye I put it in your Boutte"
+  },
+  {
+   "pick": "157",
+   "player": "Harrison Butker (KC - K)",
+   "round": "16",
+   "team": "Maye I put it in your Boutte"
+  },
+  {
+   "pick": "8",
+   "player": "Chase Brown (Cin - RB)",
+   "round": "1",
+   "team": "Brown Tuten Boutte"
+  },
+  {
+   "pick": "28",
+   "player": "Garrett Wilson (NYJ - WR)",
+   "round": "3",
+   "team": "Brown Tuten Boutte"
+  },
+  {
+   "pick": "38",
+   "player": "Christian Watson (GB - WR)",
+   "round": "4",
+   "team": "Brown Tuten Boutte"
+  },
+  {
+   "pick": "48",
+   "player": "Bhayshul Tuten (Jax - RB)",
+   "round": "5",
+   "team": "Brown Tuten Boutte"
+  },
+  {
+   "pick": "58",
+   "player": "MarShawn Lloyd (GB - RB)",
+   "round": "6",
+   "team": "Brown Tuten Boutte"
+  },
+  {
+   "pick": "78",
+   "player": "Nico Collins (Hou - WR)",
+   "round": "8",
+   "team": "Brown Tuten Boutte"
+  },
+  {
+   "pick": "88",
+   "player": "Jacory Croskey-Merritt (Was - RB)",
+   "round": "9",
+   "team": "Brown Tuten Boutte"
+  },
+  {
+   "pick": "91",
+   "player": "Stefon Diggs (Was - WR)",
+   "round": "10",
+   "team": "Brown Tuten Boutte"
+  },
+  {
+   "pick": "98",
+   "player": "Josh Allen (Buf - QB)",
+   "round": "10",
+   "team": "Brown Tuten Boutte"
+  },
+  {
+   "pick": "108",
+   "player": "Kyle Monangai (Chi - RB)",
+   "round": "11",
+   "team": "Brown Tuten Boutte"
+  },
+  {
+   "pick": "111",
+   "player": "Dallas Goedert (Phi - TE)",
+   "round": "12",
+   "team": "Brown Tuten Boutte"
+  },
+  {
+   "pick": "118",
+   "player": "Romeo Doubs (NE - WR)",
+   "round": "12",
+   "team": "Brown Tuten Boutte"
+  },
+  {
+   "pick": "128",
+   "player": "Juwan Johnson (NO - TE)",
+   "round": "13",
+   "team": "Brown Tuten Boutte"
+  },
+  {
+   "pick": "138",
+   "player": "Khalil Shakir (Buf - WR)",
+   "round": "14",
+   "team": "Brown Tuten Boutte"
+  },
+  {
+   "pick": "148",
+   "player": "Kayshon Boutte (Hou - WR)",
+   "round": "15",
+   "team": "Brown Tuten Boutte"
+  },
+  {
+   "pick": "158",
+   "player": "Tyler Allgeier (Ari - RB)",
+   "round": "16",
+   "team": "Brown Tuten Boutte"
+  },
+  {
+   "pick": "9",
+   "player": "Omarion Hampton (LAC - RB)",
+   "round": "1",
+   "team": "Any given Sunday"
+  },
+  {
+   "pick": "29",
+   "player": "Tee Higgins (Cin - WR)",
+   "round": "3",
+   "team": "Any given Sunday"
+  },
+  {
+   "pick": "39",
+   "player": "David Montgomery (Hou - RB)",
+   "round": "4",
+   "team": "Any given Sunday"
+  },
+  {
+   "pick": "49",
+   "player": "Jaylen Warren (Pit - RB)",
+   "round": "5",
+   "team": "Any given Sunday"
+  },
+  {
+   "pick": "59",
+   "player": "Carnell Tate (Ten - WR)",
+   "round": "6",
+   "team": "Any given Sunday"
+  },
+  {
+   "pick": "69",
+   "player": "Rashee Rice (KC - WR)",
+   "round": "7",
+   "team": "Any given Sunday"
+  },
+  {
+   "pick": "79",
+   "player": "KC Concepcion (Cle - WR)",
+   "round": "8",
+   "team": "Any given Sunday"
+  },
+  {
+   "pick": "89",
+   "player": "Jordan Mason (Min - RB)",
+   "round": "9",
+   "team": "Any given Sunday"
+  },
+  {
+   "pick": "99",
+   "player": "Ladd McConkey (LAC - WR)",
+   "round": "10",
+   "team": "Any given Sunday"
+  },
+  {
+   "pick": "101",
+   "player": "Patrick Mahomes (KC - QB)",
+   "round": "11",
+   "team": "Any given Sunday"
+  },
+  {
+   "pick": "109",
+   "player": "Makai Lemon (Phi - WR)",
+   "round": "11",
+   "team": "Any given Sunday"
+  },
+  {
+   "pick": "119",
+   "player": "Jake Ferguson (Dal - TE)",
+   "round": "12",
+   "team": "Any given Sunday"
+  },
+  {
+   "pick": "129",
+   "player": "Woody Marks (Hou - RB)",
+   "round": "13",
+   "team": "Any given Sunday"
+  },
+  {
+   "pick": "139",
+   "player": "Eagles (Phi - DEF)",
+   "round": "14",
+   "team": "Any given Sunday"
+  },
+  {
+   "pick": "149",
+   "player": "Tyler Loop (Bal - K)",
+   "round": "15",
+   "team": "Any given Sunday"
+  },
+  {
+   "pick": "159",
+   "player": "Jonah Coleman (Den - RB)",
+   "round": "16",
+   "team": "Any given Sunday"
+  },
+  {
+   "pick": "10",
+   "player": "Jahmyr Gibbs (Det - RB)",
+   "round": "1",
+   "team": "Saquon deez nutz"
+  },
+  {
+   "pick": "20",
+   "player": "Chris Olave (NO - WR)",
+   "round": "2",
+   "team": "Saquon deez nutz"
+  },
+  {
+   "pick": "30",
+   "player": "Lamar Jackson (Bal - QB)",
+   "round": "3",
+   "team": "Saquon deez nutz"
+  },
+  {
+   "pick": "40",
+   "player": "Terry McLaurin (Was - WR)",
+   "round": "4",
+   "team": "Saquon deez nutz"
+  },
+  {
+   "pick": "50",
+   "player": "D'Andre Swift (Chi - RB)",
+   "round": "5",
+   "team": "Saquon deez nutz"
+  },
+  {
+   "pick": "60",
+   "player": "DK Metcalf (Pit - WR)",
+   "round": "6",
+   "team": "Saquon deez nutz"
+  },
+  {
+   "pick": "70",
+   "player": "Josh Jacobs (GB - RB)",
+   "round": "7",
+   "team": "Saquon deez nutz"
+  },
+  {
+   "pick": "80",
+   "player": "Jaxon Smith-Njigba (Sea - WR)",
+   "round": "8",
+   "team": "Saquon deez nutz"
+  },
+  {
+   "pick": "90",
+   "player": "George Kittle (SF - TE)",
+   "round": "9",
+   "team": "Saquon deez nutz"
+  },
+  {
+   "pick": "100",
+   "player": "RJ Harvey (Den - RB)",
+   "round": "10",
+   "team": "Saquon deez nutz"
+  },
+  {
+   "pick": "110",
+   "player": "Jordyn Tyson (NO - WR)",
+   "round": "11",
+   "team": "Saquon deez nutz"
+  },
+  {
+   "pick": "120",
+   "player": "Keenan Allen (Ind - WR)",
+   "round": "12",
+   "team": "Saquon deez nutz"
+  },
+  {
+   "pick": "130",
+   "player": "Brian Robinson (Atl - RB)",
+   "round": "13",
+   "team": "Saquon deez nutz"
+  },
+  {
+   "pick": "140",
+   "player": "Cooper Kupp (Sea - WR)",
+   "round": "14",
+   "team": "Saquon deez nutz"
+  },
+  {
+   "pick": "150",
+   "player": "Harrison Mevis (LAR - K)",
+   "round": "15",
+   "team": "Saquon deez nutz"
+  },
+  {
+   "pick": "160",
+   "player": "Patriots (NE - DEF)",
+   "round": "16",
+   "team": "Saquon deez nutz"
+  }
+ ],
+ "draftResults2025": [
+  {
+   "extraPicks": [],
+   "picks": [
+    {
+     "player": "CeeDee Lamb",
+     "team": "jen's Legendary Team"
+    },
+    {
+     "player": "Jahmyr Gibbs",
+     "team": "The real sultan"
+    },
+    {
+     "player": "Amon-Ra St. Brown",
+     "team": "Aarons got a Gun"
+    },
+    {
+     "player": "Derrick Henry",
+     "team": "Prestige Worldwide"
+    },
+    {
+     "player": "Bijan Robinson",
+     "team": "Colin for the win"
+    },
+    {
+     "player": "Drake London",
+     "team": "The V&G Express"
+    },
+    {
+     "player": "Ashton Jeanty",
+     "team": "Maye I put it in your Boutte"
+    },
+    {
+     "player": "Christian McCaffrey",
+     "team": "Leeroy Judkins"
+    },
+    {
+     "player": "Josh Jacobs",
+     "team": "Any given Sunday"
+    },
+    {
+     "player": "Saquon Barkley",
+     "team": "Saquon deez nutz"
+    }
+   ],
+   "round": "1"
+  },
+  {
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "player": "Jalen Hurts",
+       "team": "Aarons got a Gun"
+      }
+     ]
+    }
+   ],
+   "picks": [
+    {
+     "player": "Puka Nacua",
+     "team": "jen's Legendary Team"
+    },
+    {
+     "player": "Chase Brown",
+     "team": "The real sultan"
+    },
+    {
+     "player": "Jonathan Taylor",
+     "team": "Aarons got a Gun"
+    },
+    {
+     "player": "A.J. Brown",
+     "team": "Prestige Worldwide"
+    },
+    {
+     "player": "Jayden Daniels",
+     "team": "Colin for the win"
+    },
+    {
+     "player": null,
+     "team": "The V&G Express"
+    },
+    {
+     "player": "Trey McBride",
+     "team": "Maye I put it in your Boutte"
+    },
+    {
+     "player": "Lamar Jackson",
+     "team": "Leeroy Judkins"
+    },
+    {
+     "player": "Tee Higgins",
+     "team": "Any given Sunday"
+    },
+    {
+     "player": "George Kittle",
+     "team": "Saquon deez nutz"
+    }
+   ],
+   "round": "2"
+  },
+  {
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "player": "Alvin Kamara",
+       "team": "jen's Legendary Team"
+      }
+     ]
+    }
+   ],
+   "picks": [
+    {
+     "player": "Omarion Hampton",
+     "team": "jen's Legendary Team"
+    },
+    {
+     "player": "Tyreek Hill",
+     "team": "The real sultan"
+    },
+    {
+     "player": "Terry McLaurin",
+     "team": "Aarons got a Gun"
+    },
+    {
+     "player": "James Cook III",
+     "team": "Prestige Worldwide"
+    },
+    {
+     "player": "Chuba Hubbard",
+     "team": "Colin for the win"
+    },
+    {
+     "player": "TreVeyon Henderson",
+     "team": "The V&G Express"
+    },
+    {
+     "player": null,
+     "team": "Maye I put it in your Boutte"
+    },
+    {
+     "player": "Malik Nabers",
+     "team": "Leeroy Judkins"
+    },
+    {
+     "player": "Mike Evans",
+     "team": "Any given Sunday"
+    },
+    {
+     "player": "Ja'Marr Chase",
+     "team": "Saquon deez nutz"
+    }
+   ],
+   "round": "3"
+  },
+  {
+   "extraPicks": [],
+   "picks": [
+    {
+     "player": "Kenneth Walker III",
+     "team": "jen's Legendary Team"
+    },
+    {
+     "player": "Davante Adams",
+     "team": "The real sultan"
+    },
+    {
+     "player": "Marvin Harrison Jr.",
+     "team": "Aarons got a Gun"
+    },
+    {
+     "player": "Zay Flowers",
+     "team": "Prestige Worldwide"
+    },
+    {
+     "player": "James Conner",
+     "team": "Colin for the win"
+    },
+    {
+     "player": "George Pickens",
+     "team": "The V&G Express"
+    },
+    {
+     "player": "DK Metcalf",
+     "team": "Maye I put it in your Boutte"
+    },
+    {
+     "player": "Garrett Wilson",
+     "team": "Leeroy Judkins"
+    },
+    {
+     "player": "Breece Hall",
+     "team": "Any given Sunday"
+    },
+    {
+     "player": "RJ Harvey",
+     "team": "Saquon deez nutz"
+    }
+   ],
+   "round": "4"
+  },
+  {
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "player": "David Montgomery",
+       "team": "Aarons got a Gun"
+      }
+     ]
+    }
+   ],
+   "picks": [
+    {
+     "player": "Joe Burrow",
+     "team": "jen's Legendary Team"
+    },
+    {
+     "player": "DeVonta Smith",
+     "team": "The real sultan"
+    },
+    {
+     "player": "Xavier Worthy",
+     "team": "Aarons got a Gun"
+    },
+    {
+     "player": "Tony Pollard",
+     "team": "Prestige Worldwide"
+    },
+    {
+     "player": "Isiah Pacheco",
+     "team": "Colin for the win"
+    },
+    {
+     "player": "Courtland Sutton",
+     "team": "The V&G Express"
+    },
+    {
+     "player": null,
+     "team": "Maye I put it in your Boutte"
+    },
+    {
+     "player": "D'Andre Swift",
+     "team": "Leeroy Judkins"
+    },
+    {
+     "player": "Tetairoa McMillan",
+     "team": "Any given Sunday"
+    },
+    {
+     "player": "Ricky Pearsall",
+     "team": "Saquon deez nutz"
+    }
+   ],
+   "round": "5"
+  },
+  {
+   "extraPicks": [],
+   "picks": [
+    {
+     "player": "Calvin Ridley",
+     "team": "jen's Legendary Team"
+    },
+    {
+     "player": "Travis Kelce",
+     "team": "The real sultan"
+    },
+    {
+     "player": "Sam LaPorta",
+     "team": "Aarons got a Gun"
+    },
+    {
+     "player": "Jordan Addison",
+     "team": "Prestige Worldwide"
+    },
+    {
+     "player": "Justin Jefferson",
+     "team": "Colin for the win"
+    },
+    {
+     "player": "Emeka Egbuka",
+     "team": "The V&G Express"
+    },
+    {
+     "player": "Jaylen Waddle",
+     "team": "Maye I put it in your Boutte"
+    },
+    {
+     "player": "Chris Olave",
+     "team": "Leeroy Judkins"
+    },
+    {
+     "player": "Aaron Jones Sr.",
+     "team": "Any given Sunday"
+    },
+    {
+     "player": "Travis Hunter",
+     "team": "Saquon deez nutz"
+    }
+   ],
+   "round": "6"
+  },
+  {
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "player": "Jaylen Warren",
+       "team": "Maye I put it in your Boutte"
+      }
+     ]
+    }
+   ],
+   "picks": [
+    {
+     "player": null,
+     "team": "jen's Legendary Team"
+    },
+    {
+     "player": "Kaleb Johnson",
+     "team": "The real sultan"
+    },
+    {
+     "player": "Rashee Rice",
+     "team": "Aarons got a Gun"
+    },
+    {
+     "player": "Tucker Kraft",
+     "team": "Prestige Worldwide"
+    },
+    {
+     "player": "Rome Odunze",
+     "team": "Colin for the win"
+    },
+    {
+     "player": "Kyren Williams",
+     "team": "The V&G Express"
+    },
+    {
+     "player": "Stefon Diggs",
+     "team": "Maye I put it in your Boutte"
+    },
+    {
+     "player": "Tyrone Tracy Jr.",
+     "team": "Leeroy Judkins"
+    },
+    {
+     "player": "Mark Andrews",
+     "team": "Any given Sunday"
+    },
+    {
+     "player": "Patrick Mahomes",
+     "team": "Saquon deez nutz"
+    }
+   ],
+   "round": "7"
+  },
+  {
+   "extraPicks": [],
+   "picks": [
+    {
+     "player": "Zach Charbonnet",
+     "team": "jen's Legendary Team"
+    },
+    {
+     "player": "Bo Nix",
+     "team": "The real sultan"
+    },
+    {
+     "player": "Matthew Golden",
+     "team": "Aarons got a Gun"
+    },
+    {
+     "player": "Jordan Mason",
+     "team": "Prestige Worldwide"
+    },
+    {
+     "player": "Jakobi Meyers",
+     "team": "Colin for the win"
+    },
+    {
+     "player": "DJ Moore",
+     "team": "The V&G Express"
+    },
+    {
+     "player": "Braelon Allen",
+     "team": "Maye I put it in your Boutte"
+    },
+    {
+     "player": "Jerry Jeudy",
+     "team": "Leeroy Judkins"
+    },
+    {
+     "player": "Deebo Samuel Sr.",
+     "team": "Any given Sunday"
+    },
+    {
+     "player": "J.K. Dobbins",
+     "team": "Saquon deez nutz"
+    }
+   ],
+   "round": "8"
+  },
+  {
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "player": "Jacory Croskey-Merritt",
+       "team": "The V&G Express"
+      }
+     ]
+    }
+   ],
+   "picks": [
+    {
+     "player": "Brian Thomas Jr.",
+     "team": "jen's Legendary Team"
+    },
+    {
+     "player": "Jaxon Smith-Njigba",
+     "team": "The real sultan"
+    },
+    {
+     "player": null,
+     "team": "Aarons got a Gun"
+    },
+    {
+     "player": "Drake Maye",
+     "team": "Prestige Worldwide"
+    },
+    {
+     "player": "Dalton Kincaid",
+     "team": "Colin for the win"
+    },
+    {
+     "player": "Evan Engram",
+     "team": "The V&G Express"
+    },
+    {
+     "player": "Nico Collins",
+     "team": "Maye I put it in your Boutte"
+    },
+    {
+     "player": "Travis Etienne Jr.",
+     "team": "Leeroy Judkins"
+    },
+    {
+     "player": "Brock Purdy",
+     "team": "Any given Sunday"
+    },
+    {
+     "player": "Jauan Jennings",
+     "team": "Saquon deez nutz"
+    }
+   ],
+   "round": "9"
+  },
+  {
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "player": "Tyler Warren",
+       "team": "The V&G Express"
+      }
+     ]
+    }
+   ],
+   "picks": [
+    {
+     "player": "Michael Pittman Jr.",
+     "team": "jen's Legendary Team"
+    },
+    {
+     "player": null,
+     "team": "The real sultan"
+    },
+    {
+     "player": "Bhayshul Tuten",
+     "team": "Aarons got a Gun"
+    },
+    {
+     "player": "Jameson Williams",
+     "team": "Prestige Worldwide"
+    },
+    {
+     "player": "Christian Kirk",
+     "team": "Colin for the win"
+    },
+    {
+     "player": "Dak Prescott",
+     "team": "The V&G Express"
+    },
+    {
+     "player": "Quinshon Judkins",
+     "team": "Maye I put it in your Boutte"
+    },
+    {
+     "player": "Khalil Shakir",
+     "team": "Leeroy Judkins"
+    },
+    {
+     "player": "De'Von Achane",
+     "team": "Any given Sunday"
+    },
+    {
+     "player": "Cooper Kupp",
+     "team": "Saquon deez nutz"
+    }
+   ],
+   "round": "10"
+  },
+  {
+   "extraPicks": [],
+   "picks": [
+    {
+     "player": "Jayden Reed",
+     "team": "jen's Legendary Team"
+    },
+    {
+     "player": "Joe Mixon",
+     "team": "The real sultan"
+    },
+    {
+     "player": "Ladd McConkey",
+     "team": "Aarons got a Gun"
+    },
+    {
+     "player": "Josh Downs",
+     "team": "Prestige Worldwide"
+    },
+    {
+     "player": "DeMario Douglas",
+     "team": "Colin for the win"
+    },
+    {
+     "player": "Keon Coleman",
+     "team": "The V&G Express"
+    },
+    {
+     "player": "Josh Allen",
+     "team": "Maye I put it in your Boutte"
+    },
+    {
+     "player": "Brandon Aiyuk",
+     "team": "Leeroy Judkins"
+    },
+    {
+     "player": "Cam Skattebo",
+     "team": "Any given Sunday"
+    },
+    {
+     "player": "Baker Mayfield",
+     "team": "Saquon deez nutz"
+    }
+   ],
+   "round": "11"
+  },
+  {
+   "extraPicks": [],
+   "picks": [
+    {
+     "player": "Kyler Murray",
+     "team": "jen's Legendary Team"
+    },
+    {
+     "player": "Chris Godwin Jr.",
+     "team": "The real sultan"
+    },
+    {
+     "player": "Broncos",
+     "team": "Aarons got a Gun"
+    },
+    {
+     "player": "Hunter Henry",
+     "team": "Prestige Worldwide"
+    },
+    {
+     "player": "Rashid Shaheed",
+     "team": "Colin for the win"
+    },
+    {
+     "player": "Austin Ekeler",
+     "team": "The V&G Express"
+    },
+    {
+     "player": "Jerome Ford",
+     "team": "Maye I put it in your Boutte"
+    },
+    {
+     "player": "Brock Bowers",
+     "team": "Leeroy Judkins"
+    },
+    {
+     "player": "Brandon Aubrey",
+     "team": "Any given Sunday"
+    },
+    {
+     "player": "Javonte Williams",
+     "team": "Saquon deez nutz"
+    }
+   ],
+   "round": "12"
+  },
+  {
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "player": "David Njoku",
+       "team": "The real sultan"
+      }
+     ]
+    }
+   ],
+   "picks": [
+    {
+     "player": "T.J. Hockenson",
+     "team": "jen's Legendary Team"
+    },
+    {
+     "player": "Nick Chubb",
+     "team": "The real sultan"
+    },
+    {
+     "player": null,
+     "team": "Aarons got a Gun"
+    },
+    {
+     "player": "Eagles",
+     "team": "Prestige Worldwide"
+    },
+    {
+     "player": "Dylan Sampson",
+     "team": "Colin for the win"
+    },
+    {
+     "player": "Jaydon Blue",
+     "team": "The V&G Express"
+    },
+    {
+     "player": "Ollie Gordon II",
+     "team": "Maye I put it in your Boutte"
+    },
+    {
+     "player": "Justin Herbert",
+     "team": "Leeroy Judkins"
+    },
+    {
+     "player": "Darnell Mooney",
+     "team": "Any given Sunday"
+    },
+    {
+     "player": "Tank Bigsby",
+     "team": "Saquon deez nutz"
+    }
+   ],
+   "round": "13"
+  },
+  {
+   "extraPicks": [],
+   "picks": [
+    {
+     "player": "Rhamondre Stevenson",
+     "team": "jen's Legendary Team"
+    },
+    {
+     "player": "Woody Marks",
+     "team": "The real sultan"
+    },
+    {
+     "player": "Bucky Irving",
+     "team": "Aarons got a Gun"
+    },
+    {
+     "player": "Cameron Dicker",
+     "team": "Prestige Worldwide"
+    },
+    {
+     "player": "Brian Robinson",
+     "team": "Colin for the win"
+    },
+    {
+     "player": "Ravens",
+     "team": "The V&G Express"
+    },
+    {
+     "player": "Colston Loveland",
+     "team": "Maye I put it in your Boutte"
+    },
+    {
+     "player": "Kyle Pitts Sr.",
+     "team": "Leeroy Judkins"
+    },
+    {
+     "player": "Wan'Dale Robinson",
+     "team": "Any given Sunday"
+    },
+    {
+     "player": "Jake Ferguson",
+     "team": "Saquon deez nutz"
+    }
+   ],
+   "round": "14"
+  },
+  {
+   "extraPicks": [],
+   "picks": [
+    {
+     "player": "Tyjae Spears",
+     "team": "jen's Legendary Team"
+    },
+    {
+     "player": "Steelers",
+     "team": "The real sultan"
+    },
+    {
+     "player": "Najee Harris",
+     "team": "Aarons got a Gun"
+    },
+    {
+     "player": "Rashod Bateman",
+     "team": "Prestige Worldwide"
+    },
+    {
+     "player": "Wil Lutz",
+     "team": "Colin for the win"
+    },
+    {
+     "player": "Harrison Butker",
+     "team": "The V&G Express"
+    },
+    {
+     "player": "Jayden Higgins",
+     "team": "Maye I put it in your Boutte"
+    },
+    {
+     "player": "Vikings",
+     "team": "Leeroy Judkins"
+    },
+    {
+     "player": "Bills",
+     "team": "Any given Sunday"
+    },
+    {
+     "player": "Chiefs",
+     "team": "Saquon deez nutz"
+    }
+   ],
+   "round": "15"
+  },
+  {
+   "extraPicks": [
+    {
+     "picks": [
+      {
+       "player": "Jake Bates",
+       "team": "Maye I put it in your Boutte"
+      }
+     ]
+    }
+   ],
+   "picks": [
+    {
+     "player": "Texans",
+     "team": "jen's Legendary Team"
+    },
+    {
+     "player": "Tyler Bass",
+     "team": "The real sultan"
+    },
+    {
+     "player": "Ka'imi Fairbairn",
+     "team": "Aarons got a Gun"
+    },
+    {
+     "player": "Kyle Williams",
+     "team": "Prestige Worldwide"
+    },
+    {
+     "player": "Lions",
+     "team": "Colin for the win"
+    },
+    {
+     "player": null,
+     "team": "The V&G Express"
+    },
+    {
+     "player": "Luther Burden III",
+     "team": "Maye I put it in your Boutte"
+    },
+    {
+     "player": "Evan McPherson",
+     "team": "Leeroy Judkins"
+    },
+    {
+     "player": "Dallas Goedert",
+     "team": "Any given Sunday"
+    },
+    {
+     "player": "Chris Boswell",
+     "team": "Saquon deez nutz"
+    }
+   ],
+   "round": "16"
+  }
+ ],
+ "history": [
+  {
+   "standings": [
+    {
+     "manager": "AJ",
+     "team": "Saquon deez nutz"
+    },
+    {
+     "manager": "Robert",
+     "team": "Any given Sunday"
+    }
+   ],
+   "year": 2025
+  }
+ ],
+ "keeperSelections": [
+  {
+   "players": [
+    "Kenneth Walker III",
+    "Luther Burden III"
+   ],
+   "team": "Burden of Proof"
+  },
+  {
+   "players": [
+    "Brock Bowers",
+    "Justin Herbert"
+   ],
+   "team": "The real sultan"
+  },
+  {
+   "players": [
+    "Justin Jefferson",
+    "Rome Odunze"
+   ],
+   "team": "Aarons got a Gun"
+  },
+  {
+   "players": [
+    "Tetairoa McMillan",
+    "De'Von Achane"
+   ],
+   "team": "Prestige Worldwide"
+  },
+  {
+   "players": [
+    "Drake Maye",
+    "Tucker Kraft"
+   ],
+   "team": "Colin for the win"
+  },
+  {
+   "players": [
+    "George Pickens",
+    "Tyler Warren"
+   ],
+   "team": "Pickens some Rams"
+  },
+  {
+   "players": [
+    "Ja'Marr Chase",
+    "Javonte Williams"
+   ],
+   "team": "Maye I put it in your Boutte"
+  },
+  {
+   "players": [
+    "Josh Allen",
+    "Nico Collins"
+   ],
+   "team": "Brown Tuten Boutte"
+  },
+  {
+   "players": [
+    "Ladd McConkey",
+    "Rashee Rice"
+   ],
+   "team": "Any given Sunday"
+  },
+  {
+   "players": [
+    "Jaxon Smith-Njigba",
+    "Jahmyr Gibbs"
+   ],
+   "team": "Saquon deez nutz"
+  }
+ ],
+ "keepersVisible": true,
+ "lastUpdated": "2026-09-27",
+ "leagueName": "Hold My Rings",
+ "ruleGroups": [
+  {
+   "rows": [
+    {
+     "example": null,
+     "num": 1,
+     "rule": "Each team may keep two players."
+    },
+    {
+     "example": null,
+     "num": 2,
+     "rule": "A keeper costs the round he was drafted in the prior year — unless he has been kept multiple years."
+    },
+    {
+     "example": null,
+     "num": 3,
+     "rule": "Each additional year you keep a player, his keeper cost moves up one round."
+    }
+   ],
+   "title": "Keeper Basics"
+  },
+  {
+   "rows": [
+    {
+     "example": null,
+     "num": 4,
+     "rule": "Draft order follows final regular season standings for teams that miss the playoffs."
+    },
+    {
+     "example": "Example: Both eliminated in the quarterfinal — Team 1 (9-5) gets pick 6, Team 2 (7-7) gets pick 5.",
+     "num": 5,
+     "rule": "As teams are eliminated in the playoffs, the team with the better record picks later."
+    },
+    {
+     "example": null,
+     "num": 6,
+     "rule": "If records are tied, the team with more regular season points picks later."
+    }
+   ],
+   "title": "Draft Order"
+  },
+  {
+   "rows": [
+    {
+     "example": "Exception: if you originally drafted him, he keeps his original draft spot — waiver rules do not apply.",
+     "num": 7,
+     "rule": "A keeper claimed off waivers last season costs an 8th round pick."
+    },
+    {
+     "example": "Example: Two 3rd rounders — the better player costs a 2nd, the other a 3rd.",
+     "num": 8,
+     "rule": "Keeping two players from the same round: the higher-ranked player (Yahoo rankings) costs one round earlier; the other keeps that round."
+    },
+    {
+     "example": null,
+     "num": 9,
+     "rule": "Keeping two 1st rounders: the higher-ranked player (Yahoo) costs a 1st, the other a 2nd."
+    },
+    {
+     "example": "Exception: if he was claimed off waivers before the trade, he costs an 8th round pick.",
+     "num": 10,
+     "rule": "A keeper acquired by trade costs the round he was drafted in the prior year."
+    }
+   ],
+   "title": "Keeper Draft Position"
+  },
+  {
+   "rows": [
+    {
+     "example": null,
+     "num": 11,
+     "rule": "Roster players and draft picks may be traded before the draft."
+    },
+    {
+     "example": null,
+     "num": 12,
+     "rule": "Pick limits: 16 picks max (one per draft selection), and 14 minimum if you keep two players."
+    },
+    {
+     "example": null,
+     "num": 13,
+     "rule": "Offseason trading closes one week before keeper selections are due."
+    },
+    {
+     "example": null,
+     "num": 14,
+     "rule": "Waiver-claimed players may be traded at 8th round keeper value."
+    }
+   ],
+   "title": "Trading"
+  }
+ ],
+ "settingsGroups": [
+  {
+   "rows": [
+    {
+     "label": "Draft Type",
+     "value": "Live Standard Draft"
+    },
+    {
+     "label": "Max Teams",
+     "value": "10"
+    },
+    {
+     "label": "Live Draft Pick Time",
+     "value": "1 minute, 15 seconds"
+    },
+    {
+     "label": "Trade End Date",
+     "value": "December 5, 2026"
+    },
+    {
+     "label": "Waiver Time",
+     "value": "2 days"
+    },
+    {
+     "label": "Waiver Type",
+     "value": "FAB w/ continual rolling list tiebreak"
+    },
+    {
+     "label": "Weekly Waivers",
+     "value": "Game time - Tuesday"
+    },
+    {
+     "label": "Injured players from waivers/FA direct to IR slot",
+     "value": "Yes"
+    },
+    {
+     "label": "Playoffs",
+     "value": "6 teams - Weeks 15, 16 and 17 (ends Monday, Dec 29)"
+    },
+    {
+     "label": "Playoff Tie-Breaker",
+     "value": "Best regular season record vs. opponent wins"
+    },
+    {
+     "label": "Playoff Reseeding",
+     "value": "Yes"
+    },
+    {
+     "label": "Roster Positions",
+     "value": "QB, WR, WR, WR, RB, RB, TE, W/R/T, K, DEF, BN, BN, BN, BN, BN, BN, IR, IR"
+    }
+   ],
+   "title": "League & Draft Settings"
+  },
+  {
+   "rows": [
+    {
+     "label": "Passing Yards",
+     "value": "25 yards per point; 6 points at 400 yards"
+    },
+    {
+     "label": "Passing Touchdowns",
+     "value": 6
+    },
+    {
+     "label": "Interceptions",
+     "value": -2
+    },
+    {
+     "label": "Rushing Yards",
+     "value": "10 yards per point; 6 points at 200 yards"
+    },
+    {
+     "label": "Rushing Touchdowns",
+     "value": 6
+    },
+    {
+     "label": "Receptions",
+     "value": 1
+    },
+    {
+     "label": "Receiving Yards",
+     "value": "10 yards per point; 6 points at 200 yards"
+    },
+    {
+     "label": "Receiving Touchdowns",
+     "value": 6
+    },
+    {
+     "label": "Return Touchdowns",
+     "value": 6
+    },
+    {
+     "label": "2-Point Conversions",
+     "value": 2
+    },
+    {
+     "label": "Fumbles Lost",
+     "value": -2
+    },
+    {
+     "label": "Offensive Fumble Return TD",
+     "value": 6
+    }
+   ],
+   "title": "Offense"
+  },
+  {
+   "rows": [
+    {
+     "label": "Field Goals 0-19 Yards",
+     "value": 3
+    },
+    {
+     "label": "Field Goals 20-29 Yards",
+     "value": 3
+    },
+    {
+     "label": "Field Goals 30-39 Yards",
+     "value": 3
+    },
+    {
+     "label": "Field Goals 40-49 Yards",
+     "value": 4
+    },
+    {
+     "label": "Field Goals 50+ Yards",
+     "value": 5
+    },
+    {
+     "label": "Point After Attempt Made",
+     "value": 1
+    }
+   ],
+   "title": "Kickers"
+  },
+  {
+   "rows": [
+    {
+     "label": "Sack",
+     "value": 1
+    },
+    {
+     "label": "Interception",
+     "value": 2
+    },
+    {
+     "label": "Fumble Recovery",
+     "value": 2
+    },
+    {
+     "label": "Touchdown",
+     "value": 6
+    },
+    {
+     "label": "Safety",
+     "value": 2
+    },
+    {
+     "label": "Block Kick",
+     "value": 2
+    },
+    {
+     "label": "Kickoff and Punt Return Touchdowns",
+     "value": 6
+    },
+    {
+     "label": "Points Allowed 0 points",
+     "value": 10
+    },
+    {
+     "label": "Points Allowed 1-6 points",
+     "value": 7
+    },
+    {
+     "label": "Points Allowed 7-13 points",
+     "value": 4
+    },
+    {
+     "label": "Points Allowed 14-20 points",
+     "value": 1
+    },
+    {
+     "label": "Points Allowed 21-27 points",
+     "value": 0
+    },
+    {
+     "label": "Points Allowed 28-34 points",
+     "value": -1
+    },
+    {
+     "label": "Points Allowed 35+ points",
+     "value": -4
+    },
+    {
+     "label": "4th Down Stops",
+     "value": 0.5
+    },
+    {
+     "label": "Defensive Yards Allowed - Negative",
+     "value": 2
+    },
+    {
+     "label": "Extra Point Returned",
+     "value": 2
+    }
+   ],
+   "title": "Defense / Special Teams"
+  }
+ ],
+ "teamBadges": {},
+ "teams": [
+  {
+   "manager": "Shawn",
+   "roster": [
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "LAR",
+     "player": "Matthew Stafford",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": 7,
+     "kept2025": false,
+     "nfl": "PIT",
+     "player": "Jaylen Warren",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "CHI",
+     "player": "Kyle Monangai",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "SEA",
+     "player": "Zach Charbonnet",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 3,
+     "kept2025": false,
+     "nfl": "NO",
+     "player": "Alvin Kamara",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "NYG",
+     "player": "Devin Singletary",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 4,
+     "kept2025": false,
+     "nfl": "KC",
+     "player": "Kenneth Walker III",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "IND",
+     "player": "Alec Pierce",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 10,
+     "kept2025": false,
+     "nfl": "PIT",
+     "player": "Michael Pittman Jr.",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": true,
+     "nfl": "JAX",
+     "player": "Brian Thomas Jr.",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 11,
+     "kept2025": false,
+     "nfl": "GB",
+     "player": "Jayden Reed",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 5,
+     "kept2025": false,
+     "nfl": "KC",
+     "player": "Xavier Worthy",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "NE",
+     "player": "Romeo Doubs",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "ATL",
+     "player": "Kyle Pitts Sr.",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": 12,
+     "kept2025": true,
+     "nfl": "MIN",
+     "player": "T.J. Hockenson",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "JAX",
+     "player": "Cam Little",
+     "pos": "K"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "ATL",
+     "player": "Falcons",
+     "pos": "DEF"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "CHI",
+     "player": "Luther Burden III",
+     "pos": "WR"
+    }
+   ],
+   "team": "Burden of Proof"
+  },
+  {
+   "manager": "Joe",
+   "roster": [
+    {
+     "keeperCost": 2,
+     "kept2025": false,
+     "nfl": "BAL",
+     "player": "Lamar Jackson",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "WAS",
+     "player": "Jayden Daniels",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": 13,
+     "kept2025": false,
+     "nfl": "LAC",
+     "player": "Justin Herbert",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": 1,
+     "kept2025": false,
+     "nfl": "SF",
+     "player": "Christian McCaffrey",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 9,
+     "kept2025": false,
+     "nfl": "NO",
+     "player": "Travis Etienne Jr.",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 5,
+     "kept2025": false,
+     "nfl": "CHI",
+     "player": "D'Andre Swift",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "DET",
+     "player": "Isiah Pacheco",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 6,
+     "kept2025": false,
+     "nfl": "NO",
+     "player": "Chris Olave",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 4,
+     "kept2025": false,
+     "nfl": "NYJ",
+     "player": "Garrett Wilson",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 2,
+     "kept2025": true,
+     "nfl": "NYG",
+     "player": "Malik Nabers",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 10,
+     "kept2025": false,
+     "nfl": "BUF",
+     "player": "Khalil Shakir",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "LV",
+     "player": "Tre Tucker",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "NYJ",
+     "player": "Adonai Mitchell",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 11,
+     "kept2025": false,
+     "nfl": "SF",
+     "player": "Brandon Aiyuk",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 11,
+     "kept2025": true,
+     "nfl": "LV",
+     "player": "Brock Bowers",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "FA",
+     "player": "Matt Prater",
+     "pos": "K"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "HOU",
+     "player": "Texans",
+     "pos": "DEF"
+    }
+   ],
+   "team": "The real sultan"
+  },
+  {
+   "manager": "John",
+   "roster": [
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "DET",
+     "player": "Jared Goff",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": 1,
+     "kept2025": true,
+     "nfl": "ATL",
+     "player": "Bijan Robinson",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 3,
+     "kept2025": false,
+     "nfl": "CAR",
+     "player": "Chuba Hubbard",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "TB",
+     "player": "Kenny Gainwell",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "TEN",
+     "player": "Tyjae Spears",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "ARI",
+     "player": "Bam Knight",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "NE",
+     "player": "Hassan Haskins",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 5,
+     "kept2025": true,
+     "nfl": "MIN",
+     "player": "Justin Jefferson",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 7,
+     "kept2025": false,
+     "nfl": "CHI",
+     "player": "Rome Odunze",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "JAX",
+     "player": "Jakobi Meyers",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 12,
+     "kept2025": false,
+     "nfl": "SEA",
+     "player": "Rashid Shaheed",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "TEN",
+     "player": "Chimere Dike",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "JAX",
+     "player": "Brenton Strange",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "WAS",
+     "player": "Zach Ertz",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "TB",
+     "player": "Chase McLaughlin",
+     "pos": "K"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "JAX",
+     "player": "Jaguars",
+     "pos": "DEF"
+    }
+   ],
+   "team": "Aarons got a Gun"
+  },
+  {
+   "manager": "Ben",
+   "roster": [
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "DAL",
+     "player": "Dak Prescott",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "GB",
+     "player": "Jordan Love",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": 9,
+     "kept2025": true,
+     "nfl": "MIA",
+     "player": "De'Von Achane",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 4,
+     "kept2025": false,
+     "nfl": "NYJ",
+     "player": "Breece Hall",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 1,
+     "kept2025": false,
+     "nfl": "GB",
+     "player": "Josh Jacobs",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 11,
+     "kept2025": false,
+     "nfl": "NYG",
+     "player": "Cam Skattebo",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 6,
+     "kept2025": false,
+     "nfl": "MIN",
+     "player": "Aaron Jones Sr.",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "KC",
+     "player": "Kareem Hunt",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 5,
+     "kept2025": false,
+     "nfl": "CAR",
+     "player": "Tetairoa McMillan",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 2,
+     "kept2025": false,
+     "nfl": "CIN",
+     "player": "Tee Higgins",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "BUF",
+     "player": "DJ Moore",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 2,
+     "kept2025": true,
+     "nfl": "SF",
+     "player": "Mike Evans",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "SF",
+     "player": "Deebo Samuel Sr.",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "CLE",
+     "player": "Jerry Jeudy",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 16,
+     "kept2025": false,
+     "nfl": "PHI",
+     "player": "Dallas Goedert",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": 7,
+     "kept2025": false,
+     "nfl": "BAL",
+     "player": "Mark Andrews",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": 12,
+     "kept2025": false,
+     "nfl": "DAL",
+     "player": "Brandon Aubrey",
+     "pos": "K"
+    },
+    {
+     "keeperCost": 15,
+     "kept2025": false,
+     "nfl": "BUF",
+     "player": "Bills",
+     "pos": "DEF"
+    }
+   ],
+   "team": "Prestige Worldwide"
+  },
+  {
+   "manager": "Chris",
+   "roster": [
+    {
+     "keeperCost": 9,
+     "kept2025": false,
+     "nfl": "NE",
+     "player": "Drake Maye",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "DEN",
+     "player": "Bo Nix",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": 3,
+     "kept2025": false,
+     "nfl": "BUF",
+     "player": "James Cook III",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 1,
+     "kept2025": false,
+     "nfl": "BAL",
+     "player": "Derrick Henry",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 5,
+     "kept2025": false,
+     "nfl": "TEN",
+     "player": "Tony Pollard",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "MIN",
+     "player": "Jordan Mason",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 2,
+     "kept2025": false,
+     "nfl": "NE",
+     "player": "A.J. Brown",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 4,
+     "kept2025": false,
+     "nfl": "BAL",
+     "player": "Zay Flowers",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 9,
+     "kept2025": true,
+     "nfl": "DET",
+     "player": "Jameson Williams",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 11,
+     "kept2025": false,
+     "nfl": "IND",
+     "player": "Josh Downs",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 5,
+     "kept2025": true,
+     "nfl": "MIN",
+     "player": "Jordan Addison",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "NE",
+     "player": "Kayshon Boutte",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 7,
+     "kept2025": false,
+     "nfl": "GB",
+     "player": "Tucker Kraft",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "TB",
+     "player": "Cade Otton",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": 12,
+     "kept2025": false,
+     "nfl": "NE",
+     "player": "Hunter Henry",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": 14,
+     "kept2025": false,
+     "nfl": "LAC",
+     "player": "Cameron Dicker",
+     "pos": "K"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "TB",
+     "player": "Buccaneers",
+     "pos": "DEF"
+    }
+   ],
+   "team": "Colin for the win"
+  },
+  {
+   "manager": "Kevin",
+   "roster": [
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "CIN",
+     "player": "Joe Burrow",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "ARI",
+     "player": "Jacoby Brissett",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": 6,
+     "kept2025": true,
+     "nfl": "LAR",
+     "player": "Kyren Williams",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 3,
+     "kept2025": false,
+     "nfl": "NE",
+     "player": "TreVeyon Henderson",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "PIT",
+     "player": "Rico Dowdle",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "LAR",
+     "player": "Blake Corum",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "NO",
+     "player": "Devin Neal",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 1,
+     "kept2025": false,
+     "nfl": "ATL",
+     "player": "Drake London",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 4,
+     "kept2025": false,
+     "nfl": "DAL",
+     "player": "George Pickens",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 6,
+     "kept2025": false,
+     "nfl": "TB",
+     "player": "Emeka Egbuka",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 5,
+     "kept2025": false,
+     "nfl": "DEN",
+     "player": "Courtland Sutton",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "GB",
+     "player": "Christian Watson",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "HOU",
+     "player": "Jayden Higgins",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 10,
+     "kept2025": false,
+     "nfl": "IND",
+     "player": "Tyler Warren",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "CIN",
+     "player": "Evan McPherson",
+     "pos": "K"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "LAR",
+     "player": "Rams",
+     "pos": "DEF"
+    }
+   ],
+   "team": "Pickens some Rams"
+  },
+  {
+   "manager": "Nate",
+   "roster": [
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "SF",
+     "player": "Brock Purdy",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": 11,
+     "kept2025": false,
+     "nfl": "TB",
+     "player": "Baker Mayfield",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": 1,
+     "kept2025": true,
+     "nfl": "PHI",
+     "player": "Saquon Barkley",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 12,
+     "kept2025": false,
+     "nfl": "DAL",
+     "player": "Javonte Williams",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 4,
+     "kept2025": false,
+     "nfl": "DEN",
+     "player": "RJ Harvey",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "DEN",
+     "player": "J.K. Dobbins",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 2,
+     "kept2025": true,
+     "nfl": "CIN",
+     "player": "Ja'Marr Chase",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "JAX",
+     "player": "Parker Washington",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "ARI",
+     "player": "Michael Wilson",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 5,
+     "kept2025": false,
+     "nfl": "SF",
+     "player": "Ricky Pearsall",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 9,
+     "kept2025": false,
+     "nfl": "MIN",
+     "player": "Jauan Jennings",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "NO",
+     "player": "Devaughn Vele",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 6,
+     "kept2025": false,
+     "nfl": "JAX",
+     "player": "Travis Hunter",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 2,
+     "kept2025": false,
+     "nfl": "SF",
+     "player": "George Kittle",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": 14,
+     "kept2025": false,
+     "nfl": "DAL",
+     "player": "Jake Ferguson",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "MIN",
+     "player": "Will Reichard",
+     "pos": "K"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "PHI",
+     "player": "Eagles",
+     "pos": "DEF"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "NE",
+     "player": "Patriots",
+     "pos": "DEF"
+    }
+   ],
+   "team": "Maye I put it in your Boutte"
+  },
+  {
+   "manager": "JR",
+   "roster": [
+    {
+     "keeperCost": 10,
+     "kept2025": true,
+     "nfl": "BUF",
+     "player": "Josh Allen",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": 1,
+     "kept2025": false,
+     "nfl": "LV",
+     "player": "Ashton Jeanty",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 3,
+     "kept2025": false,
+     "nfl": "LAC",
+     "player": "Omarion Hampton",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 10,
+     "kept2025": false,
+     "nfl": "CLE",
+     "player": "Quinshon Judkins",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "JAX",
+     "player": "Bhayshul Tuten",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "NYJ",
+     "player": "Braelon Allen",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "PIT",
+     "player": "Kaleb Johnson",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "ARI",
+     "player": "Trey Benson",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "ARI",
+     "player": "Tyler Allgeier",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 1,
+     "kept2025": false,
+     "nfl": "DAL",
+     "player": "CeeDee Lamb",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": true,
+     "nfl": "HOU",
+     "player": "Nico Collins",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 6,
+     "kept2025": false,
+     "nfl": "DEN",
+     "player": "Jaylen Waddle",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 7,
+     "kept2025": false,
+     "nfl": "WAS",
+     "player": "Stefon Diggs",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "DET",
+     "player": "Isaac TeSlaa",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "NE",
+     "player": "Kyle Williams",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 2,
+     "kept2025": false,
+     "nfl": "ARI",
+     "player": "Trey McBride",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "CLE",
+     "player": "Harold Fannin Jr.",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "LAC",
+     "player": "Oronde Gadsden",
+     "pos": "TE"
+    }
+   ],
+   "team": "Brown Tuten Boutte"
+  },
+  {
+   "manager": "Robert",
+   "roster": [
+    {
+     "keeperCost": 2,
+     "kept2025": false,
+     "nfl": "PHI",
+     "player": "Jalen Hurts",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "JAX",
+     "player": "Trevor Lawrence",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": 2,
+     "kept2025": false,
+     "nfl": "IND",
+     "player": "Jonathan Taylor",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 13,
+     "kept2025": true,
+     "nfl": "TB",
+     "player": "Bucky Irving",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 5,
+     "kept2025": false,
+     "nfl": "HOU",
+     "player": "David Montgomery",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 2,
+     "kept2025": false,
+     "nfl": "LAR",
+     "player": "Puka Nacua",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 1,
+     "kept2025": false,
+     "nfl": "DET",
+     "player": "Amon-Ra St. Brown",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 7,
+     "kept2025": false,
+     "nfl": "KC",
+     "player": "Rashee Rice",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 10,
+     "kept2025": true,
+     "nfl": "LAC",
+     "player": "Ladd McConkey",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 3,
+     "kept2025": false,
+     "nfl": "WAS",
+     "player": "Terry McLaurin",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 4,
+     "kept2025": false,
+     "nfl": "ARI",
+     "player": "Marvin Harrison Jr.",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "TEN",
+     "player": "Wan'Dale Robinson",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "NO",
+     "player": "Juwan Johnson",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "HOU",
+     "player": "Dalton Schultz",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": 16,
+     "kept2025": false,
+     "nfl": "HOU",
+     "player": "Ka'imi Fairbairn",
+     "pos": "K"
+    },
+    {
+     "keeperCost": 12,
+     "kept2025": false,
+     "nfl": "DEN",
+     "player": "Broncos",
+     "pos": "DEF"
+    }
+   ],
+   "team": "Any given Sunday"
+  },
+  {
+   "manager": "AJ",
+   "roster": [
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "CHI",
+     "player": "Caleb Williams",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "NYG",
+     "player": "Jaxson Dart",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": 1,
+     "kept2025": false,
+     "nfl": "DET",
+     "player": "Jahmyr Gibbs",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 2,
+     "kept2025": false,
+     "nfl": "CIN",
+     "player": "Chase Brown",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 14,
+     "kept2025": false,
+     "nfl": "HOU",
+     "player": "Woody Marks",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "NYG",
+     "player": "Tyrone Tracy Jr.",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 11,
+     "kept2025": false,
+     "nfl": "FA",
+     "player": "Joe Mixon",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": true,
+     "nfl": "SEA",
+     "player": "Jaxon Smith-Njigba",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 5,
+     "kept2025": false,
+     "nfl": "PHI",
+     "player": "DeVonta Smith",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 4,
+     "kept2025": false,
+     "nfl": "LAR",
+     "player": "Davante Adams",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 12,
+     "kept2025": false,
+     "nfl": "TB",
+     "player": "Chris Godwin Jr.",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "LAC",
+     "player": "Quentin Johnston",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "LAC",
+     "player": "Keenan Allen",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 3,
+     "kept2025": false,
+     "nfl": "MIA",
+     "player": "Tyreek Hill",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": 6,
+     "kept2025": false,
+     "nfl": "KC",
+     "player": "Travis Kelce",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "SEA",
+     "player": "AJ Barner",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "PIT",
+     "player": "Chris Boswell",
+     "pos": "K"
+    },
+    {
+     "keeperCost": 8,
+     "kept2025": false,
+     "nfl": "SEA",
+     "player": "Seahawks",
+     "pos": "DEF"
+    }
+   ],
+   "team": "Saquon deez nutz"
+  }
+ ],
+ "teams2026": [
+  {
+   "manager": "Shawn",
+   "roster": [
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "ATL",
+     "player": "Bijan Robinson",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "DAL",
+     "player": "CeeDee Lamb",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "PHI",
+     "player": "DeVonta Smith",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "ARI",
+     "player": "Trey McBride",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "NYJ",
+     "player": "Breece Hall",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "KC",
+     "player": "Kenneth Walker III",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "TB",
+     "player": "Bucky Irving",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "PHI",
+     "player": "Jalen Hurts",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "ARI",
+     "player": "Michael Wilson",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "CHI",
+     "player": "Luther Burden III",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "LAC",
+     "player": "Quentin Johnston",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "DEN",
+     "player": "J.K. Dobbins",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "TEN",
+     "player": "Wan'Dale Robinson",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "SEA",
+     "player": "Rashid Shaheed",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "SEA",
+     "player": "Zach Charbonnet",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "JAX",
+     "player": "Jaguars",
+     "pos": "DEF"
+    }
+   ],
+   "team": "Burden of Proof"
+  },
+  {
+   "manager": "Joe",
+   "roster": [
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "LAR",
+     "player": "Puka Nacua",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "LV",
+     "player": "Ashton Jeanty",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "ARI",
+     "player": "Jeremiyah Love",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "BUF",
+     "player": "DJ Moore",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "CLE",
+     "player": "Quinshon Judkins",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "ARI",
+     "player": "Marvin Harrison Jr.",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "SF",
+     "player": "Mike Evans",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "NE",
+     "player": "Rhamondre Stevenson",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "JAX",
+     "player": "Brian Thomas Jr.",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "PIT",
+     "player": "Michael Pittman Jr.",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "LV",
+     "player": "Brock Bowers",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "KC",
+     "player": "Travis Kelce",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "LAC",
+     "player": "Justin Herbert",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "SF",
+     "player": "Deebo Samuel Sr.",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "LAC",
+     "player": "Cameron Dicker",
+     "pos": "K"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "PIT",
+     "player": "Steelers",
+     "pos": "DEF"
+    }
+   ],
+   "team": "The real sultan"
+  },
+  {
+   "manager": "John",
+   "roster": [
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "IND",
+     "player": "Jonathan Taylor",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "BAL",
+     "player": "Derrick Henry",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "NYG",
+     "player": "Malik Nabers",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "TB",
+     "player": "Emeka Egbuka",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "MIN",
+     "player": "Justin Jefferson",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "WAS",
+     "player": "Jayden Daniels",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "CHI",
+     "player": "Rome Odunze",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "ATL",
+     "player": "Kyle Pitts Sr.",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "CAR",
+     "player": "Jonathon Brooks",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "JAX",
+     "player": "Trevor Lawrence",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "MIN",
+     "player": "Jordan Addison",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "JAX",
+     "player": "Chris Rodriguez Jr.",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "NYG",
+     "player": "Isaiah Likely",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "NYG",
+     "player": "Jaxson Dart",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "HOU",
+     "player": "Ka'imi Fairbairn",
+     "pos": "K"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "MIN",
+     "player": "Vikings",
+     "pos": "DEF"
+    }
+   ],
+   "team": "Aarons got a Gun"
+  },
+  {
+   "manager": "Ben",
+   "roster": [
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "PHI",
+     "player": "Saquon Barkley",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "NE",
+     "player": "A.J. Brown",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "DEN",
+     "player": "Jaylen Waddle",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "CIN",
+     "player": "Joe Burrow",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "CAR",
+     "player": "Tetairoa McMillan",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "NE",
+     "player": "TreVeyon Henderson",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "DET",
+     "player": "Sam LaPorta",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "IND",
+     "player": "Alec Pierce",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "MIA",
+     "player": "De'Von Achane",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "GB",
+     "player": "Jayden Reed",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "TB",
+     "player": "Kenny Gainwell",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "DEN",
+     "player": "Bo Nix",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "HOU",
+     "player": "Texans",
+     "pos": "DEF"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "KC",
+     "player": "Xavier Worthy",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "SEA",
+     "player": "Jason Myers",
+     "pos": "K"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "NE",
+     "player": "Hunter Henry",
+     "pos": "TE"
+    }
+   ],
+   "team": "Prestige Worldwide"
+  },
+  {
+   "manager": "Chris",
+   "roster": [
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "BUF",
+     "player": "James Cook III",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "ATL",
+     "player": "Drake London",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "NYG",
+     "player": "Cam Skattebo",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "DET",
+     "player": "Jameson Williams",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "JAX",
+     "player": "Parker Washington",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "BUF",
+     "player": "Dalton Kincaid",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "GB",
+     "player": "Tucker Kraft",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "TEN",
+     "player": "Tony Pollard",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "NE",
+     "player": "Drake Maye",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "SF",
+     "player": "De'Zhaun Stribling",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "DEN",
+     "player": "Courtland Sutton",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "DAL",
+     "player": "Brandon Aubrey",
+     "pos": "K"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "DEN",
+     "player": "Broncos",
+     "pos": "DEF"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "MIN",
+     "player": "Aaron Jones Sr.",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "CAR",
+     "player": "Jalen Coker",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "DET",
+     "player": "Jared Goff",
+     "pos": "QB"
+    }
+   ],
+   "team": "Colin for the win"
+  },
+  {
+   "manager": "Kevin",
+   "roster": [
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "DET",
+     "player": "Amon-Ra St. Brown",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "LAR",
+     "player": "Kyren Williams",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "CHI",
+     "player": "Colston Loveland",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "DAL",
+     "player": "George Pickens",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "SEA",
+     "player": "Jadarian Price",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "CHI",
+     "player": "Caleb Williams",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "PIT",
+     "player": "Rico Dowdle",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "IND",
+     "player": "Josh Downs",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "LAR",
+     "player": "Blake Corum",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "IND",
+     "player": "Tyler Warren",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "GB",
+     "player": "Matthew Golden",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "LAR",
+     "player": "Rams",
+     "pos": "DEF"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "JAX",
+     "player": "Jakobi Meyers",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "LAR",
+     "player": "Matthew Stafford",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "CLE",
+     "player": "Denzel Boston",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "JAX",
+     "player": "Cam Little",
+     "pos": "K"
+    }
+   ],
+   "team": "Pickens some Rams"
+  },
+  {
+   "manager": "Nate",
+   "roster": [
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "SF",
+     "player": "Christian McCaffrey",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "CIN",
+     "player": "Ja'Marr Chase",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "BAL",
+     "player": "Zay Flowers",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "NO",
+     "player": "Travis Etienne Jr.",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "LAR",
+     "player": "Davante Adams",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "CLE",
+     "player": "Harold Fannin Jr.",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "DAL",
+     "player": "Dak Prescott",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "TB",
+     "player": "Chris Godwin Jr.",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "CAR",
+     "player": "Chuba Hubbard",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "SF",
+     "player": "Brock Purdy",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "LV",
+     "player": "Mike Washington Jr.",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "DAL",
+     "player": "Javonte Williams",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "BAL",
+     "player": "Mark Andrews",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "SEA",
+     "player": "Seahawks",
+     "pos": "DEF"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "BAL",
+     "player": "Ja'Kobi Lane",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "KC",
+     "player": "Harrison Butker",
+     "pos": "K"
+    }
+   ],
+   "team": "Maye I put it in your Boutte"
+  },
+  {
+   "manager": "JR",
+   "roster": [
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "CIN",
+     "player": "Chase Brown",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "NYJ",
+     "player": "Garrett Wilson",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "GB",
+     "player": "Christian Watson",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "JAX",
+     "player": "Bhayshul Tuten",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "GB",
+     "player": "MarShawn Lloyd",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "HOU",
+     "player": "Nico Collins",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "WAS",
+     "player": "Jacory Croskey-Merritt",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "WAS",
+     "player": "Stefon Diggs",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "BUF",
+     "player": "Josh Allen",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "CHI",
+     "player": "Kyle Monangai",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "PHI",
+     "player": "Dallas Goedert",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "NE",
+     "player": "Romeo Doubs",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "NO",
+     "player": "Juwan Johnson",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "BUF",
+     "player": "Khalil Shakir",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "HOU",
+     "player": "Kayshon Boutte",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "ARI",
+     "player": "Tyler Allgeier",
+     "pos": "RB"
+    }
+   ],
+   "team": "Brown Tuten Boutte"
+  },
+  {
+   "manager": "Robert",
+   "roster": [
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "LAC",
+     "player": "Omarion Hampton",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "CIN",
+     "player": "Tee Higgins",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "HOU",
+     "player": "David Montgomery",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "PIT",
+     "player": "Jaylen Warren",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "TEN",
+     "player": "Carnell Tate",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "KC",
+     "player": "Rashee Rice",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "CLE",
+     "player": "KC Concepcion",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "MIN",
+     "player": "Jordan Mason",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "LAC",
+     "player": "Ladd McConkey",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "KC",
+     "player": "Patrick Mahomes",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "PHI",
+     "player": "Makai Lemon",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "DAL",
+     "player": "Jake Ferguson",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "HOU",
+     "player": "Woody Marks",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "PHI",
+     "player": "Eagles",
+     "pos": "DEF"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "BAL",
+     "player": "Tyler Loop",
+     "pos": "K"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "DEN",
+     "player": "Jonah Coleman",
+     "pos": "RB"
+    }
+   ],
+   "team": "Any given Sunday"
+  },
+  {
+   "manager": "AJ",
+   "roster": [
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "DET",
+     "player": "Jahmyr Gibbs",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "NO",
+     "player": "Chris Olave",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "BAL",
+     "player": "Lamar Jackson",
+     "pos": "QB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "WAS",
+     "player": "Terry McLaurin",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "CHI",
+     "player": "D'Andre Swift",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "PIT",
+     "player": "DK Metcalf",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "GB",
+     "player": "Josh Jacobs",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "SEA",
+     "player": "Jaxon Smith-Njigba",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "SF",
+     "player": "George Kittle",
+     "pos": "TE"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "DEN",
+     "player": "RJ Harvey",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "NO",
+     "player": "Jordyn Tyson",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "IND",
+     "player": "Keenan Allen",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "ATL",
+     "player": "Brian Robinson",
+     "pos": "RB"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "SEA",
+     "player": "Cooper Kupp",
+     "pos": "WR"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "LAR",
+     "player": "Harrison Mevis",
+     "pos": "K"
+    },
+    {
+     "keeperCost": null,
+     "kept2025": false,
+     "nfl": "NE",
+     "player": "Patriots",
+     "pos": "DEF"
+    }
+   ],
+   "team": "Saquon deez nutz"
+  }
+ ],
+ "trades2025": [
+  {
+   "from": "Brown Tuten Boutte",
+   "received": [
+    {
+     "item": "Kyle Monangai (Chi)",
+     "pos": "RB"
+    },
+    {
+     "item": "Round 7 Pick",
+     "pos": null
+    }
+   ],
+   "team": "Burden of Proof"
+  },
+  {
+   "from": "Burden of Proof",
+   "received": [
+    {
+     "item": "Omarion Hampton (LAC)",
+     "pos": "RB"
+    },
+    {
+     "item": "Round 12 Pick",
+     "pos": null
+    }
+   ],
+   "team": "Brown Tuten Boutte"
+  },
+  {
+   "from": "Burden of Proof",
+   "received": [
+    {
+     "item": "Puka Nacua (LAR)",
+     "pos": "WR"
+    },
+    {
+     "item": "Round 11 Pick",
+     "pos": null
+    }
+   ],
+   "team": "Any given Sunday"
+  },
+  {
+   "from": "Any given Sunday",
+   "received": [
+    {
+     "item": "Xavier Worthy (KC)",
+     "pos": "WR"
+    },
+    {
+     "item": "Round 2 Pick",
+     "pos": null
+    }
+   ],
+   "team": "Burden of Proof"
+  },
+  {
+   "from": "Burden of Proof",
+   "received": [
+    {
+     "item": "Rhamondre Stevenson (NE)",
+     "pos": "RB"
+    },
+    {
+     "item": "CeeDee Lamb (Dal)",
+     "pos": "WR"
+    },
+    {
+     "item": "Round 10 Pick",
+     "pos": null
+    }
+   ],
+   "team": "Brown Tuten Boutte"
+  },
+  {
+   "from": "Brown Tuten Boutte",
+   "received": [
+    {
+     "item": "Jaylen Warren (Pit)",
+     "pos": "RB"
+    },
+    {
+     "item": "Round 2 Pick",
+     "pos": null
+    }
+   ],
+   "team": "Burden of Proof"
+  },
+  {
+   "from": "The real sultan",
+   "received": [
+    {
+     "item": "Luther Burden III",
+     "pos": "WR"
+    },
+    {
+     "item": "Round 9 Pick",
+     "pos": null
+    }
+   ],
+   "team": "Burden of Proof"
+  },
+  {
+   "from": "Burden of Proof",
+   "received": [
+    {
+     "item": "Round 6 Pick",
+     "pos": null
+    }
+   ],
+   "team": "The real sultan"
+  }
+ ]
+}
