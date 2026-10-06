@@ -9089,7 +9089,7 @@ function populateMoveRosterControls(data) {
 //           (Pct has 3 decimals and Games Back has 1, so they are skipped)
 //   streak  a W3 / L2 / T1 token, otherwise "-"
 function parseYahooStandings(text, standings) {
-  const norm = s => String(s || "").toLowerCase().replace(/[‘’]/g, "'").replace(/\s+/g, " ").trim();
+  const norm = s => String(s || "").toLowerCase().replace(/['‘’`]/g, "").replace(/\s+/g, " ").trim();
   const teams = standings.map((row, idx) => ({ idx: idx, name: row.team, key: norm(row.team) }))
     .sort((a, b) => b.key.length - a.key.length);
   const blocks = {};
@@ -9150,7 +9150,8 @@ let STANDINGS_IMPORT_PENDING = null;
     }
     const table = document.createElement("table");
     const head = document.createElement("tr");
-    ["Team", "Record", "Streak", "PF", "PA"].forEach(h => { const th = document.createElement("th"); th.textContent = h; head.appendChild(th); });
+    const hasStreak = !!document.querySelector(".admin-streak-input"), hasPA = !!document.querySelector(".admin-points-against-input");
+    ["Team", "Record"].concat(hasStreak ? ["Streak"] : [], ["PF"], hasPA ? ["PA"] : []).forEach(h => { const th = document.createElement("th"); th.textContent = h; head.appendChild(th); });
     table.appendChild(head);
     const cell = (tr, now, old) => {
       const td = document.createElement("td");
@@ -9164,9 +9165,9 @@ let STANDINGS_IMPORT_PENDING = null;
       const tr = document.createElement("tr");
       const t = document.createElement("td"); t.textContent = r.team; tr.appendChild(t);
       cell(tr, r.record, old.record);
-      cell(tr, r.streak, old.streak || "-");
+      if (hasStreak) cell(tr, r.streak, old.streak || "-");
       cell(tr, r.pointsFor, old.pointsFor);
-      cell(tr, r.pointsAgainst, old.pointsAgainst || 0);
+      if (hasPA) cell(tr, r.pointsAgainst, old.pointsAgainst || 0);
       table.appendChild(tr);
     });
     outEl.appendChild(table);
