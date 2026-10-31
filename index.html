@@ -8396,11 +8396,22 @@ function tradeAnalyzerPlayerValue(data, entry) {
 // results: a player keeps the round he was drafted in; a player kept this
 // year costs one round more; a waiver pickup costs the league's waiver round
 // (a player drafted by another team only keeps his draft round if he came by
-// trade -- logged trades are detected, otherwise tick "came by trade").
+// trade -- trades are detected automatically from the Trades log and from
+// Yahoo's transaction history, so there is nothing to tick).
 // The market round uses the Trade Analyzer's preseason ranking, so treat the
 // "edge" column as a rough guide until next year's ADP is loaded.
 const KEEPER_PLANNER = { cap: 2, waiverRound: 8, escalate: true };
-const KP_VIA_TRADE = new Set();
+// Players who came by trade, read from the Yahoo league data (data/yahoo-league.json).
+const KP_YAHOO_TRADED = new Set();
+let KP_LAST_DATA = null;
+fetch("data/yahoo-league.json?v=" + Date.now(), { cache: "no-store" })
+  .then(r => (r.ok ? r.json() : null))
+  .then(j => {
+    if (!j || !Array.isArray(j.trades)) return;
+    j.trades.forEach(t => (t.players || []).forEach(p => { if (p.name) KP_YAHOO_TRADED.add(kpNorm(p.name)); }));
+    if (KP_YAHOO_TRADED.size && KP_LAST_DATA) renderKeeperPlanner(KP_LAST_DATA);
+  })
+  .catch(() => {});
 const KP_PICKED = {};
 
 function kpNorm(s) {
@@ -8471,11 +8482,11 @@ function keeperPlannerCost(ctx, teamName, entry) {
   const waiver = KEEPER_PLANNER.waiverRound;
   const wasKept = ctx.kept.has(key);
   let base, note = "", askTrade = false;
-  if (d && (d.team === teamName || ctx.traded.has(key) || KP_VIA_TRADE.has(key))) {
+  if (d && (d.team === teamName || ctx.traded.has(key) || KP_YAHOO_TRADED.has(key))) {
     base = d.round;
   } else if (d) {
     base = wasKept ? d.round : waiver;
-    if (!wasKept) { note = "Drafted by " + d.team + " — counts as a waiver pickup unless it came by trade."; askTrade = true; }
+    if (!wasKept) { note = "Drafted by " + d.team + " — counts as a waiver pickup (no trade on record)."; }
   } else {
     base = waiver;
     note = "Not drafted — waiver pickup.";
@@ -8488,6 +8499,7 @@ function keeperPlannerCost(ctx, teamName, entry) {
 }
 
 function renderKeeperPlanner(data) {
+  KP_LAST_DATA = data;
   const sel = document.getElementById("kp-team");
   const table = document.getElementById("kp-table");
   const summary = document.getElementById("kp-summary");
@@ -8544,17 +8556,6 @@ function renderKeeperPlanner(data) {
       const tdNote = document.createElement("td");
       tdNote.style.cssText = "font-size: 0.82rem; color: var(--muted);";
       tdNote.textContent = r.note;
-      if (r.askTrade) {
-        const lab = document.createElement("label");
-        lab.style.cssText = "display: block; margin-top: 4px;";
-        const tcb = document.createElement("input");
-        tcb.type = "checkbox";
-        tcb.checked = KP_VIA_TRADE.has(r.key);
-        tcb.addEventListener("change", () => { if (tcb.checked) KP_VIA_TRADE.add(r.key); else KP_VIA_TRADE.delete(r.key); draw(); });
-        lab.appendChild(tcb);
-        lab.appendChild(document.createTextNode(" came by trade"));
-        tdNote.appendChild(lab);
-      }
       tr.appendChild(tdNote);
       table.appendChild(tr);
     });
