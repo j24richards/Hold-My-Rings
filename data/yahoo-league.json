@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-10-31T19:08:14.374Z",
+  "updated": "2026-10-31T19:25:18.245Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -12,7 +12,11 @@
     "start_week": 1,
     "end_week": 17,
     "playoff_start_week": 15,
-    "num_playoff_teams": 6
+    "num_playoff_teams": 6,
+    "trade_end_date": "2026-12-05",
+    "start_date": "2026-09-09",
+    "end_date": "2027-01-04",
+    "is_finished": false
   },
   "standings": [
     {
@@ -22,6 +26,7 @@
       "managers": [
         "andrew"
       ],
+      "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_3.png",
       "points": 1099.48,
       "rank": 1,
       "wins": 6,
@@ -38,6 +43,7 @@
       "managers": [
         "jen"
       ],
+      "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_4.png",
       "points": 1124.26,
       "rank": 2,
       "wins": 5,
@@ -54,6 +60,7 @@
       "managers": [
         "anyday"
       ],
+      "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8cac1d604072b81a5eb666136ba3ab2d8db72606f9ddd90cc7028cded908f850.jpg",
       "points": 1084.38,
       "rank": 3,
       "wins": 4,
@@ -70,6 +77,7 @@
       "managers": [
         "Jimmie Legs"
       ],
+      "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
       "points": 984.18,
       "rank": 4,
       "wins": 4,
@@ -86,6 +94,7 @@
       "managers": [
         "Kevin"
       ],
+      "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
       "points": 952.6,
       "rank": 5,
       "wins": 4,
@@ -102,6 +111,7 @@
       "managers": [
         "Joe Tardif"
       ],
+      "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
       "points": 921.96,
       "rank": 6,
       "wins": 3,
@@ -118,6 +128,7 @@
       "managers": [
         "Christopher Harris"
       ],
+      "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/32546629c7ffbbf26a236682ebbad111b5c11ac3d1d8d1c9ba6d6cae81cb87f1.jpg",
       "points": 891.14,
       "rank": 7,
       "wins": 3,
@@ -134,6 +145,7 @@
       "managers": [
         "John"
       ],
+      "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/36017961554_a6133e.jpg",
       "points": 822.76,
       "rank": 8,
       "wins": 2,
@@ -150,6 +162,7 @@
       "managers": [
         "robert"
       ],
+      "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_9.png",
       "points": 818.04,
       "rank": 9,
       "wins": 2,
@@ -166,6 +179,7 @@
       "managers": [
         "Benjamin"
       ],
+      "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
       "points": 787.54,
       "rank": 10,
       "wins": 2,
@@ -1165,6 +1179,7 @@
             "managers": [
               "Jimmie Legs"
             ],
+            "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
             "points": 82.62,
             "projected": 137.71,
             "win_probability": 0
@@ -1176,6 +1191,7 @@
             "managers": [
               "Benjamin"
             ],
+            "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
             "points": 113.78,
             "projected": 133.84,
             "win_probability": 1
@@ -1197,6 +1213,7 @@
             "managers": [
               "John"
             ],
+            "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/36017961554_a6133e.jpg",
             "points": 81.72,
             "projected": 109.16,
             "win_probability": 0
@@ -1208,6 +1225,7 @@
             "managers": [
               "Joe Tardif"
             ],
+            "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
             "points": 134.78,
             "projected": 137.46,
             "win_probability": 1
@@ -1229,6 +1247,7 @@
             "managers": [
               "andrew"
             ],
+            "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_3.png",
             "points": 160.1,
             "projected": 157.68,
             "win_probability": 1
@@ -1240,6 +1259,7 @@
             "managers": [
               "anyday"
             ],
+            "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8cac1d604072b81a5eb666136ba3ab2d8db72606f9ddd90cc7028cded908f850.jpg",
             "points": 145.22,
             "projected": 153.03,
             "win_probability": 0
@@ -1261,6 +1281,7 @@
             "managers": [
               "robert"
             ],
+            "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_9.png",
             "points": 105.4,
             "projected": 125.73,
             "win_probability": 0
@@ -1272,6 +1293,7 @@
             "managers": [
               "Christopher Harris"
             ],
+            "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/32546629c7ffbbf26a236682ebbad111b5c11ac3d1d8d1c9ba6d6cae81cb87f1.jpg",
             "points": 146.32,
             "projected": 129.78,
             "win_probability": 1
@@ -1293,6 +1315,7 @@
             "managers": [
               "jen"
             ],
+            "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_4.png",
             "points": 142.62,
             "projected": 156.03,
             "win_probability": 1
@@ -1304,6 +1327,7 @@
             "managers": [
               "Kevin"
             ],
+            "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
             "points": 124.46,
             "projected": 139.79,
             "win_probability": 0
@@ -1327,6 +1351,7 @@
             "managers": [
               "Jimmie Legs"
             ],
+            "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
             "points": 17.3,
             "projected": 137.02,
             "win_probability": 0.47
@@ -1338,6 +1363,7 @@
             "managers": [
               "Christopher Harris"
             ],
+            "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/32546629c7ffbbf26a236682ebbad111b5c11ac3d1d8d1c9ba6d6cae81cb87f1.jpg",
             "points": 26.9,
             "projected": 142.8,
             "win_probability": 0.53
@@ -1359,6 +1385,7 @@
             "managers": [
               "John"
             ],
+            "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/36017961554_a6133e.jpg",
             "points": 2.6,
             "projected": 113.08,
             "win_probability": 0.18999999999999995
@@ -1370,6 +1397,7 @@
             "managers": [
               "andrew"
             ],
+            "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_3.png",
             "points": 23.2,
             "projected": 149.94,
             "win_probability": 0.81
@@ -1391,6 +1419,7 @@
             "managers": [
               "robert"
             ],
+            "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_9.png",
             "points": 0,
             "projected": 114.43,
             "win_probability": 0.31000000000000005
@@ -1402,6 +1431,7 @@
             "managers": [
               "Joe Tardif"
             ],
+            "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
             "points": 0,
             "projected": 141.02,
             "win_probability": 0.69
@@ -1423,6 +1453,7 @@
             "managers": [
               "jen"
             ],
+            "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_4.png",
             "points": 12.36,
             "projected": 163.45,
             "win_probability": 0.71
@@ -1434,6 +1465,7 @@
             "managers": [
               "Benjamin"
             ],
+            "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
             "points": 11.8,
             "projected": 130.16,
             "win_probability": 0.29000000000000004
@@ -1455,6 +1487,7 @@
             "managers": [
               "Kevin"
             ],
+            "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
             "points": 48.42,
             "projected": 140.18,
             "win_probability": 0.48
@@ -1466,6 +1499,7 @@
             "managers": [
               "anyday"
             ],
+            "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8cac1d604072b81a5eb666136ba3ab2d8db72606f9ddd90cc7028cded908f850.jpg",
             "points": 24.9,
             "projected": 146.15,
             "win_probability": 0.52
@@ -7411,6 +7445,140 @@
         "pos": "DEF",
         "slot": "DEF"
       }
+    ]
+  },
+  "schedule": {
+    "9": [
+      [
+        "470.l.936120.t.1",
+        "470.l.936120.t.4"
+      ],
+      [
+        "470.l.936120.t.2",
+        "470.l.936120.t.7"
+      ],
+      [
+        "470.l.936120.t.3",
+        "470.l.936120.t.10"
+      ],
+      [
+        "470.l.936120.t.5",
+        "470.l.936120.t.6"
+      ],
+      [
+        "470.l.936120.t.8",
+        "470.l.936120.t.9"
+      ]
+    ],
+    "10": [
+      [
+        "470.l.936120.t.1",
+        "470.l.936120.t.10"
+      ],
+      [
+        "470.l.936120.t.2",
+        "470.l.936120.t.8"
+      ],
+      [
+        "470.l.936120.t.3",
+        "470.l.936120.t.7"
+      ],
+      [
+        "470.l.936120.t.4",
+        "470.l.936120.t.6"
+      ],
+      [
+        "470.l.936120.t.5",
+        "470.l.936120.t.9"
+      ]
+    ],
+    "11": [
+      [
+        "470.l.936120.t.1",
+        "470.l.936120.t.6"
+      ],
+      [
+        "470.l.936120.t.2",
+        "470.l.936120.t.5"
+      ],
+      [
+        "470.l.936120.t.3",
+        "470.l.936120.t.8"
+      ],
+      [
+        "470.l.936120.t.4",
+        "470.l.936120.t.9"
+      ],
+      [
+        "470.l.936120.t.7",
+        "470.l.936120.t.10"
+      ]
+    ],
+    "12": [
+      [
+        "470.l.936120.t.1",
+        "470.l.936120.t.9"
+      ],
+      [
+        "470.l.936120.t.2",
+        "470.l.936120.t.4"
+      ],
+      [
+        "470.l.936120.t.3",
+        "470.l.936120.t.5"
+      ],
+      [
+        "470.l.936120.t.6",
+        "470.l.936120.t.10"
+      ],
+      [
+        "470.l.936120.t.7",
+        "470.l.936120.t.8"
+      ]
+    ],
+    "13": [
+      [
+        "470.l.936120.t.1",
+        "470.l.936120.t.2"
+      ],
+      [
+        "470.l.936120.t.3",
+        "470.l.936120.t.4"
+      ],
+      [
+        "470.l.936120.t.5",
+        "470.l.936120.t.7"
+      ],
+      [
+        "470.l.936120.t.6",
+        "470.l.936120.t.9"
+      ],
+      [
+        "470.l.936120.t.8",
+        "470.l.936120.t.10"
+      ]
+    ],
+    "14": [
+      [
+        "470.l.936120.t.1",
+        "470.l.936120.t.3"
+      ],
+      [
+        "470.l.936120.t.2",
+        "470.l.936120.t.6"
+      ],
+      [
+        "470.l.936120.t.4",
+        "470.l.936120.t.7"
+      ],
+      [
+        "470.l.936120.t.5",
+        "470.l.936120.t.8"
+      ],
+      [
+        "470.l.936120.t.9",
+        "470.l.936120.t.10"
+      ]
     ]
   }
 }
