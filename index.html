@@ -10034,7 +10034,20 @@ function refreshPublicSections(data) {
 // and badges.
 window.SiteTeams = {
   match: name => yahooMatchName(CURRENT_DATA, name),
-  badge: name => teamBadgeHtml(name)
+  badge: name => teamBadgeHtml(name),
+  kept: (teamName, playerName) => {
+    try {
+      const d = CURRENT_DATA; if (!d || !d.keeperSelections) return null;
+      const tn = yNorm(teamName), pn = yNorm(playerName);
+      const sel = d.keeperSelections.find(k => yNorm(k.team) === tn);
+      if (!sel || !sel.players) return null;
+      const hit = sel.players.find(x => { const m = yNorm(x); return m === pn || (m.length >= 8 && pn.length >= 8 && (m.startsWith(pn) || pn.startsWith(m))); });
+      if (!hit) return null;
+      let rr = {}; try { rr = resolveTeamKeeperRounds(d, sel.team) || {}; } catch (e) {}
+      const round = rr[hit] != null ? rr[hit] : getKeeperRound(d, sel.team, hit);
+      return { round: round || null };
+    } catch (e) { return null; }
+  }
 };
 
 fetch("data/yahoo-league.json?v=" + Date.now(), { cache: "no-store" })
@@ -11243,6 +11256,8 @@ fetchWeeklyMatchups();
     #team td .yh-av, #team td .team-badge { display: none; }
   }
   @media (max-width: 640px) { #yh-hometabs { gap: 5px; } #yh-hometabs .yh-subtab { padding: 6px 9px; font-size: 0.8rem; } }
+  .yh-kept { color: var(--gold); font-weight: 700; font-size: 0.74rem; white-space: nowrap; }
+  .kept-yes { white-space: nowrap; }
 
   header { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='60' viewBox='0 0 150 60' fill='none' stroke='white' stroke-opacity='0.11' stroke-width='4'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3Ccircle cx='62' cy='30' r='20'/%3E%3Ccircle cx='94' cy='30' r='20'/%3E%3Ccircle cx='126' cy='30' r='20'/%3E%3C/svg%3E"); background-repeat: repeat-x; background-position: center bottom -12px; background-size: 150px 60px; }
 </style>
@@ -11841,6 +11856,14 @@ fetchWeeklyMatchups();
   // ---- matchups ----------------------------------------------------------------
   var SLOTS = ["QB", "RB", "WR", "TE", "W/R/T", "W/R", "FLEX", "K", "DEF", "BN", "IR"];
   function slotRank(s) { var i = SLOTS.indexOf(s); return i < 0 ? 50 : i; }
+  function keptMark(team, pname) {
+    try {
+      if (!window.SiteTeams || !window.SiteTeams.kept) return "";
+      var k = window.SiteTeams.kept(window.SiteTeams.match(team.name), pname); if (!k) return "";
+      function ord(n) { var s = ["th", "st", "nd", "rd"], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); }
+      return ' <span class="yh-kept" title="Kept for this season' + (k.round ? " (" + ord(k.round) + " round)" : "") + '">&#9733;' + (k.round ? " " + ord(k.round) : "") + "</span>";
+    } catch (e) { return ""; }
+  }
   function lineupTable(team, wk) {
     var src = LINEUPS || DATA.lineups;
     if (!src) return "<h4>" + esc(team.name) + '</h4><p class="yl-empty">Loading lineups&hellip;</p>';
@@ -11851,7 +11874,7 @@ fetchWeeklyMatchups();
     var body = rows.map(function (p) {
       var bench = p.slot === "BN" || p.slot === "IR";
       if (!bench && p.points != null) total += p.points;
-      return '<tr class="' + (bench ? "bn" : "") + '"><td>' + esc(p.slot || "") + "</td><td>" + esc(p.name) + ' <span class="yh-sub" style="display:inline">' +
+      return '<tr class="' + (bench ? "bn" : "") + '"><td>' + esc(p.slot || "") + "</td><td>" + esc(p.name) + keptMark(team, p.name) + ' <span class="yh-sub" style="display:inline">' +
         esc(p.pos || "") + (p.team ? " · " + esc(String(p.team).toUpperCase()) : "") + '</span></td><td class="n">' + (p.points == null ? "–" : fmt(p.points)) + "</td></tr>";
     }).join("");
     var e = lineupEff(rows);
