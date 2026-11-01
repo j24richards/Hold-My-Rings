@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-10-31T20:06:11.239Z",
+  "updated": "2026-11-01T17:39:40.975Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -1353,8 +1353,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
             "points": 17.3,
-            "projected": 137.01,
-            "win_probability": 0.47
+            "projected": 137.85,
+            "win_probability": 0.48
           },
           {
             "team_key": "470.l.936120.t.5",
@@ -1365,8 +1365,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/32546629c7ffbbf26a236682ebbad111b5c11ac3d1d8d1c9ba6d6cae81cb87f1.jpg",
             "points": 26.9,
-            "projected": 142.74,
-            "win_probability": 0.53
+            "projected": 141.51,
+            "win_probability": 0.52
           }
         ]
       },
@@ -1387,8 +1387,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/36017961554_a6133e.jpg",
             "points": 2.6,
-            "projected": 113.11,
-            "win_probability": 0.18999999999999995
+            "projected": 112.78,
+            "win_probability": 0.17999999999999994
           },
           {
             "team_key": "470.l.936120.t.3",
@@ -1399,8 +1399,8 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_3.png",
             "points": 23.2,
-            "projected": 149.73,
-            "win_probability": 0.81
+            "projected": 151.39,
+            "win_probability": 0.8200000000000001
           }
         ]
       },
@@ -1421,8 +1421,8 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_9.png",
             "points": 0,
-            "projected": 114.4,
-            "win_probability": 0.31000000000000005
+            "projected": 121.55,
+            "win_probability": 0.32999999999999996
           },
           {
             "team_key": "470.l.936120.t.10",
@@ -1433,8 +1433,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
             "points": 0,
-            "projected": 140.62,
-            "win_probability": 0.69
+            "projected": 145.53,
+            "win_probability": 0.67
           }
         ]
       },
@@ -1455,7 +1455,7 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_4.png",
             "points": 12.36,
-            "projected": 163.64,
+            "projected": 163.51,
             "win_probability": 0.71
           },
           {
@@ -1467,7 +1467,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
             "points": 11.8,
-            "projected": 129.9,
+            "projected": 129.34,
             "win_probability": 0.29000000000000004
           }
         ]
@@ -1489,8 +1489,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
             "points": 48.42,
-            "projected": 140.19,
-            "win_probability": 0.48
+            "projected": 140.3,
+            "win_probability": 0.41000000000000003
           },
           {
             "team_key": "470.l.936120.t.9",
@@ -1501,14 +1501,48 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8cac1d604072b81a5eb666136ba3ab2d8db72606f9ddd90cc7028cded908f850.jpg",
             "points": 24.9,
-            "projected": 146.17,
-            "win_probability": 0.52
+            "projected": 154.96,
+            "win_probability": 0.59
           }
         ]
       }
     ]
   },
   "transactions": [
+    {
+      "id": 266,
+      "type": "add",
+      "status": "successful",
+      "timestamp": 1793518637,
+      "date": "2026-11-01T07:37:17.000Z",
+      "players": [
+        {
+          "name": "Seth McGowan",
+          "team": "Ind",
+          "pos": "RB",
+          "action": "add",
+          "from": "waivers",
+          "to": "470.l.936120.t.1"
+        }
+      ]
+    },
+    {
+      "id": 265,
+      "type": "drop",
+      "status": "successful",
+      "timestamp": 1793481097,
+      "date": "2026-10-31T21:11:37.000Z",
+      "players": [
+        {
+          "name": "RJ Harvey",
+          "team": "Den",
+          "pos": "RB",
+          "action": "drop",
+          "from": "470.l.936120.t.4",
+          "to": "waivers"
+        }
+      ]
+    },
     {
       "id": 264,
       "type": "add/drop",
@@ -6560,12 +6594,6 @@
         "slot": "BN"
       },
       {
-        "name": "Breece Hall",
-        "team": "NYJ",
-        "pos": "RB",
-        "slot": "BN"
-      },
-      {
         "name": "Devaughn Vele",
         "team": "NO",
         "pos": "WR",
@@ -6576,6 +6604,12 @@
         "team": "Sea",
         "pos": "RB",
         "slot": "BN"
+      },
+      {
+        "name": "Breece Hall",
+        "team": "NYJ",
+        "pos": "RB",
+        "slot": "IR"
       },
       {
         "name": "DeVonta Smith",
@@ -6786,6 +6820,12 @@
         "slot": "BN"
       },
       {
+        "name": "Seth McGowan",
+        "team": "Ind",
+        "pos": "RB",
+        "slot": "BN"
+      },
+      {
         "name": "Kyle Monangai",
         "team": "Chi",
         "pos": "RB",
@@ -6922,8 +6962,8 @@
     ],
     "470.l.936120.t.10": [
       {
-        "name": "Aaron Rodgers",
-        "team": "Pit",
+        "name": "Trevor Lawrence",
+        "team": "Jax",
         "pos": "QB",
         "slot": "QB"
       },
@@ -6934,8 +6974,8 @@
         "slot": "RB"
       },
       {
-        "name": "Quinshon Judkins",
-        "team": "Cle",
+        "name": "Jeremiyah Love",
+        "team": "Ari",
         "pos": "RB",
         "slot": "RB"
       },
@@ -6946,14 +6986,14 @@
         "slot": "WR"
       },
       {
-        "name": "Xavier Worthy",
-        "team": "KC",
+        "name": "DJ Moore",
+        "team": "Buf",
         "pos": "WR",
         "slot": "WR"
       },
       {
-        "name": "DJ Moore",
-        "team": "Buf",
+        "name": "Ryan Flournoy",
+        "team": "Dal",
         "pos": "WR",
         "slot": "WR"
       },
@@ -6970,8 +7010,20 @@
         "slot": "W/R/T"
       },
       {
-        "name": "Jeremiyah Love",
-        "team": "Ari",
+        "name": "Xavier Worthy",
+        "team": "KC",
+        "pos": "WR",
+        "slot": "BN"
+      },
+      {
+        "name": "Aaron Rodgers",
+        "team": "Pit",
+        "pos": "QB",
+        "slot": "BN"
+      },
+      {
+        "name": "Quinshon Judkins",
+        "team": "Cle",
         "pos": "RB",
         "slot": "BN"
       },
@@ -6985,18 +7037,6 @@
         "name": "Travis Kelce",
         "team": "KC",
         "pos": "TE",
-        "slot": "BN"
-      },
-      {
-        "name": "Trevor Lawrence",
-        "team": "Jax",
-        "pos": "QB",
-        "slot": "BN"
-      },
-      {
-        "name": "Ryan Flournoy",
-        "team": "Dal",
-        "pos": "WR",
         "slot": "BN"
       },
       {
@@ -7252,6 +7292,12 @@
         "slot": "RB"
       },
       {
+        "name": "Dylan Sampson",
+        "team": "Cle",
+        "pos": "RB",
+        "slot": "RB"
+      },
+      {
         "name": "Tee Higgins",
         "team": "Cin",
         "pos": "WR",
@@ -7310,18 +7356,6 @@
         "team": "Was",
         "pos": "TE",
         "slot": "BN"
-      },
-      {
-        "name": "Dylan Sampson",
-        "team": "Cle",
-        "pos": "RB",
-        "slot": "BN"
-      },
-      {
-        "name": "RJ Harvey",
-        "team": "Den",
-        "pos": "RB",
-        "slot": "IR"
       },
       {
         "name": "Carnell Tate",
