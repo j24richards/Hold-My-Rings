@@ -11533,14 +11533,12 @@ fetchWeeklyMatchups();
   .mobile-nav-group-label.open { color: var(--gold); }
   .mobile-nav select#mobile-nav-select { display: none; }
 
-  /* team cards on narrow phones: the table must stay inside the card */
-  @media (max-width: 480px) {
-    #teams .team-card, #teams2026 .team-card { padding: 12px 10px; }
-    #teams .team-card table, #teams2026 .team-card table { width: 100%; }
-    #teams .team-card th, #teams .team-card td, #teams2026 .team-card th, #teams2026 .team-card td { white-space: normal; padding: 6px 3px; }
-    #teams .team-card td:nth-child(2), #teams2026 .team-card td:nth-child(2) { white-space: nowrap; }
-    #teams .team-card .cost-badge, #teams2026 .team-card .cost-badge, #teams .team-card .kept-yes, #teams2026 .team-card .kept-yes { white-space: nowrap; }
-  }
+  /* team cards: the table must always stay inside the card (cards can be as narrow as 260-270px) */
+  .teams-grid .team-card { min-width: 0; }
+  .teams-grid .team-card table { width: 100%; }
+  .teams-grid .team-card th, .teams-grid .team-card td { white-space: normal; padding: 6px 3px; }
+  .teams-grid .team-card td:nth-child(2), .teams-grid .team-card th:nth-child(2) { white-space: nowrap; }
+  .teams-grid .team-card .cost-badge, .teams-grid .team-card .kept-yes { white-space: nowrap; }
 
   header { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='60' viewBox='0 0 150 60' fill='none' stroke='white' stroke-opacity='0.11' stroke-width='4'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3Ccircle cx='62' cy='30' r='20'/%3E%3Ccircle cx='94' cy='30' r='20'/%3E%3Ccircle cx='126' cy='30' r='20'/%3E%3C/svg%3E"); background-repeat: repeat-x; background-position: center bottom -12px; background-size: 150px 60px; }
 </style>
