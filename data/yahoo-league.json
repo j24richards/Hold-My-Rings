@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-11-01T23:02:40.772Z",
+  "updated": "2026-11-01T23:10:47.760Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -1422,7 +1422,7 @@
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_9.png",
             "points": 124.5,
             "projected": 121.54,
-            "win_probability": 0.43999999999999995
+            "win_probability": 0.31000000000000005
           },
           {
             "team_key": "470.l.936120.t.10",
@@ -1432,9 +1432,9 @@
               "Joe Tardif"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
-            "points": 141.1,
+            "points": 149.9,
             "projected": 143.31,
-            "win_probability": 0.56
+            "win_probability": 0.69
           }
         ]
       },
@@ -1454,9 +1454,9 @@
               "jen"
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_4.png",
-            "points": 126.66,
+            "points": 128.66,
             "projected": 163.62,
-            "win_probability": 0.41000000000000003
+            "win_probability": 0.44999999999999996
           },
           {
             "team_key": "470.l.936120.t.8",
@@ -1466,9 +1466,9 @@
               "Benjamin"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
-            "points": 105.28,
+            "points": 105.38,
             "projected": 127.55,
-            "win_probability": 0.59
+            "win_probability": 0.55
           }
         ]
       },
@@ -1488,7 +1488,7 @@
               "Kevin"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
-            "points": 98.72,
+            "points": 99.12,
             "projected": 140.86,
             "win_probability": 0.07000000000000006
           },
