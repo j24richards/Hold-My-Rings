@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-11-01T20:36:16.880Z",
+  "updated": "2026-11-01T20:44:25.345Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -1352,9 +1352,9 @@
               "Jimmie Legs"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
-            "points": 116.5,
+            "points": 119.28,
             "projected": 138.46,
-            "win_probability": 0.85
+            "win_probability": 0.87
           },
           {
             "team_key": "470.l.936120.t.5",
@@ -1364,9 +1364,9 @@
               "Christopher Harris"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/32546629c7ffbbf26a236682ebbad111b5c11ac3d1d8d1c9ba6d6cae81cb87f1.jpg",
-            "points": 86.1,
+            "points": 88.4,
             "projected": 141.47,
-            "win_probability": 0.15000000000000002
+            "win_probability": 0.13
           }
         ]
       },
@@ -1386,9 +1386,9 @@
               "John"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/36017961554_a6133e.jpg",
-            "points": 59.76,
+            "points": 67.66,
             "projected": 112.75,
-            "win_probability": 0.13
+            "win_probability": 0.15999999999999992
           },
           {
             "team_key": "470.l.936120.t.3",
@@ -1400,7 +1400,7 @@
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_3.png",
             "points": 59.7,
             "projected": 128.54,
-            "win_probability": 0.87
+            "win_probability": 0.8400000000000001
           }
         ]
       },
@@ -1420,7 +1420,7 @@
               "robert"
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_9.png",
-            "points": 63,
+            "points": 65.5,
             "projected": 121.56,
             "win_probability": 0.14
           },
@@ -1432,7 +1432,7 @@
               "Joe Tardif"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
-            "points": 101.6,
+            "points": 103.9,
             "projected": 146.63,
             "win_probability": 0.86
           }
@@ -1454,9 +1454,9 @@
               "jen"
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_4.png",
-            "points": 79.66,
+            "points": 80.86,
             "projected": 163.6,
-            "win_probability": 0.59
+            "win_probability": 0.5700000000000001
           },
           {
             "team_key": "470.l.936120.t.8",
@@ -1466,9 +1466,9 @@
               "Benjamin"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
-            "points": 51.74,
+            "points": 50.62,
             "projected": 127.59,
-            "win_probability": 0.41000000000000003
+            "win_probability": 0.42999999999999994
           }
         ]
       },
@@ -1488,9 +1488,9 @@
               "Kevin"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
-            "points": 85.32,
+            "points": 86.62,
             "projected": 140.66,
-            "win_probability": 0.35
+            "win_probability": 0.36
           },
           {
             "team_key": "470.l.936120.t.9",
@@ -1500,9 +1500,9 @@
               "anyday"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8cac1d604072b81a5eb666136ba3ab2d8db72606f9ddd90cc7028cded908f850.jpg",
-            "points": 116.2,
+            "points": 120.16,
             "projected": 155.1,
-            "win_probability": 0.65
+            "win_probability": 0.64
           }
         ]
       }
