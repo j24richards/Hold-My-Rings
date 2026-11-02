@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-11-02T02:53:47.846Z",
+  "updated": "2026-11-02T02:57:49.647Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -1466,7 +1466,7 @@
               "Benjamin"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
-            "points": 127.98,
+            "points": 128.28,
             "projected": 127.86,
             "win_probability": 0.41000000000000003
           }
