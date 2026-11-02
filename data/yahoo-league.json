@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-11-02T02:45:41.450Z",
+  "updated": "2026-11-02T02:53:47.846Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -1352,7 +1352,7 @@
               "Jimmie Legs"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
-            "points": 164.66,
+            "points": 167.66,
             "projected": 139.46,
             "win_probability": 0.99
           },
@@ -1420,9 +1420,9 @@
               "robert"
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_9.png",
-            "points": 140.94,
+            "points": 142.64,
             "projected": 121.5,
-            "win_probability": 0.15999999999999992
+            "win_probability": 0.19999999999999996
           },
           {
             "team_key": "470.l.936120.t.10",
@@ -1434,7 +1434,7 @@
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
             "points": 159.9,
             "projected": 143.26,
-            "win_probability": 0.8400000000000001
+            "win_probability": 0.8
           }
         ]
       },
@@ -1456,7 +1456,7 @@
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_4.png",
             "points": 139.66,
             "projected": 163.62,
-            "win_probability": 0.58
+            "win_probability": 0.59
           },
           {
             "team_key": "470.l.936120.t.8",
@@ -1468,7 +1468,7 @@
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
             "points": 127.98,
             "projected": 127.86,
-            "win_probability": 0.42000000000000004
+            "win_probability": 0.41000000000000003
           }
         ]
       },
@@ -1488,7 +1488,7 @@
               "Kevin"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
-            "points": 118.92,
+            "points": 120.32,
             "projected": 140.88,
             "win_probability": 0.010000000000000009
           },
