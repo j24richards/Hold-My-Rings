@@ -1757,7 +1757,7 @@ footer {
 
   <section id="teams2026">
     <h2>2026 Teams &amp; Managers</h2>
-    <p style="color: var(--muted); margin-top: -6px;">Next season's rosters &mdash; posted here once the 2026 draft wraps up.</p>
+    <p style="color: var(--muted); margin-top: -6px;">Every team's 2026 roster, as it stands now.</p>
     <div class="teams-grid" id="teams2026-grid"></div>
     <p id="teams2026-empty-note" style="color: var(--muted); font-style: italic; margin: 10px 0 0;">
       2026 rosters will appear here once the draft wraps up.
@@ -1775,13 +1775,13 @@ footer {
 
   <section id="keepers">
     <h2>2026 Keeper Selections</h2>
-    <p style="color: var(--muted); margin-top: -6px;">Each team may keep up to two players. Selections will be posted here once picks are finalized.</p>
+    <p style="color: var(--muted); margin-top: -6px;">Each team may keep up to two players. The round each one costs is shown next to his name.</p>
     <div class="teams-grid" id="keepers-grid"></div>
   </section>
 
   <section id="draftorder">
     <h2>2026 Draft Order &amp; Traded Picks</h2>
-    <p style="color: var(--muted); margin-top: -6px;">Final round-by-round order is set by 2025 standings once the season wraps. Below shows any pick that has already changed hands via trade &mdash; an underlined name with a &#8644; means that team now owns the pick instead of its original team. A green player name with a &#128274; marks a round a team is spending on a keeper instead of drafting.</p>
+    <p style="color: var(--muted); margin-top: -6px;">Round-by-round order was set by 2025 standings. Below shows any pick that changed hands via trade &mdash; an underlined name with a &#8644; means that team now owns the pick instead of its original team. A green player name with a &#128274; marks a round a team is spending on a keeper instead of drafting.</p>
     <div class="card">
       <table>
         <thead>
@@ -2019,6 +2019,7 @@ footer {
       <div class="export-options">
         <div class="export-option"><input type="checkbox" id="export-teams2026" checked><label for="export-teams2026">2026 Teams</label></div>
         <div class="export-option"><input type="checkbox" id="export-draftResults" checked><label for="export-draftResults">2026 Draft</label></div>
+        <div class="export-option"><input type="checkbox" id="export-keepers" checked><label for="export-keepers">Keepers</label></div>
         <div class="export-option"><input type="checkbox" id="export-draftOrder2026" checked><label for="export-draftOrder2026">Draft Order</label></div>
         <div class="export-option"><input type="checkbox" id="export-trades2025" checked><label for="export-trades2025">Trades</label></div>
         <div class="export-option"><input type="checkbox" id="export-teams" checked><label for="export-teams">2025 Teams</label></div>
@@ -5770,13 +5771,13 @@ function buildTeamCard(t, includeMatchup) {
   card.className = "team-card";
   let html = "<h3>" + teamBadgeHtml(t.team) + "<span class=\"team-card-name\">" + t.team + "</span></h3><div class=\"manager\">" + t.manager + "</div>";
   if (t.roster && t.roster.length) {
-    html += renderRosterTable(t.roster, includeMatchup);
+    html += renderRosterTable(t.roster, includeMatchup, t.team);
   }
   card.innerHTML = html;
   return card;
 }
 
-function renderRosterTable(roster, includeMatchup) {
+function renderRosterTable(roster, includeMatchup, teamName) {
   const groups = {};
   const otherGroup = [];
   roster.forEach(p => {
@@ -5792,15 +5793,30 @@ function renderRosterTable(roster, includeMatchup) {
   // it's next year's keeper price, which only becomes relevant once this
   // season is archived. Show it for archive rosters; show the live
   // matchup/weather column instead for the current season.
-  const colCount = 3;
-  let html = "<table><thead><tr><th>Player</th><th>NFL</th>" + (includeMatchup ? "<th>This Week</th>" : "<th>Keeper Cost</th>") + "</tr></thead><tbody>";
+  const colCount = includeMatchup ? 4 : 3;
+  let html = "<table><thead><tr><th>Player</th><th>NFL</th>" + (includeMatchup ? "<th>Kept</th><th>This Week</th>" : "<th>Keeper Cost</th>") + "</tr></thead><tbody>";
+  // 2026 keepers (from the commissioner's keeper selections), with the round each one costs
+  const keptInfo = {};
+  if (includeMatchup && teamName && typeof CURRENT_DATA !== "undefined" && CURRENT_DATA && CURRENT_DATA.keepersVisible) {
+    const sel = (CURRENT_DATA.keeperSelections || []).find(k => k.team === teamName);
+    if (sel && sel.players) {
+      let rr = {}; try { rr = resolveTeamKeeperRounds(CURRENT_DATA, teamName) || {}; } catch (e) {}
+      sel.players.forEach(n => { const r = rr[n] != null ? rr[n] : getKeeperRound(CURRENT_DATA, teamName, n); keptInfo[kpNorm(n)] = r || 0; });
+    }
+  }
+  const keptCell = p => {
+    const ki = includeMatchup ? keptInfo[kpNorm(p.player)] : undefined;
+    if (ki === undefined) return "";
+    return "<span class=\"kept-yes\" title=\"Kept for this season\">\u2605</span>" + (ki ? " <span class=\"cost-badge\" title=\"Kept in the " + ordinal(ki) + " round\">" + ordinal(ki) + "</span>" : "");
+  };
   const renderRow = p => {
     const kept = p.kept2025 ? " <span class=\"kept-badge\">KEPT '25</span>" : "";
     const cost = p.keeperCost ? "<span class=\"cost-badge\">" + ordinal(p.keeperCost) + "</span>" : "";
     const lastCell = includeMatchup
       ? "<td class=\"matchup-cell\" data-nfl-team=\"" + (p.nfl || "") + "\">" + matchupCellHtml(p.nfl) + "</td>"
       : "<td>" + cost + "</td>";
-    return "<tr><td>" + p.player + kept + "</td><td>" + (p.nfl || "") + "</td>" + lastCell + "</tr>";
+    const keptTd = includeMatchup ? "<td>" + keptCell(p) + "</td>" : "";
+    return "<tr><td>" + p.player + kept + "</td><td>" + (p.nfl || "") + "</td>" + keptTd + lastCell + "</tr>";
   };
   POS_ORDER.forEach(pos => {
     if (groups[pos] && groups[pos].length) {
@@ -9722,7 +9738,7 @@ function srLockedGrades(data) {
 
 function srGradeChip(g, title) {
   if (!g) return "&ndash;";
-  return "<span class=\"draft-grade draft-grade-" + draftGradeClass(g.letter) + "\" title=\"" + srEsc(title) + " — better than " + g.pct + "% of the league\">" + g.letter + "</span>";
+  return "<span class=\"draft-grade draft-grade-" + draftGradeClass(g.letter) + "\" title=\"" + srEsc(title) + " — " + (g.pct >= 100 ? "best in the league" : g.pct <= 0 ? "lowest in the league" : "better than " + g.pct + "% of the league") + "\">" + g.letter + "</span>";
 }
 
 function srRenderGrades(data) {
@@ -10870,6 +10886,21 @@ function flattenDraftOrderMatrix(rounds, data) {
           return row;
     });
 }
+// One row per kept player with the round he costs. Returns nothing while keeper selections aren't
+// finalized yet, same as the tab itself.
+function flattenKeepersForExport(data) {
+  const rows = [];
+  if (!data.keepersVisible) return rows;
+  (data.keeperSelections || []).forEach(k => {
+    const resolvedRounds = resolveTeamKeeperRounds(data, k.team);
+    const team = (data.teams2026 || []).find(t => t.team === k.team) || (data.teams || []).find(t => t.team === k.team) || {};
+    (k.players || []).forEach(p => {
+      const round = resolvedRounds[p] != null ? resolvedRounds[p] : getKeeperRound(data, k.team, p);
+      rows.push({ Team: k.team, Manager: k.manager || team.manager || "", Player: p, Round: round || "" });
+    });
+  });
+  return rows;
+}
 function flattenTradesForExport(trades) {
   const rows = [];
   (trades || []).forEach(t => {
@@ -11012,6 +11043,8 @@ function styleExportSheet(ws, rows, type, opts) {
                groupBy: r => r.Team, groupLabel: rosterGroupLabel, hideColumns: ["Team", "Manager"] },
         { id: "export-draftResults", sheet: "2026 Draft", type: "table", rows: () => flattenDraftResultsFlat(data.draftResults),
       groupBy: r => r.Team, hideColumns: ["Team"] },
+        { id: "export-keepers", sheet: "Keepers", type: "table", rows: () => flattenKeepersForExport(data),
+      groupBy: r => r.Team, groupLabel: rosterGroupLabel, hideColumns: ["Team", "Manager"] },
         { id: "export-draftOrder2026", sheet: "Draft Order", type: "table", rows: () => flattenDraftOrderMatrix(data.draftOrder2026, data),
                cellStyle: (header, value) => header === "Round" ? null : (value === "—" ? { color: "FF4B5B78" } : { color: "FFB82514", bold: true }) },
         { id: "export-trades2025", sheet: "Trades", type: "table", rows: () => flattenTradesForExport(data.trades2025),
@@ -13507,7 +13540,7 @@ fetchWeeklyMatchups();
   var iosVer = 0; var m = ua.match(/OS (\d+)_(\d+)/); if (m) iosVer = parseFloat(m[1] + "." + m[2]);
   var standalone = false;
   try { standalone = (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || window.navigator.standalone === true; } catch (e) {}
-  var deferred = null, sheet = null, KEY = "yhInstallHide";
+  var deferred = null, sheet = null, KEY = "yhInstallHide:" + (location.pathname.split("/")[1] || "root");  // per site: both sites share github.io, so a shared key would hide one site's prompt after dismissing the other's
   function store(get, v) { try { if (get) return localStorage.getItem(KEY); localStorage.setItem(KEY, v); } catch (e) {} return null; }
   function hiddenRecently() { var t = parseInt(store(true) || "0", 10); return t && Date.now() - t < 14 * 864e5; }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
