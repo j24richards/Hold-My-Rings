@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-11-03T05:57:57.269Z",
+  "updated": "2026-11-03T16:40:04.124Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -8,7 +8,7 @@
     "season": "2026",
     "num_teams": 10,
     "scoring_type": "head",
-    "current_week": 8,
+    "current_week": 9,
     "start_week": 1,
     "end_week": 17,
     "playoff_start_week": 15,
@@ -27,14 +27,14 @@
         "andrew"
       ],
       "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_3.png",
-      "points": 1099.48,
+      "points": 1224.68,
       "rank": 1,
-      "wins": 6,
+      "wins": 7,
       "losses": 1,
       "ties": 0,
-      "pct": 0.857,
-      "points_for": 1099.48,
-      "points_against": 919.6400000000001
+      "pct": 0.875,
+      "points_for": 1224.68,
+      "points_against": 987.4000000000001
     },
     {
       "team_key": "470.l.936120.t.6",
@@ -44,14 +44,14 @@
         "jen"
       ],
       "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_4.png",
-      "points": 1124.26,
+      "points": 1282.52,
       "rank": 2,
-      "wins": 5,
+      "wins": 6,
       "losses": 2,
       "ties": 0,
-      "pct": 0.714,
-      "points_for": 1124.26,
-      "points_against": 1010.44
+      "pct": 0.75,
+      "points_for": 1282.52,
+      "points_against": 1153.1200000000001
     },
     {
       "team_key": "470.l.936120.t.9",
@@ -61,14 +61,14 @@
         "anyday"
       ],
       "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8cac1d604072b81a5eb666136ba3ab2d8db72606f9ddd90cc7028cded908f850.jpg",
-      "points": 1084.38,
+      "points": 1226.58,
       "rank": 3,
-      "wins": 4,
+      "wins": 5,
       "losses": 3,
       "ties": 0,
-      "pct": 0.571,
-      "points_for": 1084.38,
-      "points_against": 999.6400000000001
+      "pct": 0.625,
+      "points_for": 1226.58,
+      "points_against": 1125.7600000000002
     },
     {
       "team_key": "470.l.936120.t.1",
@@ -78,31 +78,14 @@
         "Jimmie Legs"
       ],
       "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
-      "points": 984.18,
+      "points": 1153.84,
       "rank": 4,
-      "wins": 4,
+      "wins": 5,
       "losses": 3,
       "ties": 0,
-      "pct": 0.571,
-      "points_for": 984.18,
-      "points_against": 949.4599999999999
-    },
-    {
-      "team_key": "470.l.936120.t.7",
-      "team_id": 7,
-      "name": "Pickens some Rams",
-      "managers": [
-        "Kevin"
-      ],
-      "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
-      "points": 952.6,
-      "rank": 5,
-      "wins": 4,
-      "losses": 3,
-      "ties": 0,
-      "pct": 0.571,
-      "points_for": 952.6,
-      "points_against": 842.7800000000001
+      "pct": 0.625,
+      "points_for": 1153.84,
+      "points_against": 1093.02
     },
     {
       "team_key": "470.l.936120.t.10",
@@ -112,14 +95,31 @@
         "Joe Tardif"
       ],
       "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
-      "points": 921.96,
-      "rank": 6,
-      "wins": 3,
+      "points": 1081.86,
+      "rank": 5,
+      "wins": 4,
       "losses": 4,
       "ties": 0,
-      "pct": 0.429,
-      "points_for": 921.96,
-      "points_against": 937.88
+      "pct": 0.5,
+      "points_for": 1081.86,
+      "points_against": 1085.36
+    },
+    {
+      "team_key": "470.l.936120.t.7",
+      "team_id": 7,
+      "name": "Pickens some Rams",
+      "managers": [
+        "Kevin"
+      ],
+      "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
+      "points": 1078.72,
+      "rank": 6,
+      "wins": 4,
+      "losses": 4,
+      "ties": 0,
+      "pct": 0.5,
+      "points_for": 1078.72,
+      "points_against": 984.98
     },
     {
       "team_key": "470.l.936120.t.5",
@@ -129,31 +129,14 @@
         "Christopher Harris"
       ],
       "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/32546629c7ffbbf26a236682ebbad111b5c11ac3d1d8d1c9ba6d6cae81cb87f1.jpg",
-      "points": 891.14,
+      "points": 1034.7,
       "rank": 7,
       "wins": 3,
-      "losses": 4,
-      "ties": 0,
-      "pct": 0.429,
-      "points_for": 891.14,
-      "points_against": 980.84
-    },
-    {
-      "team_key": "470.l.936120.t.2",
-      "team_id": 2,
-      "name": "Aarons got a Gun",
-      "managers": [
-        "John"
-      ],
-      "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/36017961554_a6133e.jpg",
-      "points": 822.76,
-      "rank": 8,
-      "wins": 2,
       "losses": 5,
       "ties": 0,
-      "pct": 0.286,
-      "points_for": 822.76,
-      "points_against": 855.5
+      "pct": 0.375,
+      "points_for": 1034.7,
+      "points_against": 1150.5
     },
     {
       "team_key": "470.l.936120.t.4",
@@ -163,14 +146,14 @@
         "robert"
       ],
       "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_9.png",
-      "points": 818.04,
-      "rank": 9,
+      "points": 965.52,
+      "rank": 8,
       "wins": 2,
-      "losses": 5,
+      "losses": 6,
       "ties": 0,
-      "pct": 0.286,
-      "points_for": 818.04,
-      "points_against": 1016.52
+      "pct": 0.25,
+      "points_for": 965.52,
+      "points_against": 1176.42
     },
     {
       "team_key": "470.l.936120.t.8",
@@ -180,14 +163,31 @@
         "Benjamin"
       ],
       "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
-      "points": 787.54,
+      "points": 930.22,
+      "rank": 9,
+      "wins": 2,
+      "losses": 6,
+      "ties": 0,
+      "pct": 0.25,
+      "points_for": 930.22,
+      "points_against": 1131.9
+    },
+    {
+      "team_key": "470.l.936120.t.2",
+      "team_id": 2,
+      "name": "Aarons got a Gun",
+      "managers": [
+        "John"
+      ],
+      "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/36017961554_a6133e.jpg",
+      "points": 890.52,
       "rank": 10,
       "wins": 2,
-      "losses": 5,
+      "losses": 6,
       "ties": 0,
-      "pct": 0.286,
-      "points_for": 787.54,
-      "points_against": 973.64
+      "pct": 0.25,
+      "points_for": 890.52,
+      "points_against": 980.7
     }
   ],
   "scores": {
@@ -1338,11 +1338,11 @@
     "8": [
       {
         "week": 8,
-        "status": "midevent",
+        "status": "postevent",
         "is_playoffs": false,
         "is_consolation": false,
         "is_tied": false,
-        "winner_team_key": null,
+        "winner_team_key": "470.l.936120.t.1",
         "teams": [
           {
             "team_key": "470.l.936120.t.1",
@@ -1372,11 +1372,11 @@
       },
       {
         "week": 8,
-        "status": "midevent",
+        "status": "postevent",
         "is_playoffs": false,
         "is_consolation": false,
         "is_tied": false,
-        "winner_team_key": null,
+        "winner_team_key": "470.l.936120.t.3",
         "teams": [
           {
             "team_key": "470.l.936120.t.2",
@@ -1406,11 +1406,11 @@
       },
       {
         "week": 8,
-        "status": "midevent",
+        "status": "postevent",
         "is_playoffs": false,
         "is_consolation": false,
         "is_tied": false,
-        "winner_team_key": null,
+        "winner_team_key": "470.l.936120.t.10",
         "teams": [
           {
             "team_key": "470.l.936120.t.4",
@@ -1440,11 +1440,11 @@
       },
       {
         "week": 8,
-        "status": "midevent",
+        "status": "postevent",
         "is_playoffs": false,
         "is_consolation": false,
         "is_tied": false,
-        "winner_team_key": null,
+        "winner_team_key": "470.l.936120.t.6",
         "teams": [
           {
             "team_key": "470.l.936120.t.6",
@@ -1474,11 +1474,11 @@
       },
       {
         "week": 8,
-        "status": "midevent",
+        "status": "postevent",
         "is_playoffs": false,
         "is_consolation": false,
         "is_tied": false,
-        "winner_team_key": null,
+        "winner_team_key": "470.l.936120.t.9",
         "teams": [
           {
             "team_key": "470.l.936120.t.7",
@@ -1506,9 +1506,232 @@
           }
         ]
       }
+    ],
+    "9": [
+      {
+        "week": 9,
+        "status": "midevent",
+        "is_playoffs": false,
+        "is_consolation": false,
+        "is_tied": false,
+        "winner_team_key": null,
+        "teams": [
+          {
+            "team_key": "470.l.936120.t.1",
+            "team_id": 1,
+            "name": "Brown Tuten",
+            "managers": [
+              "Jimmie Legs"
+            ],
+            "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
+            "points": 0,
+            "projected": 132.5,
+            "win_probability": 0.7
+          },
+          {
+            "team_key": "470.l.936120.t.4",
+            "team_id": 4,
+            "name": "Any given Sunday",
+            "managers": [
+              "robert"
+            ],
+            "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_9.png",
+            "points": 0,
+            "projected": 107.13,
+            "win_probability": 0.30000000000000004
+          }
+        ]
+      },
+      {
+        "week": 9,
+        "status": "midevent",
+        "is_playoffs": false,
+        "is_consolation": false,
+        "is_tied": false,
+        "winner_team_key": null,
+        "teams": [
+          {
+            "team_key": "470.l.936120.t.2",
+            "team_id": 2,
+            "name": "Aarons got a Gun",
+            "managers": [
+              "John"
+            ],
+            "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/36017961554_a6133e.jpg",
+            "points": 0,
+            "projected": 116.59,
+            "win_probability": 0.32999999999999996
+          },
+          {
+            "team_key": "470.l.936120.t.7",
+            "team_id": 7,
+            "name": "Pickens some Rams",
+            "managers": [
+              "Kevin"
+            ],
+            "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
+            "points": 0,
+            "projected": 139.58,
+            "win_probability": 0.67
+          }
+        ]
+      },
+      {
+        "week": 9,
+        "status": "midevent",
+        "is_playoffs": false,
+        "is_consolation": false,
+        "is_tied": false,
+        "winner_team_key": null,
+        "teams": [
+          {
+            "team_key": "470.l.936120.t.3",
+            "team_id": 3,
+            "name": "Saquon deez nutz",
+            "managers": [
+              "andrew"
+            ],
+            "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_3.png",
+            "points": 0,
+            "projected": 131.31,
+            "win_probability": 0.5
+          },
+          {
+            "team_key": "470.l.936120.t.10",
+            "team_id": 10,
+            "name": "The real sultan",
+            "managers": [
+              "Joe Tardif"
+            ],
+            "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
+            "points": 0,
+            "projected": 130.62,
+            "win_probability": 0.5
+          }
+        ]
+      },
+      {
+        "week": 9,
+        "status": "midevent",
+        "is_playoffs": false,
+        "is_consolation": false,
+        "is_tied": false,
+        "winner_team_key": null,
+        "teams": [
+          {
+            "team_key": "470.l.936120.t.5",
+            "team_id": 5,
+            "name": "Colin for the win",
+            "managers": [
+              "Christopher Harris"
+            ],
+            "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/32546629c7ffbbf26a236682ebbad111b5c11ac3d1d8d1c9ba6d6cae81cb87f1.jpg",
+            "points": 0,
+            "projected": 123.33,
+            "win_probability": 0.29000000000000004
+          },
+          {
+            "team_key": "470.l.936120.t.6",
+            "team_id": 6,
+            "name": "Burden of Proof",
+            "managers": [
+              "jen"
+            ],
+            "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_4.png",
+            "points": 0,
+            "projected": 154.36,
+            "win_probability": 0.71
+          }
+        ]
+      },
+      {
+        "week": 9,
+        "status": "midevent",
+        "is_playoffs": false,
+        "is_consolation": false,
+        "is_tied": false,
+        "winner_team_key": null,
+        "teams": [
+          {
+            "team_key": "470.l.936120.t.8",
+            "team_id": 8,
+            "name": "Prestige Worldwide",
+            "managers": [
+              "Benjamin"
+            ],
+            "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
+            "points": 0,
+            "projected": 123.1,
+            "win_probability": 0.31000000000000005
+          },
+          {
+            "team_key": "470.l.936120.t.9",
+            "team_id": 9,
+            "name": "Maye I put it in your Boutte?",
+            "managers": [
+              "anyday"
+            ],
+            "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8cac1d604072b81a5eb666136ba3ab2d8db72606f9ddd90cc7028cded908f850.jpg",
+            "points": 0,
+            "projected": 148.29,
+            "win_probability": 0.69
+          }
+        ]
+      }
     ]
   },
   "transactions": [
+    {
+      "id": 269,
+      "type": "drop",
+      "status": "successful",
+      "timestamp": 1793713531,
+      "date": "2026-11-03T13:45:31.000Z",
+      "players": [
+        {
+          "name": "Aaron Rodgers",
+          "team": "Pit",
+          "pos": "QB",
+          "action": "drop",
+          "from": "470.l.936120.t.10",
+          "to": "waivers"
+        }
+      ]
+    },
+    {
+      "id": 268,
+      "type": "drop",
+      "status": "successful",
+      "timestamp": 1793694833,
+      "date": "2026-11-03T08:33:53.000Z",
+      "players": [
+        {
+          "name": "Pat Freiermuth",
+          "team": "Pit",
+          "pos": "TE",
+          "action": "drop",
+          "from": "470.l.936120.t.3",
+          "to": "waivers"
+        }
+      ]
+    },
+    {
+      "id": 267,
+      "type": "drop",
+      "status": "successful",
+      "timestamp": 1793655692,
+      "date": "2026-11-02T21:41:32.000Z",
+      "players": [
+        {
+          "name": "Keon Coleman",
+          "team": "Buf",
+          "pos": "WR",
+          "action": "drop",
+          "from": "470.l.936120.t.7",
+          "to": "waivers"
+        }
+      ]
+    },
     {
       "id": 266,
       "type": "add",
@@ -6424,12 +6647,6 @@
   "rosters": {
     "470.l.936120.t.3": [
       {
-        "name": "Lamar Jackson",
-        "team": "Bal",
-        "pos": "QB",
-        "slot": "QB"
-      },
-      {
         "name": "Jahmyr Gibbs",
         "team": "Det",
         "pos": "RB",
@@ -6448,20 +6665,20 @@
         "slot": "WR"
       },
       {
-        "name": "DK Metcalf",
-        "team": "Pit",
+        "name": "Antonio Williams",
+        "team": "Was",
         "pos": "WR",
         "slot": "WR"
       },
       {
-        "name": "Omar Cooper Jr.",
-        "team": "NYJ",
+        "name": "Chris Olave",
+        "team": "NO",
         "pos": "WR",
         "slot": "WR"
       },
       {
-        "name": "Pat Freiermuth",
-        "team": "Pit",
+        "name": "George Kittle",
+        "team": "SF",
         "pos": "TE",
         "slot": "TE"
       },
@@ -6472,14 +6689,14 @@
         "slot": "W/R/T"
       },
       {
-        "name": "George Kittle",
-        "team": "SF",
-        "pos": "TE",
+        "name": "DK Metcalf",
+        "team": "Pit",
+        "pos": "WR",
         "slot": "BN"
       },
       {
-        "name": "Chris Olave",
-        "team": "NO",
+        "name": "Omar Cooper Jr.",
+        "team": "NYJ",
         "pos": "WR",
         "slot": "BN"
       },
@@ -6502,15 +6719,15 @@
         "slot": "BN"
       },
       {
-        "name": "Antonio Williams",
-        "team": "Was",
+        "name": "Jordyn Tyson",
+        "team": "NO",
         "pos": "WR",
         "slot": "BN"
       },
       {
-        "name": "Jordyn Tyson",
-        "team": "NO",
-        "pos": "WR",
+        "name": "Lamar Jackson",
+        "team": "Bal",
+        "pos": "QB",
         "slot": "IR"
       },
       {
@@ -6638,14 +6855,14 @@
         "slot": "QB"
       },
       {
-        "name": "Chuba Hubbard",
-        "team": "Car",
+        "name": "Javonte Williams",
+        "team": "Dal",
         "pos": "RB",
         "slot": "RB"
       },
       {
-        "name": "Javonte Williams",
-        "team": "Dal",
+        "name": "Christian McCaffrey",
+        "team": "SF",
         "pos": "RB",
         "slot": "RB"
       },
@@ -6656,14 +6873,14 @@
         "slot": "WR"
       },
       {
-        "name": "Germie Bernard",
-        "team": "Pit",
+        "name": "Ja'Marr Chase",
+        "team": "Cin",
         "pos": "WR",
         "slot": "WR"
       },
       {
-        "name": "Ja'Marr Chase",
-        "team": "Cin",
+        "name": "Makai Lemon",
+        "team": "Phi",
         "pos": "WR",
         "slot": "WR"
       },
@@ -6674,15 +6891,21 @@
         "slot": "TE"
       },
       {
-        "name": "Braelon Allen",
-        "team": "NYJ",
+        "name": "Chuba Hubbard",
+        "team": "Car",
         "pos": "RB",
         "slot": "W/R/T"
       },
       {
-        "name": "Christian McCaffrey",
-        "team": "SF",
+        "name": "Braelon Allen",
+        "team": "NYJ",
         "pos": "RB",
+        "slot": "BN"
+      },
+      {
+        "name": "Germie Bernard",
+        "team": "Pit",
+        "pos": "WR",
         "slot": "BN"
       },
       {
@@ -6694,12 +6917,6 @@
       {
         "name": "Ja'Kobi Lane",
         "team": "Bal",
-        "pos": "WR",
-        "slot": "BN"
-      },
-      {
-        "name": "Makai Lemon",
-        "team": "Phi",
         "pos": "WR",
         "slot": "BN"
       },
@@ -6772,14 +6989,14 @@
         "slot": "WR"
       },
       {
-        "name": "Stefon Diggs",
-        "team": "Was",
+        "name": "Nico Collins",
+        "team": "Hou",
         "pos": "WR",
         "slot": "WR"
       },
       {
-        "name": "Tyler Higbee",
-        "team": "LAR",
+        "name": "Isaiah Likely",
+        "team": "NYG",
         "pos": "TE",
         "slot": "TE"
       },
@@ -6790,21 +7007,21 @@
         "slot": "W/R/T"
       },
       {
-        "name": "Jordan Mason",
-        "team": "Min",
-        "pos": "RB",
-        "slot": "BN"
-      },
-      {
-        "name": "Isaiah Likely",
-        "team": "NYG",
+        "name": "Tyler Higbee",
+        "team": "LAR",
         "pos": "TE",
         "slot": "BN"
       },
       {
-        "name": "Nico Collins",
-        "team": "Hou",
+        "name": "Stefon Diggs",
+        "team": "Was",
         "pos": "WR",
+        "slot": "BN"
+      },
+      {
+        "name": "Jordan Mason",
+        "team": "Min",
+        "pos": "RB",
         "slot": "BN"
       },
       {
@@ -6850,10 +7067,108 @@
         "slot": "DEF"
       }
     ],
+    "470.l.936120.t.10": [
+      {
+        "name": "Trevor Lawrence",
+        "team": "Jax",
+        "pos": "QB",
+        "slot": "QB"
+      },
+      {
+        "name": "Ashton Jeanty",
+        "team": "LV",
+        "pos": "RB",
+        "slot": "RB"
+      },
+      {
+        "name": "Quinshon Judkins",
+        "team": "Cle",
+        "pos": "RB",
+        "slot": "RB"
+      },
+      {
+        "name": "Puka Nacua",
+        "team": "LAR",
+        "pos": "WR",
+        "slot": "WR"
+      },
+      {
+        "name": "DJ Moore",
+        "team": "Buf",
+        "pos": "WR",
+        "slot": "WR"
+      },
+      {
+        "name": "Ryan Flournoy",
+        "team": "Dal",
+        "pos": "WR",
+        "slot": "WR"
+      },
+      {
+        "name": "Brock Bowers",
+        "team": "LV",
+        "pos": "TE",
+        "slot": "TE"
+      },
+      {
+        "name": "Rhamondre Stevenson",
+        "team": "NE",
+        "pos": "RB",
+        "slot": "W/R/T"
+      },
+      {
+        "name": "Jeremiyah Love",
+        "team": "Ari",
+        "pos": "RB",
+        "slot": "BN"
+      },
+      {
+        "name": "Xavier Worthy",
+        "team": "KC",
+        "pos": "WR",
+        "slot": "BN"
+      },
+      {
+        "name": "Marvin Harrison Jr.",
+        "team": "Hou",
+        "pos": "WR",
+        "slot": "BN"
+      },
+      {
+        "name": "Travis Kelce",
+        "team": "KC",
+        "pos": "TE",
+        "slot": "BN"
+      },
+      {
+        "name": "Mike Evans",
+        "team": "SF",
+        "pos": "WR",
+        "slot": "IR"
+      },
+      {
+        "name": "Deebo Samuel Sr.",
+        "team": "SF",
+        "pos": "WR",
+        "slot": "IR"
+      },
+      {
+        "name": "Harrison Butker",
+        "team": "KC",
+        "pos": "K",
+        "slot": "K"
+      },
+      {
+        "name": "Steelers",
+        "team": "Pit",
+        "pos": "DEF",
+        "slot": "DEF"
+      }
+    ],
     "470.l.936120.t.7": [
       {
-        "name": "Jordan Love",
-        "team": "GB",
+        "name": "Caleb Williams",
+        "team": "Chi",
         "pos": "QB",
         "slot": "QB"
       },
@@ -6894,14 +7209,20 @@
         "slot": "TE"
       },
       {
-        "name": "Dallas Goedert",
-        "team": "Phi",
+        "name": "Colston Loveland",
+        "team": "Chi",
         "pos": "TE",
         "slot": "W/R/T"
       },
       {
-        "name": "Colston Loveland",
-        "team": "Chi",
+        "name": "Jordan Love",
+        "team": "GB",
+        "pos": "QB",
+        "slot": "BN"
+      },
+      {
+        "name": "Dallas Goedert",
+        "team": "Phi",
         "pos": "TE",
         "slot": "BN"
       },
@@ -6924,22 +7245,10 @@
         "slot": "BN"
       },
       {
-        "name": "Caleb Williams",
-        "team": "Chi",
-        "pos": "QB",
-        "slot": "BN"
-      },
-      {
-        "name": "Keon Coleman",
-        "team": "Buf",
-        "pos": "WR",
-        "slot": "BN"
-      },
-      {
         "name": "Jadarian Price",
         "team": "Sea",
         "pos": "RB",
-        "slot": "IR"
+        "slot": "BN"
       },
       {
         "name": "Jacory Croskey-Merritt",
@@ -6956,110 +7265,6 @@
       {
         "name": "Vikings",
         "team": "Min",
-        "pos": "DEF",
-        "slot": "DEF"
-      }
-    ],
-    "470.l.936120.t.10": [
-      {
-        "name": "Trevor Lawrence",
-        "team": "Jax",
-        "pos": "QB",
-        "slot": "QB"
-      },
-      {
-        "name": "Ashton Jeanty",
-        "team": "LV",
-        "pos": "RB",
-        "slot": "RB"
-      },
-      {
-        "name": "Jeremiyah Love",
-        "team": "Ari",
-        "pos": "RB",
-        "slot": "RB"
-      },
-      {
-        "name": "Puka Nacua",
-        "team": "LAR",
-        "pos": "WR",
-        "slot": "WR"
-      },
-      {
-        "name": "DJ Moore",
-        "team": "Buf",
-        "pos": "WR",
-        "slot": "WR"
-      },
-      {
-        "name": "Ryan Flournoy",
-        "team": "Dal",
-        "pos": "WR",
-        "slot": "WR"
-      },
-      {
-        "name": "Brock Bowers",
-        "team": "LV",
-        "pos": "TE",
-        "slot": "TE"
-      },
-      {
-        "name": "Rhamondre Stevenson",
-        "team": "NE",
-        "pos": "RB",
-        "slot": "W/R/T"
-      },
-      {
-        "name": "Xavier Worthy",
-        "team": "KC",
-        "pos": "WR",
-        "slot": "BN"
-      },
-      {
-        "name": "Aaron Rodgers",
-        "team": "Pit",
-        "pos": "QB",
-        "slot": "BN"
-      },
-      {
-        "name": "Quinshon Judkins",
-        "team": "Cle",
-        "pos": "RB",
-        "slot": "BN"
-      },
-      {
-        "name": "Marvin Harrison Jr.",
-        "team": "Hou",
-        "pos": "WR",
-        "slot": "BN"
-      },
-      {
-        "name": "Travis Kelce",
-        "team": "KC",
-        "pos": "TE",
-        "slot": "BN"
-      },
-      {
-        "name": "Mike Evans",
-        "team": "SF",
-        "pos": "WR",
-        "slot": "IR"
-      },
-      {
-        "name": "Deebo Samuel Sr.",
-        "team": "SF",
-        "pos": "WR",
-        "slot": "IR"
-      },
-      {
-        "name": "Harrison Butker",
-        "team": "KC",
-        "pos": "K",
-        "slot": "K"
-      },
-      {
-        "name": "Steelers",
-        "team": "Pit",
         "pos": "DEF",
         "slot": "DEF"
       }
@@ -7164,116 +7369,6 @@
       {
         "name": "Patriots",
         "team": "NE",
-        "pos": "DEF",
-        "slot": "DEF"
-      }
-    ],
-    "470.l.936120.t.2": [
-      {
-        "name": "Daniel Jones",
-        "team": "Ind",
-        "pos": "QB",
-        "slot": "QB"
-      },
-      {
-        "name": "Jonathan Taylor",
-        "team": "Ind",
-        "pos": "RB",
-        "slot": "RB"
-      },
-      {
-        "name": "Derrick Henry",
-        "team": "Bal",
-        "pos": "RB",
-        "slot": "RB"
-      },
-      {
-        "name": "Justin Jefferson",
-        "team": "Min",
-        "pos": "WR",
-        "slot": "WR"
-      },
-      {
-        "name": "Tre Tucker",
-        "team": "LV",
-        "pos": "WR",
-        "slot": "WR"
-      },
-      {
-        "name": "Jordan Addison",
-        "team": "Min",
-        "pos": "WR",
-        "slot": "WR"
-      },
-      {
-        "name": "Kyle Pitts Sr.",
-        "team": "Atl",
-        "pos": "TE",
-        "slot": "TE"
-      },
-      {
-        "name": "MarShawn Lloyd",
-        "team": "GB",
-        "pos": "RB",
-        "slot": "W/R/T"
-      },
-      {
-        "name": "Rome Odunze",
-        "team": "Chi",
-        "pos": "WR",
-        "slot": "BN"
-      },
-      {
-        "name": "Emeka Egbuka",
-        "team": "TB",
-        "pos": "WR",
-        "slot": "BN"
-      },
-      {
-        "name": "Malik Nabers",
-        "team": "NYG",
-        "pos": "WR",
-        "slot": "BN"
-      },
-      {
-        "name": "Brenton Strange",
-        "team": "Jax",
-        "pos": "TE",
-        "slot": "BN"
-      },
-      {
-        "name": "Jakobi Meyers",
-        "team": "Jax",
-        "pos": "WR",
-        "slot": "BN"
-      },
-      {
-        "name": "Alvin Kamara",
-        "team": "NO",
-        "pos": "RB",
-        "slot": "BN"
-      },
-      {
-        "name": "Tank Bigsby",
-        "team": "Phi",
-        "pos": "RB",
-        "slot": "IR"
-      },
-      {
-        "name": "Jonathon Brooks",
-        "team": "Car",
-        "pos": "RB",
-        "slot": "IR"
-      },
-      {
-        "name": "Cam Little",
-        "team": "Jax",
-        "pos": "K",
-        "slot": "K"
-      },
-      {
-        "name": "Ravens",
-        "team": "Bal",
         "pos": "DEF",
         "slot": "DEF"
       }
@@ -7479,31 +7574,119 @@
         "pos": "DEF",
         "slot": "DEF"
       }
+    ],
+    "470.l.936120.t.2": [
+      {
+        "name": "Daniel Jones",
+        "team": "Ind",
+        "pos": "QB",
+        "slot": "QB"
+      },
+      {
+        "name": "Jonathan Taylor",
+        "team": "Ind",
+        "pos": "RB",
+        "slot": "RB"
+      },
+      {
+        "name": "Derrick Henry",
+        "team": "Bal",
+        "pos": "RB",
+        "slot": "RB"
+      },
+      {
+        "name": "Justin Jefferson",
+        "team": "Min",
+        "pos": "WR",
+        "slot": "WR"
+      },
+      {
+        "name": "Tre Tucker",
+        "team": "LV",
+        "pos": "WR",
+        "slot": "WR"
+      },
+      {
+        "name": "Jordan Addison",
+        "team": "Min",
+        "pos": "WR",
+        "slot": "WR"
+      },
+      {
+        "name": "Kyle Pitts Sr.",
+        "team": "Atl",
+        "pos": "TE",
+        "slot": "TE"
+      },
+      {
+        "name": "MarShawn Lloyd",
+        "team": "GB",
+        "pos": "RB",
+        "slot": "W/R/T"
+      },
+      {
+        "name": "Rome Odunze",
+        "team": "Chi",
+        "pos": "WR",
+        "slot": "BN"
+      },
+      {
+        "name": "Emeka Egbuka",
+        "team": "TB",
+        "pos": "WR",
+        "slot": "BN"
+      },
+      {
+        "name": "Malik Nabers",
+        "team": "NYG",
+        "pos": "WR",
+        "slot": "BN"
+      },
+      {
+        "name": "Brenton Strange",
+        "team": "Jax",
+        "pos": "TE",
+        "slot": "BN"
+      },
+      {
+        "name": "Jakobi Meyers",
+        "team": "Jax",
+        "pos": "WR",
+        "slot": "BN"
+      },
+      {
+        "name": "Alvin Kamara",
+        "team": "NO",
+        "pos": "RB",
+        "slot": "BN"
+      },
+      {
+        "name": "Tank Bigsby",
+        "team": "Phi",
+        "pos": "RB",
+        "slot": "IR"
+      },
+      {
+        "name": "Jonathon Brooks",
+        "team": "Car",
+        "pos": "RB",
+        "slot": "IR"
+      },
+      {
+        "name": "Cam Little",
+        "team": "Jax",
+        "pos": "K",
+        "slot": "K"
+      },
+      {
+        "name": "Ravens",
+        "team": "Bal",
+        "pos": "DEF",
+        "slot": "DEF"
+      }
     ]
   },
   "schedule": {
-    "9": [
-      [
-        "470.l.936120.t.1",
-        "470.l.936120.t.4"
-      ],
-      [
-        "470.l.936120.t.2",
-        "470.l.936120.t.7"
-      ],
-      [
-        "470.l.936120.t.3",
-        "470.l.936120.t.10"
-      ],
-      [
-        "470.l.936120.t.5",
-        "470.l.936120.t.6"
-      ],
-      [
-        "470.l.936120.t.8",
-        "470.l.936120.t.9"
-      ]
-    ],
     "10": [
       [
         "470.l.936120.t.1",
