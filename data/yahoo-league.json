@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-11-03T19:04:46.613Z",
+  "updated": "2026-11-04T19:24:27.441Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -1525,8 +1525,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
             "points": 0,
-            "projected": 136.22,
-            "win_probability": 0.72
+            "projected": 130.8,
+            "win_probability": 0.6
           },
           {
             "team_key": "470.l.936120.t.4",
@@ -1537,8 +1537,8 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_9.png",
             "points": 0,
-            "projected": 107.93,
-            "win_probability": 0.28
+            "projected": 117.42,
+            "win_probability": 0.4
           }
         ]
       },
@@ -1559,8 +1559,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/36017961554_a6133e.jpg",
             "points": 0,
-            "projected": 115.61,
-            "win_probability": 0.31000000000000005
+            "projected": 115.56,
+            "win_probability": 0.29000000000000004
           },
           {
             "team_key": "470.l.936120.t.7",
@@ -1571,8 +1571,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
             "points": 0,
-            "projected": 141.34,
-            "win_probability": 0.69
+            "projected": 144.14,
+            "win_probability": 0.71
           }
         ]
       },
@@ -1593,8 +1593,8 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_3.png",
             "points": 0,
-            "projected": 134.7,
-            "win_probability": 0.54
+            "projected": 154.74,
+            "win_probability": 0.61
           },
           {
             "team_key": "470.l.936120.t.10",
@@ -1605,8 +1605,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
             "points": 0,
-            "projected": 128.99,
-            "win_probability": 0.45999999999999996
+            "projected": 138.62,
+            "win_probability": 0.39
           }
         ]
       },
@@ -1627,7 +1627,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/32546629c7ffbbf26a236682ebbad111b5c11ac3d1d8d1c9ba6d6cae81cb87f1.jpg",
             "points": 0,
-            "projected": 122.44,
+            "projected": 123.54,
             "win_probability": 0.28
           },
           {
@@ -1639,7 +1639,7 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_4.png",
             "points": 0,
-            "projected": 154.57,
+            "projected": 156.5,
             "win_probability": 0.72
           }
         ]
@@ -1661,8 +1661,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
             "points": 0,
-            "projected": 123.31,
-            "win_probability": 0.31000000000000005
+            "projected": 128.69,
+            "win_probability": 0.33999999999999997
           },
           {
             "team_key": "470.l.936120.t.9",
@@ -1673,14 +1673,342 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8cac1d604072b81a5eb666136ba3ab2d8db72606f9ddd90cc7028cded908f850.jpg",
             "points": 0,
-            "projected": 149.05,
-            "win_probability": 0.69
+            "projected": 150.05,
+            "win_probability": 0.66
           }
         ]
       }
     ]
   },
   "transactions": [
+    {
+      "id": 286,
+      "type": "add",
+      "status": "successful",
+      "timestamp": 1793803780,
+      "date": "2026-11-04T14:49:40.000Z",
+      "players": [
+        {
+          "name": "Brandon Aiyuk",
+          "team": "SF",
+          "pos": "WR",
+          "action": "add",
+          "from": "freeagents",
+          "to": "470.l.936120.t.3"
+        }
+      ]
+    },
+    {
+      "id": 285,
+      "type": "add/drop",
+      "status": "successful",
+      "timestamp": 1793794568,
+      "date": "2026-11-04T12:16:08.000Z",
+      "players": [
+        {
+          "name": "Eddy Pineiro",
+          "team": "SF",
+          "pos": "K",
+          "action": "add",
+          "from": "freeagents",
+          "to": "470.l.936120.t.10"
+        },
+        {
+          "name": "Harrison Butker",
+          "team": "KC",
+          "pos": "K",
+          "action": "drop",
+          "from": "470.l.936120.t.10",
+          "to": "waivers"
+        }
+      ]
+    },
+    {
+      "id": 284,
+      "type": "add",
+      "status": "successful",
+      "timestamp": 1793794543,
+      "date": "2026-11-04T12:15:43.000Z",
+      "players": [
+        {
+          "name": "Chiefs",
+          "team": "KC",
+          "pos": "DEF",
+          "action": "add",
+          "from": "freeagents",
+          "to": "470.l.936120.t.10"
+        }
+      ]
+    },
+    {
+      "id": 283,
+      "type": "drop",
+      "status": "successful",
+      "timestamp": 1793794528,
+      "date": "2026-11-04T12:15:28.000Z",
+      "players": [
+        {
+          "name": "Xavier Worthy",
+          "team": "KC",
+          "pos": "WR",
+          "action": "drop",
+          "from": "470.l.936120.t.10",
+          "to": "waivers"
+        }
+      ]
+    },
+    {
+      "id": 282,
+      "type": "drop",
+      "status": "successful",
+      "timestamp": 1793794521,
+      "date": "2026-11-04T12:15:21.000Z",
+      "players": [
+        {
+          "name": "Steelers",
+          "team": "Pit",
+          "pos": "DEF",
+          "action": "drop",
+          "from": "470.l.936120.t.10",
+          "to": "waivers"
+        }
+      ]
+    },
+    {
+      "id": 281,
+      "type": "add/drop",
+      "status": "successful",
+      "timestamp": 1793785421,
+      "date": "2026-11-04T09:43:41.000Z",
+      "players": [
+        {
+          "name": "Texans",
+          "team": "Hou",
+          "pos": "DEF",
+          "action": "add",
+          "from": "freeagents",
+          "to": "470.l.936120.t.3"
+        },
+        {
+          "name": "Broncos",
+          "team": "Den",
+          "pos": "DEF",
+          "action": "drop",
+          "from": "470.l.936120.t.3",
+          "to": "waivers"
+        }
+      ]
+    },
+    {
+      "id": 279,
+      "type": "add",
+      "status": "successful",
+      "timestamp": 1793785039,
+      "date": "2026-11-04T09:37:19.000Z",
+      "players": [
+        {
+          "name": "Josh Downs",
+          "team": "Ind",
+          "pos": "WR",
+          "action": "add",
+          "from": "waivers",
+          "to": "470.l.936120.t.4"
+        }
+      ]
+    },
+    {
+      "id": 278,
+      "type": "add/drop",
+      "status": "successful",
+      "timestamp": 1793785039,
+      "date": "2026-11-04T09:37:19.000Z",
+      "players": [
+        {
+          "name": "Brian Thomas Jr.",
+          "team": "Jax",
+          "pos": "WR",
+          "action": "add",
+          "from": "waivers",
+          "to": "470.l.936120.t.1"
+        },
+        {
+          "name": "Seth McGowan",
+          "team": "Ind",
+          "pos": "RB",
+          "action": "drop",
+          "from": "470.l.936120.t.1",
+          "to": "waivers"
+        }
+      ]
+    },
+    {
+      "id": 277,
+      "type": "add",
+      "status": "successful",
+      "timestamp": 1793785039,
+      "date": "2026-11-04T09:37:19.000Z",
+      "players": [
+        {
+          "name": "Kirk Cousins",
+          "team": "LV",
+          "pos": "QB",
+          "action": "add",
+          "from": "waivers",
+          "to": "470.l.936120.t.3"
+        }
+      ]
+    },
+    {
+      "id": 276,
+      "type": "add",
+      "status": "successful",
+      "timestamp": 1793785039,
+      "date": "2026-11-04T09:37:19.000Z",
+      "players": [
+        {
+          "name": "Alec Pierce",
+          "team": "Ind",
+          "pos": "WR",
+          "action": "add",
+          "from": "waivers",
+          "to": "470.l.936120.t.7"
+        }
+      ]
+    },
+    {
+      "id": 275,
+      "type": "add/drop",
+      "status": "successful",
+      "timestamp": 1793785039,
+      "date": "2026-11-04T09:37:19.000Z",
+      "players": [
+        {
+          "name": "Ka'imi Fairbairn",
+          "team": "Hou",
+          "pos": "K",
+          "action": "add",
+          "from": "waivers",
+          "to": "470.l.936120.t.7"
+        },
+        {
+          "name": "Evan McPherson",
+          "team": "Cin",
+          "pos": "K",
+          "action": "drop",
+          "from": "470.l.936120.t.7",
+          "to": "waivers"
+        }
+      ]
+    },
+    {
+      "id": 274,
+      "type": "add/drop",
+      "status": "successful",
+      "timestamp": 1793785039,
+      "date": "2026-11-04T09:37:19.000Z",
+      "players": [
+        {
+          "name": "Treylon Burks",
+          "team": "Was",
+          "pos": "WR",
+          "action": "add",
+          "from": "waivers",
+          "to": "470.l.936120.t.1"
+        },
+        {
+          "name": "Tyler Higbee",
+          "team": "LAR",
+          "pos": "TE",
+          "action": "drop",
+          "from": "470.l.936120.t.1",
+          "to": "waivers"
+        }
+      ]
+    },
+    {
+      "id": 273,
+      "type": "add/drop",
+      "status": "successful",
+      "timestamp": 1793785039,
+      "date": "2026-11-04T09:37:19.000Z",
+      "players": [
+        {
+          "name": "Patrick Mahomes",
+          "team": "KC",
+          "pos": "QB",
+          "action": "add",
+          "from": "waivers",
+          "to": "470.l.936120.t.7"
+        },
+        {
+          "name": "Dallas Goedert",
+          "team": "Phi",
+          "pos": "TE",
+          "action": "drop",
+          "from": "470.l.936120.t.7",
+          "to": "waivers"
+        }
+      ]
+    },
+    {
+      "id": 272,
+      "type": "add/drop",
+      "status": "successful",
+      "timestamp": 1793785039,
+      "date": "2026-11-04T09:37:19.000Z",
+      "players": [
+        {
+          "name": "Tyler Allgeier",
+          "team": "Ari",
+          "pos": "RB",
+          "action": "add",
+          "from": "waivers",
+          "to": "470.l.936120.t.9"
+        },
+        {
+          "name": "Jets",
+          "team": "NYJ",
+          "pos": "DEF",
+          "action": "drop",
+          "from": "470.l.936120.t.9",
+          "to": "waivers"
+        }
+      ]
+    },
+    {
+      "id": 271,
+      "type": "drop",
+      "status": "successful",
+      "timestamp": 1793766608,
+      "date": "2026-11-04T04:30:08.000Z",
+      "players": [
+        {
+          "name": "Chase McLaughlin",
+          "team": "TB",
+          "pos": "K",
+          "action": "drop",
+          "from": "470.l.936120.t.1",
+          "to": "waivers"
+        }
+      ]
+    },
+    {
+      "id": 270,
+      "type": "drop",
+      "status": "successful",
+      "timestamp": 1793752279,
+      "date": "2026-11-04T00:31:19.000Z",
+      "players": [
+        {
+          "name": "Emanuel Wilson",
+          "team": "Sea",
+          "pos": "RB",
+          "action": "drop",
+          "from": "470.l.936120.t.4",
+          "to": "waivers"
+        }
+      ]
+    },
     {
       "id": 269,
       "type": "drop",
@@ -6647,6 +6975,12 @@
   "rosters": {
     "470.l.936120.t.3": [
       {
+        "name": "Kirk Cousins",
+        "team": "LV",
+        "pos": "QB",
+        "slot": "QB"
+      },
+      {
         "name": "Jahmyr Gibbs",
         "team": "Det",
         "pos": "RB",
@@ -6719,10 +7053,16 @@
         "slot": "BN"
       },
       {
+        "name": "Brandon Aiyuk",
+        "team": "SF",
+        "pos": "WR",
+        "slot": "BN"
+      },
+      {
         "name": "Jordyn Tyson",
         "team": "NO",
         "pos": "WR",
-        "slot": "BN"
+        "slot": "IR"
       },
       {
         "name": "Lamar Jackson",
@@ -6737,8 +7077,8 @@
         "slot": "K"
       },
       {
-        "name": "Broncos",
-        "team": "Den",
+        "name": "Texans",
+        "team": "Hou",
         "pos": "DEF",
         "slot": "DEF"
       }
@@ -6927,6 +7267,12 @@
         "slot": "BN"
       },
       {
+        "name": "Tyler Allgeier",
+        "team": "Ari",
+        "pos": "RB",
+        "slot": "BN"
+      },
+      {
         "name": "Davante Adams",
         "team": "LAR",
         "pos": "WR",
@@ -6949,12 +7295,6 @@
         "team": "Sea",
         "pos": "DEF",
         "slot": "DEF"
-      },
-      {
-        "name": "Jets",
-        "team": "NYJ",
-        "pos": "DEF",
-        "slot": "BN"
       }
     ],
     "470.l.936120.t.1": [
@@ -7007,12 +7347,6 @@
         "slot": "W/R/T"
       },
       {
-        "name": "Tyler Higbee",
-        "team": "LAR",
-        "pos": "TE",
-        "slot": "BN"
-      },
-      {
         "name": "Stefon Diggs",
         "team": "Was",
         "pos": "WR",
@@ -7037,28 +7371,28 @@
         "slot": "BN"
       },
       {
-        "name": "Seth McGowan",
-        "team": "Ind",
+        "name": "Kyle Monangai",
+        "team": "Chi",
         "pos": "RB",
         "slot": "BN"
       },
       {
-        "name": "Kyle Monangai",
-        "team": "Chi",
-        "pos": "RB",
-        "slot": "IR"
+        "name": "Treylon Burks",
+        "team": "Was",
+        "pos": "WR",
+        "slot": "BN"
+      },
+      {
+        "name": "Brian Thomas Jr.",
+        "team": "Jax",
+        "pos": "WR",
+        "slot": "BN"
       },
       {
         "name": "Romeo Doubs",
         "team": "NE",
         "pos": "WR",
         "slot": "IR"
-      },
-      {
-        "name": "Chase McLaughlin",
-        "team": "TB",
-        "pos": "K",
-        "slot": "K"
       },
       {
         "name": "Jaguars",
@@ -7117,18 +7451,6 @@
         "slot": "W/R/T"
       },
       {
-        "name": "Jeremiyah Love",
-        "team": "Ari",
-        "pos": "RB",
-        "slot": "BN"
-      },
-      {
-        "name": "Xavier Worthy",
-        "team": "KC",
-        "pos": "WR",
-        "slot": "BN"
-      },
-      {
         "name": "Marvin Harrison Jr.",
         "team": "Hou",
         "pos": "WR",
@@ -7144,31 +7466,37 @@
         "name": "Mike Evans",
         "team": "SF",
         "pos": "WR",
-        "slot": "IR"
+        "slot": "BN"
       },
       {
         "name": "Deebo Samuel Sr.",
         "team": "SF",
         "pos": "WR",
+        "slot": "BN"
+      },
+      {
+        "name": "Jeremiyah Love",
+        "team": "Ari",
+        "pos": "RB",
         "slot": "IR"
       },
       {
-        "name": "Harrison Butker",
-        "team": "KC",
+        "name": "Eddy Pineiro",
+        "team": "SF",
         "pos": "K",
         "slot": "K"
       },
       {
-        "name": "Steelers",
-        "team": "Pit",
+        "name": "Chiefs",
+        "team": "KC",
         "pos": "DEF",
         "slot": "DEF"
       }
     ],
     "470.l.936120.t.7": [
       {
-        "name": "Caleb Williams",
-        "team": "Chi",
+        "name": "Patrick Mahomes",
+        "team": "KC",
         "pos": "QB",
         "slot": "QB"
       },
@@ -7215,15 +7543,15 @@
         "slot": "W/R/T"
       },
       {
-        "name": "Jordan Love",
-        "team": "GB",
+        "name": "Caleb Williams",
+        "team": "Chi",
         "pos": "QB",
         "slot": "BN"
       },
       {
-        "name": "Dallas Goedert",
-        "team": "Phi",
-        "pos": "TE",
+        "name": "Jordan Love",
+        "team": "GB",
+        "pos": "QB",
         "slot": "BN"
       },
       {
@@ -7257,8 +7585,14 @@
         "slot": "IR"
       },
       {
-        "name": "Evan McPherson",
-        "team": "Cin",
+        "name": "Alec Pierce",
+        "team": "Ind",
+        "pos": "WR",
+        "slot": "IR"
+      },
+      {
+        "name": "Ka'imi Fairbairn",
+        "team": "Hou",
         "pos": "K",
         "slot": "K"
       },
@@ -7381,14 +7715,14 @@
         "slot": "QB"
       },
       {
-        "name": "Jaylen Warren",
-        "team": "Pit",
+        "name": "Dylan Sampson",
+        "team": "Cle",
         "pos": "RB",
         "slot": "RB"
       },
       {
-        "name": "Dylan Sampson",
-        "team": "Cle",
+        "name": "Woody Marks",
+        "team": "Hou",
         "pos": "RB",
         "slot": "RB"
       },
@@ -7423,14 +7757,8 @@
         "slot": "W/R/T"
       },
       {
-        "name": "Emanuel Wilson",
-        "team": "Sea",
-        "pos": "RB",
-        "slot": "BN"
-      },
-      {
-        "name": "Woody Marks",
-        "team": "Hou",
+        "name": "Jaylen Warren",
+        "team": "Pit",
         "pos": "RB",
         "slot": "BN"
       },
@@ -7450,6 +7778,12 @@
         "name": "Chig Okonkwo",
         "team": "Was",
         "pos": "TE",
+        "slot": "BN"
+      },
+      {
+        "name": "Josh Downs",
+        "team": "Ind",
+        "pos": "WR",
         "slot": "BN"
       },
       {
@@ -7509,8 +7843,8 @@
         "slot": "WR"
       },
       {
-        "name": "Hunter Henry",
-        "team": "NE",
+        "name": "Sam LaPorta",
+        "team": "Det",
         "pos": "TE",
         "slot": "TE"
       },
@@ -7521,8 +7855,8 @@
         "slot": "W/R/T"
       },
       {
-        "name": "Sam LaPorta",
-        "team": "Det",
+        "name": "Hunter Henry",
+        "team": "NE",
         "pos": "TE",
         "slot": "BN"
       },
@@ -7554,7 +7888,7 @@
         "name": "A.J. Brown",
         "team": "NE",
         "pos": "WR",
-        "slot": "IR"
+        "slot": "BN"
       },
       {
         "name": "De'Von Achane",
