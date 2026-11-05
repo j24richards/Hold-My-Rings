@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-11-04T19:24:27.441Z",
+  "updated": "2026-11-05T19:30:48.949Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -1525,8 +1525,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
             "points": 0,
-            "projected": 130.8,
-            "win_probability": 0.6
+            "projected": 126.65,
+            "win_probability": 0.53
           },
           {
             "team_key": "470.l.936120.t.4",
@@ -1537,8 +1537,8 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_9.png",
             "points": 0,
-            "projected": 117.42,
-            "win_probability": 0.4
+            "projected": 122.98,
+            "win_probability": 0.47
           }
         ]
       },
@@ -1559,8 +1559,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/36017961554_a6133e.jpg",
             "points": 0,
-            "projected": 115.56,
-            "win_probability": 0.29000000000000004
+            "projected": 122.25,
+            "win_probability": 0.32999999999999996
           },
           {
             "team_key": "470.l.936120.t.7",
@@ -1571,8 +1571,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
             "points": 0,
-            "projected": 144.14,
-            "win_probability": 0.71
+            "projected": 145.2,
+            "win_probability": 0.67
           }
         ]
       },
@@ -1593,8 +1593,8 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_3.png",
             "points": 0,
-            "projected": 154.74,
-            "win_probability": 0.61
+            "projected": 158.21,
+            "win_probability": 0.62
           },
           {
             "team_key": "470.l.936120.t.10",
@@ -1605,8 +1605,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
             "points": 0,
-            "projected": 138.62,
-            "win_probability": 0.39
+            "projected": 139.32,
+            "win_probability": 0.38
           }
         ]
       },
@@ -1627,8 +1627,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/32546629c7ffbbf26a236682ebbad111b5c11ac3d1d8d1c9ba6d6cae81cb87f1.jpg",
             "points": 0,
-            "projected": 123.54,
-            "win_probability": 0.28
+            "projected": 123.4,
+            "win_probability": 0.32000000000000006
           },
           {
             "team_key": "470.l.936120.t.6",
@@ -1639,8 +1639,8 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_4.png",
             "points": 0,
-            "projected": 156.5,
-            "win_probability": 0.72
+            "projected": 149.84,
+            "win_probability": 0.6799999999999999
           }
         ]
       },
@@ -1661,8 +1661,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
             "points": 0,
-            "projected": 128.69,
-            "win_probability": 0.33999999999999997
+            "projected": 127.54,
+            "win_probability": 0.35
           },
           {
             "team_key": "470.l.936120.t.9",
@@ -1673,14 +1673,98 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8cac1d604072b81a5eb666136ba3ab2d8db72606f9ddd90cc7028cded908f850.jpg",
             "points": 0,
-            "projected": 150.05,
-            "win_probability": 0.66
+            "projected": 147.55,
+            "win_probability": 0.65
           }
         ]
       }
     ]
   },
   "transactions": [
+    {
+      "id": 290,
+      "type": "add/drop",
+      "status": "successful",
+      "timestamp": 1793904932,
+      "date": "2026-11-05T18:55:32.000Z",
+      "players": [
+        {
+          "name": "Giants",
+          "team": "NYG",
+          "pos": "DEF",
+          "action": "add",
+          "from": "freeagents",
+          "to": "470.l.936120.t.2"
+        },
+        {
+          "name": "Ravens",
+          "team": "Bal",
+          "pos": "DEF",
+          "action": "drop",
+          "from": "470.l.936120.t.2",
+          "to": "waivers"
+        }
+      ]
+    },
+    {
+      "id": 289,
+      "type": "add/drop",
+      "status": "successful",
+      "timestamp": 1793874684,
+      "date": "2026-11-05T10:31:24.000Z",
+      "players": [
+        {
+          "name": "Lions",
+          "team": "Det",
+          "pos": "DEF",
+          "action": "add",
+          "from": "freeagents",
+          "to": "470.l.936120.t.8"
+        },
+        {
+          "name": "Bengals",
+          "team": "Cin",
+          "pos": "DEF",
+          "action": "drop",
+          "from": "470.l.936120.t.8",
+          "to": "waivers"
+        }
+      ]
+    },
+    {
+      "id": 288,
+      "type": "drop",
+      "status": "successful",
+      "timestamp": 1793844965,
+      "date": "2026-11-05T02:16:05.000Z",
+      "players": [
+        {
+          "name": "Rams",
+          "team": "LAR",
+          "pos": "DEF",
+          "action": "drop",
+          "from": "470.l.936120.t.6",
+          "to": "waivers"
+        }
+      ]
+    },
+    {
+      "id": 287,
+      "type": "add",
+      "status": "successful",
+      "timestamp": 1793842188,
+      "date": "2026-11-05T01:29:48.000Z",
+      "players": [
+        {
+          "name": "Devin Singletary",
+          "team": "NYG",
+          "pos": "RB",
+          "action": "add",
+          "from": "freeagents",
+          "to": "470.l.936120.t.10"
+        }
+      ]
+    },
     {
       "id": 286,
       "type": "add",
@@ -7166,25 +7250,19 @@
         "name": "Breece Hall",
         "team": "NYJ",
         "pos": "RB",
-        "slot": "IR"
+        "slot": "BN"
       },
       {
         "name": "DeVonta Smith",
         "team": "Phi",
         "pos": "WR",
-        "slot": "IR"
+        "slot": "BN"
       },
       {
         "name": "Tyler Bass",
         "team": "Buf",
         "pos": "K",
         "slot": "K"
-      },
-      {
-        "name": "Rams",
-        "team": "LAR",
-        "pos": "DEF",
-        "slot": "DEF"
       }
     ],
     "470.l.936120.t.9": [
@@ -7472,6 +7550,12 @@
         "name": "Deebo Samuel Sr.",
         "team": "SF",
         "pos": "WR",
+        "slot": "BN"
+      },
+      {
+        "name": "Devin Singletary",
+        "team": "NYG",
+        "pos": "RB",
         "slot": "BN"
       },
       {
@@ -7769,12 +7853,6 @@
         "slot": "BN"
       },
       {
-        "name": "David Montgomery",
-        "team": "Hou",
-        "pos": "RB",
-        "slot": "BN"
-      },
-      {
         "name": "Chig Okonkwo",
         "team": "Was",
         "pos": "TE",
@@ -7785,6 +7863,12 @@
         "team": "Ind",
         "pos": "WR",
         "slot": "BN"
+      },
+      {
+        "name": "David Montgomery",
+        "team": "Hou",
+        "pos": "RB",
+        "slot": "IR"
       },
       {
         "name": "Carnell Tate",
@@ -7903,8 +7987,8 @@
         "slot": "K"
       },
       {
-        "name": "Bengals",
-        "team": "Cin",
+        "name": "Lions",
+        "team": "Det",
         "pos": "DEF",
         "slot": "DEF"
       }
@@ -7953,15 +8037,15 @@
         "slot": "TE"
       },
       {
-        "name": "MarShawn Lloyd",
-        "team": "GB",
-        "pos": "RB",
-        "slot": "W/R/T"
-      },
-      {
         "name": "Rome Odunze",
         "team": "Chi",
         "pos": "WR",
+        "slot": "W/R/T"
+      },
+      {
+        "name": "MarShawn Lloyd",
+        "team": "GB",
+        "pos": "RB",
         "slot": "BN"
       },
       {
@@ -8013,8 +8097,8 @@
         "slot": "K"
       },
       {
-        "name": "Ravens",
-        "team": "Bal",
+        "name": "Giants",
+        "team": "NYG",
         "pos": "DEF",
         "slot": "DEF"
       }
