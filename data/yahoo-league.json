@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-11-06T18:55:04.565Z",
+  "updated": "2026-11-07T17:27:13.046Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -1525,8 +1525,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
             "points": 20.4,
-            "projected": 133.21,
-            "win_probability": 0.5700000000000001
+            "projected": 133.9,
+            "win_probability": 0.56
           },
           {
             "team_key": "470.l.936120.t.4",
@@ -1537,8 +1537,8 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_9.png",
             "points": 0,
-            "projected": 123.53,
-            "win_probability": 0.42999999999999994
+            "projected": 126.5,
+            "win_probability": 0.43999999999999995
           }
         ]
       },
@@ -1559,7 +1559,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/36017961554_a6133e.jpg",
             "points": 22.58,
-            "projected": 122.35,
+            "projected": 122.65,
             "win_probability": 0.32999999999999996
           },
           {
@@ -1571,7 +1571,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
             "points": 0,
-            "projected": 145.48,
+            "projected": 145.62,
             "win_probability": 0.67
           }
         ]
@@ -1593,8 +1593,8 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_3.png",
             "points": 0,
-            "projected": 156.97,
-            "win_probability": 0.63
+            "projected": 158.76,
+            "win_probability": 0.65
           },
           {
             "team_key": "470.l.936120.t.10",
@@ -1605,8 +1605,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
             "points": 15.58,
-            "projected": 142.69,
-            "win_probability": 0.37
+            "projected": 141.64,
+            "win_probability": 0.35
           }
         ]
       },
@@ -1627,7 +1627,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/32546629c7ffbbf26a236682ebbad111b5c11ac3d1d8d1c9ba6d6cae81cb87f1.jpg",
             "points": 14.1,
-            "projected": 133.63,
+            "projected": 133.12,
             "win_probability": 0.37
           },
           {
@@ -1639,7 +1639,7 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_4.png",
             "points": 0,
-            "projected": 151.5,
+            "projected": 150.81,
             "win_probability": 0.63
           }
         ]
@@ -1673,7 +1673,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8cac1d604072b81a5eb666136ba3ab2d8db72606f9ddd90cc7028cded908f850.jpg",
             "points": 5.3,
-            "projected": 152.84,
+            "projected": 153.18,
             "win_probability": 0.62
           }
         ]
@@ -1681,6 +1681,115 @@
     ]
   },
   "transactions": [
+    {
+      "id": 296,
+      "type": "add",
+      "status": "successful",
+      "timestamp": 1794042151,
+      "date": "2026-11-07T09:02:31.000Z",
+      "players": [
+        {
+          "name": "Broncos",
+          "team": "Den",
+          "pos": "DEF",
+          "action": "add",
+          "from": "waivers",
+          "to": "470.l.936120.t.6"
+        }
+      ]
+    },
+    {
+      "id": 295,
+      "type": "add",
+      "status": "successful",
+      "timestamp": 1794010522,
+      "date": "2026-11-07T00:15:22.000Z",
+      "players": [
+        {
+          "name": "Malachi Fields",
+          "team": "NYG",
+          "pos": "WR",
+          "action": "add",
+          "from": "freeagents",
+          "to": "470.l.936120.t.4"
+        }
+      ]
+    },
+    {
+      "id": 294,
+      "type": "add/drop",
+      "status": "successful",
+      "timestamp": 1794008475,
+      "date": "2026-11-06T23:41:15.000Z",
+      "players": [
+        {
+          "name": "Jake Bates",
+          "team": "Det",
+          "pos": "K",
+          "action": "add",
+          "from": "freeagents",
+          "to": "470.l.936120.t.4"
+        },
+        {
+          "name": "Spencer Shrader",
+          "team": "Ind",
+          "pos": "K",
+          "action": "drop",
+          "from": "470.l.936120.t.4",
+          "to": "waivers"
+        }
+      ]
+    },
+    {
+      "id": 293,
+      "type": "add/drop",
+      "status": "successful",
+      "timestamp": 1794008426,
+      "date": "2026-11-06T23:40:26.000Z",
+      "players": [
+        {
+          "name": "Saints",
+          "team": "NO",
+          "pos": "DEF",
+          "action": "add",
+          "from": "freeagents",
+          "to": "470.l.936120.t.4"
+        },
+        {
+          "name": "Falcons",
+          "team": "Atl",
+          "pos": "DEF",
+          "action": "drop",
+          "from": "470.l.936120.t.4",
+          "to": "waivers"
+        }
+      ]
+    },
+    {
+      "id": 292,
+      "type": "add/drop",
+      "status": "successful",
+      "timestamp": 1794000579,
+      "date": "2026-11-06T21:29:39.000Z",
+      "players": [
+        {
+          "name": "Mike Gesicki",
+          "team": "Cin",
+          "pos": "TE",
+          "action": "add",
+          "from": "freeagents",
+          "to": "470.l.936120.t.1"
+        },
+        {
+          "name": "Brian Thomas Jr.",
+          "team": "Jax",
+          "pos": "WR",
+          "action": "drop",
+          "from": "470.l.936120.t.1",
+          "to": "waivers"
+        }
+      ]
+    },
     {
       "id": 291,
       "type": "add",
@@ -7273,13 +7382,19 @@
         "name": "DeVonta Smith",
         "team": "Phi",
         "pos": "WR",
-        "slot": "BN"
+        "slot": "IR"
       },
       {
         "name": "Tyler Bass",
         "team": "Buf",
         "pos": "K",
         "slot": "K"
+      },
+      {
+        "name": "Broncos",
+        "team": "Den",
+        "pos": "DEF",
+        "slot": "BN"
       }
     ],
     "470.l.936120.t.9": [
@@ -7472,9 +7587,9 @@
         "slot": "BN"
       },
       {
-        "name": "Brian Thomas Jr.",
-        "team": "Jax",
-        "pos": "WR",
+        "name": "Mike Gesicki",
+        "team": "Cin",
+        "pos": "TE",
         "slot": "BN"
       },
       {
@@ -7888,6 +8003,12 @@
         "slot": "BN"
       },
       {
+        "name": "Malachi Fields",
+        "team": "NYG",
+        "pos": "WR",
+        "slot": "BN"
+      },
+      {
         "name": "David Montgomery",
         "team": "Hou",
         "pos": "RB",
@@ -7900,14 +8021,14 @@
         "slot": "IR"
       },
       {
-        "name": "Spencer Shrader",
-        "team": "Ind",
+        "name": "Jake Bates",
+        "team": "Det",
         "pos": "K",
         "slot": "K"
       },
       {
-        "name": "Falcons",
-        "team": "Atl",
+        "name": "Saints",
+        "team": "NO",
         "pos": "DEF",
         "slot": "DEF"
       }
