@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-11-08T20:28:38.336Z",
+  "updated": "2026-11-08T20:36:44.339Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -1525,8 +1525,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
             "points": 59.8,
-            "projected": 133.69,
-            "win_probability": 0.69
+            "projected": 133.7,
+            "win_probability": 0.63
           },
           {
             "team_key": "470.l.936120.t.4",
@@ -1536,9 +1536,9 @@
               "robert"
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_9.png",
-            "points": 75.14,
+            "points": 82.46,
             "projected": 127.1,
-            "win_probability": 0.31000000000000005
+            "win_probability": 0.37
           }
         ]
       },
@@ -1558,9 +1558,9 @@
               "John"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/36017961554_a6133e.jpg",
-            "points": 59.98,
+            "points": 73.48,
             "projected": 131.36,
-            "win_probability": 0.16999999999999993
+            "win_probability": 0.28
           },
           {
             "team_key": "470.l.936120.t.7",
@@ -1570,9 +1570,9 @@
               "Kevin"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
-            "points": 75.54,
-            "projected": 141.76,
-            "win_probability": 0.8300000000000001
+            "points": 76.14,
+            "projected": 141.77,
+            "win_probability": 0.72
           }
         ]
       },
@@ -1592,8 +1592,8 @@
               "andrew"
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_3.png",
-            "points": 32.6,
-            "projected": 160.92,
+            "points": 34.1,
+            "projected": 161.27,
             "win_probability": 0.56
           },
           {
@@ -1604,8 +1604,8 @@
               "Joe Tardif"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
-            "points": 64.08,
-            "projected": 144.05,
+            "points": 65.58,
+            "projected": 144.07,
             "win_probability": 0.43999999999999995
           }
         ]
@@ -1627,7 +1627,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/32546629c7ffbbf26a236682ebbad111b5c11ac3d1d8d1c9ba6d6cae81cb87f1.jpg",
             "points": 44.4,
-            "projected": 133.28,
+            "projected": 133.29,
             "win_probability": 0.030000000000000027
           },
           {
@@ -1638,7 +1638,7 @@
               "jen"
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_4.png",
-            "points": 106.36,
+            "points": 108.16,
             "projected": 159.28,
             "win_probability": 0.97
           }
@@ -1662,7 +1662,7 @@
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
             "points": 86.84,
             "projected": 115.22,
-            "win_probability": 0.10999999999999999
+            "win_probability": 0.09999999999999998
           },
           {
             "team_key": "470.l.936120.t.9",
@@ -1674,7 +1674,7 @@
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8cac1d604072b81a5eb666136ba3ab2d8db72606f9ddd90cc7028cded908f850.jpg",
             "points": 68.8,
             "projected": 153.43,
-            "win_probability": 0.89
+            "win_probability": 0.9
           }
         ]
       }
