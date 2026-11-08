@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-11-08T21:25:26.700Z",
+  "updated": "2026-11-08T21:33:33.610Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -1526,7 +1526,7 @@
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
             "points": 70,
             "projected": 133.72,
-            "win_probability": 0.5700000000000001
+            "win_probability": 0.59
           },
           {
             "team_key": "470.l.936120.t.4",
@@ -1536,9 +1536,9 @@
               "robert"
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_9.png",
-            "points": 100.36,
+            "points": 99.66,
             "projected": 127.17,
-            "win_probability": 0.42999999999999994
+            "win_probability": 0.41000000000000003
           }
         ]
       },
@@ -1558,9 +1558,9 @@
               "John"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/36017961554_a6133e.jpg",
-            "points": 82.78,
-            "projected": 131.39,
-            "win_probability": 0.27
+            "points": 80.78,
+            "projected": 131.38,
+            "win_probability": 0.16999999999999993
           },
           {
             "team_key": "470.l.936120.t.7",
@@ -1570,9 +1570,9 @@
               "Kevin"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
-            "points": 88.38,
+            "points": 95.18,
             "projected": 141.86,
-            "win_probability": 0.73
+            "win_probability": 0.8300000000000001
           }
         ]
       },
@@ -1592,9 +1592,9 @@
               "andrew"
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_3.png",
-            "points": 52,
-            "projected": 161.59,
-            "win_probability": 0.5700000000000001
+            "points": 54.9,
+            "projected": 161.55,
+            "win_probability": 0.58
           },
           {
             "team_key": "470.l.936120.t.10",
@@ -1604,9 +1604,9 @@
               "Joe Tardif"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
-            "points": 75.38,
-            "projected": 144.1,
-            "win_probability": 0.42999999999999994
+            "points": 75.78,
+            "projected": 144.04,
+            "win_probability": 0.42000000000000004
           }
         ]
       },
@@ -1626,7 +1626,7 @@
               "Christopher Harris"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/32546629c7ffbbf26a236682ebbad111b5c11ac3d1d8d1c9ba6d6cae81cb87f1.jpg",
-            "points": 46.5,
+            "points": 49.5,
             "projected": 133.16,
             "win_probability": 0.01
           },
@@ -1638,7 +1638,7 @@
               "jen"
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_4.png",
-            "points": 129.84,
+            "points": 132.54,
             "projected": 159.28,
             "win_probability": 0.99
           }
@@ -1661,8 +1661,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
             "points": 100.14,
-            "projected": 115.22,
-            "win_probability": 0.15999999999999992
+            "projected": 127.52,
+            "win_probability": 0.010000000000000009
           },
           {
             "team_key": "470.l.936120.t.9",
@@ -1672,9 +1672,9 @@
               "anyday"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8cac1d604072b81a5eb666136ba3ab2d8db72606f9ddd90cc7028cded908f850.jpg",
-            "points": 78,
-            "projected": 153.45,
-            "win_probability": 0.8400000000000001
+            "points": 110.18,
+            "projected": 153.31,
+            "win_probability": 0.99
           }
         ]
       }
