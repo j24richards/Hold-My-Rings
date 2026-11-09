@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-11-09T05:31:31.295Z",
+  "updated": "2026-11-09T21:57:08.629Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -1525,7 +1525,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
             "points": 122.7,
-            "projected": 133.65,
+            "projected": 133.58,
             "win_probability": 0.97
           },
           {
@@ -1537,7 +1537,7 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_9.png",
             "points": 106.76,
-            "projected": 127.18,
+            "projected": 127.1,
             "win_probability": 0.030000000000000027
           }
         ]
@@ -1559,7 +1559,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/36017961554_a6133e.jpg",
             "points": 90.28,
-            "projected": 131.3,
+            "projected": 131.33,
             "win_probability": 0.010000000000000009
           },
           {
@@ -1571,7 +1571,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
             "points": 147.98,
-            "projected": 141.84,
+            "projected": 141.89,
             "win_probability": 0.99
           }
         ]
@@ -1593,7 +1593,7 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_3.png",
             "points": 104.14,
-            "projected": 161.57,
+            "projected": 146.05,
             "win_probability": 0.01
           },
           {
@@ -1605,7 +1605,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
             "points": 127.48,
-            "projected": 143.81,
+            "projected": 144.47,
             "win_probability": 0.99
           }
         ]
@@ -1627,7 +1627,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/32546629c7ffbbf26a236682ebbad111b5c11ac3d1d8d1c9ba6d6cae81cb87f1.jpg",
             "points": 73.16,
-            "projected": 133.38,
+            "projected": 133.33,
             "win_probability": 0.01
           },
           {
@@ -1639,7 +1639,7 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_4.png",
             "points": 203.44,
-            "projected": 159.31,
+            "projected": 146.27,
             "win_probability": 0.99
           }
         ]
@@ -1661,7 +1661,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
             "points": 106.14,
-            "projected": 127.55,
+            "projected": 127.49,
             "win_probability": 0.01
           },
           {
@@ -1673,7 +1673,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8cac1d604072b81a5eb666136ba3ab2d8db72606f9ddd90cc7028cded908f850.jpg",
             "points": 159.58,
-            "projected": 153.19,
+            "projected": 153.25,
             "win_probability": 0.99
           }
         ]
@@ -1681,6 +1681,31 @@
     ]
   },
   "transactions": [
+    {
+      "id": 299,
+      "type": "add/drop",
+      "status": "successful",
+      "timestamp": 1794160113,
+      "date": "2026-11-08T17:48:33.000Z",
+      "players": [
+        {
+          "name": "Juwan Johnson",
+          "team": "NO",
+          "pos": "TE",
+          "action": "add",
+          "from": "freeagents",
+          "to": "470.l.936120.t.1"
+        },
+        {
+          "name": "Mike Gesicki",
+          "team": "Cin",
+          "pos": "TE",
+          "action": "drop",
+          "from": "470.l.936120.t.1",
+          "to": "waivers"
+        }
+      ]
+    },
     {
       "id": 298,
       "type": "add",
@@ -7243,14 +7268,14 @@
         "slot": "WR"
       },
       {
-        "name": "Antonio Williams",
-        "team": "Was",
+        "name": "Chris Olave",
+        "team": "NO",
         "pos": "WR",
         "slot": "WR"
       },
       {
-        "name": "Chris Olave",
-        "team": "NO",
+        "name": "Omar Cooper Jr.",
+        "team": "NYJ",
         "pos": "WR",
         "slot": "WR"
       },
@@ -7267,14 +7292,14 @@
         "slot": "W/R/T"
       },
       {
-        "name": "DK Metcalf",
-        "team": "Pit",
+        "name": "Antonio Williams",
+        "team": "Was",
         "pos": "WR",
         "slot": "BN"
       },
       {
-        "name": "Omar Cooper Jr.",
-        "team": "NYJ",
+        "name": "DK Metcalf",
+        "team": "Pit",
         "pos": "WR",
         "slot": "BN"
       },
@@ -7621,8 +7646,8 @@
         "slot": "BN"
       },
       {
-        "name": "Mike Gesicki",
-        "team": "Cin",
+        "name": "Juwan Johnson",
+        "team": "NO",
         "pos": "TE",
         "slot": "BN"
       },
