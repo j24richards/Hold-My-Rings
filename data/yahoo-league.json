@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-11-09T00:43:25.328Z",
+  "updated": "2026-11-09T01:00:55.477Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -1525,7 +1525,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
             "points": 112.7,
-            "projected": 133.72,
+            "projected": 133.7,
             "win_probability": 0.95
           },
           {
@@ -1571,7 +1571,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
             "points": 138.58,
-            "projected": 141.85,
+            "projected": 141.87,
             "win_probability": 0.99
           }
         ]
@@ -1593,8 +1593,8 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_3.png",
             "points": 101.04,
-            "projected": 161.59,
-            "win_probability": 0.14
+            "projected": 161.66,
+            "win_probability": 0.15000000000000002
           },
           {
             "team_key": "470.l.936120.t.10",
@@ -1605,8 +1605,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
             "points": 127.48,
-            "projected": 128.63,
-            "win_probability": 0.86
+            "projected": 144.04,
+            "win_probability": 0.85
           }
         ]
       },
@@ -1639,7 +1639,7 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_4.png",
             "points": 154.24,
-            "projected": 159.34,
+            "projected": 159.33,
             "win_probability": 0.99
           }
         ]
