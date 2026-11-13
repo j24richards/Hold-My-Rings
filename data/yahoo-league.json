@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-11-13T05:52:57.800Z",
+  "updated": "2026-11-13T19:14:08.551Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -1697,8 +1697,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
             "points": 27.7,
-            "projected": 129.43,
-            "win_probability": 0.7
+            "projected": 136.56,
+            "win_probability": 0.74
           },
           {
             "team_key": "470.l.936120.t.10",
@@ -1709,8 +1709,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
             "points": 0,
-            "projected": 120.82,
-            "win_probability": 0.30000000000000004
+            "projected": 120.36,
+            "win_probability": 0.26
           }
         ]
       },
@@ -1743,7 +1743,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
             "points": 6.2,
-            "projected": 124.88,
+            "projected": 124.79,
             "win_probability": 0.54
           }
         ]
@@ -1765,8 +1765,8 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_3.png",
             "points": 0,
-            "projected": 140.4,
-            "win_probability": 0.51
+            "projected": 140.39,
+            "win_probability": 0.52
           },
           {
             "team_key": "470.l.936120.t.7",
@@ -1777,8 +1777,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
             "points": 0,
-            "projected": 138.45,
-            "win_probability": 0.49
+            "projected": 137.85,
+            "win_probability": 0.48
           }
         ]
       },
@@ -1799,8 +1799,8 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_9.png",
             "points": 26.76,
-            "projected": 119.41,
-            "win_probability": 0.32000000000000006
+            "projected": 107.4,
+            "win_probability": 0.22999999999999998
           },
           {
             "team_key": "470.l.936120.t.6",
@@ -1811,8 +1811,8 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_4.png",
             "points": 0,
-            "projected": 149.99,
-            "win_probability": 0.6799999999999999
+            "projected": 151.11,
+            "win_probability": 0.77
           }
         ]
       },
@@ -1833,8 +1833,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/32546629c7ffbbf26a236682ebbad111b5c11ac3d1d8d1c9ba6d6cae81cb87f1.jpg",
             "points": 0,
-            "projected": 136.58,
-            "win_probability": 0.38
+            "projected": 136.65,
+            "win_probability": 0.37
           },
           {
             "team_key": "470.l.936120.t.9",
@@ -1845,14 +1845,56 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8cac1d604072b81a5eb666136ba3ab2d8db72606f9ddd90cc7028cded908f850.jpg",
             "points": 0,
-            "projected": 154.68,
-            "win_probability": 0.62
+            "projected": 156.31,
+            "win_probability": 0.63
           }
         ]
       }
     ]
   },
   "transactions": [
+    {
+      "id": 307,
+      "type": "trade",
+      "status": "successful",
+      "timestamp": 1794589193,
+      "date": "2026-11-13T16:59:53.000Z",
+      "players": [
+        {
+          "name": "Treylon Burks",
+          "team": "Was",
+          "pos": "WR",
+          "action": "trade",
+          "from": "470.l.936120.t.1",
+          "to": "470.l.936120.t.4"
+        },
+        {
+          "name": "Tee Higgins",
+          "team": "Cin",
+          "pos": "WR",
+          "action": "trade",
+          "from": "470.l.936120.t.4",
+          "to": "470.l.936120.t.1"
+        }
+      ]
+    },
+    {
+      "id": 306,
+      "type": "add",
+      "status": "successful",
+      "timestamp": 1794531621,
+      "date": "2026-11-13T01:00:21.000Z",
+      "players": [
+        {
+          "name": "Corey Kiner",
+          "team": "NE",
+          "pos": "RB",
+          "action": "add",
+          "from": "freeagents",
+          "to": "470.l.936120.t.10"
+        }
+      ]
+    },
     {
       "id": 305,
       "type": "add",
@@ -7538,7 +7580,33 @@
       ]
     }
   ],
-  "trades": [],
+  "trades": [
+    {
+      "id": 307,
+      "type": "trade",
+      "status": "successful",
+      "timestamp": 1794589193,
+      "date": "2026-11-13T16:59:53.000Z",
+      "players": [
+        {
+          "name": "Treylon Burks",
+          "team": "Was",
+          "pos": "WR",
+          "action": "trade",
+          "from": "470.l.936120.t.1",
+          "to": "470.l.936120.t.4"
+        },
+        {
+          "name": "Tee Higgins",
+          "team": "Cin",
+          "pos": "WR",
+          "action": "trade",
+          "from": "470.l.936120.t.4",
+          "to": "470.l.936120.t.1"
+        }
+      ]
+    }
+  ],
   "rosters": {
     "470.l.936120.t.6": [
       {
@@ -7908,10 +7976,16 @@
         "slot": "TE"
       },
       {
+        "name": "Tee Higgins",
+        "team": "Cin",
+        "pos": "WR",
+        "slot": "W/R/T"
+      },
+      {
         "name": "Blake Corum",
         "team": "LAR",
         "pos": "RB",
-        "slot": "W/R/T"
+        "slot": "BN"
       },
       {
         "name": "Stefon Diggs",
@@ -7935,12 +8009,6 @@
         "name": "Emmett Johnson",
         "team": "KC",
         "pos": "RB",
-        "slot": "BN"
-      },
-      {
-        "name": "Treylon Burks",
-        "team": "Was",
-        "pos": "WR",
         "slot": "BN"
       },
       {
@@ -8140,12 +8208,6 @@
         "slot": "BN"
       },
       {
-        "name": "Puka Nacua",
-        "team": "LAR",
-        "pos": "WR",
-        "slot": "BN"
-      },
-      {
         "name": "Marvin Harrison Jr.",
         "team": "Hou",
         "pos": "WR",
@@ -8162,6 +8224,18 @@
         "team": "SF",
         "pos": "WR",
         "slot": "BN"
+      },
+      {
+        "name": "Corey Kiner",
+        "team": "NE",
+        "pos": "RB",
+        "slot": "BN"
+      },
+      {
+        "name": "Puka Nacua",
+        "team": "LAR",
+        "pos": "WR",
+        "slot": "IR"
       },
       {
         "name": "Jeremiyah Love",
@@ -8294,22 +8368,16 @@
         "slot": "QB"
       },
       {
-        "name": "Dylan Sampson",
-        "team": "Cle",
-        "pos": "RB",
-        "slot": "RB"
-      },
-      {
         "name": "Woody Marks",
         "team": "Hou",
         "pos": "RB",
         "slot": "RB"
       },
       {
-        "name": "Tee Higgins",
-        "team": "Cin",
-        "pos": "WR",
-        "slot": "WR"
+        "name": "Jaylen Warren",
+        "team": "Pit",
+        "pos": "RB",
+        "slot": "RB"
       },
       {
         "name": "KC Concepcion Jr.",
@@ -8318,8 +8386,8 @@
         "slot": "WR"
       },
       {
-        "name": "Malik Washington",
-        "team": "Mia",
+        "name": "Josh Downs",
+        "team": "KC",
         "pos": "WR",
         "slot": "WR"
       },
@@ -8336,8 +8404,14 @@
         "slot": "W/R/T"
       },
       {
-        "name": "Jaylen Warren",
-        "team": "Pit",
+        "name": "Malik Washington",
+        "team": "Mia",
+        "pos": "WR",
+        "slot": "BN"
+      },
+      {
+        "name": "Dylan Sampson",
+        "team": "Cle",
         "pos": "RB",
         "slot": "BN"
       },
@@ -8354,12 +8428,6 @@
         "slot": "BN"
       },
       {
-        "name": "Josh Downs",
-        "team": "KC",
-        "pos": "WR",
-        "slot": "BN"
-      },
-      {
         "name": "Malachi Fields",
         "team": "NYG",
         "pos": "WR",
@@ -8369,7 +8437,13 @@
         "name": "David Montgomery",
         "team": "Hou",
         "pos": "RB",
-        "slot": "IR"
+        "slot": "BN"
+      },
+      {
+        "name": "Treylon Burks",
+        "team": "Was",
+        "pos": "WR",
+        "slot": "BN"
       },
       {
         "name": "Carnell Tate",
