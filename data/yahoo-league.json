@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-11-16T02:23:10.054Z",
+  "updated": "2026-11-16T02:31:16.032Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -1696,9 +1696,9 @@
               "Jimmie Legs"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
-            "points": 162.54,
+            "points": 173.14,
             "projected": 151.57,
-            "win_probability": 0.97
+            "win_probability": 0.99
           },
           {
             "team_key": "470.l.936120.t.10",
@@ -1710,7 +1710,7 @@
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
             "points": 149.28,
             "projected": 114.33,
-            "win_probability": 0.030000000000000027
+            "win_probability": 0.010000000000000009
           }
         ]
       },
@@ -1732,7 +1732,7 @@
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/36017961554_a6133e.jpg",
             "points": 93.62,
             "projected": 126.55,
-            "win_probability": 0.87
+            "win_probability": 0.64
           },
           {
             "team_key": "470.l.936120.t.8",
@@ -1742,9 +1742,9 @@
               "Benjamin"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
-            "points": 75.08,
+            "points": 83.8,
             "projected": 124.18,
-            "win_probability": 0.13
+            "win_probability": 0.36
           }
         ]
       },
@@ -1844,7 +1844,7 @@
               "anyday"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8cac1d604072b81a5eb666136ba3ab2d8db72606f9ddd90cc7028cded908f850.jpg",
-            "points": 178.16,
+            "points": 184.46,
             "projected": 157.79,
             "win_probability": 0.99
           }
