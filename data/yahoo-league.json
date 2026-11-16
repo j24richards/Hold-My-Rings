@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-11-16T01:16:03.913Z",
+  "updated": "2026-11-16T01:25:30.285Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -1696,7 +1696,7 @@
               "Jimmie Legs"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
-            "points": 150.04,
+            "points": 151.44,
             "projected": 151.57,
             "win_probability": 0.94
           },
@@ -1742,7 +1742,7 @@
               "Benjamin"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
-            "points": 61.2,
+            "points": 61.92,
             "projected": 124.18,
             "win_probability": 0.09999999999999998
           }
@@ -1844,7 +1844,7 @@
               "anyday"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8cac1d604072b81a5eb666136ba3ab2d8db72606f9ddd90cc7028cded908f850.jpg",
-            "points": 163.96,
+            "points": 165.46,
             "projected": 157.79,
             "win_probability": 0.99
           }
