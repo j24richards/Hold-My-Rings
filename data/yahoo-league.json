@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-11-16T01:46:58.253Z",
+  "updated": "2026-11-16T01:56:20.720Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -1696,9 +1696,9 @@
               "Jimmie Legs"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
-            "points": 157.54,
+            "points": 160.24,
             "projected": 151.57,
-            "win_probability": 0.96
+            "win_probability": 0.97
           },
           {
             "team_key": "470.l.936120.t.10",
@@ -1710,7 +1710,7 @@
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
             "points": 149.28,
             "projected": 114.33,
-            "win_probability": 0.040000000000000036
+            "win_probability": 0.030000000000000027
           }
         ]
       },
@@ -1742,7 +1742,7 @@
               "Benjamin"
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
-            "points": 65.4,
+            "points": 66.88,
             "projected": 124.18,
             "win_probability": 0.08000000000000007
           }
@@ -1766,7 +1766,7 @@
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_3.png",
             "points": 138.48,
             "projected": 148.77,
-            "win_probability": 0.040000000000000036
+            "win_probability": 0.030000000000000027
           },
           {
             "team_key": "470.l.936120.t.7",
@@ -1778,7 +1778,7 @@
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
             "points": 174.12,
             "projected": 140.6,
-            "win_probability": 0.96
+            "win_probability": 0.97
           }
         ]
       },
