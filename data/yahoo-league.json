@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-11-20T06:32:46.131Z",
+  "updated": "2026-11-20T19:38:04.806Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -1869,7 +1869,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
             "points": 14.8,
-            "projected": 157.55,
+            "projected": 158.12,
             "win_probability": 0.52
           },
           {
@@ -1881,7 +1881,7 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_4.png",
             "points": 26.46,
-            "projected": 150.89,
+            "projected": 151.94,
             "win_probability": 0.48
           }
         ]
@@ -1903,7 +1903,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/36017961554_a6133e.jpg",
             "points": 10.76,
-            "projected": 116.48,
+            "projected": 117.9,
             "win_probability": 0.21999999999999997
           },
           {
@@ -1915,7 +1915,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/32546629c7ffbbf26a236682ebbad111b5c11ac3d1d8d1c9ba6d6cae81cb87f1.jpg",
             "points": 0,
-            "projected": 136.37,
+            "projected": 135.99,
             "win_probability": 0.78
           }
         ]
@@ -1937,8 +1937,8 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_3.png",
             "points": 15.5,
-            "projected": 137.14,
-            "win_probability": 0.67
+            "projected": 137.28,
+            "win_probability": 0.66
           },
           {
             "team_key": "470.l.936120.t.8",
@@ -1949,8 +1949,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
             "points": 0,
-            "projected": 122.1,
-            "win_probability": 0.32999999999999996
+            "projected": 123.08,
+            "win_probability": 0.33999999999999997
           }
         ]
       },
@@ -1983,7 +1983,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8cac1d604072b81a5eb666136ba3ab2d8db72606f9ddd90cc7028cded908f850.jpg",
             "points": 0,
-            "projected": 149.41,
+            "projected": 149.56,
             "win_probability": 0.66
           }
         ]
@@ -2005,8 +2005,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
             "points": 14.9,
-            "projected": 137.41,
-            "win_probability": 0.52
+            "projected": 137.25,
+            "win_probability": 0.51
           },
           {
             "team_key": "470.l.936120.t.10",
@@ -2017,14 +2017,81 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
             "points": 4.9,
-            "projected": 120.53,
-            "win_probability": 0.48
+            "projected": 122.24,
+            "win_probability": 0.49
           }
         ]
       }
     ]
   },
   "transactions": [
+    {
+      "id": 329,
+      "type": "add/drop",
+      "status": "successful",
+      "timestamp": 1795202417,
+      "date": "2026-11-20T19:20:17.000Z",
+      "players": [
+        {
+          "name": "Dallas Goedert",
+          "team": "Phi",
+          "pos": "TE",
+          "action": "add",
+          "from": "freeagents",
+          "to": "470.l.936120.t.5"
+        },
+        {
+          "name": "Kendre Miller",
+          "team": "Dal",
+          "pos": "RB",
+          "action": "drop",
+          "from": "470.l.936120.t.5",
+          "to": "waivers"
+        }
+      ]
+    },
+    {
+      "id": 328,
+      "type": "add",
+      "status": "successful",
+      "timestamp": 1795187298,
+      "date": "2026-11-20T15:08:18.000Z",
+      "players": [
+        {
+          "name": "RJ Harvey",
+          "team": "Den",
+          "pos": "RB",
+          "action": "add",
+          "from": "freeagents",
+          "to": "470.l.936120.t.1"
+        }
+      ]
+    },
+    {
+      "id": 327,
+      "type": "add/drop",
+      "status": "successful",
+      "timestamp": 1795143096,
+      "date": "2026-11-20T02:51:36.000Z",
+      "players": [
+        {
+          "name": "Cairo Santos",
+          "team": "Chi",
+          "pos": "K",
+          "action": "add",
+          "from": "freeagents",
+          "to": "470.l.936120.t.1"
+        },
+        {
+          "name": "Juwan Johnson",
+          "team": "NO",
+          "pos": "TE",
+          "action": "drop",
+          "from": "470.l.936120.t.1",
+          "to": "waivers"
+        }
+      ]
+    },
     {
       "id": 326,
       "type": "add/drop",
@@ -8354,14 +8421,14 @@
         "slot": "WR"
       },
       {
-        "name": "Devaughn Vele",
-        "team": "NO",
+        "name": "Luther Burden III",
+        "team": "Chi",
         "pos": "WR",
         "slot": "WR"
       },
       {
-        "name": "Luther Burden III",
-        "team": "Chi",
+        "name": "DeVonta Smith",
+        "team": "Phi",
         "pos": "WR",
         "slot": "WR"
       },
@@ -8376,6 +8443,12 @@
         "team": "TB",
         "pos": "RB",
         "slot": "W/R/T"
+      },
+      {
+        "name": "Devaughn Vele",
+        "team": "NO",
+        "pos": "WR",
+        "slot": "BN"
       },
       {
         "name": "Zach Charbonnet",
@@ -8398,12 +8471,6 @@
       {
         "name": "Ladd McConkey",
         "team": "LAC",
-        "pos": "WR",
-        "slot": "BN"
-      },
-      {
-        "name": "DeVonta Smith",
-        "team": "Phi",
         "pos": "WR",
         "slot": "BN"
       },
@@ -8506,12 +8573,6 @@
         "slot": "BN"
       },
       {
-        "name": "Juwan Johnson",
-        "team": "NO",
-        "pos": "TE",
-        "slot": "BN"
-      },
-      {
         "name": "Kyle Monangai",
         "team": "Chi",
         "pos": "RB",
@@ -8522,6 +8583,18 @@
         "team": "NE",
         "pos": "WR",
         "slot": "IR"
+      },
+      {
+        "name": "RJ Harvey",
+        "team": "Den",
+        "pos": "RB",
+        "slot": "IR"
+      },
+      {
+        "name": "Cairo Santos",
+        "team": "Chi",
+        "pos": "K",
+        "slot": "K"
       },
       {
         "name": "Jaguars",
@@ -8886,8 +8959,8 @@
         "slot": "WR"
       },
       {
-        "name": "Dalton Kincaid",
-        "team": "Buf",
+        "name": "Dallas Goedert",
+        "team": "Phi",
         "pos": "TE",
         "slot": "TE"
       },
@@ -8896,6 +8969,12 @@
         "team": "NYG",
         "pos": "RB",
         "slot": "W/R/T"
+      },
+      {
+        "name": "Dalton Kincaid",
+        "team": "Buf",
+        "pos": "TE",
+        "slot": "BN"
       },
       {
         "name": "Drake London",
@@ -8918,12 +8997,6 @@
       {
         "name": "Aaron Jones Sr.",
         "team": "Min",
-        "pos": "RB",
-        "slot": "BN"
-      },
-      {
-        "name": "Kendre Miller",
-        "team": "Dal",
         "pos": "RB",
         "slot": "BN"
       },
@@ -9088,8 +9161,8 @@
         "slot": "WR"
       },
       {
-        "name": "Kyle Pitts Sr.",
-        "team": "Atl",
+        "name": "Brenton Strange",
+        "team": "Jax",
         "pos": "TE",
         "slot": "TE"
       },
@@ -9098,6 +9171,12 @@
         "team": "NO",
         "pos": "RB",
         "slot": "W/R/T"
+      },
+      {
+        "name": "Kyle Pitts Sr.",
+        "team": "Atl",
+        "pos": "TE",
+        "slot": "BN"
       },
       {
         "name": "Rome Odunze",
@@ -9121,12 +9200,6 @@
         "name": "Emeka Egbuka",
         "team": "TB",
         "pos": "WR",
-        "slot": "BN"
-      },
-      {
-        "name": "Brenton Strange",
-        "team": "Jax",
-        "pos": "TE",
         "slot": "BN"
       },
       {
