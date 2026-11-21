@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-11-20T19:38:04.806Z",
+  "updated": "2026-11-21T18:43:48.924Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -1869,8 +1869,8 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
             "points": 14.8,
-            "projected": 158.12,
-            "win_probability": 0.52
+            "projected": 160.82,
+            "win_probability": 0.56
           },
           {
             "team_key": "470.l.936120.t.6",
@@ -1881,8 +1881,8 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_4.png",
             "points": 26.46,
-            "projected": 151.94,
-            "win_probability": 0.48
+            "projected": 148.95,
+            "win_probability": 0.43999999999999995
           }
         ]
       },
@@ -1903,7 +1903,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/36017961554_a6133e.jpg",
             "points": 10.76,
-            "projected": 117.9,
+            "projected": 118.05,
             "win_probability": 0.21999999999999997
           },
           {
@@ -1915,7 +1915,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/32546629c7ffbbf26a236682ebbad111b5c11ac3d1d8d1c9ba6d6cae81cb87f1.jpg",
             "points": 0,
-            "projected": 135.99,
+            "projected": 136.11,
             "win_probability": 0.78
           }
         ]
@@ -1937,7 +1937,7 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_3.png",
             "points": 15.5,
-            "projected": 137.28,
+            "projected": 137.03,
             "win_probability": 0.66
           },
           {
@@ -1949,7 +1949,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
             "points": 0,
-            "projected": 123.08,
+            "projected": 123.67,
             "win_probability": 0.33999999999999997
           }
         ]
@@ -1971,7 +1971,7 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_9.png",
             "points": 15.4,
-            "projected": 127.2,
+            "projected": 127.72,
             "win_probability": 0.33999999999999997
           },
           {
@@ -1983,7 +1983,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8cac1d604072b81a5eb666136ba3ab2d8db72606f9ddd90cc7028cded908f850.jpg",
             "points": 0,
-            "projected": 149.56,
+            "projected": 149.6,
             "win_probability": 0.66
           }
         ]
@@ -2005,7 +2005,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
             "points": 14.9,
-            "projected": 137.25,
+            "projected": 138.23,
             "win_probability": 0.51
           },
           {
@@ -2017,7 +2017,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
             "points": 4.9,
-            "projected": 122.24,
+            "projected": 122.33,
             "win_probability": 0.49
           }
         ]
@@ -2025,6 +2025,23 @@
     ]
   },
   "transactions": [
+    {
+      "id": 330,
+      "type": "add",
+      "status": "successful",
+      "timestamp": 1795279117,
+      "date": "2026-11-21T16:38:37.000Z",
+      "players": [
+        {
+          "name": "Elic Ayomanor",
+          "team": "Ten",
+          "pos": "WR",
+          "action": "add",
+          "from": "freeagents",
+          "to": "470.l.936120.t.6"
+        }
+      ]
+    },
     {
       "id": 329,
       "type": "add/drop",
@@ -8409,8 +8426,8 @@
         "slot": "RB"
       },
       {
-        "name": "Kenneth Walker III",
-        "team": "KC",
+        "name": "Bucky Irving",
+        "team": "TB",
         "pos": "RB",
         "slot": "RB"
       },
@@ -8439,9 +8456,9 @@
         "slot": "TE"
       },
       {
-        "name": "Bucky Irving",
-        "team": "TB",
-        "pos": "RB",
+        "name": "Elic Ayomanor",
+        "team": "Ten",
+        "pos": "WR",
         "slot": "W/R/T"
       },
       {
@@ -8473,6 +8490,12 @@
         "team": "LAC",
         "pos": "WR",
         "slot": "BN"
+      },
+      {
+        "name": "Kenneth Walker III",
+        "team": "KC",
+        "pos": "RB",
+        "slot": "IR"
       },
       {
         "name": "Michael Wilson",
