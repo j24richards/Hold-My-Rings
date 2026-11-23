@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-11-23T02:53:49.488Z",
+  "updated": "2026-11-23T03:17:44.796Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -1936,7 +1936,7 @@
               "andrew"
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_3.png",
-            "points": 107.84,
+            "points": 108.04,
             "projected": 138.59,
             "win_probability": 0.36
           },
