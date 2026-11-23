@@ -1,6 +1,6 @@
 {
   "attribution": "Fantasy data provided by Yahoo Fantasy",
-  "updated": "2026-11-23T04:31:08.438Z",
+  "updated": "2026-11-23T23:24:44.352Z",
   "league": {
     "id": "936120",
     "key": "nfl.l.936120",
@@ -1869,7 +1869,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3ab8a50632a0cd64c62db828844f2adb90c4f0f71a8c79ef567baf66238b2bbc.png",
             "points": 83.96,
-            "projected": 161.67,
+            "projected": 161.52,
             "win_probability": 0.050000000000000044
           },
           {
@@ -1881,7 +1881,7 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_4.png",
             "points": 154.56,
-            "projected": 149.36,
+            "projected": 149.4,
             "win_probability": 0.95
           }
         ]
@@ -1903,7 +1903,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/36017961554_a6133e.jpg",
             "points": 102.36,
-            "projected": 119.37,
+            "projected": 119.16,
             "win_probability": 0
           },
           {
@@ -1915,7 +1915,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/32546629c7ffbbf26a236682ebbad111b5c11ac3d1d8d1c9ba6d6cae81cb87f1.jpg",
             "points": 125.46,
-            "projected": 139.18,
+            "projected": 139.2,
             "win_probability": 1
           }
         ]
@@ -1937,7 +1937,7 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_3.png",
             "points": 114.3,
-            "projected": 138.59,
+            "projected": 138.25,
             "win_probability": 0.07000000000000006
           },
           {
@@ -1949,7 +1949,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/35978639133_e214fc.jpg",
             "points": 97.7,
-            "projected": 124.77,
+            "projected": 125.11,
             "win_probability": 0.9299999999999999
           }
         ]
@@ -1971,7 +1971,7 @@
             ],
             "logo": "https://s.yimg.com/cv/apiv2/default/nfl/nfl_9.png",
             "points": 85.7,
-            "projected": 128.52,
+            "projected": 128.59,
             "win_probability": 0.030000000000000027
           },
           {
@@ -1983,7 +1983,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8cac1d604072b81a5eb666136ba3ab2d8db72606f9ddd90cc7028cded908f850.jpg",
             "points": 148.8,
-            "projected": 153.64,
+            "projected": 153.44,
             "win_probability": 0.97
           }
         ]
@@ -2005,7 +2005,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/9dbcc7c3b7598fc4a6497c94e9000b691ed32af236dc3bad62bca25a7d3c2a9f.png",
             "points": 138.56,
-            "projected": 138.49,
+            "projected": 138.58,
             "win_probability": 0.32999999999999996
           },
           {
@@ -2017,7 +2017,7 @@
             ],
             "logo": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24677240473_d4b2bb03a2.jpg",
             "points": 134.04,
-            "projected": 115.19,
+            "projected": 114.94,
             "win_probability": 0.67
           }
         ]
@@ -2025,6 +2025,23 @@
     ]
   },
   "transactions": [
+    {
+      "id": 335,
+      "type": "drop",
+      "status": "successful",
+      "timestamp": 1795474948,
+      "date": "2026-11-23T23:02:28.000Z",
+      "players": [
+        {
+          "name": "Pat Bryant",
+          "team": "Den",
+          "pos": "WR",
+          "action": "drop",
+          "from": "470.l.936120.t.7",
+          "to": "waivers"
+        }
+      ]
+    },
     {
       "id": 334,
       "type": "add",
@@ -8892,16 +8909,10 @@
         "slot": "BN"
       },
       {
-        "name": "Pat Bryant",
-        "team": "Den",
-        "pos": "WR",
-        "slot": "BN"
-      },
-      {
         "name": "Jacory Croskey-Merritt",
         "team": "Was",
         "pos": "RB",
-        "slot": "IR"
+        "slot": "BN"
       },
       {
         "name": "Ka'imi Fairbairn",
@@ -8960,10 +8971,16 @@
         "slot": "TE"
       },
       {
+        "name": "Samaje Perine",
+        "team": "Cin",
+        "pos": "RB",
+        "slot": "W/R/T"
+      },
+      {
         "name": "Brock Bowers",
         "team": "LV",
         "pos": "TE",
-        "slot": "W/R/T"
+        "slot": "BN"
       },
       {
         "name": "Deebo Samuel Sr.",
@@ -8987,12 +9004,6 @@
         "name": "Marvin Harrison Jr.",
         "team": "Hou",
         "pos": "WR",
-        "slot": "BN"
-      },
-      {
-        "name": "Samaje Perine",
-        "team": "Cin",
-        "pos": "RB",
         "slot": "BN"
       },
       {
